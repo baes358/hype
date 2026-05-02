@@ -44,7 +44,7 @@ export function Hero({ data }: Props) {
 
       {/* Hero finding */}
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-32">
-        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-rose-400">
+        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-rose-600">
           The Gap
         </div>
         <h1

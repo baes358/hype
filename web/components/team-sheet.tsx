@@ -26,7 +26,7 @@ type Props = {
 const chartConfig: ChartConfig = {
   value: {
     label: "Hype",
-    color: "var(--color-rose-400, #fb7185)",
+    color: "rgb(244 63 94)", // rose-500
   },
 };
 
@@ -133,7 +133,7 @@ function TeamSheetBody({ team }: { team: Team }) {
                 <stop offset="100%" stopColor="rgb(244 63 94)" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} stroke="rgba(255,255,255,0.06)" />
+            <CartesianGrid vertical={false} stroke="rgba(58,59,59,0.08)" />
             <XAxis
               dataKey="date"
               tickFormatter={shortDate}
@@ -143,7 +143,7 @@ function TeamSheetBody({ team }: { team: Team }) {
             />
             <YAxis tickLine={false} axisLine={false} width={28} />
             <ChartTooltip
-              cursor={{ stroke: "rgba(255,255,255,0.2)", strokeDasharray: "2 4" }}
+              cursor={{ stroke: "rgba(58,59,59,0.3)", strokeDasharray: "2 4" }}
               content={
                 <ChartTooltipContent
                   labelFormatter={(label) => shortDate(label as string)}
@@ -151,7 +151,7 @@ function TeamSheetBody({ team }: { team: Team }) {
                 />
               }
             />
-            <ReferenceLine y={100} stroke="rgba(255,255,255,0.15)" strokeDasharray="2 2" />
+            <ReferenceLine y={100} stroke="rgba(58,59,59,0.2)" strokeDasharray="2 2" />
             <Area
               type="monotone"
               dataKey="value"

@@ -46,7 +46,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
         <div className="text-center text-foreground">0</div>
         <div className="flex items-center gap-2 pl-2">
           Underhyped →
-          <span className="size-1.5 rounded-full bg-sky-400" />
+          <span className="size-1.5 rounded-full bg-sky-500" />
         </div>
       </div>
 
@@ -80,7 +80,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                             <span className="font-mono text-[11px] tabular-nums">{t.seed}</span>
                           </span>
                         </span>
-                        <span className="font-mono text-[11px] tabular-nums text-rose-400">
+                        <span className="font-mono text-[11px] tabular-nums text-rose-600">
                           {t.gap}
                         </span>
                       </div>
@@ -108,7 +108,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
                       />
                       <div className="flex min-w-0 flex-1 items-center gap-3">
-                        <span className="font-mono text-[11px] tabular-nums text-sky-300">
+                        <span className="font-mono text-[11px] tabular-nums text-sky-700">
                           +{t.gap}
                         </span>
                         <span className="truncate text-sm text-foreground">

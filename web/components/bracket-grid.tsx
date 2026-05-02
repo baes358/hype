@@ -86,7 +86,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                         <span className="text-muted-foreground">
                           {t.wins}W
                         </span>
-                        <span className={t.gap < 0 ? "text-rose-400" : t.gap > 0 ? "text-sky-300" : "text-muted-foreground"}>
+                        <span className={t.gap < 0 ? "text-rose-600" : t.gap > 0 ? "text-sky-700" : "text-muted-foreground"}>
                           {t.gap > 0 ? "+" : ""}
                           {t.gap}
                         </span>

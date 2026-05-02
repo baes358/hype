@@ -27,7 +27,7 @@ export function SectionNav() {
             >
               {v.label}
               {active && (
-                <span className="absolute inset-x-0 -bottom-px h-px bg-rose-400" />
+                <span className="absolute inset-x-0 -bottom-px h-px bg-rose-500" />
               )}
             </Link>
           );
