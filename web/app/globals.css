@@ -2,13 +2,25 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Display font: Neue Black.
+/* Body + display font: Neue Black (used for everything that isn't .font-mono).
    Drop the .woff2 file at /web/public/fonts/NeueBlack.woff2.
-   If missing, falls back through the chain in --font-display below. */
+   font-weight: 100 900 means: claim this single face covers ANY requested
+   weight, so the file always wins regardless of what consumers ask for. */
 @font-face {
   font-family: "Neue Black";
   src: url("/fonts/NeueBlack.woff2") format("woff2");
-  font-weight: 900;
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mono / labels font: FA-1 Regular.
+   Drop the .otf file at /web/public/fonts/fa-1-regular.otf.
+   If missing, falls back through the chain in --font-mono below. */
+@font-face {
+  font-family: "FA-1";
+  src: url("/fonts/fa-1-regular.otf") format("opentype");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -18,8 +30,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono-geist);
+  --color-brand: var(--brand);
+  --font-sans: var(--font-host), "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "FA-1", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-display: "Neue Black", "Helvetica Neue", "Arial Black", system-ui, sans-serif;
   --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -63,6 +76,7 @@
 :root {
   --background: #ffffff;
   --foreground: #3a3b3b;
+  --brand: #44d1d1;
   --card: #ffffff;
   --card-foreground: #3a3b3b;
   --popover: #ffffff;

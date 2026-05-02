@@ -28,7 +28,7 @@ export function Filters({
         <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
           {/* Tag filter group */}
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
               Story
             </span>
             {TAG_ORDER.map((tag) => {
@@ -47,7 +47,7 @@ export function Filters({
                 >
                   <span className={`size-1.5 rounded-full ${style.dot}`} />
                   {TAG_LABEL[tag]}
-                  <span className="font-mono text-[10px] tabular-nums opacity-60">
+                  <span className="font-mono text-[9px] tabular-nums opacity-60">
                     {tagCounts[tag]}
                   </span>
                 </button>
@@ -57,7 +57,7 @@ export function Filters({
 
           {/* Region filter group */}
           <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
               Region
             </span>
             {(["all", ...REGIONS] as const).map((r) => {
@@ -82,7 +82,7 @@ export function Filters({
           {anyFilterActive && (
             <button
               onClick={onReset}
-              className="ml-auto font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground"
+              className="ml-auto font-mono text-[9px] uppercase tracking-normal text-muted-foreground hover:text-foreground"
             >
               Reset
             </button>

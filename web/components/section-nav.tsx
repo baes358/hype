@@ -19,7 +19,7 @@ export function SectionNav() {
             <Link
               key={v.href}
               href={v.href}
-              className={`relative py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition ${
+              className={`relative py-3 font-mono text-[10px] uppercase tracking-normal transition ${
                 active
                   ? "text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -27,7 +27,7 @@ export function SectionNav() {
             >
               {v.label}
               {active && (
-                <span className="absolute inset-x-0 -bottom-px h-px bg-rose-500" />
+                <span className="absolute inset-x-0 -bottom-px h-px bg-brand" />
               )}
             </Link>
           );

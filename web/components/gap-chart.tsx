@@ -25,20 +25,20 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
     <section className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
       <header className="mb-8 flex items-end justify-between gap-6">
         <div>
-          <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
             01 / The diverging gap
           </div>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
             Every team, ranked by the wrongness of the internet&apos;s read
           </h2>
         </div>
-        <div className="hidden font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground sm:block">
+        <div className="hidden font-mono text-[10px] uppercase tracking-normal text-muted-foreground sm:block">
           {sorted.length} teams shown
         </div>
       </header>
 
       {/* Axis labels */}
-      <div className="mb-2 grid grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+      <div className="mb-2 grid grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
         <div className="flex items-center justify-end gap-2 pr-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           ← Overhyped
@@ -77,10 +77,10 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         <span className="truncate text-sm text-foreground">
                           {t.team}{" "}
                           <span className="text-muted-foreground">
-                            <span className="font-mono text-[11px] tabular-nums">{t.seed}</span>
+                            <span className="font-mono text-[10px] tabular-nums">{t.seed}</span>
                           </span>
                         </span>
-                        <span className="font-mono text-[11px] tabular-nums text-rose-600">
+                        <span className="font-mono text-[10px] tabular-nums text-rose-600">
                           {t.gap}
                         </span>
                       </div>
@@ -108,13 +108,13 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
                       />
                       <div className="flex min-w-0 flex-1 items-center gap-3">
-                        <span className="font-mono text-[11px] tabular-nums text-sky-700">
+                        <span className="font-mono text-[10px] tabular-nums text-sky-700">
                           +{t.gap}
                         </span>
                         <span className="truncate text-sm text-foreground">
                           {t.team}{" "}
                           <span className="text-muted-foreground">
-                            <span className="font-mono text-[11px] tabular-nums">{t.seed}</span>
+                            <span className="font-mono text-[10px] tabular-nums">{t.seed}</span>
                           </span>
                         </span>
                       </div>
@@ -127,7 +127,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
         })}
       </ul>
 
-      <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+      <p className="mt-4 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
         Click any team to inspect its 15-day hype curve →
       </p>
     </section>

@@ -26,7 +26,7 @@ type Props = {
 const chartConfig: ChartConfig = {
   value: {
     label: "Hype",
-    color: "rgb(244 63 94)", // rose-500
+    color: "#44d1d1", // rose-500
   },
 };
 
@@ -61,7 +61,7 @@ function TeamSheetBody({ team }: { team: Team }) {
   return (
     <div className="flex flex-col gap-8 px-6 py-8">
       <SheetHeader className="px-0">
-        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+        <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
           <span className={`size-1.5 rounded-full ${style.dot}`} />
           {TAG_LABEL[team.story_tag]}
           <span>·</span>
@@ -94,7 +94,7 @@ function TeamSheetBody({ team }: { team: Team }) {
 
       {/* Gap callout */}
       <div className={`rounded-md border ${style.border} ${style.bg} px-4 py-3`}>
-        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+        <div className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
           Gap
         </div>
         <div className="mt-1 flex items-baseline gap-3">
@@ -112,7 +112,7 @@ function TeamSheetBody({ team }: { team: Team }) {
       <div>
         <div className="mb-3 flex items-end justify-between">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            <div className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
               Daily hype, 15-day window
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
@@ -129,8 +129,8 @@ function TeamSheetBody({ team }: { team: Team }) {
           >
             <defs>
               <linearGradient id="hype-area" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="rgb(244 63 94)" stopOpacity={0.4} />
-                <stop offset="100%" stopColor="rgb(244 63 94)" stopOpacity={0} />
+                <stop offset="0%" stopColor="#44d1d1" stopOpacity={0.5} />
+                <stop offset="100%" stopColor="#44d1d1" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} stroke="rgba(58,59,59,0.08)" />
@@ -155,7 +155,7 @@ function TeamSheetBody({ team }: { team: Team }) {
             <Area
               type="monotone"
               dataKey="value"
-              stroke="rgb(244 63 94)"
+              stroke="#44d1d1"
               strokeWidth={1.5}
               fill="url(#hype-area)"
             />
@@ -169,14 +169,14 @@ function TeamSheetBody({ team }: { team: Team }) {
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div className="bg-background px-4 py-3">
-      <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+      <div className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
         {label}
       </div>
       <div className="mt-1 font-mono text-2xl font-semibold tabular-nums text-foreground">
         {value}
       </div>
       {hint && (
-        <div className="mt-0.5 font-mono text-[10px] text-muted-foreground">{hint}</div>
+        <div className="mt-0.5 font-mono text-[9px] text-muted-foreground">{hint}</div>
       )}
     </div>
   );

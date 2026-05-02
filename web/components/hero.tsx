@@ -28,7 +28,7 @@ export function Hero({ data }: Props) {
   return (
     <section className="border-b border-border">
       {/* Top meta strip — Bloomberg-style data banner */}
-      <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+      <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-1 px-6 py-3">
           <span className="text-foreground font-semibold">HYP3 / 001</span>
           <span>·</span>
@@ -44,7 +44,7 @@ export function Hero({ data }: Props) {
 
       {/* Hero finding */}
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-32">
-        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-rose-600">
+        <div className="font-mono text-[10px] uppercase tracking-normal text-brand">
           The Gap
         </div>
         <h1
@@ -55,7 +55,7 @@ export function Hero({ data }: Props) {
           {finding}
         </h1>
         <p className="mt-8 max-w-2xl text-base leading-7 text-muted-foreground">
-          Hyp3 measures the distance between how loudly the internet talked about each
+          HYP3 measures the distance between how loudly the internet talked about each
           team and how far they actually went. <span className="text-foreground">Negative gap</span>{" "}
           means a team got more hype than their wins justified.{" "}
           <span className="text-foreground">Positive gap</span> means they were robbed of attention.
