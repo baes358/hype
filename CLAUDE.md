@@ -176,12 +176,23 @@ Edit `"finding"` in [data-pipeline/build_dataset.py:117](data-pipeline/build_dat
 - **Mocking dependencies or writing tests** — explicit no-test policy for the 72-hour scope.
 - **Lowercase "Hyp3"** — brand is HYP3 caps.
 
-## Things to watch (open follow-ups)
+## Open follow-ups
 
-- **McNeese (36.74), Tennessee State (36.38), Furman (30.40)** — small-school hype values that look high. Curves are tournament-shaped (spike on game day) so probably real, but worth re-checking if the editorial finding hinges on them.
-- **Florida** has gap = -16, currently tagged `noise`. If you want it as `overhyped`, tighten the threshold further (e.g. `< -10`).
-- **Hawaii (3.54), St. Mary's (4.08)** — likely genuinely low signal but worth eyeballing the daily curve once before considering them final.
-- **Custom font files not yet in repo** — `web/public/fonts/NeueBlack.woff2` and `fa-1-regular.otf`. Page renders fallback chain until they land.
+### Should consider — data quality + setup
+
+- **Suspicious mid-major hype.** McNeese (36.74), Tennessee State (36.38), Furman (30.40) — all 0-win small schools sitting in the top 10 by mean hype. Daily curves are tournament-shaped (spikes on game day), so probably real signal, but worth re-checking if the editorial finding hinges on them. Decide: accept as-is, or do another query refinement round (the same pattern used to fix Siena/Hofstra).
+- **Florida tag.** Florida has `gap = -16`, currently tagged `noise` under the `-15`/`+25` thresholds. If you want the marquee 1-seed-flame-out story to land as `overhyped`, tighten the overhyped threshold further (e.g. `< -10`) at [build_dataset.py:35](data-pipeline/build_dataset.py:35).
+- **Hawaii (3.54) and St. Mary's (4.08).** Likely genuinely low signal but worth eyeballing the daily curve once before declaring them final. If the curve is tournament-shaped (spikes on game day), accept the low value as real. If it's flat noise, treat like a Siena/Hofstra refinement and test variants.
+- **Custom font files not yet in repo.** `web/public/fonts/NeueBlack.woff2` and `web/public/fonts/fa-1-regular.otf`. Page renders fallback chain (Helvetica Neue / system mono) until they land.
+
+### Nice-to-haves — skip unless time
+
+- **URL search params** so filter state and selected team survive navigation between `/` and `/bracket` (and become shareable links).
+- **Sort controls** on the gap chart — by hype, by performance, by region.
+- **Hover tooltips** on bars in the gap chart.
+- **Search box** for finding a specific team in 64 rows.
+
+(Brand-caps audit: README and code both confirmed clean as of 2026-05-02. Leaving the "Lowercase Hyp3" anti-pattern note above as a future safeguard.)
 
 ## Scope discipline
 
