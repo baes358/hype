@@ -1,0 +1,31 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.vercel/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Pipeline cache & raw artifacts (do not commit)
+/data-pipeline/cache/
+/data-pipeline/raw_hype.csv
+
+# Build-time copy of data.json into the Next.js app (source: /data/data.json)
+/web/data.json
+
+# Editor
+.vscode/
+.idea/
