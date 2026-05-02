@@ -139,6 +139,12 @@ TEAM_QUERY_MAP: dict[str, str] = {
     "Prairie View A&M": "Prairie View basketball",
     "Long Island": "LIU basketball",
     "Howard": "Howard Bison basketball",
+
+    # First Four losers (added 2026-05-03)
+    "UMBC": "UMBC basketball",
+    "Lehigh": "Lehigh basketball",
+    "NC State": "NC State basketball",
+    "SMU": "SMU basketball",
 }
 
 

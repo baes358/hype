@@ -3,8 +3,8 @@
     "tournament_year": 2026,
     "hype_window_start": "2026-03-03",
     "hype_window_end": "2026-03-17",
-    "total_teams": 64,
-    "data_pulled_at": "2026-05-02T21:10:59.860547+00:00"
+    "total_teams": 68,
+    "data_pulled_at": "2026-05-02T21:21:42.136578+00:00"
   },
   "finding": "[finding TBD]",
   "teams": [
@@ -14,7 +14,7 @@
       "region": "Midwest",
       "wins": 6,
       "hype_raw": 36.33,
-      "hype_normalized": 50.26,
+      "hype_normalized": 25.56,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -77,10 +77,10 @@
           "value": 24
         }
       ],
-      "hype_rank": 8,
+      "hype_rank": 12,
       "performance_rank": 1,
-      "gap": 7,
-      "story_tag": "as_expected"
+      "gap": 11,
+      "story_tag": "noise"
     },
     {
       "team": "UConn",
@@ -88,7 +88,7 @@
       "region": "East",
       "wins": 5,
       "hype_raw": 27.6,
-      "hype_normalized": 38.18,
+      "hype_normalized": 19.41,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -151,10 +151,10 @@
           "value": 16.0
         }
       ],
-      "hype_rank": 11,
+      "hype_rank": 15,
       "performance_rank": 2,
-      "gap": 9,
-      "story_tag": "as_expected"
+      "gap": 13,
+      "story_tag": "noise"
     },
     {
       "team": "Arizona",
@@ -162,7 +162,7 @@
       "region": "West",
       "wins": 4,
       "hype_raw": 29.33,
-      "hype_normalized": 40.58,
+      "hype_normalized": 20.63,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -225,10 +225,10 @@
           "value": 23.0
         }
       ],
-      "hype_rank": 10,
+      "hype_rank": 14,
       "performance_rank": 3,
-      "gap": 7,
-      "story_tag": "as_expected"
+      "gap": 11,
+      "story_tag": "noise"
     },
     {
       "team": "Illinois",
@@ -236,7 +236,7 @@
       "region": "South",
       "wins": 4,
       "hype_raw": 9.8,
-      "hype_normalized": 13.56,
+      "hype_normalized": 6.89,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -299,9 +299,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 34,
+      "hype_rank": 38,
       "performance_rank": 3,
-      "gap": 31,
+      "gap": 35,
       "story_tag": "underhyped"
     },
     {
@@ -310,7 +310,7 @@
       "region": "East",
       "wins": 3,
       "hype_raw": 26.79,
-      "hype_normalized": 37.05,
+      "hype_normalized": 18.84,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -373,10 +373,10 @@
           "value": 15.16
         }
       ],
-      "hype_rank": 12,
+      "hype_rank": 16,
       "performance_rank": 5,
-      "gap": 7,
-      "story_tag": "as_expected"
+      "gap": 11,
+      "story_tag": "noise"
     },
     {
       "team": "Tennessee",
@@ -384,7 +384,7 @@
       "region": "Midwest",
       "wins": 3,
       "hype_raw": 9.58,
-      "hype_normalized": 13.25,
+      "hype_normalized": 6.74,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -447,9 +447,9 @@
           "value": 8.84
         }
       ],
-      "hype_rank": 36,
+      "hype_rank": 40,
       "performance_rank": 5,
-      "gap": 31,
+      "gap": 35,
       "story_tag": "underhyped"
     },
     {
@@ -458,7 +458,7 @@
       "region": "West",
       "wins": 3,
       "hype_raw": 15.22,
-      "hype_normalized": 21.05,
+      "hype_normalized": 10.7,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -521,9 +521,9 @@
           "value": 8.84
         }
       ],
-      "hype_rank": 27,
+      "hype_rank": 31,
       "performance_rank": 5,
-      "gap": 22,
+      "gap": 26,
       "story_tag": "underhyped"
     },
     {
@@ -532,7 +532,7 @@
       "region": "South",
       "wins": 3,
       "hype_raw": 39.82,
-      "hype_normalized": 55.09,
+      "hype_normalized": 28.01,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -595,9 +595,9 @@
           "value": 21.47
         }
       ],
-      "hype_rank": 5,
+      "hype_rank": 8,
       "performance_rank": 5,
-      "gap": 0,
+      "gap": 3,
       "story_tag": "as_expected"
     },
     {
@@ -606,7 +606,7 @@
       "region": "East",
       "wins": 2,
       "hype_raw": 64.17,
-      "hype_normalized": 88.77,
+      "hype_normalized": 45.14,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -669,9 +669,9 @@
           "value": 105.23
         }
       ],
-      "hype_rank": 2,
+      "hype_rank": 4,
       "performance_rank": 10,
-      "gap": -8,
+      "gap": -6,
       "story_tag": "as_expected"
     },
     {
@@ -680,7 +680,7 @@
       "region": "East",
       "wins": 2,
       "hype_raw": 12.73,
-      "hype_normalized": 17.61,
+      "hype_normalized": 8.96,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -743,10 +743,10 @@
           "value": 6.0
         }
       ],
-      "hype_rank": 30,
+      "hype_rank": 34,
       "performance_rank": 10,
-      "gap": 20,
-      "story_tag": "noise"
+      "gap": 24,
+      "story_tag": "underhyped"
     },
     {
       "team": "Nebraska",
@@ -754,7 +754,7 @@
       "region": "South",
       "wins": 2,
       "hype_raw": 10.0,
-      "hype_normalized": 13.83,
+      "hype_normalized": 7.03,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -817,9 +817,9 @@
           "value": 8.0
         }
       ],
-      "hype_rank": 33,
+      "hype_rank": 37,
       "performance_rank": 10,
-      "gap": 23,
+      "gap": 27,
       "story_tag": "underhyped"
     },
     {
@@ -828,7 +828,7 @@
       "region": "South",
       "wins": 2,
       "hype_raw": 26.0,
-      "hype_normalized": 35.97,
+      "hype_normalized": 18.29,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -891,9 +891,9 @@
           "value": 29.0
         }
       ],
-      "hype_rank": 16,
+      "hype_rank": 20,
       "performance_rank": 10,
-      "gap": 6,
+      "gap": 10,
       "story_tag": "as_expected"
     },
     {
@@ -902,7 +902,7 @@
       "region": "West",
       "wins": 2,
       "hype_raw": 26.4,
-      "hype_normalized": 36.52,
+      "hype_normalized": 18.57,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -965,9 +965,9 @@
           "value": 18.55
         }
       ],
-      "hype_rank": 13,
+      "hype_rank": 17,
       "performance_rank": 10,
-      "gap": 3,
+      "gap": 7,
       "story_tag": "as_expected"
     },
     {
@@ -976,7 +976,7 @@
       "region": "West",
       "wins": 3,
       "hype_raw": 21.71,
-      "hype_normalized": 30.03,
+      "hype_normalized": 15.27,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1039,9 +1039,9 @@
           "value": 36.0
         }
       ],
-      "hype_rank": 19,
+      "hype_rank": 23,
       "performance_rank": 5,
-      "gap": 14,
+      "gap": 18,
       "story_tag": "noise"
     },
     {
@@ -1050,7 +1050,7 @@
       "region": "Midwest",
       "wins": 2,
       "hype_raw": 6.42,
-      "hype_normalized": 8.88,
+      "hype_normalized": 4.52,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1113,9 +1113,9 @@
           "value": 9.82
         }
       ],
-      "hype_rank": 42,
+      "hype_rank": 46,
       "performance_rank": 10,
-      "gap": 32,
+      "gap": 36,
       "story_tag": "underhyped"
     },
     {
@@ -1124,7 +1124,7 @@
       "region": "Midwest",
       "wins": 2,
       "hype_raw": 12.76,
-      "hype_normalized": 17.66,
+      "hype_normalized": 8.98,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1187,10 +1187,10 @@
           "value": 9.82
         }
       ],
-      "hype_rank": 29,
+      "hype_rank": 33,
       "performance_rank": 10,
-      "gap": 19,
-      "story_tag": "noise"
+      "gap": 23,
+      "story_tag": "underhyped"
     },
     {
       "team": "TCU",
@@ -1198,7 +1198,7 @@
       "region": "East",
       "wins": 1,
       "hype_raw": 3.6,
-      "hype_normalized": 4.98,
+      "hype_normalized": 2.53,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1261,9 +1261,9 @@
           "value": 6.0
         }
       ],
-      "hype_rank": 47,
+      "hype_rank": 51,
       "performance_rank": 17,
-      "gap": 30,
+      "gap": 34,
       "story_tag": "underhyped"
     },
     {
@@ -1272,7 +1272,7 @@
       "region": "East",
       "wins": 1,
       "hype_raw": 17.53,
-      "hype_normalized": 24.25,
+      "hype_normalized": 12.33,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1335,10 +1335,10 @@
           "value": 12.0
         }
       ],
-      "hype_rank": 24,
+      "hype_rank": 28,
       "performance_rank": 17,
-      "gap": 7,
-      "story_tag": "as_expected"
+      "gap": 11,
+      "story_tag": "noise"
     },
     {
       "team": "Louisville",
@@ -1346,7 +1346,7 @@
       "region": "East",
       "wins": 1,
       "hype_raw": 9.13,
-      "hype_normalized": 12.63,
+      "hype_normalized": 6.42,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1409,10 +1409,10 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 37,
+      "hype_rank": 41,
       "performance_rank": 17,
-      "gap": 20,
-      "story_tag": "noise"
+      "gap": 24,
+      "story_tag": "underhyped"
     },
     {
       "team": "UCLA",
@@ -1420,7 +1420,7 @@
       "region": "East",
       "wins": 1,
       "hype_raw": 10.87,
-      "hype_normalized": 15.03,
+      "hype_normalized": 7.64,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1483,9 +1483,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 32,
+      "hype_rank": 36,
       "performance_rank": 17,
-      "gap": 15,
+      "gap": 19,
       "story_tag": "noise"
     },
     {
@@ -1494,7 +1494,7 @@
       "region": "South",
       "wins": 1,
       "hype_raw": 72.29,
-      "hype_normalized": 100.0,
+      "hype_normalized": 50.85,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1557,9 +1557,9 @@
           "value": 58.91
         }
       ],
-      "hype_rank": 1,
+      "hype_rank": 2,
       "performance_rank": 17,
-      "gap": -16,
+      "gap": -15,
       "story_tag": "noise"
     },
     {
@@ -1568,7 +1568,7 @@
       "region": "South",
       "wins": 1,
       "hype_raw": 7.31,
-      "hype_normalized": 10.12,
+      "hype_normalized": 5.14,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1631,9 +1631,9 @@
           "value": 8.73
         }
       ],
-      "hype_rank": 40,
+      "hype_rank": 44,
       "performance_rank": 17,
-      "gap": 23,
+      "gap": 27,
       "story_tag": "underhyped"
     },
     {
@@ -1642,7 +1642,7 @@
       "region": "South",
       "wins": 1,
       "hype_raw": 3.18,
-      "hype_normalized": 4.4,
+      "hype_normalized": 2.23,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1705,9 +1705,9 @@
           "value": 6.55
         }
       ],
-      "hype_rank": 50,
+      "hype_rank": 54,
       "performance_rank": 17,
-      "gap": 33,
+      "gap": 37,
       "story_tag": "underhyped"
     },
     {
@@ -1716,7 +1716,7 @@
       "region": "South",
       "wins": 1,
       "hype_raw": 2.26,
-      "hype_normalized": 3.12,
+      "hype_normalized": 1.59,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1779,9 +1779,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 57,
+      "hype_rank": 61,
       "performance_rank": 17,
-      "gap": 40,
+      "gap": 44,
       "story_tag": "underhyped"
     },
     {
@@ -1790,7 +1790,7 @@
       "region": "West",
       "wins": 1,
       "hype_raw": 1.8,
-      "hype_normalized": 2.49,
+      "hype_normalized": 1.27,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1853,9 +1853,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 60,
+      "hype_rank": 64,
       "performance_rank": 17,
-      "gap": 43,
+      "gap": 47,
       "story_tag": "underhyped"
     },
     {
@@ -1864,7 +1864,7 @@
       "region": "West",
       "wins": 1,
       "hype_raw": 53.63,
-      "hype_normalized": 74.18,
+      "hype_normalized": 37.72,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -1927,9 +1927,9 @@
           "value": 116.31
         }
       ],
-      "hype_rank": 3,
+      "hype_rank": 6,
       "performance_rank": 17,
-      "gap": -14,
+      "gap": -11,
       "story_tag": "noise"
     },
     {
@@ -1938,7 +1938,7 @@
       "region": "West",
       "wins": 1,
       "hype_raw": 2.67,
-      "hype_normalized": 3.69,
+      "hype_normalized": 1.88,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2001,9 +2001,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 54,
+      "hype_rank": 58,
       "performance_rank": 17,
-      "gap": 37,
+      "gap": 41,
       "story_tag": "underhyped"
     },
     {
@@ -2012,7 +2012,7 @@
       "region": "West",
       "wins": 1,
       "hype_raw": 23.73,
-      "hype_normalized": 32.83,
+      "hype_normalized": 16.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2075,9 +2075,9 @@
           "value": 17.0
         }
       ],
-      "hype_rank": 18,
+      "hype_rank": 22,
       "performance_rank": 17,
-      "gap": 1,
+      "gap": 5,
       "story_tag": "as_expected"
     },
     {
@@ -2086,7 +2086,7 @@
       "region": "Midwest",
       "wins": 1,
       "hype_raw": 3.4,
-      "hype_normalized": 4.7,
+      "hype_normalized": 2.39,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2149,9 +2149,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 49,
+      "hype_rank": 53,
       "performance_rank": 17,
-      "gap": 32,
+      "gap": 36,
       "story_tag": "underhyped"
     },
     {
@@ -2160,7 +2160,7 @@
       "region": "Midwest",
       "wins": 1,
       "hype_raw": 2.93,
-      "hype_normalized": 4.06,
+      "hype_normalized": 2.06,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2223,9 +2223,9 @@
           "value": 5.0
         }
       ],
-      "hype_rank": 52,
+      "hype_rank": 56,
       "performance_rank": 17,
-      "gap": 35,
+      "gap": 39,
       "story_tag": "underhyped"
     },
     {
@@ -2234,7 +2234,7 @@
       "region": "Midwest",
       "wins": 1,
       "hype_raw": 9.67,
-      "hype_normalized": 13.37,
+      "hype_normalized": 6.8,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2297,10 +2297,10 @@
           "value": 12.0
         }
       ],
-      "hype_rank": 35,
+      "hype_rank": 39,
       "performance_rank": 17,
-      "gap": 18,
-      "story_tag": "noise"
+      "gap": 22,
+      "story_tag": "underhyped"
     },
     {
       "team": "Kentucky",
@@ -2308,7 +2308,7 @@
       "region": "Midwest",
       "wins": 1,
       "hype_raw": 21.53,
-      "hype_normalized": 29.79,
+      "hype_normalized": 15.15,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2371,9 +2371,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 21,
+      "hype_rank": 25,
       "performance_rank": 17,
-      "gap": 4,
+      "gap": 8,
       "story_tag": "as_expected"
     },
     {
@@ -2382,7 +2382,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 5.6,
-      "hype_normalized": 7.75,
+      "hype_normalized": 3.94,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2445,9 +2445,9 @@
           "value": 16.0
         }
       ],
-      "hype_rank": 45,
+      "hype_rank": 49,
       "performance_rank": 33,
-      "gap": 12,
+      "gap": 16,
       "story_tag": "noise"
     },
     {
@@ -2456,7 +2456,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 15.13,
-      "hype_normalized": 20.93,
+      "hype_normalized": 10.64,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2519,9 +2519,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 28,
+      "hype_rank": 32,
       "performance_rank": 33,
-      "gap": -5,
+      "gap": -1,
       "story_tag": "as_expected"
     },
     {
@@ -2530,7 +2530,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 24.68,
-      "hype_normalized": 34.14,
+      "hype_normalized": 17.36,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2593,9 +2593,9 @@
           "value": 51.69
         }
       ],
-      "hype_rank": 17,
+      "hype_rank": 21,
       "performance_rank": 33,
-      "gap": -16,
+      "gap": -12,
       "story_tag": "noise"
     },
     {
@@ -2604,7 +2604,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 16.21,
-      "hype_normalized": 22.43,
+      "hype_normalized": 11.4,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2667,9 +2667,9 @@
           "value": 59.0
         }
       ],
-      "hype_rank": 26,
+      "hype_rank": 30,
       "performance_rank": 33,
-      "gap": -7,
+      "gap": -3,
       "story_tag": "as_expected"
     },
     {
@@ -2678,7 +2678,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 2.47,
-      "hype_normalized": 3.41,
+      "hype_normalized": 1.74,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2741,9 +2741,9 @@
           "value": 10.0
         }
       ],
-      "hype_rank": 55,
+      "hype_rank": 59,
       "performance_rank": 33,
-      "gap": 22,
+      "gap": 26,
       "story_tag": "underhyped"
     },
     {
@@ -2752,7 +2752,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 19.92,
-      "hype_normalized": 27.56,
+      "hype_normalized": 14.01,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2815,9 +2815,9 @@
           "value": 29.0
         }
       ],
-      "hype_rank": 23,
+      "hype_rank": 27,
       "performance_rank": 33,
-      "gap": -10,
+      "gap": -6,
       "story_tag": "as_expected"
     },
     {
@@ -2826,7 +2826,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 2.4,
-      "hype_normalized": 3.32,
+      "hype_normalized": 1.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2889,9 +2889,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 56,
+      "hype_rank": 60,
       "performance_rank": 33,
-      "gap": 23,
+      "gap": 27,
       "story_tag": "underhyped"
     },
     {
@@ -2900,7 +2900,7 @@
       "region": "East",
       "wins": 0,
       "hype_raw": 30.4,
-      "hype_normalized": 42.05,
+      "hype_normalized": 21.38,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2963,10 +2963,10 @@
           "value": 52.0
         }
       ],
-      "hype_rank": 9,
+      "hype_rank": 13,
       "performance_rank": 33,
-      "gap": -24,
-      "story_tag": "overhyped"
+      "gap": -20,
+      "story_tag": "noise"
     },
     {
       "team": "Prairie View A&M",
@@ -2974,7 +2974,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 17.15,
-      "hype_normalized": 23.72,
+      "hype_normalized": 12.06,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3037,9 +3037,9 @@
           "value": 34.0
         }
       ],
-      "hype_rank": 25,
+      "hype_rank": 29,
       "performance_rank": 33,
-      "gap": -8,
+      "gap": -4,
       "story_tag": "as_expected"
     },
     {
@@ -3048,7 +3048,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 6.67,
-      "hype_normalized": 9.22,
+      "hype_normalized": 4.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3111,10 +3111,10 @@
           "value": 4.0
         }
       ],
-      "hype_rank": 41,
+      "hype_rank": 45,
       "performance_rank": 33,
-      "gap": 8,
-      "story_tag": "as_expected"
+      "gap": 12,
+      "story_tag": "noise"
     },
     {
       "team": "McNeese State",
@@ -3122,7 +3122,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 36.74,
-      "hype_normalized": 50.82,
+      "hype_normalized": 25.84,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3185,9 +3185,9 @@
           "value": 88.0
         }
       ],
-      "hype_rank": 6,
+      "hype_rank": 10,
       "performance_rank": 33,
-      "gap": -27,
+      "gap": -23,
       "story_tag": "overhyped"
     },
     {
@@ -3196,7 +3196,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 1.67,
-      "hype_normalized": 2.31,
+      "hype_normalized": 1.17,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3259,9 +3259,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 62,
+      "hype_rank": 66,
       "performance_rank": 33,
-      "gap": 29,
+      "gap": 33,
       "story_tag": "underhyped"
     },
     {
@@ -3270,7 +3270,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 12.4,
-      "hype_normalized": 17.15,
+      "hype_normalized": 8.72,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3333,9 +3333,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 31,
+      "hype_rank": 35,
       "performance_rank": 33,
-      "gap": -2,
+      "gap": 2,
       "story_tag": "as_expected"
     },
     {
@@ -3344,7 +3344,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 2.8,
-      "hype_normalized": 3.87,
+      "hype_normalized": 1.97,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3407,10 +3407,10 @@
           "value": 4.0
         }
       ],
-      "hype_rank": 53,
+      "hype_rank": 57,
       "performance_rank": 33,
-      "gap": 20,
-      "story_tag": "noise"
+      "gap": 24,
+      "story_tag": "underhyped"
     },
     {
       "team": "St. Mary's",
@@ -3418,7 +3418,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 4.08,
-      "hype_normalized": 5.64,
+      "hype_normalized": 2.87,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3481,9 +3481,9 @@
           "value": 20.0
         }
       ],
-      "hype_rank": 46,
+      "hype_rank": 50,
       "performance_rank": 33,
-      "gap": 13,
+      "gap": 17,
       "story_tag": "noise"
     },
     {
@@ -3492,7 +3492,7 @@
       "region": "South",
       "wins": 0,
       "hype_raw": 7.53,
-      "hype_normalized": 10.42,
+      "hype_normalized": 5.3,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3555,9 +3555,9 @@
           "value": 6.0
         }
       ],
-      "hype_rank": 39,
+      "hype_rank": 43,
       "performance_rank": 33,
-      "gap": 6,
+      "gap": 10,
       "story_tag": "as_expected"
     },
     {
@@ -3566,7 +3566,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 26.21,
-      "hype_normalized": 36.25,
+      "hype_normalized": 18.44,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3629,9 +3629,9 @@
           "value": 33.33
         }
       ],
-      "hype_rank": 14,
+      "hype_rank": 18,
       "performance_rank": 33,
-      "gap": -19,
+      "gap": -15,
       "story_tag": "noise"
     },
     {
@@ -3640,7 +3640,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 3.13,
-      "hype_normalized": 4.33,
+      "hype_normalized": 2.2,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3703,10 +3703,10 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 51,
+      "hype_rank": 55,
       "performance_rank": 33,
-      "gap": 18,
-      "story_tag": "noise"
+      "gap": 22,
+      "story_tag": "underhyped"
     },
     {
       "team": "Wisconsin",
@@ -3714,7 +3714,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 42.98,
-      "hype_normalized": 59.46,
+      "hype_normalized": 30.23,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3777,9 +3777,9 @@
           "value": 22.74
         }
       ],
-      "hype_rank": 4,
+      "hype_rank": 7,
       "performance_rank": 33,
-      "gap": -29,
+      "gap": -26,
       "story_tag": "overhyped"
     },
     {
@@ -3788,7 +3788,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 3.54,
-      "hype_normalized": 4.9,
+      "hype_normalized": 2.49,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3851,9 +3851,9 @@
           "value": 5.33
         }
       ],
-      "hype_rank": 48,
+      "hype_rank": 52,
       "performance_rank": 33,
-      "gap": 15,
+      "gap": 19,
       "story_tag": "noise"
     },
     {
@@ -3862,7 +3862,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 6.67,
-      "hype_normalized": 9.22,
+      "hype_normalized": 4.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3925,10 +3925,10 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 41,
+      "hype_rank": 45,
       "performance_rank": 33,
-      "gap": 8,
-      "story_tag": "as_expected"
+      "gap": 12,
+      "story_tag": "noise"
     },
     {
       "team": "Kennesaw State",
@@ -3936,7 +3936,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 21.69,
-      "hype_normalized": 30.0,
+      "hype_normalized": 15.25,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -3999,10 +3999,10 @@
           "value": 32.73
         }
       ],
-      "hype_rank": 20,
+      "hype_rank": 24,
       "performance_rank": 33,
-      "gap": -13,
-      "story_tag": "noise"
+      "gap": -9,
+      "story_tag": "as_expected"
     },
     {
       "team": "Missouri",
@@ -4010,7 +4010,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 8.27,
-      "hype_normalized": 11.44,
+      "hype_normalized": 5.81,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4073,9 +4073,9 @@
           "value": 8.0
         }
       ],
-      "hype_rank": 38,
+      "hype_rank": 42,
       "performance_rank": 33,
-      "gap": 5,
+      "gap": 9,
       "story_tag": "as_expected"
     },
     {
@@ -4084,7 +4084,7 @@
       "region": "West",
       "wins": 0,
       "hype_raw": 1.87,
-      "hype_normalized": 2.58,
+      "hype_normalized": 1.31,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4147,9 +4147,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 59,
+      "hype_rank": 63,
       "performance_rank": 33,
-      "gap": 26,
+      "gap": 30,
       "story_tag": "underhyped"
     },
     {
@@ -4158,7 +4158,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 2.07,
-      "hype_normalized": 2.86,
+      "hype_normalized": 1.45,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4221,9 +4221,9 @@
           "value": 31.0
         }
       ],
-      "hype_rank": 58,
+      "hype_rank": 62,
       "performance_rank": 33,
-      "gap": 25,
+      "gap": 29,
       "story_tag": "underhyped"
     },
     {
@@ -4232,7 +4232,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 6.33,
-      "hype_normalized": 8.76,
+      "hype_normalized": 4.45,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4295,10 +4295,10 @@
           "value": 8.0
         }
       ],
-      "hype_rank": 43,
+      "hype_rank": 47,
       "performance_rank": 33,
-      "gap": 10,
-      "story_tag": "as_expected"
+      "gap": 14,
+      "story_tag": "noise"
     },
     {
       "team": "Akron",
@@ -4306,7 +4306,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 6.0,
-      "hype_normalized": 8.3,
+      "hype_normalized": 4.22,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4369,9 +4369,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 44,
+      "hype_rank": 48,
       "performance_rank": 33,
-      "gap": 11,
+      "gap": 15,
       "story_tag": "noise"
     },
     {
@@ -4380,7 +4380,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 2.4,
-      "hype_normalized": 3.32,
+      "hype_normalized": 1.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4443,9 +4443,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 56,
+      "hype_rank": 60,
       "performance_rank": 33,
-      "gap": 23,
+      "gap": 27,
       "story_tag": "underhyped"
     },
     {
@@ -4454,7 +4454,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 26.11,
-      "hype_normalized": 36.11,
+      "hype_normalized": 18.36,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4517,9 +4517,9 @@
           "value": 34.91
         }
       ],
-      "hype_rank": 15,
+      "hype_rank": 19,
       "performance_rank": 33,
-      "gap": -18,
+      "gap": -14,
       "story_tag": "noise"
     },
     {
@@ -4528,7 +4528,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 20.53,
-      "hype_normalized": 28.4,
+      "hype_normalized": 14.44,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4591,10 +4591,10 @@
           "value": 10.0
         }
       ],
-      "hype_rank": 22,
+      "hype_rank": 26,
       "performance_rank": 33,
-      "gap": -11,
-      "story_tag": "noise"
+      "gap": -7,
+      "story_tag": "as_expected"
     },
     {
       "team": "Santa Clara",
@@ -4602,7 +4602,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 1.73,
-      "hype_normalized": 2.4,
+      "hype_normalized": 1.22,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4665,9 +4665,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 61,
+      "hype_rank": 65,
       "performance_rank": 33,
-      "gap": 28,
+      "gap": 32,
       "story_tag": "underhyped"
     },
     {
@@ -4676,7 +4676,7 @@
       "region": "Midwest",
       "wins": 0,
       "hype_raw": 36.38,
-      "hype_normalized": 50.32,
+      "hype_normalized": 25.59,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4739,9 +4739,305 @@
           "value": 55.64
         }
       ],
-      "hype_rank": 7,
+      "hype_rank": 11,
       "performance_rank": 33,
-      "gap": -26,
+      "gap": -22,
+      "story_tag": "overhyped"
+    },
+    {
+      "team": "UMBC",
+      "seed": 16,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 68.27,
+      "hype_normalized": 48.02,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 7.64
+        },
+        {
+          "date": "2026-03-07",
+          "value": 33.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 12.29
+        },
+        {
+          "date": "2026-03-09",
+          "value": 12.6
+        },
+        {
+          "date": "2026-03-10",
+          "value": 42.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 14.67
+        },
+        {
+          "date": "2026-03-13",
+          "value": 16.47
+        },
+        {
+          "date": "2026-03-14",
+          "value": 217.25
+        },
+        {
+          "date": "2026-03-15",
+          "value": 88.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 120.14
+        },
+        {
+          "date": "2026-03-17",
+          "value": 400.0
+        }
+      ],
+      "hype_rank": 3,
+      "performance_rank": 33,
+      "gap": -30,
+      "story_tag": "overhyped"
+    },
+    {
+      "team": "Lehigh",
+      "seed": 16,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 37.15,
+      "hype_normalized": 26.13,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 20.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 42.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 20.62
+        },
+        {
+          "date": "2026-03-08",
+          "value": 65.52
+        },
+        {
+          "date": "2026-03-09",
+          "value": 21.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 48.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 77.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 20.59
+        },
+        {
+          "date": "2026-03-14",
+          "value": 15.8
+        },
+        {
+          "date": "2026-03-15",
+          "value": 56.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 78.71
+        },
+        {
+          "date": "2026-03-17",
+          "value": 68.0
+        }
+      ],
+      "hype_rank": 9,
+      "performance_rank": 33,
+      "gap": -24,
+      "story_tag": "overhyped"
+    },
+    {
+      "team": "NC State",
+      "seed": 11,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 142.17,
+      "hype_normalized": 100.0,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 260.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 52.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 52.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 68.73
+        },
+        {
+          "date": "2026-03-07",
+          "value": 210.38
+        },
+        {
+          "date": "2026-03-08",
+          "value": 77.81
+        },
+        {
+          "date": "2026-03-09",
+          "value": 46.2
+        },
+        {
+          "date": "2026-03-10",
+          "value": 42.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 300.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 315.33
+        },
+        {
+          "date": "2026-03-13",
+          "value": 90.59
+        },
+        {
+          "date": "2026-03-14",
+          "value": 51.35
+        },
+        {
+          "date": "2026-03-15",
+          "value": 108.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 178.14
+        },
+        {
+          "date": "2026-03-17",
+          "value": 280.0
+        }
+      ],
+      "hype_rank": 1,
+      "performance_rank": 33,
+      "gap": -32,
+      "story_tag": "overhyped"
+    },
+    {
+      "team": "SMU",
+      "seed": 11,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 59.98,
+      "hype_normalized": 42.19,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 60.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 76.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 15.27
+        },
+        {
+          "date": "2026-03-07",
+          "value": 66.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 24.57
+        },
+        {
+          "date": "2026-03-09",
+          "value": 16.8
+        },
+        {
+          "date": "2026-03-10",
+          "value": 99.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 172.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 25.67
+        },
+        {
+          "date": "2026-03-13",
+          "value": 16.47
+        },
+        {
+          "date": "2026-03-14",
+          "value": 11.85
+        },
+        {
+          "date": "2026-03-15",
+          "value": 80.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 116.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 108.0
+        }
+      ],
+      "hype_rank": 5,
+      "performance_rank": 33,
+      "gap": -28,
       "story_tag": "overhyped"
     }
   ]
