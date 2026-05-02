@@ -4,7 +4,7 @@
     "hype_window_start": "2026-03-03",
     "hype_window_end": "2026-03-17",
     "total_teams": 68,
-    "data_pulled_at": "2026-05-02T21:21:42.136578+00:00"
+    "data_pulled_at": "2026-05-02T21:26:28.003142+00:00"
   },
   "finding": "[finding TBD]",
   "teams": [
@@ -746,7 +746,7 @@
       "hype_rank": 34,
       "performance_rank": 10,
       "gap": 24,
-      "story_tag": "underhyped"
+      "story_tag": "noise"
     },
     {
       "team": "Nebraska",
@@ -1190,7 +1190,7 @@
       "hype_rank": 33,
       "performance_rank": 10,
       "gap": 23,
-      "story_tag": "underhyped"
+      "story_tag": "noise"
     },
     {
       "team": "TCU",
@@ -1412,7 +1412,7 @@
       "hype_rank": 41,
       "performance_rank": 17,
       "gap": 24,
-      "story_tag": "underhyped"
+      "story_tag": "noise"
     },
     {
       "team": "UCLA",
@@ -2300,7 +2300,7 @@
       "hype_rank": 39,
       "performance_rank": 17,
       "gap": 22,
-      "story_tag": "underhyped"
+      "story_tag": "noise"
     },
     {
       "team": "Kentucky",
@@ -2966,7 +2966,7 @@
       "hype_rank": 13,
       "performance_rank": 33,
       "gap": -20,
-      "story_tag": "noise"
+      "story_tag": "overhyped"
     },
     {
       "team": "Prairie View A&M",
@@ -3410,7 +3410,7 @@
       "hype_rank": 57,
       "performance_rank": 33,
       "gap": 24,
-      "story_tag": "underhyped"
+      "story_tag": "noise"
     },
     {
       "team": "St. Mary's",
@@ -3706,7 +3706,7 @@
       "hype_rank": 55,
       "performance_rank": 33,
       "gap": 22,
-      "story_tag": "underhyped"
+      "story_tag": "noise"
     },
     {
       "team": "Wisconsin",

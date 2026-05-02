@@ -33,9 +33,9 @@ HYPE_WINDOW_END = "2026-03-17"
 
 
 def story_tag(gap: int) -> str:
-    if gap < -20:
+    if gap < -15:
         return "overhyped"
-    if gap > 20:
+    if gap > 25:
         return "underhyped"
     if abs(gap) <= 10:
         return "as_expected"
