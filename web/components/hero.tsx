@@ -29,7 +29,7 @@ export function Hero({ data }: Props) {
     <section className="border-b border-border">
       {/* Top meta strip — Bloomberg-style data banner */}
       <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-1 px-6 py-3">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-3 sm:gap-x-6 sm:px-6">
           <span className="text-foreground font-semibold">HYP3 / 001</span>
           <span>·</span>
           <span>{metadata.tournament_year} NCAA Men&rsquo;s Tournament</span>
@@ -43,18 +43,18 @@ export function Hero({ data }: Props) {
       </div>
 
       {/* Hero finding */}
-      <div className="mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-32">
+      <div className="mx-auto max-w-7xl px-5 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-32">
         <div className="font-mono text-[10px] uppercase tracking-normal text-brand">
           The Gap
         </div>
         <h1
-          className={`mt-6 max-w-5xl text-balance font-heading text-4xl font-bold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl ${
+          className={`mt-5 max-w-5xl text-balance font-heading text-3xl font-bold leading-[0.95] tracking-tight sm:mt-6 sm:text-5xl md:text-6xl lg:text-7xl ${
             isPlaceholder ? "text-muted-foreground italic" : ""
           }`}
         >
           {finding}
         </h1>
-        <p className="mt-8 max-w-2xl text-base leading-7 text-muted-foreground">
+        <p className="mt-6 max-w-2xl text-sm leading-6 text-muted-foreground sm:mt-8 sm:text-base sm:leading-7">
           HYP3 measures the distance between how loudly the internet talked about each
           team and how far they actually went. <span className="text-foreground">Negative gap</span>{" "}
           means a team got more hype than their wins justified.{" "}

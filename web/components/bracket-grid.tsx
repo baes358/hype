@@ -28,13 +28,13 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
   if (teams.length === 0) return null;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
-      <header className="mb-8 flex items-end justify-between gap-6">
+    <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
+      <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
             02 / The bracket
           </div>
-          <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             By region, by seed — colored by the story they ended up telling
           </h2>
         </div>

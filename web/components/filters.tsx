@@ -24,10 +24,10 @@ export function Filters({
 
   return (
     <div className="border-y border-border bg-background/60 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-6 py-4">
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+      <div className="mx-auto max-w-7xl px-5 py-3 sm:px-6 sm:py-4">
+        <div className="flex flex-col gap-y-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
           {/* Tag filter group */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
               Story
             </span>
@@ -56,7 +56,7 @@ export function Filters({
           </div>
 
           {/* Region filter group */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
               Region
             </span>
@@ -82,7 +82,7 @@ export function Filters({
           {anyFilterActive && (
             <button
               onClick={onReset}
-              className="ml-auto font-mono text-[9px] uppercase tracking-normal text-muted-foreground hover:text-foreground"
+              className="self-start font-mono text-[9px] uppercase tracking-normal text-muted-foreground hover:text-foreground sm:ml-auto sm:self-auto"
             >
               Reset
             </button>

@@ -94,7 +94,7 @@ export function AppShell({ data, view }: Props) {
       )}
 
       <footer className="mt-auto border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-1 px-6 py-6 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-5 font-mono text-[9px] uppercase tracking-normal text-muted-foreground sm:gap-x-6 sm:px-6 sm:py-6">
           <span>HYP3 / 001</span>
           <span>·</span>
           <span>Data: Google Trends + 2026 NCAA results</span>

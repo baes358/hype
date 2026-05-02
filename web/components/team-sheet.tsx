@@ -59,7 +59,7 @@ function TeamSheetBody({ team }: { team: Team }) {
   const peak = team.hype_daily.reduce((m, d) => (d.value > m.value ? d : m), team.hype_daily[0]);
 
   return (
-    <div className="flex flex-col gap-8 px-6 py-8">
+    <div className="flex flex-col gap-6 px-5 py-6 sm:gap-8 sm:px-6 sm:py-8">
       <SheetHeader className="px-0">
         <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
           <span className={`size-1.5 rounded-full ${style.dot}`} />
@@ -69,7 +69,7 @@ function TeamSheetBody({ team }: { team: Team }) {
             {team.region} · {team.seed} seed
           </span>
         </div>
-        <SheetTitle className="mt-3 text-balance text-4xl font-bold leading-[1.05] tracking-tight">
+        <SheetTitle className="mt-3 text-balance text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl">
           {team.team}
         </SheetTitle>
         <SheetDescription className="text-base text-muted-foreground">
