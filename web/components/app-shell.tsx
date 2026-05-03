@@ -1,7 +1,7 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { BracketGrid } from "@/components/bracket-grid";
 import { Filters } from "@/components/filters";
@@ -13,7 +13,9 @@ import { TeamSheet } from "@/components/team-sheet";
 import { TimelineHeatmap } from "@/components/timeline-heatmap";
 import {
   Dataset,
+  REGIONS,
   Region,
+  ROUND_ORDER,
   Round,
   StoryTag,
   TAG_ORDER,
@@ -22,6 +24,10 @@ import {
   maxAbsGap,
   tagCounts,
 } from "@/lib/data";
+
+const VALID_TAGS = new Set<string>(TAG_ORDER);
+const VALID_REGIONS = new Set<string>(REGIONS);
+const VALID_ROUNDS = new Set<string>(ROUND_ORDER);
 
 type Props = {
   data: Dataset;
@@ -64,6 +70,145 @@ function YearSwapper({
         )
       );
   }, [searchParams, currentYear, onSwap]);
+  return null;
+}
+
+// Two-way bind URL search params to filter + selected-team state. Two
+// effects: one reads URL on mount + every URL change (so browser back/
+// forward works), one writes URL on state change. `router.replace` keeps
+// history clean. The `readJustSeeded` flag breaks the same-commit race
+// where the read effect's setState hasn't landed yet but the write effect
+// still runs and would clobber the URL with stale defaults.
+//
+// Sits inside the same Suspense boundary as YearSwapper for the same Next 16
+// reason: useSearchParams forces client-side rendering up to its closest
+// boundary, and a static page calling it without Suspense fails the prod
+// build.
+type UrlSyncState = {
+  selectedTags: Set<StoryTag>;
+  selectedRegion: Region | "all";
+  selectedRound: Round;
+  selectedTeam: Team | null;
+  teams: Team[];
+  setSelectedTags: (s: Set<StoryTag>) => void;
+  setSelectedRegion: (r: Region | "all") => void;
+  setSelectedRound: (r: Round) => void;
+  setSelectedTeam: (t: Team | null) => void;
+};
+
+function UrlSync({
+  selectedTags,
+  selectedRegion,
+  selectedRound,
+  selectedTeam,
+  teams,
+  setSelectedTags,
+  setSelectedRegion,
+  setSelectedRound,
+  setSelectedTeam,
+}: UrlSyncState) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  // Set by the read effect when it schedules a setState; cleared by the
+  // write effect on the next commit. Stops the write effect from firing in
+  // the same commit as a read-driven setState (where it would still see the
+  // pre-setState state and try to "fix" the URL back to defaults).
+  const readJustSeeded = useRef(false);
+
+  // Read on every URL change (mount + browser back/forward + manual edits).
+  // Each branch content-compares against current state — no setState when
+  // they already agree.
+  useEffect(() => {
+    let didSeed = false;
+
+    const tagsRaw = searchParams.get("tags");
+    const parsedTags = tagsRaw
+      ? (tagsRaw.split(",").filter((t) => VALID_TAGS.has(t)) as StoryTag[])
+      : [];
+    const expectedTags =
+      parsedTags.length > 0 ? new Set(parsedTags) : ALL_TAGS;
+    if (
+      expectedTags.size !== selectedTags.size ||
+      [...expectedTags].some((t) => !selectedTags.has(t))
+    ) {
+      setSelectedTags(expectedTags);
+      didSeed = true;
+    }
+
+    const regionRaw = searchParams.get("region");
+    const expectedRegion: Region | "all" =
+      regionRaw && VALID_REGIONS.has(regionRaw) ? (regionRaw as Region) : "all";
+    if (expectedRegion !== selectedRegion) {
+      setSelectedRegion(expectedRegion);
+      didSeed = true;
+    }
+
+    const roundRaw = searchParams.get("round");
+    const expectedRound: Round =
+      roundRaw && VALID_ROUNDS.has(roundRaw) ? (roundRaw as Round) : "all";
+    if (expectedRound !== selectedRound) {
+      setSelectedRound(expectedRound);
+      didSeed = true;
+    }
+
+    const teamRaw = searchParams.get("team");
+    const expectedTeam = teamRaw
+      ? teams.find((x) => x.team === teamRaw) ?? null
+      : null;
+    if (expectedTeam?.team !== selectedTeam?.team) {
+      setSelectedTeam(expectedTeam);
+      didSeed = true;
+    }
+
+    if (didSeed) readJustSeeded.current = true;
+    // selectedX deps deliberately omitted — comparing them inside the effect
+    // is the whole point. Adding them would make the effect re-fire on
+    // user-driven state changes and double-fire with the write effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, teams]);
+
+  // Write on state change. Skipped in the commit immediately after a read
+  // seed so the seeded state can land before we serialize.
+  useEffect(() => {
+    if (readJustSeeded.current) {
+      readJustSeeded.current = false;
+      return;
+    }
+
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (selectedTags.size === TAG_ORDER.length) {
+      params.delete("tags");
+    } else {
+      // Stable order so the URL is canonical regardless of toggle sequence.
+      const ordered = TAG_ORDER.filter((t) => selectedTags.has(t));
+      params.set("tags", ordered.join(","));
+    }
+
+    if (selectedRegion === "all") params.delete("region");
+    else params.set("region", selectedRegion);
+
+    if (selectedRound === "all") params.delete("round");
+    else params.set("round", selectedRound);
+
+    if (!selectedTeam) params.delete("team");
+    else params.set("team", selectedTeam.team);
+
+    const next = params.toString();
+    const current = searchParams.toString();
+    if (next === current) return;
+    router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
+  }, [
+    selectedTags,
+    selectedRegion,
+    selectedRound,
+    selectedTeam,
+    pathname,
+    router,
+    searchParams,
+  ]);
+
   return null;
 }
 
@@ -129,6 +274,17 @@ export function AppShell({ data, view }: Props) {
         <YearSwapper
           currentYear={dataset.metadata.tournament_year}
           onSwap={setDataset}
+        />
+        <UrlSync
+          selectedTags={selectedTags}
+          selectedRegion={selectedRegion}
+          selectedRound={selectedRound}
+          selectedTeam={selectedTeam}
+          teams={dataset.teams}
+          setSelectedTags={setSelectedTags}
+          setSelectedRegion={setSelectedRegion}
+          setSelectedRound={setSelectedRound}
+          setSelectedTeam={setSelectedTeam}
         />
       </Suspense>
 
