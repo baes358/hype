@@ -7,8 +7,10 @@ import { BracketGrid } from "@/components/bracket-grid";
 import { Filters } from "@/components/filters";
 import { GapChart } from "@/components/gap-chart";
 import { Hero } from "@/components/hero";
+import { ScatterChartView } from "@/components/scatter-chart";
 import { SectionNav } from "@/components/section-nav";
 import { TeamSheet } from "@/components/team-sheet";
+import { TimelineHeatmap } from "@/components/timeline-heatmap";
 import {
   Dataset,
   Region,
@@ -21,7 +23,7 @@ import {
 
 type Props = {
   data: Dataset;
-  view: "gap" | "bracket";
+  view: "gap" | "scatter" | "timeline" | "bracket";
 };
 
 const ALL_TAGS = new Set<StoryTag>(TAG_ORDER);
@@ -84,6 +86,19 @@ export function AppShell({ data, view }: Props) {
   const counts = useMemo(() => tagCounts(dataset.teams), [dataset.teams]);
   const scale = useMemo(() => maxAbsGap(dataset.teams), [dataset.teams]);
 
+  // For the timeline heatmap: global max daily hype across all teams × all
+  // days, plus the canonical date list. Filters narrow rows but never
+  // rescale the color ramp or remove columns.
+  const maxDailyHype = useMemo(() => {
+    let m = 0;
+    for (const t of dataset.teams) for (const d of t.hype_daily) if (d.value > m) m = d.value;
+    return m || 1;
+  }, [dataset.teams]);
+  const windowDates = useMemo(
+    () => dataset.teams[0]?.hype_daily.map((d) => d.date) ?? [],
+    [dataset.teams]
+  );
+
   const onToggleTag = (tag: StoryTag) => {
     setSelectedTags((prev) => {
       const next = new Set(prev);
@@ -128,6 +143,24 @@ export function AppShell({ data, view }: Props) {
         <GapChart
           teams={filteredTeams}
           maxAbsGap={scale}
+          selectedTeam={selectedTeam?.team ?? null}
+          onSelect={(t) => setSelectedTeam(t)}
+        />
+      )}
+
+      {view === "scatter" && (
+        <ScatterChartView
+          teams={filteredTeams}
+          selectedTeam={selectedTeam?.team ?? null}
+          onSelect={(t) => setSelectedTeam(t)}
+        />
+      )}
+
+      {view === "timeline" && (
+        <TimelineHeatmap
+          teams={filteredTeams}
+          windowDates={windowDates}
+          maxDailyHype={maxDailyHype}
           selectedTeam={selectedTeam?.team ?? null}
           onSelect={(t) => setSelectedTeam(t)}
         />

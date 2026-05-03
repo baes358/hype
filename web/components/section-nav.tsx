@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 
 const VIEWS = [
   { href: "/", label: "01 / Diverging" },
-  { href: "/bracket", label: "02 / Bracket" },
+  { href: "/scatter", label: "02 / Scatter" },
+  { href: "/timeline", label: "03 / Timeline" },
+  { href: "/bracket", label: "04 / Bracket" },
 ];
 
 export function SectionNav() {

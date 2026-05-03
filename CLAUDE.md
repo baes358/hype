@@ -240,6 +240,14 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects
 - **Sort controls** on the gap chart — by hype, by performance, by region.
 - **Hover tooltips** on bars in the gap chart.
 - **Search box** for finding a specific team in 64 rows.
+- **Tournament round / field-cut filter.** Let the user narrow the visible teams to a specific bracket round. Pill control: `All 68 · Round of 64 · Sweet 16 · Elite 8 · Final Four`. Maps to `wins` thresholds:
+  - All 68 → no filter (includes the 4 First Four losers)
+  - Round of 64 → exclude First Four losers (4 teams cut, 64 remaining)
+  - Sweet 16 → `wins >= 2` (16 remaining)
+  - Elite 8 → `wins >= 3` (8 remaining)
+  - Final Four → `wins >= 4` (4 remaining)
+
+  Identifying First Four losers needs care — there's no direct field. Cleanest fix: have `build_dataset.py` flag them via a new `made_main_bracket: bool` (or `lost_in_first_four`) field, derived from the bracket structure. The logos / seonames already pass through fetch_bracket → build_dataset, so plumbing one more boolean is cheap. Implementation goes in `AppShell` filter state alongside `selectedTags` / `selectedRegion`, and the round filter ANDs with them. Affects all 4 views (gap, scatter, timeline, bracket) for free since they all consume `filteredTeams`.
 
 (Brand-caps audit: README and code both confirmed clean as of 2026-05-02. Leaving the "Lowercase Hyp3" anti-pattern note above as a future safeguard.)
 

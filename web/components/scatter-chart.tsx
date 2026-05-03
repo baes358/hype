@@ -1,0 +1,224 @@
+"use client";
+
+import {
+  CartesianGrid,
+  LabelList,
+  ReferenceLine,
+  Scatter,
+  ScatterChart,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+
+import {
+  ChartConfig,
+  ChartContainer,
+} from "@/components/ui/chart";
+import { StoryTag, Team } from "@/lib/data";
+
+type Props = {
+  teams: Team[];
+  selectedTeam: string | null;
+  onSelect: (team: Team) => void;
+};
+
+// wins → round name (the round the team exited at, or "Champion" for 6 wins).
+const ROUND_LABELS: readonly string[] = [
+  "First Round",   // 0 wins (lost play-in or R64)
+  "Second Round",  // 1 win
+  "Sweet 16",      // 2 wins
+  "Elite 8",       // 3 wins
+  "Final Four",    // 4 wins
+  "Runner-up",     // 5 wins
+  "Champion",      // 6 wins
+];
+
+// Per-tag dot fill. Mirrors TAG_STYLE in lib/data.ts but as raw hex strings
+// because Recharts' shape callback receives the SVG attributes directly,
+// not Tailwind classes.
+const TAG_COLOR: Record<StoryTag, string> = {
+  overhyped: "#f43f5e",   // rose-500
+  underhyped: "#0ea5e9",  // sky-500
+  as_expected: "#f59e0b", // amber-500
+  noise: "#a1a1aa",       // zinc-400
+};
+
+const chartConfig: ChartConfig = {
+  hype_normalized: { label: "Hype (0–100)" },
+  wins: { label: "Wins" },
+};
+
+const AXIS_TICK_STYLE = {
+  fill: "var(--muted-foreground)",
+  fontSize: 10,
+  fontFamily: "var(--font-mono)",
+} as const;
+
+type ScatterPayload = Team & { _label?: string };
+
+function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payload: Team }[] }) {
+  if (!active || !payload || !payload.length) return null;
+  const t = payload[0].payload;
+  const round = ROUND_LABELS[t.wins] ?? `${t.wins} wins`;
+  return (
+    <div className="rounded-md border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur-sm">
+      <div className="font-semibold text-foreground">{t.team}</div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+        {t.seed} seed · {round}
+      </div>
+      <div className="mt-1 font-mono text-[10px] tabular-nums text-muted-foreground">
+        Hype #{t.hype_rank} · gap {t.gap > 0 ? "+" : ""}{t.gap}
+      </div>
+    </div>
+  );
+}
+
+export function ScatterChartView({ teams, onSelect }: Props) {
+  if (teams.length === 0) {
+    return (
+      <div className="mx-auto max-w-7xl px-5 py-24 text-center text-sm text-muted-foreground sm:px-6">
+        No teams match the current filters.
+      </div>
+    );
+  }
+
+  // Pick the top 5 most-overhyped (lowest gap) and top 5 most-underhyped
+  // (highest gap) from the FILTERED set. Direct text labels are reserved
+  // for those teams; everyone else gets hover-only tooltips.
+  //
+  // Labels are positioned with two anti-collision tricks:
+  //   1. Direction: overhyped labels go to the RIGHT of the dot,
+  //      underhyped labels go to the LEFT — they fan away from the
+  //      chart center so neither side crowds the other.
+  //   2. Vertical stacking: when several labeled teams share a wins
+  //      value (common — e.g. 5 underhyped teams all at wins=1), labels
+  //      are vertically offset by their rank within the side so they
+  //      stack rather than pile up on the same horizontal line.
+  const sortedByGap = [...teams].sort((a, b) => a.gap - b.gap);
+  const top5Over = sortedByGap.slice(0, 5);
+  const top5Under = sortedByGap.slice(-5).reverse(); // most extreme first
+  const labelPos = new Map<string, { side: "left" | "right"; dy: number }>();
+  top5Over.forEach((t, i) => {
+    labelPos.set(t.team, { side: "right", dy: (i - 2) * 11 });
+  });
+  top5Under.forEach((t, i) => {
+    labelPos.set(t.team, { side: "left", dy: (i - 2) * 11 });
+  });
+
+  return (
+    <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
+      <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+            02 / The scatter
+          </div>
+          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+            Hype against performance, with the diagonal as the expected line
+          </h2>
+        </div>
+        <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+          {teams.length} teams shown
+        </div>
+      </header>
+
+      <ChartContainer config={chartConfig} className="aspect-[4/3] w-full">
+        <ScatterChart margin={{ top: 16, right: 24, bottom: 32, left: 88 }}>
+          <CartesianGrid stroke="rgba(58,59,59,0.08)" />
+          <XAxis
+            type="number"
+            dataKey="hype_normalized"
+            domain={[0, 100]}
+            ticks={[0, 25, 50, 75, 100]}
+            tickLine={false}
+            axisLine={false}
+            tick={AXIS_TICK_STYLE}
+            label={{
+              value: "Hype index (0–100)",
+              position: "bottom",
+              offset: 8,
+              style: { fill: "var(--muted-foreground)", fontSize: 10, fontFamily: "var(--font-mono)", textTransform: "uppercase" },
+            }}
+          />
+          <YAxis
+            type="number"
+            dataKey="wins"
+            domain={[0, 6]}
+            ticks={[0, 1, 2, 3, 4, 5, 6]}
+            tickLine={false}
+            axisLine={false}
+            tick={AXIS_TICK_STYLE}
+            tickFormatter={(v: number) => ROUND_LABELS[v] ?? String(v)}
+            width={120}
+          />
+          <ReferenceLine
+            segment={[
+              { x: 0, y: 0 },
+              { x: 100, y: 6 },
+            ]}
+            stroke="rgba(58,59,59,0.3)"
+            strokeDasharray="3 4"
+            ifOverflow="visible"
+          />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: "rgba(58,59,59,0.2)", strokeDasharray: "2 4" }} />
+          <Scatter
+            data={teams}
+            isAnimationActive={false}
+            shape={(props: { cx?: number; cy?: number; payload?: Team }) => {
+              const { cx, cy, payload } = props;
+              if (cx == null || cy == null || !payload) return <g />;
+              const fill = TAG_COLOR[payload.story_tag];
+              return (
+                <circle
+                  cx={cx}
+                  cy={cy}
+                  r={5}
+                  fill={fill}
+                  fillOpacity={0.85}
+                  stroke="white"
+                  strokeWidth={1}
+                  style={{ cursor: "pointer" }}
+                />
+              );
+            }}
+            onClick={(point: { payload?: Team }) => {
+              if (point.payload) onSelect(point.payload);
+            }}
+          >
+            <LabelList
+              dataKey="team"
+              content={(props) => {
+                const { x, y, value } = props as { x?: number | string; y?: number | string; value?: string | number };
+                if (x == null || y == null || typeof value !== "string") return null;
+                const pos = labelPos.get(value);
+                if (!pos) return null;
+                const xOffset = pos.side === "right" ? 10 : -10;
+                return (
+                  <text
+                    x={Number(x) + xOffset}
+                    y={Number(y) + pos.dy + 3}
+                    textAnchor={pos.side === "right" ? "start" : "end"}
+                    fontSize={9}
+                    fontFamily="var(--font-mono)"
+                    fill="var(--foreground)"
+                    style={{ pointerEvents: "none" }}
+                  >
+                    {value}
+                  </text>
+                );
+              }}
+            />
+          </Scatter>
+        </ScatterChart>
+      </ChartContainer>
+
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+        <span>Below the line ↘ overhyped</span>
+        <span>·</span>
+        <span>Above the line ↗ underhyped</span>
+        <span>·</span>
+        <span>Click any dot for details</span>
+      </div>
+    </section>
+  );
+}
