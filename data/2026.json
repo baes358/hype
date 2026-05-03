@@ -4,7 +4,7 @@
     "hype_window_start": "2026-03-03",
     "hype_window_end": "2026-03-17",
     "total_teams": 68,
-    "data_pulled_at": "2026-05-03T17:26:00.449991+00:00"
+    "data_pulled_at": "2026-05-03T17:45:40.910606+00:00"
   },
   "finding": "HYPE vs. PERFORMANCE",
   "teams": [
@@ -77,10 +77,10 @@
           "value": 24
         }
       ],
-      "hype_rank": 12,
+      "hype_rank": 11,
       "performance_rank": 1,
-      "gap": 11,
-      "story_tag": "noise",
+      "gap": 10,
+      "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/michigan.svg"
     },
@@ -153,9 +153,9 @@
           "value": 16.0
         }
       ],
-      "hype_rank": 15,
+      "hype_rank": 14,
       "performance_rank": 2,
-      "gap": 13,
+      "gap": 12,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/uconn.svg"
@@ -229,10 +229,10 @@
           "value": 23.0
         }
       ],
-      "hype_rank": 14,
+      "hype_rank": 13,
       "performance_rank": 3,
-      "gap": 11,
-      "story_tag": "noise",
+      "gap": 10,
+      "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/arizona.svg"
     },
@@ -305,9 +305,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 38,
+      "hype_rank": 37,
       "performance_rank": 3,
-      "gap": 35,
+      "gap": 34,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/illinois.svg"
@@ -381,10 +381,10 @@
           "value": 15.16
         }
       ],
-      "hype_rank": 16,
+      "hype_rank": 15,
       "performance_rank": 5,
-      "gap": 11,
-      "story_tag": "noise",
+      "gap": 10,
+      "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/duke.svg"
     },
@@ -457,10 +457,10 @@
           "value": 8.84
         }
       ],
-      "hype_rank": 31,
+      "hype_rank": 30,
       "performance_rank": 5,
-      "gap": 26,
-      "story_tag": "underhyped",
+      "gap": 25,
+      "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/purdue.svg"
     },
@@ -533,9 +533,9 @@
           "value": 8.84
         }
       ],
-      "hype_rank": 40,
+      "hype_rank": 39,
       "performance_rank": 5,
-      "gap": 35,
+      "gap": 34,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/tennessee.svg"
@@ -685,9 +685,9 @@
           "value": 36.0
         }
       ],
-      "hype_rank": 23,
+      "hype_rank": 22,
       "performance_rank": 5,
-      "gap": 18,
+      "gap": 17,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/texas.svg"
@@ -761,9 +761,9 @@
           "value": 29.0
         }
       ],
-      "hype_rank": 20,
+      "hype_rank": 19,
       "performance_rank": 10,
-      "gap": 10,
+      "gap": 9,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/houston.svg"
@@ -837,9 +837,9 @@
           "value": 9.82
         }
       ],
-      "hype_rank": 33,
+      "hype_rank": 32,
       "performance_rank": 10,
-      "gap": 23,
+      "gap": 22,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/iowa-st.svg"
@@ -913,9 +913,9 @@
           "value": 6.0
         }
       ],
-      "hype_rank": 34,
+      "hype_rank": 33,
       "performance_rank": 10,
-      "gap": 24,
+      "gap": 23,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/michigan-st.svg"
@@ -989,9 +989,9 @@
           "value": 9.82
         }
       ],
-      "hype_rank": 46,
+      "hype_rank": 45,
       "performance_rank": 10,
-      "gap": 36,
+      "gap": 35,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/alabama.svg"
@@ -1065,9 +1065,9 @@
           "value": 18.55
         }
       ],
-      "hype_rank": 17,
+      "hype_rank": 16,
       "performance_rank": 10,
-      "gap": 7,
+      "gap": 6,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/arkansas.svg"
@@ -1141,9 +1141,9 @@
           "value": 8.0
         }
       ],
-      "hype_rank": 37,
+      "hype_rank": 36,
       "performance_rank": 10,
-      "gap": 27,
+      "gap": 26,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/nebraska.svg"
@@ -1296,7 +1296,7 @@
       "hype_rank": 2,
       "performance_rank": 17,
       "gap": -15,
-      "story_tag": "noise",
+      "story_tag": "overhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/florida.svg"
     },
@@ -1369,9 +1369,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 58,
+      "hype_rank": 57,
       "performance_rank": 17,
-      "gap": 41,
+      "gap": 40,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/gonzaga.svg"
@@ -1445,9 +1445,9 @@
           "value": 12.0
         }
       ],
-      "hype_rank": 39,
+      "hype_rank": 38,
       "performance_rank": 17,
-      "gap": 22,
+      "gap": 21,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/virginia.svg"
@@ -1521,10 +1521,10 @@
           "value": 12.0
         }
       ],
-      "hype_rank": 28,
+      "hype_rank": 27,
       "performance_rank": 17,
-      "gap": 11,
-      "story_tag": "noise",
+      "gap": 10,
+      "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/kansas.svg"
     },
@@ -1597,9 +1597,9 @@
           "value": 5.0
         }
       ],
-      "hype_rank": 56,
+      "hype_rank": 55,
       "performance_rank": 17,
-      "gap": 39,
+      "gap": 38,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/texas-tech.svg"
@@ -1673,9 +1673,9 @@
           "value": 8.73
         }
       ],
-      "hype_rank": 44,
+      "hype_rank": 43,
       "performance_rank": 17,
-      "gap": 27,
+      "gap": 26,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/vanderbilt.svg"
@@ -1749,9 +1749,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 41,
+      "hype_rank": 40,
       "performance_rank": 17,
-      "gap": 24,
+      "gap": 23,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/louisville.svg"
@@ -1825,9 +1825,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 25,
+      "hype_rank": 24,
       "performance_rank": 17,
-      "gap": 8,
+      "gap": 7,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/kentucky.svg"
@@ -1901,9 +1901,9 @@
           "value": 17.0
         }
       ],
-      "hype_rank": 22,
+      "hype_rank": 21,
       "performance_rank": 17,
-      "gap": 5,
+      "gap": 4,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/miami-fl.svg"
@@ -1977,9 +1977,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 36,
+      "hype_rank": 35,
       "performance_rank": 17,
-      "gap": 19,
+      "gap": 18,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/ucla.svg"
@@ -2053,9 +2053,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 53,
+      "hype_rank": 52,
       "performance_rank": 17,
-      "gap": 36,
+      "gap": 35,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/saint-louis.svg"
@@ -2129,9 +2129,9 @@
           "value": 6.0
         }
       ],
-      "hype_rank": 51,
+      "hype_rank": 50,
       "performance_rank": 17,
-      "gap": 34,
+      "gap": 33,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/tcu.svg"
@@ -2357,9 +2357,9 @@
           "value": 10.0
         }
       ],
-      "hype_rank": 26,
+      "hype_rank": 25,
       "performance_rank": 17,
-      "gap": 9,
+      "gap": 8,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/miami-oh.svg"
@@ -2433,9 +2433,9 @@
           "value": 6.55
         }
       ],
-      "hype_rank": 54,
+      "hype_rank": 53,
       "performance_rank": 17,
-      "gap": 37,
+      "gap": 36,
       "story_tag": "underhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/vcu.svg"
@@ -2661,9 +2661,9 @@
           "value": 34.0
         }
       ],
-      "hype_rank": 29,
+      "hype_rank": 28,
       "performance_rank": 17,
-      "gap": 12,
+      "gap": 11,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/prairie-view.svg"
@@ -2813,9 +2813,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 45,
+      "hype_rank": 44,
       "performance_rank": 36,
-      "gap": 9,
+      "gap": 8,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/byu.svg"
@@ -2889,9 +2889,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 35,
+      "hype_rank": 34,
       "performance_rank": 36,
-      "gap": -1,
+      "gap": -2,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/north-carolina.svg"
@@ -2965,9 +2965,9 @@
           "value": 20.0
         }
       ],
-      "hype_rank": 50,
+      "hype_rank": 49,
       "performance_rank": 36,
-      "gap": 14,
+      "gap": 13,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/st-marys-ca.svg"
@@ -3041,9 +3041,9 @@
           "value": 4.0
         }
       ],
-      "hype_rank": 45,
+      "hype_rank": 44,
       "performance_rank": 36,
-      "gap": 9,
+      "gap": 8,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/clemson.svg"
@@ -3117,10 +3117,10 @@
           "value": 8.0
         }
       ],
-      "hype_rank": 47,
+      "hype_rank": 46,
       "performance_rank": 36,
-      "gap": 11,
-      "story_tag": "noise",
+      "gap": 10,
+      "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/georgia.svg"
     },
@@ -3193,9 +3193,9 @@
           "value": 11.0
         }
       ],
-      "hype_rank": 32,
+      "hype_rank": 31,
       "performance_rank": 36,
-      "gap": -4,
+      "gap": -5,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/ohio-st.svg"
@@ -3269,9 +3269,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 55,
+      "hype_rank": 54,
       "performance_rank": 36,
-      "gap": 19,
+      "gap": 18,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/villanova.svg"
@@ -3345,9 +3345,9 @@
           "value": 8.0
         }
       ],
-      "hype_rank": 42,
+      "hype_rank": 41,
       "performance_rank": 36,
-      "gap": 6,
+      "gap": 5,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/missouri.svg"
@@ -3497,9 +3497,9 @@
           "value": 0.0
         }
       ],
-      "hype_rank": 60,
+      "hype_rank": 59,
       "performance_rank": 36,
-      "gap": 24,
+      "gap": 23,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/ucf.svg"
@@ -3725,9 +3725,9 @@
           "value": 10.0
         }
       ],
-      "hype_rank": 59,
+      "hype_rank": 58,
       "performance_rank": 36,
-      "gap": 23,
+      "gap": 22,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/south-fla.svg"
@@ -3801,9 +3801,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 48,
+      "hype_rank": 47,
       "performance_rank": 36,
-      "gap": 12,
+      "gap": 11,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/akron.svg"
@@ -3953,10 +3953,10 @@
           "value": 51.69
         }
       ],
-      "hype_rank": 21,
+      "hype_rank": 20,
       "performance_rank": 36,
-      "gap": -15,
-      "story_tag": "noise",
+      "gap": -16,
+      "story_tag": "overhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/uni.svg"
     },
@@ -4029,9 +4029,9 @@
           "value": 59.0
         }
       ],
-      "hype_rank": 30,
+      "hype_rank": 29,
       "performance_rank": 36,
-      "gap": -6,
+      "gap": -7,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/california-baptist.svg"
@@ -4105,9 +4105,9 @@
           "value": 5.33
         }
       ],
-      "hype_rank": 52,
+      "hype_rank": 51,
       "performance_rank": 36,
-      "gap": 16,
+      "gap": 15,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/hawaii.svg"
@@ -4181,9 +4181,9 @@
           "value": 7.0
         }
       ],
-      "hype_rank": 60,
+      "hype_rank": 59,
       "performance_rank": 36,
-      "gap": 24,
+      "gap": 23,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/hofstra.svg"
@@ -4333,9 +4333,9 @@
           "value": 32.73
         }
       ],
-      "hype_rank": 24,
+      "hype_rank": 23,
       "performance_rank": 36,
-      "gap": -12,
+      "gap": -13,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/kennesaw-st.svg"
@@ -4409,9 +4409,9 @@
           "value": 29.0
         }
       ],
-      "hype_rank": 27,
+      "hype_rank": 26,
       "performance_rank": 36,
-      "gap": -9,
+      "gap": -10,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/north-dakota-st.svg"
@@ -4485,9 +4485,9 @@
           "value": 4.0
         }
       ],
-      "hype_rank": 57,
+      "hype_rank": 56,
       "performance_rank": 36,
-      "gap": 21,
+      "gap": 20,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/penn.svg"
@@ -4561,9 +4561,9 @@
           "value": 34.91
         }
       ],
-      "hype_rank": 19,
+      "hype_rank": 18,
       "performance_rank": 36,
-      "gap": -17,
+      "gap": -18,
       "story_tag": "overhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/wright-st.svg"
@@ -4637,9 +4637,9 @@
           "value": 52.0
         }
       ],
-      "hype_rank": 13,
+      "hype_rank": 12,
       "performance_rank": 36,
-      "gap": -23,
+      "gap": -24,
       "story_tag": "overhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/furman.svg"
@@ -4713,9 +4713,9 @@
           "value": 6.0
         }
       ],
-      "hype_rank": 43,
+      "hype_rank": 42,
       "performance_rank": 36,
-      "gap": 7,
+      "gap": 6,
       "story_tag": "as_expected",
       "made_main_bracket": true,
       "logo_path": "/logos/idaho.svg"
@@ -4801,74 +4801,74 @@
       "seed": 15,
       "region": "Midwest",
       "wins": 0,
-      "hype_raw": 36.38,
-      "hype_normalized": 25.59,
+      "hype_raw": 2.29,
+      "hype_normalized": 1.61,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 22.91
+          "value": 0.0
         },
         {
           "date": "2026-03-04",
-          "value": 11.0
+          "value": 0.0
         },
         {
           "date": "2026-03-05",
-          "value": 27.73
+          "value": 0.0
         },
         {
           "date": "2026-03-06",
-          "value": 23.69
+          "value": 0.0
         },
         {
           "date": "2026-03-07",
-          "value": 70.4
+          "value": 6.6
         },
         {
           "date": "2026-03-08",
-          "value": 70.95
+          "value": 7.17
         },
         {
           "date": "2026-03-09",
-          "value": 33.6
+          "value": 0.0
         },
         {
           "date": "2026-03-10",
-          "value": 24.0
+          "value": 0.0
         },
         {
           "date": "2026-03-11",
-          "value": 12.0
+          "value": 0.0
         },
         {
           "date": "2026-03-12",
-          "value": 35.2
+          "value": 0.0
         },
         {
           "date": "2026-03-13",
-          "value": 39.38
+          "value": 0.0
         },
         {
           "date": "2026-03-14",
-          "value": 20.28
+          "value": 6.41
         },
         {
           "date": "2026-03-15",
-          "value": 35.48
+          "value": 5.0
         },
         {
           "date": "2026-03-16",
-          "value": 63.37
+          "value": 5.0
         },
         {
           "date": "2026-03-17",
-          "value": 55.64
+          "value": 4.17
         }
       ],
-      "hype_rank": 11,
+      "hype_rank": 60,
       "performance_rank": 36,
-      "gap": -25,
-      "story_tag": "overhyped",
+      "gap": 24,
+      "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/tennessee-st.svg"
     },
@@ -5017,9 +5017,9 @@
           "value": 33.33
         }
       ],
-      "hype_rank": 18,
+      "hype_rank": 17,
       "performance_rank": 36,
-      "gap": -18,
+      "gap": -19,
       "story_tag": "overhyped",
       "made_main_bracket": true,
       "logo_path": "/logos/long-island.svg"
@@ -5093,9 +5093,9 @@
           "value": 16.0
         }
       ],
-      "hype_rank": 49,
+      "hype_rank": 48,
       "performance_rank": 36,
-      "gap": 13,
+      "gap": 12,
       "story_tag": "noise",
       "made_main_bracket": true,
       "logo_path": "/logos/siena.svg"

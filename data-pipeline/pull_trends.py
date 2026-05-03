@@ -138,7 +138,7 @@ TEAM_QUERY_MAP: dict[str, str] = {
     "Furman": "Furman basketball",
     "Idaho": "Idaho Vandals basketball",
     "Queens": "Queens Royals basketball",
-    "Tennessee State": "Tennessee State basketball",
+    "Tennessee State": "Tennessee State University basketball",
     # 16-seeds (excluding First Four placeholders)
     "Siena": "Siena College basketball",
     "Prairie View A&M": "Prairie View basketball",

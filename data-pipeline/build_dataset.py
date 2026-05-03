@@ -71,7 +71,7 @@ def parse_window(s: str) -> str:
 
 
 def story_tag(gap: int) -> str:
-    if gap < -15:
+    if gap <= -15:
         return "overhyped"
     if gap > 25:
         return "underhyped"

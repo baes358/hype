@@ -59,6 +59,7 @@ The naive query "Texas basketball" picks up football noise, "Michigan basketball
   - Siena → `"Siena College basketball"` (bare "Siena basketball" picks up Italian city / Sienna brand)
   - LIU (Long Island) → `"LIU basketball"` (school rebranded from Blackbirds to Sharks; "LIU" is the searchable form)
   - McNeese → `"McNeese basketball"` (school dropped "State" branding in 2023)
+  - Tennessee State → `"Tennessee State University basketball"` (bare "Tennessee State basketball" bleeds Tennessee Vols / state news; baseline 19-33 on quiet days vs. 0 with the suffix. Mascot variant `"Tennessee State Tigers basketball"` returns near-zero — Tigers is too generic across NCAA programs)
 
 The full disambiguated map is `TEAM_QUERY_MAP` at the top of [pull_trends.py](data-pipeline/pull_trends.py). Keys must match the team name in `tournament_results_<year>.csv` exactly. The map is shared across years — if a team appears in multiple years' CSVs, one entry covers all of them.
 
@@ -83,7 +84,7 @@ p.write_text(json.dumps(c, indent=2))
 
 ### Asymmetric story_tag thresholds
 
-`overhyped < -15`, `underhyped > +25` (not symmetric). The asymmetry reflects the same 0-win cluster: with 33 teams tied at performance rank 33, the underhyped side fills up easily with low-hype-low-performance noise. Tighter `+25` filters that noise. Tighter overhyped `-15` (instead of original `-20`) lets the marquee 1-seed-flame-out story land in the right bucket.
+`overhyped <= -15`, `underhyped > +25` (not symmetric). The asymmetry reflects the same 0-win cluster: with 33 teams tied at performance rank 33, the underhyped side fills up easily with low-hype-low-performance noise. Tighter `+25` filters that noise. Overhyped `<= -15` (originally `< -20`, then `< -15`, finally `<= -15` on 2026-05-03) lets the marquee 1-seed-flame-out story land in the right bucket — Florida sat at gap=-15 exactly, and inclusive `<=` was the smallest change that captured it.
 
 Edit at [data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69) if the distribution feels wrong.
 
@@ -228,8 +229,6 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects
 
 ### Should consider — data quality + setup
 
-- **Suspicious mid-major hype.** McNeese (36.74), Tennessee State (36.38), Furman (30.40) — all 0-win small schools sitting in the top 10 by mean hype. Daily curves are tournament-shaped (spikes on game day), so probably real signal, but worth re-checking if the editorial finding hinges on them. Decide: accept as-is, or do another query refinement round (the same pattern used to fix Siena/Hofstra).
-- **Florida tag.** Florida has `gap = -16`, currently tagged `noise` under the `-15`/`+25` thresholds. If you want the marquee 1-seed-flame-out story to land as `overhyped`, tighten the overhyped threshold further (e.g. `< -10`) at [build_dataset.py:69](data-pipeline/build_dataset.py:69).
 - **Hawaii (3.54) and St. Mary's (4.08).** Likely genuinely low signal but worth eyeballing the daily curve once before declaring them final. If the curve is tournament-shaped (spikes on game day), accept the low value as real. If it's flat noise, treat like a Siena/Hofstra refinement and test variants.
 - **Custom font files not yet in repo.** `web/public/fonts/TheNeue-Black.woff2` and `web/public/fonts/FA-1-Regular.otf`. Page renders fallback chain (Helvetica Neue / system mono) until they land.
 - **NCAA API name normalization map will need maintenance over time.** The map in `fetch_bracket.py` translates the API's current branding (e.g. `McNeese`, `Queens (N.C.)`) to our historical CSV form (`McNeese State`, `Queens`). Schools occasionally rebrand: McNeese dropped "State" in 2023, future years' API responses will reflect that. When fetching a new year, watch for a "would be NEW team names" warning and decide whether to add a normalization entry (preserve the historical canonical name) or update `TEAM_QUERY_MAP` keys (adopt the new name). Both are valid; the choice depends on whether you want consistency with prior years' data.
@@ -240,15 +239,6 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects
 - **Sort controls** on the gap chart — by hype, by performance, by region.
 - **Hover tooltips** on bars in the gap chart.
 - **Search box** for finding a specific team in 64 rows.
-- **Tournament round / field-cut filter.** Let the user narrow the visible teams to a specific bracket round. Pill control: `All 68 · Round of 64 · Sweet 16 · Elite 8 · Final Four`. Maps to `wins` thresholds:
-  - All 68 → no filter (includes the 4 First Four losers)
-  - Round of 64 → exclude First Four losers (4 teams cut, 64 remaining)
-  - Sweet 16 → `wins >= 2` (16 remaining)
-  - Elite 8 → `wins >= 3` (8 remaining)
-  - Final Four → `wins >= 4` (4 remaining)
-
-  Identifying First Four losers needs care — there's no direct field. Cleanest fix: have `build_dataset.py` flag them via a new `made_main_bracket: bool` (or `lost_in_first_four`) field, derived from the bracket structure. The logos / seonames already pass through fetch_bracket → build_dataset, so plumbing one more boolean is cheap. Implementation goes in `AppShell` filter state alongside `selectedTags` / `selectedRegion`, and the round filter ANDs with them. Affects all 4 views (gap, scatter, timeline, bracket) for free since they all consume `filteredTeams`.
-
 (Brand-caps audit: README and code both confirmed clean as of 2026-05-02. Leaving the "Lowercase Hyp3" anti-pattern note above as a future safeguard.)
 
 ## Scope discipline
