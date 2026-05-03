@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { BracketGrid } from "@/components/bracket-grid";
 import { Filters } from "@/components/filters";
@@ -25,23 +26,63 @@ type Props = {
 
 const ALL_TAGS = new Set<StoryTag>(TAG_ORDER);
 
+// Reads ?year=YYYY from the URL and asks the parent to swap datasets when
+// it differs from the bundled one. Renders nothing — pure side-effect.
+//
+// Why a separate component: useSearchParams forces its enclosing client-tree
+// to client-side render (per Next 16's prerender rules), and it must sit
+// inside a <Suspense> boundary or production builds fail. By isolating it
+// here, the Suspense fallback is null (this component renders nothing
+// anyway) and the rest of AppShell stays SSR'd as today.
+function YearSwapper({
+  currentYear,
+  onSwap,
+}: {
+  currentYear: number;
+  onSwap: (d: Dataset) => void;
+}) {
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const raw = searchParams.get("year");
+    if (!raw) return;
+    const year = Number.parseInt(raw, 10);
+    if (Number.isNaN(year)) return;
+    if (year === currentYear) return; // already showing the requested year
+    fetch(`/data/${year}.json`)
+      .then((r) =>
+        r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))
+      )
+      .then((d: Dataset) => onSwap(d))
+      .catch((e) =>
+        console.warn(
+          `[year=${year}] fetch failed; keeping bundled ${currentYear}:`,
+          e
+        )
+      );
+  }, [searchParams, currentYear, onSwap]);
+  return null;
+}
+
 export function AppShell({ data, view }: Props) {
+  // `data` is the bundled (build-time) dataset. After mount, ?year=YYYY may
+  // swap it via YearSwapper. All children consume `dataset`, never `data`.
+  const [dataset, setDataset] = useState<Dataset>(data);
   const [selectedTags, setSelectedTags] = useState<Set<StoryTag>>(ALL_TAGS);
   const [selectedRegion, setSelectedRegion] = useState<Region | "all">("all");
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
 
   const filteredTeams = useMemo(() => {
-    return data.teams.filter((t) => {
+    return dataset.teams.filter((t) => {
       if (!selectedTags.has(t.story_tag)) return false;
       if (selectedRegion !== "all" && t.region !== selectedRegion) return false;
       return true;
     });
-  }, [data.teams, selectedTags, selectedRegion]);
+  }, [dataset.teams, selectedTags, selectedRegion]);
 
   // Counts and bar scale always reflect the FULL dataset, not the filtered view —
   // otherwise filtering rescales the bars and breaks visual comparison.
-  const counts = useMemo(() => tagCounts(data.teams), [data.teams]);
-  const scale = useMemo(() => maxAbsGap(data.teams), [data.teams]);
+  const counts = useMemo(() => tagCounts(dataset.teams), [dataset.teams]);
+  const scale = useMemo(() => maxAbsGap(dataset.teams), [dataset.teams]);
 
   const onToggleTag = (tag: StoryTag) => {
     setSelectedTags((prev) => {
@@ -64,7 +105,14 @@ export function AppShell({ data, view }: Props) {
 
   return (
     <>
-      <Hero data={data} />
+      <Suspense fallback={null}>
+        <YearSwapper
+          currentYear={dataset.metadata.tournament_year}
+          onSwap={setDataset}
+        />
+      </Suspense>
+
+      <Hero data={dataset} />
       <SectionNav />
 
       <Filters
@@ -99,7 +147,7 @@ export function AppShell({ data, view }: Props) {
           <span>·</span>
           <span>Data: Google Trends + 2026 NCAA results</span>
           <span>·</span>
-          <span>Pulled {new Date(data.metadata.data_pulled_at).toISOString().slice(0, 10)}</span>
+          <span>Pulled {new Date(dataset.metadata.data_pulled_at).toISOString().slice(0, 10)}</span>
         </div>
       </footer>
 

@@ -26,6 +26,10 @@ out/
 # Build-time copy of data.json into the Next.js app (source: /data/<year>.json)
 /web/data.json
 
+# Build-time staging of every year's JSON for the ?year=YYYY URL easter egg.
+# Source: /data/<year>.json. Copied by the prebuild script.
+/web/public/data/
+
 # Editor
 .vscode/
 .idea/

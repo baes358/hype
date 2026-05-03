@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "cp ../data/2026.json ./data.json",
+    "predev": "mkdir -p public/data && cp ../data/2026.json ./data.json && cp ../data/*.json ./public/data/",
     "dev": "next dev",
-    "prebuild": "cp ../data/2026.json ./data.json",
+    "prebuild": "mkdir -p public/data && cp ../data/2026.json ./data.json && cp ../data/*.json ./public/data/",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
