@@ -229,8 +229,6 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects
 
 ### Should consider — data quality + setup
 
-- **Hawaii (3.54) and St. Mary's (4.08).** Likely genuinely low signal but worth eyeballing the daily curve once before declaring them final. If the curve is tournament-shaped (spikes on game day), accept the low value as real. If it's flat noise, treat like a Siena/Hofstra refinement and test variants.
-- **Custom font files not yet in repo.** `web/public/fonts/TheNeue-Black.woff2` and `web/public/fonts/FA-1-Regular.otf`. Page renders fallback chain (Helvetica Neue / system mono) until they land.
 - **NCAA API name normalization map will need maintenance over time.** The map in `fetch_bracket.py` translates the API's current branding (e.g. `McNeese`, `Queens (N.C.)`) to our historical CSV form (`McNeese State`, `Queens`). Schools occasionally rebrand: McNeese dropped "State" in 2023, future years' API responses will reflect that. When fetching a new year, watch for a "would be NEW team names" warning and decide whether to add a normalization entry (preserve the historical canonical name) or update `TEAM_QUERY_MAP` keys (adopt the new name). Both are valid; the choice depends on whether you want consistency with prior years' data.
 
 ### Nice-to-haves — skip unless time
@@ -239,6 +237,7 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects
 - **Sort controls** on the gap chart — by hype, by performance, by region.
 - **Hover tooltips** on bars in the gap chart.
 - **Search box** for finding a specific team in 64 rows.
+
 (Brand-caps audit: README and code both confirmed clean as of 2026-05-02. Leaving the "Lowercase Hyp3" anti-pattern note above as a future safeguard.)
 
 ## Scope discipline
