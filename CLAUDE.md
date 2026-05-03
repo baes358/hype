@@ -124,8 +124,8 @@ When filters narrow the visible teams, bars/meters still scale to `maxAbsGap(all
 |---|---|---|
 | Brand color | `#44D1D1` | `--brand` CSS var → `bg-brand`/`text-brand` Tailwind utility |
 | Body font | Host Grotesk weight 500 | Google Fonts via `next/font/google`, default body class is `font-medium` |
-| Display font | Neue Black | `@font-face` from `web/public/fonts/NeueBlack.woff2`. Auto-applies to `h1`–`h6` and `.font-display` via `globals.css` `@layer base` |
-| Mono / labels | FA-1 Regular | `@font-face` from `web/public/fonts/fa-1-regular.otf`. Used wherever `font-mono` is applied. `tracking-normal` (not letter-spaced) |
+| Display font | Neue Black | `@font-face` from `web/public/fonts/TheNeue-Black.woff2`. Auto-applies to `h1`–`h6` and `.font-display` via `globals.css` `@layer base` |
+| Mono / labels | FA-1 Regular | `@font-face` from `web/public/fonts/FA-1-Regular.otf`. Used wherever `font-mono` is applied. `tracking-normal` (not letter-spaced) |
 | Story tag colors | rose/sky/amber/zinc | Centralized in `TAG_STYLE` in [lib/data.ts](web/lib/data.ts) |
 
 The app forces light mode (white bg, `#3A3B3B` text). The `dark` class is removed from `<html>` and the `.dark` block in `globals.css` is unused.
@@ -183,7 +183,7 @@ Edit `"finding"` in [data-pipeline/build_dataset.py:117](data-pipeline/build_dat
 - **Suspicious mid-major hype.** McNeese (36.74), Tennessee State (36.38), Furman (30.40) — all 0-win small schools sitting in the top 10 by mean hype. Daily curves are tournament-shaped (spikes on game day), so probably real signal, but worth re-checking if the editorial finding hinges on them. Decide: accept as-is, or do another query refinement round (the same pattern used to fix Siena/Hofstra).
 - **Florida tag.** Florida has `gap = -16`, currently tagged `noise` under the `-15`/`+25` thresholds. If you want the marquee 1-seed-flame-out story to land as `overhyped`, tighten the overhyped threshold further (e.g. `< -10`) at [build_dataset.py:35](data-pipeline/build_dataset.py:35).
 - **Hawaii (3.54) and St. Mary's (4.08).** Likely genuinely low signal but worth eyeballing the daily curve once before declaring them final. If the curve is tournament-shaped (spikes on game day), accept the low value as real. If it's flat noise, treat like a Siena/Hofstra refinement and test variants.
-- **Custom font files not yet in repo.** `web/public/fonts/NeueBlack.woff2` and `web/public/fonts/fa-1-regular.otf`. Page renders fallback chain (Helvetica Neue / system mono) until they land.
+- **Custom font files not yet in repo.** `web/public/fonts/TheNeue-Black.woff2` and `web/public/fonts/FA-1-Regular.otf`. Page renders fallback chain (Helvetica Neue / system mono) until they land.
 
 ### Nice-to-haves — skip unless time
 

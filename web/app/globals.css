@@ -3,23 +3,23 @@
 @import "shadcn/tailwind.css";
 
 /* Body + display font: Neue Black (used for everything that isn't .font-mono).
-   Drop the .woff2 file at /web/public/fonts/NeueBlack.woff2.
+   File: /web/public/fonts/TheNeue-Black.woff2.
    font-weight: 100 900 means: claim this single face covers ANY requested
    weight, so the file always wins regardless of what consumers ask for. */
 @font-face {
   font-family: "Neue Black";
-  src: url("/fonts/NeueBlack.woff2") format("woff2");
+  src: url("/fonts/TheNeue-Black.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 /* Mono / labels font: FA-1 Regular.
-   Drop the .otf file at /web/public/fonts/fa-1-regular.otf.
+   File: /web/public/fonts/FA-1-Regular.otf.
    If missing, falls back through the chain in --font-mono below. */
 @font-face {
   font-family: "FA-1";
-  src: url("/fonts/fa-1-regular.otf") format("opentype");
+  src: url("/fonts/FA-1-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;

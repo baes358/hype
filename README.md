@@ -78,6 +78,6 @@ Vercel auto-deploys on push to `main`. Set Vercel project's **Root Directory** t
 
 - **Name:** HYP3 (always all caps)
 - **Accent:** `#44D1D1` (centralized as `--brand` in `web/app/globals.css`)
-- **Display font:** Neue Black (drop `web/public/fonts/NeueBlack.woff2`)
+- **Display font:** Neue Black (drop `web/public/fonts/TheNeue-Black.woff2`)
 - **Body font:** Host Grotesk, weight 500 (Google Fonts)
-- **Mono / labels:** FA-1 Regular (drop `web/public/fonts/fa-1-regular.otf`)
+- **Mono / labels:** FA-1 Regular (drop `web/public/fonts/FA-1-Regular.otf`)
