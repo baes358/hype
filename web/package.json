@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "cp ../data/data.json ./data.json",
+    "predev": "cp ../data/2026.json ./data.json",
     "dev": "next dev",
-    "prebuild": "cp ../data/data.json ./data.json",
+    "prebuild": "cp ../data/2026.json ./data.json",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

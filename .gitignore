@@ -21,9 +21,9 @@ out/
 
 # Pipeline cache & raw artifacts (do not commit)
 /data-pipeline/cache/
-/data-pipeline/raw_hype.csv
+/data-pipeline/raw_hype_*.csv
 
-# Build-time copy of data.json into the Next.js app (source: /data/data.json)
+# Build-time copy of data.json into the Next.js app (source: /data/<year>.json)
 /web/data.json
 
 # Editor

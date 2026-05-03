@@ -15,6 +15,7 @@ export type Team = {
   performance_rank: number;
   gap: number;
   story_tag: StoryTag;
+  logo_path: string | null;
 };
 
 export type Dataset = {

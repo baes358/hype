@@ -1,0 +1,5112 @@
+{
+  "metadata": {
+    "tournament_year": 2025,
+    "hype_window_start": "2025-03-11",
+    "hype_window_end": "2025-03-25",
+    "total_teams": 68,
+    "data_pulled_at": "2026-05-03T06:29:15.836115+00:00"
+  },
+  "finding": "[finding TBD]",
+  "teams": [
+    {
+      "team": "Florida",
+      "seed": 1,
+      "region": "South",
+      "wins": 6,
+      "hype_raw": 24.4,
+      "hype_normalized": 43.64,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 3
+        },
+        {
+          "date": "2025-03-12",
+          "value": 3
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4
+        },
+        {
+          "date": "2025-03-14",
+          "value": 12
+        },
+        {
+          "date": "2025-03-15",
+          "value": 40
+        },
+        {
+          "date": "2025-03-16",
+          "value": 53
+        },
+        {
+          "date": "2025-03-17",
+          "value": 18
+        },
+        {
+          "date": "2025-03-18",
+          "value": 12
+        },
+        {
+          "date": "2025-03-19",
+          "value": 12
+        },
+        {
+          "date": "2025-03-20",
+          "value": 16
+        },
+        {
+          "date": "2025-03-21",
+          "value": 29
+        },
+        {
+          "date": "2025-03-22",
+          "value": 38
+        },
+        {
+          "date": "2025-03-23",
+          "value": 100
+        },
+        {
+          "date": "2025-03-24",
+          "value": 16
+        },
+        {
+          "date": "2025-03-25",
+          "value": 10
+        }
+      ],
+      "hype_rank": 3,
+      "performance_rank": 1,
+      "gap": 2,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/florida.svg"
+    },
+    {
+      "team": "Houston",
+      "seed": 1,
+      "region": "Midwest",
+      "wins": 5,
+      "hype_raw": 7.8,
+      "hype_normalized": 13.95,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 14.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 18.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 27.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 3.0
+        }
+      ],
+      "hype_rank": 9,
+      "performance_rank": 2,
+      "gap": 7,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/houston.svg"
+    },
+    {
+      "team": "Auburn",
+      "seed": 1,
+      "region": "East",
+      "wins": 4,
+      "hype_raw": 4.0,
+      "hype_normalized": 7.15,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 21,
+      "performance_rank": 3,
+      "gap": 18,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Duke",
+      "seed": 1,
+      "region": "West",
+      "wins": 4,
+      "hype_raw": 7.87,
+      "hype_normalized": 14.07,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 22.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 15.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 30.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 8,
+      "performance_rank": 3,
+      "gap": 5,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/duke.svg"
+    },
+    {
+      "team": "Alabama",
+      "seed": 2,
+      "region": "West",
+      "wins": 3,
+      "hype_raw": 3.47,
+      "hype_normalized": 6.2,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 12.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 3.0
+        }
+      ],
+      "hype_rank": 25,
+      "performance_rank": 5,
+      "gap": 20,
+      "story_tag": "noise",
+      "logo_path": "/logos/alabama.svg"
+    },
+    {
+      "team": "Michigan State",
+      "seed": 2,
+      "region": "East",
+      "wins": 3,
+      "hype_raw": 4.73,
+      "hype_normalized": 8.47,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 12.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 15.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 18,
+      "performance_rank": 5,
+      "gap": 13,
+      "story_tag": "noise",
+      "logo_path": "/logos/michigan-st.svg"
+    },
+    {
+      "team": "Tennessee",
+      "seed": 2,
+      "region": "Midwest",
+      "wins": 3,
+      "hype_raw": 6.2,
+      "hype_normalized": 11.09,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 12.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 18.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 3.0
+        }
+      ],
+      "hype_rank": 12,
+      "performance_rank": 5,
+      "gap": 7,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/tennessee.svg"
+    },
+    {
+      "team": "Texas Tech",
+      "seed": 3,
+      "region": "South",
+      "wins": 3,
+      "hype_raw": 0.6,
+      "hype_normalized": 1.07,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 46,
+      "performance_rank": 5,
+      "gap": 41,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/texas-tech.svg"
+    },
+    {
+      "team": "Kentucky",
+      "seed": 3,
+      "region": "Midwest",
+      "wins": 2,
+      "hype_raw": 6.33,
+      "hype_normalized": 11.33,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 29.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 11,
+      "performance_rank": 9,
+      "gap": 2,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/kentucky.svg"
+    },
+    {
+      "team": "Arizona",
+      "seed": 4,
+      "region": "West",
+      "wins": 2,
+      "hype_raw": 5.53,
+      "hype_normalized": 9.9,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 19.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 3.0
+        }
+      ],
+      "hype_rank": 16,
+      "performance_rank": 9,
+      "gap": 7,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/arizona.svg"
+    },
+    {
+      "team": "Maryland",
+      "seed": 4,
+      "region": "South",
+      "wins": 2,
+      "hype_raw": 5.13,
+      "hype_normalized": 9.18,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 23.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 7.0
+        }
+      ],
+      "hype_rank": 17,
+      "performance_rank": 9,
+      "gap": 8,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Purdue",
+      "seed": 4,
+      "region": "Midwest",
+      "wins": 2,
+      "hype_raw": 2.47,
+      "hype_normalized": 4.41,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 31,
+      "performance_rank": 9,
+      "gap": 22,
+      "story_tag": "noise",
+      "logo_path": "/logos/purdue.svg"
+    },
+    {
+      "team": "Michigan",
+      "seed": 5,
+      "region": "East",
+      "wins": 2,
+      "hype_raw": 5.8,
+      "hype_normalized": 10.37,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 17.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 14.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 15.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 14,
+      "performance_rank": 9,
+      "gap": 5,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/michigan.svg"
+    },
+    {
+      "team": "BYU",
+      "seed": 6,
+      "region": "West",
+      "wins": 2,
+      "hype_raw": 2.87,
+      "hype_normalized": 5.13,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 19.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 29,
+      "performance_rank": 9,
+      "gap": 20,
+      "story_tag": "noise",
+      "logo_path": "/logos/byu.svg"
+    },
+    {
+      "team": "Ole Miss",
+      "seed": 6,
+      "region": "East",
+      "wins": 2,
+      "hype_raw": 0.87,
+      "hype_normalized": 1.55,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 42,
+      "performance_rank": 9,
+      "gap": 33,
+      "story_tag": "underhyped",
+      "logo_path": null
+    },
+    {
+      "team": "Arkansas",
+      "seed": 10,
+      "region": "South",
+      "wins": 2,
+      "hype_raw": 5.73,
+      "hype_normalized": 10.25,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 15.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 28.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 15,
+      "performance_rank": 9,
+      "gap": 6,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/arkansas.svg"
+    },
+    {
+      "team": "St. John's",
+      "seed": 2,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 24.73,
+      "hype_normalized": 44.23,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 19.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 37.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 40.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 21.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 17.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 17.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 29.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 50.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 91.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 17.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 3.0
+        }
+      ],
+      "hype_rank": 2,
+      "performance_rank": 17,
+      "gap": -15,
+      "story_tag": "noise",
+      "logo_path": "/logos/st-johns-ny.svg"
+    },
+    {
+      "team": "Iowa State",
+      "seed": 3,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 3.93,
+      "hype_normalized": 7.03,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 22,
+      "performance_rank": 17,
+      "gap": 5,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/iowa-st.svg"
+    },
+    {
+      "team": "Wisconsin",
+      "seed": 3,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 12.27,
+      "hype_normalized": 21.94,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 26.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 35.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 19.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 15.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 32.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 5,
+      "performance_rank": 17,
+      "gap": -12,
+      "story_tag": "noise",
+      "logo_path": "/logos/wisconsin.svg"
+    },
+    {
+      "team": "Texas A&M",
+      "seed": 4,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 1.47,
+      "hype_normalized": 2.62,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 36,
+      "performance_rank": 17,
+      "gap": 19,
+      "story_tag": "noise",
+      "logo_path": "/logos/texas-am.svg"
+    },
+    {
+      "team": "Oregon",
+      "seed": 5,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 8.07,
+      "hype_normalized": 14.43,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 12.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 21.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 18.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 28.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 7,
+      "performance_rank": 17,
+      "gap": -10,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Illinois",
+      "seed": 6,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 2.8,
+      "hype_normalized": 5.01,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 14.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 30,
+      "performance_rank": 17,
+      "gap": 13,
+      "story_tag": "noise",
+      "logo_path": "/logos/illinois.svg"
+    },
+    {
+      "team": "St. Mary's",
+      "seed": 7,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 3.0,
+      "hype_normalized": 5.37,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 27,
+      "performance_rank": 17,
+      "gap": 10,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/st-marys-ca.svg"
+    },
+    {
+      "team": "UCLA",
+      "seed": 7,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 3.07,
+      "hype_normalized": 5.48,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 26,
+      "performance_rank": 17,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/ucla.svg"
+    },
+    {
+      "team": "Gonzaga",
+      "seed": 8,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 2.93,
+      "hype_normalized": 5.25,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 28,
+      "performance_rank": 17,
+      "gap": 11,
+      "story_tag": "noise",
+      "logo_path": "/logos/gonzaga.svg"
+    },
+    {
+      "team": "UConn",
+      "seed": 8,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 9.27,
+      "hype_normalized": 16.57,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 25.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 41.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 13.0
+        }
+      ],
+      "hype_rank": 6,
+      "performance_rank": 17,
+      "gap": -11,
+      "story_tag": "noise",
+      "logo_path": "/logos/uconn.svg"
+    },
+    {
+      "team": "Baylor",
+      "seed": 9,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 2.27,
+      "hype_normalized": 4.05,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 17.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 32,
+      "performance_rank": 17,
+      "gap": 15,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Creighton",
+      "seed": 9,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 3.87,
+      "hype_normalized": 6.92,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 21.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 23,
+      "performance_rank": 17,
+      "gap": 6,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "New Mexico",
+      "seed": 10,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 3.07,
+      "hype_normalized": 5.48,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 12.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 26,
+      "performance_rank": 17,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Drake",
+      "seed": 11,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 1.6,
+      "hype_normalized": 2.86,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 35,
+      "performance_rank": 17,
+      "gap": 18,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "North Carolina",
+      "seed": 11,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 4.27,
+      "hype_normalized": 7.63,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 20,
+      "performance_rank": 17,
+      "gap": 3,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/north-carolina.svg"
+    },
+    {
+      "team": "Xavier",
+      "seed": 11,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 1.27,
+      "hype_normalized": 2.27,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 38,
+      "performance_rank": 17,
+      "gap": 21,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Colorado State",
+      "seed": 12,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 0.67,
+      "hype_normalized": 1.19,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 45,
+      "performance_rank": 17,
+      "gap": 28,
+      "story_tag": "underhyped",
+      "logo_path": null
+    },
+    {
+      "team": "McNeese State",
+      "seed": 12,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 55.91,
+      "hype_normalized": 100.0,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 21.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.67
+        },
+        {
+          "date": "2025-03-16",
+          "value": 13.25
+        },
+        {
+          "date": "2025-03-17",
+          "value": 20.57
+        },
+        {
+          "date": "2025-03-18",
+          "value": 16.8
+        },
+        {
+          "date": "2025-03-19",
+          "value": 21.6
+        },
+        {
+          "date": "2025-03-20",
+          "value": 266.67
+        },
+        {
+          "date": "2025-03-21",
+          "value": 113.36
+        },
+        {
+          "date": "2025-03-22",
+          "value": 268.71
+        },
+        {
+          "date": "2025-03-23",
+          "value": 44.74
+        },
+        {
+          "date": "2025-03-24",
+          "value": 13.33
+        },
+        {
+          "date": "2025-03-25",
+          "value": 5.0
+        }
+      ],
+      "hype_rank": 1,
+      "performance_rank": 17,
+      "gap": -16,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/mcneese.svg"
+    },
+    {
+      "team": "Alabama State",
+      "seed": 16,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 0.88,
+      "hype_normalized": 1.57,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.4
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.4
+        },
+        {
+          "date": "2025-03-20",
+          "value": 5.33
+        },
+        {
+          "date": "2025-03-21",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 41,
+      "performance_rank": 17,
+      "gap": 24,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Mount St. Mary's",
+      "seed": 16,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 1.2,
+      "hype_normalized": 2.15,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.65
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.57
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 4.8
+        },
+        {
+          "date": "2025-03-20",
+          "value": 5.33
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.64
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 39,
+      "performance_rank": 17,
+      "gap": 22,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Clemson",
+      "seed": 5,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 1.44,
+      "hype_normalized": 2.58,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.67
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 37,
+      "performance_rank": 37,
+      "gap": 0,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/clemson.svg"
+    },
+    {
+      "team": "Memphis",
+      "seed": 5,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 6.2,
+      "hype_normalized": 11.09,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 13.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 18.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 19.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 12,
+      "performance_rank": 37,
+      "gap": -25,
+      "story_tag": "overhyped",
+      "logo_path": null
+    },
+    {
+      "team": "Missouri",
+      "seed": 6,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 2.0,
+      "hype_normalized": 3.58,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 33,
+      "performance_rank": 37,
+      "gap": -4,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/missouri.svg"
+    },
+    {
+      "team": "Kansas",
+      "seed": 7,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 3.6,
+      "hype_normalized": 6.44,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 16.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 24,
+      "performance_rank": 37,
+      "gap": -13,
+      "story_tag": "noise",
+      "logo_path": "/logos/kansas.svg"
+    },
+    {
+      "team": "Marquette",
+      "seed": 7,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.87,
+      "hype_normalized": 1.55,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 42,
+      "performance_rank": 37,
+      "gap": 5,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Louisville",
+      "seed": 8,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 4.67,
+      "hype_normalized": 8.35,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 27.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 19,
+      "performance_rank": 37,
+      "gap": -18,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/louisville.svg"
+    },
+    {
+      "team": "Mississippi State",
+      "seed": 8,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 1.27,
+      "hype_normalized": 2.27,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 38,
+      "performance_rank": 37,
+      "gap": 1,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Georgia",
+      "seed": 9,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 1.47,
+      "hype_normalized": 2.62,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 36,
+      "performance_rank": 37,
+      "gap": -1,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/georgia.svg"
+    },
+    {
+      "team": "Oklahoma",
+      "seed": 9,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 2.27,
+      "hype_normalized": 4.05,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.0
+        }
+      ],
+      "hype_rank": 32,
+      "performance_rank": 37,
+      "gap": -5,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Utah State",
+      "seed": 10,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 0.13,
+      "hype_normalized": 0.24,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 52,
+      "performance_rank": 37,
+      "gap": 15,
+      "story_tag": "noise",
+      "logo_path": "/logos/utah-st.svg"
+    },
+    {
+      "team": "Vanderbilt",
+      "seed": 10,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 0.53,
+      "hype_normalized": 0.95,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 47,
+      "performance_rank": 37,
+      "gap": 10,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/vanderbilt.svg"
+    },
+    {
+      "team": "San Diego State",
+      "seed": 11,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.67,
+      "hype_normalized": 1.19,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 1.0
+        }
+      ],
+      "hype_rank": 45,
+      "performance_rank": 37,
+      "gap": 8,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Texas",
+      "seed": 11,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 7.73,
+      "hype_normalized": 13.83,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 25.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 10.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 3.0
+        }
+      ],
+      "hype_rank": 10,
+      "performance_rank": 37,
+      "gap": -27,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/texas.svg"
+    },
+    {
+      "team": "VCU",
+      "seed": 11,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 0.87,
+      "hype_normalized": 1.55,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 42,
+      "performance_rank": 37,
+      "gap": 5,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/vcu.svg"
+    },
+    {
+      "team": "Liberty",
+      "seed": 12,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 0.67,
+      "hype_normalized": 1.19,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 45,
+      "performance_rank": 37,
+      "gap": 8,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "UC San Diego",
+      "seed": 12,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.93,
+      "hype_normalized": 1.67,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 40,
+      "performance_rank": 37,
+      "gap": 3,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Akron",
+      "seed": 13,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 1.73,
+      "hype_normalized": 3.1,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 34,
+      "performance_rank": 37,
+      "gap": -3,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/akron.svg"
+    },
+    {
+      "team": "Grand Canyon",
+      "seed": 13,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 0.76,
+      "hype_normalized": 1.37,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.29
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.26
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.12
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 4.64
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.15
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 44,
+      "performance_rank": 37,
+      "gap": 7,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "High Point",
+      "seed": 13,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 16.61,
+      "hype_normalized": 29.71,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 2.4
+        },
+        {
+          "date": "2025-03-15",
+          "value": 3.43
+        },
+        {
+          "date": "2025-03-16",
+          "value": 18.04
+        },
+        {
+          "date": "2025-03-17",
+          "value": 29.25
+        },
+        {
+          "date": "2025-03-18",
+          "value": 17.45
+        },
+        {
+          "date": "2025-03-19",
+          "value": 20.73
+        },
+        {
+          "date": "2025-03-20",
+          "value": 114.29
+        },
+        {
+          "date": "2025-03-21",
+          "value": 22.04
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.76
+        },
+        {
+          "date": "2025-03-23",
+          "value": 3.41
+        },
+        {
+          "date": "2025-03-24",
+          "value": 2.13
+        },
+        {
+          "date": "2025-03-25",
+          "value": 2.22
+        }
+      ],
+      "hype_rank": 4,
+      "performance_rank": 37,
+      "gap": -33,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/high-point.svg"
+    },
+    {
+      "team": "Yale",
+      "seed": 13,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.3,
+      "hype_normalized": 0.54,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.26
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.14
+        },
+        {
+          "date": "2025-03-21",
+          "value": 1.16
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 50,
+      "performance_rank": 37,
+      "gap": 13,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Lipscomb",
+      "seed": 14,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.23,
+      "hype_normalized": 0.41,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.32
+        },
+        {
+          "date": "2025-03-22",
+          "value": 1.15
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 51,
+      "performance_rank": 37,
+      "gap": 14,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Montana",
+      "seed": 14,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 1.47,
+      "hype_normalized": 2.62,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 36,
+      "performance_rank": 37,
+      "gap": -1,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Troy",
+      "seed": 14,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 0.6,
+      "hype_normalized": 1.07,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 46,
+      "performance_rank": 37,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/troy.svg"
+    },
+    {
+      "team": "UNC Wilmington",
+      "seed": 14,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 0.33,
+      "hype_normalized": 0.6,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 49,
+      "performance_rank": 37,
+      "gap": 12,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Bryant",
+      "seed": 15,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.93,
+      "hype_normalized": 1.67,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 40,
+      "performance_rank": 37,
+      "gap": 3,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Omaha",
+      "seed": 15,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 0.47,
+      "hype_normalized": 0.83,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 6.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 48,
+      "performance_rank": 37,
+      "gap": 11,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "Robert Morris",
+      "seed": 15,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 0.6,
+      "hype_normalized": 1.07,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 7.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 46,
+      "performance_rank": 37,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Wofford",
+      "seed": 15,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 0.47,
+      "hype_normalized": 0.83,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 48,
+      "performance_rank": 37,
+      "gap": 11,
+      "story_tag": "noise",
+      "logo_path": null
+    },
+    {
+      "team": "American",
+      "seed": 16,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 6.13,
+      "hype_normalized": 10.97,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 9.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 4.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 28.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 24.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 13,
+      "performance_rank": 37,
+      "gap": -24,
+      "story_tag": "overhyped",
+      "logo_path": null
+    },
+    {
+      "team": "Norfolk State",
+      "seed": 16,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 0.8,
+      "hype_normalized": 1.43,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 43,
+      "performance_rank": 37,
+      "gap": 6,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "SIU Edwardsville",
+      "seed": 16,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 2.0,
+      "hype_normalized": 3.58,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 8.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 5.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 11.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 1.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 33,
+      "performance_rank": 37,
+      "gap": -4,
+      "story_tag": "as_expected",
+      "logo_path": null
+    },
+    {
+      "team": "Saint Francis U",
+      "seed": 16,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 0.53,
+      "hype_normalized": 0.95,
+      "hype_daily": [
+        {
+          "date": "2025-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-17",
+          "value": 2.0
+        },
+        {
+          "date": "2025-03-18",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-19",
+          "value": 3.0
+        },
+        {
+          "date": "2025-03-20",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-21",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-22",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-23",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-24",
+          "value": 0.0
+        },
+        {
+          "date": "2025-03-25",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 47,
+      "performance_rank": 37,
+      "gap": 10,
+      "story_tag": "as_expected",
+      "logo_path": null
+    }
+  ]
+}

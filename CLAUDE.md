@@ -8,13 +8,13 @@ A 72-hour capstone project visualizing the gap between Google-Trends hype and 20
 - Next.js 16 (App Router) + TypeScript + Tailwind v4 + shadcn/ui — web app
 - shadcn chart wrapper around Recharts — area chart in team detail sheet
 - Vercel — hosting
-- Data flow: Python → `data/data.json` (committed) → Next.js bundles it at build time. **No backend, no runtime API.**
+- Data flow: Python → `data/<year>.json` (committed) → Next.js bundles `data/2026.json` at build time. **No backend, no runtime API.** (Multi-year data exists on disk; the web app currently bundles only 2026.)
 
 ## Directory layout
 
 ```
-data-pipeline/   pull_trends.py, build_dataset.py, tournament_results.csv, venv/
-data/            data.json (committed, the canonical dataset)
+data-pipeline/   pull_trends.py, build_dataset.py, tournament_results_<year>.csv, venv/
+data/            <year>.json (committed; one file per tournament year)
 web/             Next.js app. See web/CLAUDE.md for Next 16 quirks.
 ```
 
@@ -32,7 +32,19 @@ Done per-day so the time-series shape is preserved. Lives in [data-pipeline/pull
 
 If `ref_in_batch[d]` is 0, that day is set to 0 with a `[zero-ref]` warning. If more than 3 days are zero-ref for a team, a `[LOUD FLAG]` warning fires for manual review.
 
-`REFERENCE_TEAM = "Michigan"`. The pipeline hard-fails if Michigan isn't in `tournament_results.csv` — pick a different reference deliberately, never auto-pick.
+The reference team is passed via `--reference` (defaults to `"Michigan"` for 2026 backward compat). The pipeline hard-fails if the reference isn't in the year's `tournament_results_<year>.csv` — pick a different reference deliberately for each year, never auto-pick.
+
+**Reference team selection rule:** the reference must have a non-zero baseline on every day of the hype window. If the baseline collapses to zero on any day, the in-batch denominator goes to zero and the cross-batch math explodes — producing 4-digit hype values for teams that should be in the 0-200 range (the McNeese-2025 incident: see commit history for 2026-05-03). The eventual champion is usually the safest pick because their search volume sustains across the entire window. For 2025, Auburn (overall #1 seed) had two zero-baseline days and was unusable; Florida (champion) had a min-baseline of 3 across the same window and worked cleanly. **Before kicking off a full pull for a new year, do a standalone single-team probe of your candidate reference and verify min > 0:**
+
+```python
+from pytrends.request import TrendReq
+p = TrendReq(hl="en-US", tz=360)
+p.build_payload(["Florida Gators basketball"], cat=0, timeframe="2025-03-11 2025-03-25", geo="US")
+df = p.interest_over_time().drop(columns=["isPartial"], errors="ignore")
+print(df.iloc[:, 0].min())  # must be > 0
+```
+
+If min == 0, pick another team. For unfinished tournaments (no champion yet), use a 1-seed with sustained pre-tournament hype that you've spot-checked has min > 0.
 
 ### Query string disambiguation (Flag 2)
 
@@ -48,7 +60,7 @@ The naive query "Texas basketball" picks up football noise, "Michigan basketball
   - LIU (Long Island) → `"LIU basketball"` (school rebranded from Blackbirds to Sharks; "LIU" is the searchable form)
   - McNeese → `"McNeese basketball"` (school dropped "State" branding in 2023)
 
-The full disambiguated map is `TEAM_QUERY_MAP` at the top of [pull_trends.py](data-pipeline/pull_trends.py). Keys must match `tournament_results.csv` exactly.
+The full disambiguated map is `TEAM_QUERY_MAP` at the top of [pull_trends.py](data-pipeline/pull_trends.py). Keys must match the team name in `tournament_results_<year>.csv` exactly. The map is shared across years — if a team appears in multiple years' CSVs, one entry covers all of them.
 
 ### Cache is by team, baseline is separate
 
@@ -67,31 +79,48 @@ p.write_text(json.dumps(c, indent=2))
 
 ### `min` rank for performance, not `dense`
 
-`build_dataset.py` uses `method="min"` for `performance_rank` ([build_dataset.py:83](data-pipeline/build_dataset.py:83)). This was a deliberate fix — `dense` rank crushes 33 tied 0-win teams to a single rank value, compresses `performance_rank` to 1–7 (only 7 distinct win counts), and breaks the gap arithmetic so that `gap < -20` is mathematically impossible. Min-rank gives the 33 zero-win teams `performance_rank = 33`, restoring meaningful gap values.
+`build_dataset.py` uses `method="min"` for `performance_rank` ([build_dataset.py:136](data-pipeline/build_dataset.py:136)). This was a deliberate fix — `dense` rank crushes 33 tied 0-win teams to a single rank value, compresses `performance_rank` to 1–7 (only 7 distinct win counts), and breaks the gap arithmetic so that `gap < -20` is mathematically impossible. Min-rank gives the 33 zero-win teams `performance_rank = 33`, restoring meaningful gap values.
 
 ### Asymmetric story_tag thresholds
 
 `overhyped < -15`, `underhyped > +25` (not symmetric). The asymmetry reflects the same 0-win cluster: with 33 teams tied at performance rank 33, the underhyped side fills up easily with low-hype-low-performance noise. Tighter `+25` filters that noise. Tighter overhyped `-15` (instead of original `-20`) lets the marquee 1-seed-flame-out story land in the right bucket.
 
-Edit at [data-pipeline/build_dataset.py:35](data-pipeline/build_dataset.py:35) if the distribution feels wrong.
+Edit at [data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69) if the distribution feels wrong.
 
 ### `hype_raw` math
 
-`hype_raw` is the **mean of unrounded daily values**. Rounding happens at output time only. Don't pre-aggregate in `pull_trends.py` — `raw_hype.csv` only contains `team` + `hype_daily` (the daily series); `build_dataset.py` computes the mean.
+`hype_raw` is the **mean of unrounded daily values**. Rounding happens at output time only. Don't pre-aggregate in `pull_trends.py` — `raw_hype_<year>.csv` only contains `team` + `hype_daily` (the daily series); `build_dataset.py` computes the mean.
 
 ### First Four placeholders
 
-`tournament_results.csv` has 4 placeholder rows (`First Four Loser N`) that get filled with real team names. `build_dataset.py` automatically skips rows starting with "First Four Loser". Once filled, add 4 entries to `TEAM_QUERY_MAP` and rerun the pipeline; the cache will only query the new teams.
+`tournament_results_<year>.csv` may contain 4 placeholder rows (`First Four Loser N`) when the bracket is fetched before the First Four games complete. `build_dataset.py` automatically skips rows starting with "First Four Loser". Once filled with real team names, add 4 entries to `TEAM_QUERY_MAP` and rerun the pipeline; the cache will only query the new teams. (Note: `fetch_bracket.py` fills these from the NCAA API automatically — no placeholders unless the bracket is fetched mid-tournament.)
+
+### Logos and the seoname map
+
+`fetch_bracket.py` writes `cache/seonames_<year>.json` (a `{canonical_team_name: seoname_slug}` dict) alongside the CSV. This is the bridge between two downstream consumers:
+
+- `fetch_logos.py` reads the seoname map and downloads `https://ncaa-api.henrygd.me/logo/<slug>.svg` into `web/public/logos/<slug>.svg`. Skips files that already exist locally (re-runs are cheap). Logs and continues on 404.
+- `build_dataset.py` reads the seoname map and sets `logo_path: "/logos/<slug>.svg"` per team in `data.json`, but **only if the SVG file actually exists on disk** — else `logo_path: null`. This means `build_dataset.py` is robust to running without `fetch_logos.py` (logo_path is just null for everyone) and robust to logos that 404'd during fetch.
+
+`web/public/logos/` IS committed (1.3 MB of SVGs for 68 teams). Vercel serves them as static assets. The frontend doesn't currently consume `logo_path` — the field exists for future UI work without forcing another pipeline run.
+
+### First Four win counting
+
+**Every `isWinner: true` counts toward a team's `wins` total, including First Four wins** — a play-in win is a tournament win regardless of what happens next. Texas (FF win + 2 main bracket wins = 3 wins) and Howard (FF win, lost in R64 = 1 win) both have their FF wins credited.
+
+This was discovered via NCAA API cross-validation on 2026-05-03: the manually-transcribed 2026 CSV had Howard, Miami (OH), and Prairie View A&M all at `wins=0` (FF wins not counted), while Texas was at `wins=3` (FF win counted). The API counts uniformly. The 2026 CSV was corrected to match — three teams bumped from 0 to 1 wins. This shifted 9 teams' `story_tag` and properly tagged Florida as `overhyped` (it had been `noise` due to the threshold landing exactly at the previous gap value).
+
+Going forward, `fetch_bracket.py` writes uniform API counts and the manual transcription path is deprecated.
 
 ## Frontend — non-obvious decisions
 
 ### Build-time data import (Flag 3)
 
-`data.json` lives at `/data/data.json` (outside the Next.js app at `/web`). Importing across the boundary is fragile in production. The fix is `predev` and `prebuild` scripts in [web/package.json](web/package.json) that `cp ../data/data.json ./data.json` before each dev/build, plus a `tsconfig.json` path alias `@/* → ./*` so [lib/data.ts](web/lib/data.ts) can `import raw from "@/data.json"`.
+Year datasets live at `/data/<year>.json` (outside the Next.js app at `/web`). Importing across the boundary is fragile in production. The fix is `predev` and `prebuild` scripts in [web/package.json](web/package.json) that `cp ../data/2026.json ./data.json` before each dev/build, plus a `tsconfig.json` path alias `@/* → ./*` so [lib/data.ts](web/lib/data.ts) can `import raw from "@/data.json"`.
 
-`web/data.json` is gitignored — it's an artifact of the build, not a source.
+The web app's import target is `web/data.json` regardless of which year is bundled — only the SOURCE path (`../data/2026.json`) changes if the bundled year ever changes. `web/data.json` is gitignored — it's a build artifact, not a source.
 
-For Vercel: enable "Include source files outside of the Root Directory in the Build Step" so the prebuild script can read `../data/data.json`.
+For Vercel: enable "Include source files outside of the Root Directory in the Build Step" so the prebuild script can read `../data/<year>.json`.
 
 ### File map
 
@@ -140,28 +169,47 @@ To retheme story_tag colors (or invert which tag is "danger" coded), edit `TAG_S
 
 ## Common workflows
 
-### Add a team to the dataset
+The pipeline is year-parameterized as of 2026-05-03. Both `pull_trends.py` and `build_dataset.py` REQUIRE `--year` and `--window` (no year-less default exists). CSVs, caches, and outputs are all year-suffixed: `tournament_results_<year>.csv`, `cache/raw_trends_<year>.json`, `raw_hype_<year>.csv`, `data/<year>.json`.
 
-1. Add row to [tournament_results.csv](data-pipeline/tournament_results.csv)
-2. Add entry to `TEAM_QUERY_MAP` in [pull_trends.py](data-pipeline/pull_trends.py) (apply Flag 2 rules)
-3. `cd data-pipeline && ./venv/bin/python pull_trends.py` (cache skips existing teams, only queries new ones)
-4. `./venv/bin/python build_dataset.py`
+### Add a team to a year's dataset
+
+1. Add row to `tournament_results_<year>.csv` (e.g. [tournament_results_2026.csv](data-pipeline/tournament_results_2026.csv))
+2. Add entry to `TEAM_QUERY_MAP` in [pull_trends.py](data-pipeline/pull_trends.py) (apply Flag 2 rules). The map is shared across years — if a team is in multiple years' CSVs, one entry covers them all.
+3. `cd data-pipeline && ./venv/bin/python pull_trends.py --year YYYY --window YYYY-MM-DD:YYYY-MM-DD` (cache skips existing teams, only queries new ones)
+4. `./venv/bin/python build_dataset.py --year YYYY --window YYYY-MM-DD:YYYY-MM-DD`
 5. `cd ../web && npm run dev` (or build)
 
 ### Refine a team's query
 
-1. Test variants in a Python REPL with Michigan as anchor
-2. Update `TEAM_QUERY_MAP` entry
-3. Delete that team from cache (snippet above)
-4. Rerun `pull_trends.py` (re-queries only that team) + `build_dataset.py`
+1. Test variants in a Python REPL with the year's reference team as anchor
+2. Update `TEAM_QUERY_MAP` entry in [pull_trends.py](data-pipeline/pull_trends.py)
+3. Delete that team from `cache/raw_trends_<year>.json` (snippet below)
+4. Rerun `pull_trends.py --year YYYY --window ...` (re-queries only that team) + `build_dataset.py --year YYYY --window ...`
+
+```python
+import json
+from pathlib import Path
+p = Path("cache/raw_trends_2026.json")
+c = json.loads(p.read_text())
+c["teams"].pop("TeamName", None)
+p.write_text(json.dumps(c, indent=2))
+```
 
 ### Update the editorial finding
 
-Edit `"finding"` in [data-pipeline/build_dataset.py:117](data-pipeline/build_dataset.py:117) (permanent — survives re-runs) or directly in [data/data.json](data/data.json) (one-off — overwritten on next pipeline run). Then `cd web && npm run build`.
+Findings are authored, not derived. Edit the `FINDINGS` dict in [data-pipeline/findings.py](data-pipeline/findings.py) — one entry per year, e.g. `2026: "HYPE vs. PERFORMANCE"`. Years not in the dict get `"[finding TBD]"` automatically (rendered italicized + muted in the hero as a visible "still to do" marker).
+
+Then rerun `build_dataset.py --year YYYY --window ...` and `cd web && npm run build`.
+
+Do **not** edit `data/<year>.json` directly — `build_dataset.py` regenerates it from CSV + raw_hype + findings.py and will overwrite manual edits. The findings module is the single source of truth.
 
 ### Adjust story_tag thresholds
 
-[data-pipeline/build_dataset.py:35](data-pipeline/build_dataset.py:35), then rerun `build_dataset.py`. Print of distribution at the bottom of stdout helps tune.
+[data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69), then rerun `build_dataset.py --year YYYY --window ...`. Print of distribution at the bottom of stdout helps tune.
+
+### --window format
+
+Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects space-separated input, partial dates, and any window length other than 15 days inclusive. Internal conversion to pytrends' space-separated format happens at the use-site only — the canonical form on the CLI is colon-separated.
 
 ## Anti-patterns — do not suggest
 
@@ -181,9 +229,10 @@ Edit `"finding"` in [data-pipeline/build_dataset.py:117](data-pipeline/build_dat
 ### Should consider — data quality + setup
 
 - **Suspicious mid-major hype.** McNeese (36.74), Tennessee State (36.38), Furman (30.40) — all 0-win small schools sitting in the top 10 by mean hype. Daily curves are tournament-shaped (spikes on game day), so probably real signal, but worth re-checking if the editorial finding hinges on them. Decide: accept as-is, or do another query refinement round (the same pattern used to fix Siena/Hofstra).
-- **Florida tag.** Florida has `gap = -16`, currently tagged `noise` under the `-15`/`+25` thresholds. If you want the marquee 1-seed-flame-out story to land as `overhyped`, tighten the overhyped threshold further (e.g. `< -10`) at [build_dataset.py:35](data-pipeline/build_dataset.py:35).
+- **Florida tag.** Florida has `gap = -16`, currently tagged `noise` under the `-15`/`+25` thresholds. If you want the marquee 1-seed-flame-out story to land as `overhyped`, tighten the overhyped threshold further (e.g. `< -10`) at [build_dataset.py:69](data-pipeline/build_dataset.py:69).
 - **Hawaii (3.54) and St. Mary's (4.08).** Likely genuinely low signal but worth eyeballing the daily curve once before declaring them final. If the curve is tournament-shaped (spikes on game day), accept the low value as real. If it's flat noise, treat like a Siena/Hofstra refinement and test variants.
 - **Custom font files not yet in repo.** `web/public/fonts/TheNeue-Black.woff2` and `web/public/fonts/FA-1-Regular.otf`. Page renders fallback chain (Helvetica Neue / system mono) until they land.
+- **NCAA API name normalization map will need maintenance over time.** The map in `fetch_bracket.py` translates the API's current branding (e.g. `McNeese`, `Queens (N.C.)`) to our historical CSV form (`McNeese State`, `Queens`). Schools occasionally rebrand: McNeese dropped "State" in 2023, future years' API responses will reflect that. When fetching a new year, watch for a "would be NEW team names" warning and decide whether to add a normalization entry (preserve the historical canonical name) or update `TEAM_QUERY_MAP` keys (adopt the new name). Both are valid; the choice depends on whether you want consistency with prior years' data.
 
 ### Nice-to-haves — skip unless time
 

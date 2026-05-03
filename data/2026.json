@@ -4,7 +4,7 @@
     "hype_window_start": "2026-03-03",
     "hype_window_end": "2026-03-17",
     "total_teams": 68,
-    "data_pulled_at": "2026-05-02T21:26:28.003142+00:00"
+    "data_pulled_at": "2026-05-03T06:16:18.028318+00:00"
   },
   "finding": "HYPE vs. PERFORMANCE",
   "teams": [
@@ -80,7 +80,8 @@
       "hype_rank": 12,
       "performance_rank": 1,
       "gap": 11,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/michigan.svg"
     },
     {
       "team": "UConn",
@@ -154,7 +155,8 @@
       "hype_rank": 15,
       "performance_rank": 2,
       "gap": 13,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/uconn.svg"
     },
     {
       "team": "Arizona",
@@ -228,7 +230,8 @@
       "hype_rank": 14,
       "performance_rank": 3,
       "gap": 11,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/arizona.svg"
     },
     {
       "team": "Illinois",
@@ -302,7 +305,8 @@
       "hype_rank": 38,
       "performance_rank": 3,
       "gap": 35,
-      "story_tag": "underhyped"
+      "story_tag": "underhyped",
+      "logo_path": "/logos/illinois.svg"
     },
     {
       "team": "Duke",
@@ -376,81 +380,8 @@
       "hype_rank": 16,
       "performance_rank": 5,
       "gap": 11,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Tennessee",
-      "seed": 6,
-      "region": "Midwest",
-      "wins": 3,
-      "hype_raw": 9.58,
-      "hype_normalized": 6.74,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 13.33
-        },
-        {
-          "date": "2026-03-04",
-          "value": 9.14
-        },
-        {
-          "date": "2026-03-05",
-          "value": 4.92
-        },
-        {
-          "date": "2026-03-06",
-          "value": 11.12
-        },
-        {
-          "date": "2026-03-07",
-          "value": 25.38
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 5.71
-        },
-        {
-          "date": "2026-03-12",
-          "value": 17.11
-        },
-        {
-          "date": "2026-03-13",
-          "value": 26.73
-        },
-        {
-          "date": "2026-03-14",
-          "value": 6.27
-        },
-        {
-          "date": "2026-03-15",
-          "value": 6.25
-        },
-        {
-          "date": "2026-03-16",
-          "value": 8.83
-        },
-        {
-          "date": "2026-03-17",
-          "value": 8.84
-        }
-      ],
-      "hype_rank": 40,
-      "performance_rank": 5,
-      "gap": 35,
-      "story_tag": "underhyped"
+      "story_tag": "noise",
+      "logo_path": "/logos/duke.svg"
     },
     {
       "team": "Purdue",
@@ -524,7 +455,83 @@
       "hype_rank": 31,
       "performance_rank": 5,
       "gap": 26,
-      "story_tag": "underhyped"
+      "story_tag": "underhyped",
+      "logo_path": "/logos/purdue.svg"
+    },
+    {
+      "team": "Tennessee",
+      "seed": 6,
+      "region": "Midwest",
+      "wins": 3,
+      "hype_raw": 9.58,
+      "hype_normalized": 6.74,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 13.33
+        },
+        {
+          "date": "2026-03-04",
+          "value": 9.14
+        },
+        {
+          "date": "2026-03-05",
+          "value": 4.92
+        },
+        {
+          "date": "2026-03-06",
+          "value": 11.12
+        },
+        {
+          "date": "2026-03-07",
+          "value": 25.38
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 5.71
+        },
+        {
+          "date": "2026-03-12",
+          "value": 17.11
+        },
+        {
+          "date": "2026-03-13",
+          "value": 26.73
+        },
+        {
+          "date": "2026-03-14",
+          "value": 6.27
+        },
+        {
+          "date": "2026-03-15",
+          "value": 6.25
+        },
+        {
+          "date": "2026-03-16",
+          "value": 8.83
+        },
+        {
+          "date": "2026-03-17",
+          "value": 8.84
+        }
+      ],
+      "hype_rank": 40,
+      "performance_rank": 5,
+      "gap": 35,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/tennessee.svg"
     },
     {
       "team": "Iowa",
@@ -598,377 +605,8 @@
       "hype_rank": 8,
       "performance_rank": 5,
       "gap": 3,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "St. John's",
-      "seed": 5,
-      "region": "East",
-      "wins": 2,
-      "hype_raw": 64.17,
-      "hype_normalized": 45.14,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 20.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 48.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 10.67
-        },
-        {
-          "date": "2026-03-06",
-          "value": 24.82
-        },
-        {
-          "date": "2026-03-07",
-          "value": 66.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 19.11
-        },
-        {
-          "date": "2026-03-09",
-          "value": 11.45
-        },
-        {
-          "date": "2026-03-10",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 18.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 77.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 79.46
-        },
-        {
-          "date": "2026-03-14",
-          "value": 139.19
-        },
-        {
-          "date": "2026-03-15",
-          "value": 188.68
-        },
-        {
-          "date": "2026-03-16",
-          "value": 145.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 105.23
-        }
-      ],
-      "hype_rank": 4,
-      "performance_rank": 10,
-      "gap": -6,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Michigan State",
-      "seed": 3,
-      "region": "East",
-      "wins": 2,
-      "hype_raw": 12.73,
-      "hype_normalized": 8.96,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 35.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 63.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 41.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 6.0
-        }
-      ],
-      "hype_rank": 34,
-      "performance_rank": 10,
-      "gap": 24,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Nebraska",
-      "seed": 4,
-      "region": "South",
-      "wins": 2,
-      "hype_raw": 10.0,
-      "hype_normalized": 7.03,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 37.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 21.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 23.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 8.0
-        }
-      ],
-      "hype_rank": 37,
-      "performance_rank": 10,
-      "gap": 27,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Houston",
-      "seed": 2,
-      "region": "South",
-      "wins": 2,
-      "hype_raw": 26.0,
-      "hype_normalized": 18.29,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 26.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 39.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 24.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 33.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 98.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 60.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 28.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 29.0
-        }
-      ],
-      "hype_rank": 20,
-      "performance_rank": 10,
-      "gap": 10,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Arkansas",
-      "seed": 4,
-      "region": "West",
-      "wins": 2,
-      "hype_raw": 26.4,
-      "hype_normalized": 18.57,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 5.45
-        },
-        {
-          "date": "2026-03-04",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 20.27
-        },
-        {
-          "date": "2026-03-06",
-          "value": 5.25
-        },
-        {
-          "date": "2026-03-07",
-          "value": 50.03
-        },
-        {
-          "date": "2026-03-08",
-          "value": 8.49
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 15.08
-        },
-        {
-          "date": "2026-03-14",
-          "value": 106.76
-        },
-        {
-          "date": "2026-03-15",
-          "value": 101.06
-        },
-        {
-          "date": "2026-03-16",
-          "value": 30.07
-        },
-        {
-          "date": "2026-03-17",
-          "value": 18.55
-        }
-      ],
-      "hype_rank": 17,
-      "performance_rank": 10,
-      "gap": 7,
-      "story_tag": "as_expected"
+      "story_tag": "as_expected",
+      "logo_path": "/logos/iowa.svg"
     },
     {
       "team": "Texas",
@@ -1042,19 +680,20 @@
       "hype_rank": 23,
       "performance_rank": 5,
       "gap": 18,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/texas.svg"
     },
     {
-      "team": "Alabama",
-      "seed": 4,
-      "region": "Midwest",
+      "team": "Houston",
+      "seed": 2,
+      "region": "South",
       "wins": 2,
-      "hype_raw": 6.42,
-      "hype_normalized": 4.52,
+      "hype_raw": 26.0,
+      "hype_normalized": 18.29,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 8.73
+          "value": 10.0
         },
         {
           "date": "2026-03-04",
@@ -1062,19 +701,19 @@
         },
         {
           "date": "2026-03-05",
-          "value": 0.0
+          "value": 26.0
         },
         {
           "date": "2026-03-06",
-          "value": 5.25
+          "value": 9.0
         },
         {
           "date": "2026-03-07",
-          "value": 9.58
+          "value": 39.0
         },
         {
           "date": "2026-03-08",
-          "value": 14.86
+          "value": 6.0
         },
         {
           "date": "2026-03-09",
@@ -1082,41 +721,42 @@
         },
         {
           "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
           "value": 6.0
         },
         {
+          "date": "2026-03-11",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 24.0
+        },
+        {
           "date": "2026-03-13",
-          "value": 4.31
+          "value": 33.0
         },
         {
           "date": "2026-03-14",
-          "value": 14.95
+          "value": 98.0
         },
         {
           "date": "2026-03-15",
-          "value": 0.0
+          "value": 60.0
         },
         {
           "date": "2026-03-16",
-          "value": 11.81
+          "value": 28.0
         },
         {
           "date": "2026-03-17",
-          "value": 9.82
+          "value": 29.0
         }
       ],
-      "hype_rank": 46,
+      "hype_rank": 20,
       "performance_rank": 10,
-      "gap": 36,
-      "story_tag": "underhyped"
+      "gap": 10,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/houston.svg"
     },
     {
       "team": "Iowa State",
@@ -1190,19 +830,20 @@
       "hype_rank": 33,
       "performance_rank": 10,
       "gap": 23,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/iowa-st.svg"
     },
     {
-      "team": "TCU",
-      "seed": 9,
+      "team": "Michigan State",
+      "seed": 3,
       "region": "East",
-      "wins": 1,
-      "hype_raw": 3.6,
-      "hype_normalized": 2.53,
+      "wins": 2,
+      "hype_raw": 12.73,
+      "hype_normalized": 8.96,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 0.0
+          "value": 4.0
         },
         {
           "date": "2026-03-04",
@@ -1210,19 +851,94 @@
         },
         {
           "date": "2026-03-05",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 35.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 63.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 41.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 6.0
+        }
+      ],
+      "hype_rank": 34,
+      "performance_rank": 10,
+      "gap": 24,
+      "story_tag": "noise",
+      "logo_path": "/logos/michigan-st.svg"
+    },
+    {
+      "team": "Alabama",
+      "seed": 4,
+      "region": "Midwest",
+      "wins": 2,
+      "hype_raw": 6.42,
+      "hype_normalized": 4.52,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 8.73
+        },
+        {
+          "date": "2026-03-04",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-05",
           "value": 0.0
         },
         {
           "date": "2026-03-06",
-          "value": 0.0
+          "value": 5.25
         },
         {
           "date": "2026-03-07",
-          "value": 9.0
+          "value": 9.58
         },
         {
           "date": "2026-03-08",
-          "value": 0.0
+          "value": 14.86
         },
         {
           "date": "2026-03-09",
@@ -1238,69 +954,70 @@
         },
         {
           "date": "2026-03-12",
-          "value": 8.0
+          "value": 6.0
         },
         {
           "date": "2026-03-13",
-          "value": 12.0
+          "value": 4.31
         },
         {
           "date": "2026-03-14",
-          "value": 0.0
+          "value": 14.95
         },
         {
           "date": "2026-03-15",
-          "value": 6.0
+          "value": 0.0
         },
         {
           "date": "2026-03-16",
-          "value": 13.0
+          "value": 11.81
         },
         {
           "date": "2026-03-17",
-          "value": 6.0
+          "value": 9.82
         }
       ],
-      "hype_rank": 51,
-      "performance_rank": 17,
-      "gap": 34,
-      "story_tag": "underhyped"
+      "hype_rank": 46,
+      "performance_rank": 10,
+      "gap": 36,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/alabama.svg"
     },
     {
-      "team": "Kansas",
+      "team": "Arkansas",
       "seed": 4,
-      "region": "East",
-      "wins": 1,
-      "hype_raw": 17.53,
-      "hype_normalized": 12.33,
+      "region": "West",
+      "wins": 2,
+      "hype_raw": 26.4,
+      "hype_normalized": 18.57,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 12.0
+          "value": 5.45
         },
         {
           "date": "2026-03-04",
-          "value": 36.0
+          "value": 11.0
         },
         {
           "date": "2026-03-05",
-          "value": 6.0
+          "value": 20.27
         },
         {
           "date": "2026-03-06",
-          "value": 7.0
+          "value": 5.25
         },
         {
           "date": "2026-03-07",
-          "value": 31.0
+          "value": 50.03
         },
         {
           "date": "2026-03-08",
-          "value": 9.0
+          "value": 8.49
         },
         {
           "date": "2026-03-09",
-          "value": 9.0
+          "value": 0.0
         },
         {
           "date": "2026-03-10",
@@ -1308,185 +1025,188 @@
         },
         {
           "date": "2026-03-11",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 38.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 40.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 17.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 24.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 12.0
-        }
-      ],
-      "hype_rank": 28,
-      "performance_rank": 17,
-      "gap": 11,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Louisville",
-      "seed": 6,
-      "region": "East",
-      "wins": 1,
-      "hype_raw": 9.13,
-      "hype_normalized": 6.42,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 28.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 21.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 19.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 26.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 13.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 11.0
-        }
-      ],
-      "hype_rank": 41,
-      "performance_rank": 17,
-      "gap": 24,
-      "story_tag": "noise"
-    },
-    {
-      "team": "UCLA",
-      "seed": 7,
-      "region": "East",
-      "wins": 1,
-      "hype_raw": 10.87,
-      "hype_normalized": 7.64,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
           "value": 11.0
         },
         {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 30.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
           "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 55.0
-        },
-        {
-          "date": "2026-03-15",
           "value": 8.0
         },
         {
+          "date": "2026-03-13",
+          "value": 15.08
+        },
+        {
+          "date": "2026-03-14",
+          "value": 106.76
+        },
+        {
+          "date": "2026-03-15",
+          "value": 101.06
+        },
+        {
           "date": "2026-03-16",
-          "value": 16.0
+          "value": 30.07
         },
         {
           "date": "2026-03-17",
-          "value": 11.0
+          "value": 18.55
         }
       ],
-      "hype_rank": 36,
-      "performance_rank": 17,
-      "gap": 19,
-      "story_tag": "noise"
+      "hype_rank": 17,
+      "performance_rank": 10,
+      "gap": 7,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/arkansas.svg"
+    },
+    {
+      "team": "Nebraska",
+      "seed": 4,
+      "region": "South",
+      "wins": 2,
+      "hype_raw": 10.0,
+      "hype_normalized": 7.03,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 14.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 37.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 21.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 23.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 14.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 8.0
+        }
+      ],
+      "hype_rank": 37,
+      "performance_rank": 10,
+      "gap": 27,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/nebraska.svg"
+    },
+    {
+      "team": "St. John's",
+      "seed": 5,
+      "region": "East",
+      "wins": 2,
+      "hype_raw": 64.17,
+      "hype_normalized": 45.14,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 20.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 48.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 10.67
+        },
+        {
+          "date": "2026-03-06",
+          "value": 24.82
+        },
+        {
+          "date": "2026-03-07",
+          "value": 66.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 19.11
+        },
+        {
+          "date": "2026-03-09",
+          "value": 11.45
+        },
+        {
+          "date": "2026-03-10",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 18.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 77.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 79.46
+        },
+        {
+          "date": "2026-03-14",
+          "value": 139.19
+        },
+        {
+          "date": "2026-03-15",
+          "value": 188.68
+        },
+        {
+          "date": "2026-03-16",
+          "value": 145.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 105.23
+        }
+      ],
+      "hype_rank": 4,
+      "performance_rank": 10,
+      "gap": -6,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/st-johns-ny.svg"
     },
     {
       "team": "Florida",
@@ -1560,377 +1280,8 @@
       "hype_rank": 2,
       "performance_rank": 17,
       "gap": -15,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Vanderbilt",
-      "seed": 5,
-      "region": "South",
-      "wins": 1,
-      "hype_raw": 7.31,
-      "hype_normalized": 5.14,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 15.4
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 13.12
-        },
-        {
-          "date": "2026-03-14",
-          "value": 23.49
-        },
-        {
-          "date": "2026-03-15",
-          "value": 32.61
-        },
-        {
-          "date": "2026-03-16",
-          "value": 10.36
-        },
-        {
-          "date": "2026-03-17",
-          "value": 8.73
-        }
-      ],
-      "hype_rank": 44,
-      "performance_rank": 17,
-      "gap": 27,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "VCU",
-      "seed": 11,
-      "region": "South",
-      "wins": 1,
-      "hype_raw": 3.18,
-      "hype_normalized": 2.23,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 6.6
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 6.56
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 21.74
-        },
-        {
-          "date": "2026-03-16",
-          "value": 6.21
-        },
-        {
-          "date": "2026-03-17",
-          "value": 6.55
-        }
-      ],
-      "hype_rank": 54,
-      "performance_rank": 17,
-      "gap": 37,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Texas A&M",
-      "seed": 10,
-      "region": "South",
-      "wins": 1,
-      "hype_raw": 2.26,
-      "hype_normalized": 1.59,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 4.57
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 8.6
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 6.56
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 4.14
-        },
-        {
-          "date": "2026-03-17",
-          "value": 0.0
-        }
-      ],
-      "hype_rank": 61,
-      "performance_rank": 17,
-      "gap": 44,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Utah State",
-      "seed": 9,
-      "region": "West",
-      "wins": 1,
-      "hype_raw": 1.8,
-      "hype_normalized": 1.27,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 0.0
-        }
-      ],
-      "hype_rank": 64,
-      "performance_rank": 17,
-      "gap": 47,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "High Point",
-      "seed": 12,
-      "region": "West",
-      "wins": 1,
-      "hype_raw": 53.63,
-      "hype_normalized": 37.72,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 16.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 12.44
-        },
-        {
-          "date": "2026-03-06",
-          "value": 55.36
-        },
-        {
-          "date": "2026-03-07",
-          "value": 62.12
-        },
-        {
-          "date": "2026-03-08",
-          "value": 135.69
-        },
-        {
-          "date": "2026-03-09",
-          "value": 30.55
-        },
-        {
-          "date": "2026-03-10",
-          "value": 22.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 20.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 18.33
-        },
-        {
-          "date": "2026-03-13",
-          "value": 18.92
-        },
-        {
-          "date": "2026-03-14",
-          "value": 18.81
-        },
-        {
-          "date": "2026-03-15",
-          "value": 116.98
-        },
-        {
-          "date": "2026-03-16",
-          "value": 148.87
-        },
-        {
-          "date": "2026-03-17",
-          "value": 116.31
-        }
-      ],
-      "hype_rank": 6,
-      "performance_rank": 17,
-      "gap": -11,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/florida.svg"
     },
     {
       "team": "Gonzaga",
@@ -2004,229 +1355,8 @@
       "hype_rank": 58,
       "performance_rank": 17,
       "gap": 41,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Miami (FL)",
-      "seed": 7,
-      "region": "West",
-      "wins": 1,
-      "hype_raw": 23.73,
-      "hype_normalized": 16.69,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 21.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 26.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 54.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 55.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 38.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 41.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 22.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 26.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 17.0
-        }
-      ],
-      "hype_rank": 22,
-      "performance_rank": 17,
-      "gap": 5,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Saint Louis",
-      "seed": 9,
-      "region": "Midwest",
-      "wins": 1,
-      "hype_raw": 3.4,
-      "hype_normalized": 2.39,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 7.0
-        }
-      ],
-      "hype_rank": 53,
-      "performance_rank": 17,
-      "gap": 36,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Texas Tech",
-      "seed": 5,
-      "region": "Midwest",
-      "wins": 1,
-      "hype_raw": 2.93,
-      "hype_normalized": 2.06,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 17.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 5.0
-        }
-      ],
-      "hype_rank": 56,
-      "performance_rank": 17,
-      "gap": 39,
-      "story_tag": "underhyped"
+      "story_tag": "underhyped",
+      "logo_path": "/logos/gonzaga.svg"
     },
     {
       "team": "Virginia",
@@ -2300,7 +1430,308 @@
       "hype_rank": 39,
       "performance_rank": 17,
       "gap": 22,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/virginia.svg"
+    },
+    {
+      "team": "Kansas",
+      "seed": 4,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 17.53,
+      "hype_normalized": 12.33,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 36.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 31.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 38.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 40.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 17.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 12.0
+        }
+      ],
+      "hype_rank": 28,
+      "performance_rank": 17,
+      "gap": 11,
+      "story_tag": "noise",
+      "logo_path": "/logos/kansas.svg"
+    },
+    {
+      "team": "Texas Tech",
+      "seed": 5,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 2.93,
+      "hype_normalized": 2.06,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 17.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 5.0
+        }
+      ],
+      "hype_rank": 56,
+      "performance_rank": 17,
+      "gap": 39,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/texas-tech.svg"
+    },
+    {
+      "team": "Vanderbilt",
+      "seed": 5,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 7.31,
+      "hype_normalized": 5.14,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 15.4
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 13.12
+        },
+        {
+          "date": "2026-03-14",
+          "value": 23.49
+        },
+        {
+          "date": "2026-03-15",
+          "value": 32.61
+        },
+        {
+          "date": "2026-03-16",
+          "value": 10.36
+        },
+        {
+          "date": "2026-03-17",
+          "value": 8.73
+        }
+      ],
+      "hype_rank": 44,
+      "performance_rank": 17,
+      "gap": 27,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/vanderbilt.svg"
+    },
+    {
+      "team": "Louisville",
+      "seed": 6,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 9.13,
+      "hype_normalized": 6.42,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 28.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 21.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 19.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 26.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 13.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 11.0
+        }
+      ],
+      "hype_rank": 41,
+      "performance_rank": 17,
+      "gap": 24,
+      "story_tag": "noise",
+      "logo_path": "/logos/louisville.svg"
     },
     {
       "team": "Kentucky",
@@ -2374,97 +1805,24 @@
       "hype_rank": 25,
       "performance_rank": 17,
       "gap": 8,
-      "story_tag": "as_expected"
+      "story_tag": "as_expected",
+      "logo_path": "/logos/kentucky.svg"
     },
     {
-      "team": "Siena",
-      "seed": 16,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 5.6,
-      "hype_normalized": 3.94,
+      "team": "Miami (FL)",
+      "seed": 7,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 23.73,
+      "hype_normalized": 16.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 0.0
+          "value": 10.0
         },
         {
           "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 18.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 16.0
-        }
-      ],
-      "hype_rank": 49,
-      "performance_rank": 33,
-      "gap": 16,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Ohio State",
-      "seed": 8,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 15.13,
-      "hype_normalized": 10.64,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 8.0
+          "value": 21.0
         },
         {
           "date": "2026-03-05",
@@ -2472,383 +1830,163 @@
         },
         {
           "date": "2026-03-06",
-          "value": 8.0
+          "value": 14.0
         },
         {
           "date": "2026-03-07",
-          "value": 27.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 21.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 29.0
-        },
-        {
-          "date": "2026-03-13",
           "value": 54.0
         },
         {
-          "date": "2026-03-14",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-15",
+          "date": "2026-03-08",
           "value": 9.0
         },
         {
-          "date": "2026-03-16",
-          "value": 15.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 11.0
-        }
-      ],
-      "hype_rank": 32,
-      "performance_rank": 33,
-      "gap": -1,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Northern Iowa",
-      "seed": 12,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 24.68,
-      "hype_normalized": 17.36,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 8.89
-        },
-        {
-          "date": "2026-03-06",
-          "value": 17.18
-        },
-        {
-          "date": "2026-03-07",
-          "value": 54.35
-        },
-        {
-          "date": "2026-03-08",
-          "value": 97.47
-        },
-        {
           "date": "2026-03-09",
-          "value": 13.36
-        },
-        {
-          "date": "2026-03-10",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 5.5
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 24.53
-        },
-        {
-          "date": "2026-03-16",
-          "value": 79.27
-        },
-        {
-          "date": "2026-03-17",
-          "value": 51.69
-        }
-      ],
-      "hype_rank": 21,
-      "performance_rank": 33,
-      "gap": -12,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Cal Baptist",
-      "seed": 13,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 16.21,
-      "hype_normalized": 11.4,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 9.11
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 5.07
-        },
-        {
-          "date": "2026-03-14",
-          "value": 22.28
-        },
-        {
-          "date": "2026-03-15",
-          "value": 71.72
-        },
-        {
-          "date": "2026-03-16",
-          "value": 76.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 59.0
-        }
-      ],
-      "hype_rank": 30,
-      "performance_rank": 33,
-      "gap": -3,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "South Florida",
-      "seed": 11,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 2.47,
-      "hype_normalized": 1.74,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 10.0
-        }
-      ],
-      "hype_rank": 59,
-      "performance_rank": 33,
-      "gap": 26,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "North Dakota State",
-      "seed": 14,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 19.92,
-      "hype_normalized": 14.01,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
           "value": 7.0
         },
         {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 22.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 16.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 21.66
-        },
-        {
-          "date": "2026-03-08",
-          "value": 48.56
-        },
-        {
-          "date": "2026-03-09",
-          "value": 39.0
-        },
-        {
           "date": "2026-03-10",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 10.14
-        },
-        {
-          "date": "2026-03-14",
-          "value": 11.14
-        },
-        {
-          "date": "2026-03-15",
-          "value": 32.32
-        },
-        {
-          "date": "2026-03-16",
-          "value": 43.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 29.0
-        }
-      ],
-      "hype_rank": 27,
-      "performance_rank": 33,
-      "gap": -6,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "UCF",
-      "seed": 10,
-      "region": "East",
-      "wins": 0,
-      "hype_raw": 2.4,
-      "hype_normalized": 1.69,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
           "value": 5.0
         },
         {
+          "date": "2026-03-11",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 55.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 38.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 41.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 22.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 26.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 17.0
+        }
+      ],
+      "hype_rank": 22,
+      "performance_rank": 17,
+      "gap": 5,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/miami-fl.svg"
+    },
+    {
+      "team": "UCLA",
+      "seed": 7,
+      "region": "East",
+      "wins": 1,
+      "hype_raw": 10.87,
+      "hype_normalized": 7.64,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 30.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 14.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 55.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 16.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 11.0
+        }
+      ],
+      "hype_rank": 36,
+      "performance_rank": 17,
+      "gap": 19,
+      "story_tag": "noise",
+      "logo_path": "/logos/ucla.svg"
+    },
+    {
+      "team": "Saint Louis",
+      "seed": 9,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 3.4,
+      "hype_normalized": 2.39,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 7.0
+        },
+        {
           "date": "2026-03-08",
           "value": 0.0
         },
@@ -2862,19 +2000,19 @@
         },
         {
           "date": "2026-03-11",
-          "value": 8.0
+          "value": 0.0
         },
         {
           "date": "2026-03-12",
-          "value": 15.0
+          "value": 0.0
         },
         {
           "date": "2026-03-13",
-          "value": 0.0
+          "value": 10.0
         },
         {
           "date": "2026-03-14",
-          "value": 0.0
+          "value": 14.0
         },
         {
           "date": "2026-03-15",
@@ -2886,21 +2024,22 @@
         },
         {
           "date": "2026-03-17",
-          "value": 0.0
+          "value": 7.0
         }
       ],
-      "hype_rank": 60,
-      "performance_rank": 33,
-      "gap": 27,
-      "story_tag": "underhyped"
+      "hype_rank": 53,
+      "performance_rank": 17,
+      "gap": 36,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/saint-louis.svg"
     },
     {
-      "team": "Furman",
-      "seed": 15,
+      "team": "TCU",
+      "seed": 9,
       "region": "East",
-      "wins": 0,
-      "hype_raw": 30.4,
-      "hype_normalized": 21.38,
+      "wins": 1,
+      "hype_raw": 3.6,
+      "hype_normalized": 2.53,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -2916,63 +2055,514 @@
         },
         {
           "date": "2026-03-06",
-          "value": 10.0
+          "value": 0.0
         },
         {
           "date": "2026-03-07",
-          "value": 25.78
-        },
-        {
-          "date": "2026-03-08",
-          "value": 49.58
-        },
-        {
-          "date": "2026-03-09",
-          "value": 100.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 86.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-12",
           "value": 9.0
         },
         {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 8.0
+        },
+        {
           "date": "2026-03-13",
-          "value": 8.12
+          "value": 12.0
         },
         {
           "date": "2026-03-14",
-          "value": 8.1
+          "value": 0.0
         },
         {
           "date": "2026-03-15",
-          "value": 38.38
+          "value": 6.0
         },
         {
           "date": "2026-03-16",
-          "value": 59.0
+          "value": 13.0
         },
         {
           "date": "2026-03-17",
-          "value": 52.0
+          "value": 6.0
         }
       ],
-      "hype_rank": 13,
-      "performance_rank": 33,
-      "gap": -20,
-      "story_tag": "overhyped"
+      "hype_rank": 51,
+      "performance_rank": 17,
+      "gap": 34,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/tcu.svg"
+    },
+    {
+      "team": "Utah State",
+      "seed": 9,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 1.8,
+      "hype_normalized": 1.27,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 64,
+      "performance_rank": 17,
+      "gap": 47,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/utah-st.svg"
+    },
+    {
+      "team": "Texas A&M",
+      "seed": 10,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 2.26,
+      "hype_normalized": 1.59,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 4.57
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 8.6
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 6.56
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 4.14
+        },
+        {
+          "date": "2026-03-17",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 61,
+      "performance_rank": 17,
+      "gap": 44,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/texas-am.svg"
+    },
+    {
+      "team": "Miami (OH)",
+      "seed": 11,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 20.53,
+      "hype_normalized": 14.44,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 17.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 38.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 20.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 77.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 13.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 52.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 17.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 18.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 10.0
+        }
+      ],
+      "hype_rank": 26,
+      "performance_rank": 17,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/miami-oh.svg"
+    },
+    {
+      "team": "VCU",
+      "seed": 11,
+      "region": "South",
+      "wins": 1,
+      "hype_raw": 3.18,
+      "hype_normalized": 2.23,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 6.6
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 6.56
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 21.74
+        },
+        {
+          "date": "2026-03-16",
+          "value": 6.21
+        },
+        {
+          "date": "2026-03-17",
+          "value": 6.55
+        }
+      ],
+      "hype_rank": 54,
+      "performance_rank": 17,
+      "gap": 37,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/vcu.svg"
+    },
+    {
+      "team": "High Point",
+      "seed": 12,
+      "region": "West",
+      "wins": 1,
+      "hype_raw": 53.63,
+      "hype_normalized": 37.72,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 16.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 12.44
+        },
+        {
+          "date": "2026-03-06",
+          "value": 55.36
+        },
+        {
+          "date": "2026-03-07",
+          "value": 62.12
+        },
+        {
+          "date": "2026-03-08",
+          "value": 135.69
+        },
+        {
+          "date": "2026-03-09",
+          "value": 30.55
+        },
+        {
+          "date": "2026-03-10",
+          "value": 22.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 20.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 18.33
+        },
+        {
+          "date": "2026-03-13",
+          "value": 18.92
+        },
+        {
+          "date": "2026-03-14",
+          "value": 18.81
+        },
+        {
+          "date": "2026-03-15",
+          "value": 116.98
+        },
+        {
+          "date": "2026-03-16",
+          "value": 148.87
+        },
+        {
+          "date": "2026-03-17",
+          "value": 116.31
+        }
+      ],
+      "hype_rank": 6,
+      "performance_rank": 17,
+      "gap": -11,
+      "story_tag": "noise",
+      "logo_path": "/logos/high-point.svg"
+    },
+    {
+      "team": "Howard",
+      "seed": 16,
+      "region": "Midwest",
+      "wins": 1,
+      "hype_raw": 2.07,
+      "hype_normalized": 1.45,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 31.0
+        }
+      ],
+      "hype_rank": 62,
+      "performance_rank": 17,
+      "gap": 45,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/howard.svg"
     },
     {
       "team": "Prairie View A&M",
       "seed": 16,
       "region": "South",
-      "wins": 0,
+      "wins": 1,
       "hype_raw": 17.15,
       "hype_normalized": 12.06,
       "hype_daily": [
@@ -3038,675 +2628,10 @@
         }
       ],
       "hype_rank": 29,
-      "performance_rank": 33,
-      "gap": -4,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Clemson",
-      "seed": 8,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 6.67,
-      "hype_normalized": 4.69,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 15.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 20.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 23.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 4.0
-        }
-      ],
-      "hype_rank": 45,
-      "performance_rank": 33,
+      "performance_rank": 17,
       "gap": 12,
-      "story_tag": "noise"
-    },
-    {
-      "team": "McNeese State",
-      "seed": 12,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 36.74,
-      "hype_normalized": 25.84,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 42.67
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 5.33
-        },
-        {
-          "date": "2026-03-06",
-          "value": 4.06
-        },
-        {
-          "date": "2026-03-07",
-          "value": 8.25
-        },
-        {
-          "date": "2026-03-08",
-          "value": 5.46
-        },
-        {
-          "date": "2026-03-09",
-          "value": 6.56
-        },
-        {
-          "date": "2026-03-10",
-          "value": 18.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 133.33
-        },
-        {
-          "date": "2026-03-12",
-          "value": 71.5
-        },
-        {
-          "date": "2026-03-13",
-          "value": 15.1
-        },
-        {
-          "date": "2026-03-14",
-          "value": 10.9
-        },
-        {
-          "date": "2026-03-15",
-          "value": 46.58
-        },
-        {
-          "date": "2026-03-16",
-          "value": 95.29
-        },
-        {
-          "date": "2026-03-17",
-          "value": 88.0
-        }
-      ],
-      "hype_rank": 10,
-      "performance_rank": 33,
-      "gap": -23,
-      "story_tag": "overhyped"
-    },
-    {
-      "team": "Troy",
-      "seed": 13,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 1.67,
-      "hype_normalized": 1.17,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 7.0
-        }
-      ],
-      "hype_rank": 66,
-      "performance_rank": 33,
-      "gap": 33,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "North Carolina",
-      "seed": 6,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 12.4,
-      "hype_normalized": 8.72,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 21.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 30.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 58.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 26.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 7.0
-        }
-      ],
-      "hype_rank": 35,
-      "performance_rank": 33,
-      "gap": 2,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Penn",
-      "seed": 14,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 2.8,
-      "hype_normalized": 1.97,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 24.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 7.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 4.0
-        }
-      ],
-      "hype_rank": 57,
-      "performance_rank": 33,
-      "gap": 24,
-      "story_tag": "noise"
-    },
-    {
-      "team": "St. Mary's",
-      "seed": 7,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 4.08,
-      "hype_normalized": 2.87,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 10.8
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 5.48
-        },
-        {
-          "date": "2026-03-16",
-          "value": 24.86
-        },
-        {
-          "date": "2026-03-17",
-          "value": 20.0
-        }
-      ],
-      "hype_rank": 50,
-      "performance_rank": 33,
-      "gap": 17,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Idaho",
-      "seed": 15,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 7.53,
-      "hype_normalized": 5.3,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 6.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 8.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 23.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 31.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 6.0
-        }
-      ],
-      "hype_rank": 43,
-      "performance_rank": 33,
-      "gap": 10,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Long Island",
-      "seed": 16,
-      "region": "West",
-      "wins": 0,
-      "hype_raw": 26.21,
-      "hype_normalized": 18.44,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 9.33
-        },
-        {
-          "date": "2026-03-04",
-          "value": 9.33
-        },
-        {
-          "date": "2026-03-05",
-          "value": 18.67
-        },
-        {
-          "date": "2026-03-06",
-          "value": 14.9
-        },
-        {
-          "date": "2026-03-07",
-          "value": 55.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 38.22
-        },
-        {
-          "date": "2026-03-09",
-          "value": 14.44
-        },
-        {
-          "date": "2026-03-10",
-          "value": 26.4
-        },
-        {
-          "date": "2026-03-11",
-          "value": 32.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 13.75
-        },
-        {
-          "date": "2026-03-13",
-          "value": 10.98
-        },
-        {
-          "date": "2026-03-14",
-          "value": 8.17
-        },
-        {
-          "date": "2026-03-15",
-          "value": 60.27
-        },
-        {
-          "date": "2026-03-16",
-          "value": 48.33
-        },
-        {
-          "date": "2026-03-17",
-          "value": 33.33
-        }
-      ],
-      "hype_rank": 18,
-      "performance_rank": 33,
-      "gap": -15,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Villanova",
-      "seed": 8,
-      "region": "West",
-      "wins": 0,
-      "hype_raw": 3.13,
-      "hype_normalized": 2.2,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 6.15
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 7.7
-        },
-        {
-          "date": "2026-03-09",
-          "value": 14.44
-        },
-        {
-          "date": "2026-03-10",
-          "value": 8.4
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 5.19
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 5.04
-        },
-        {
-          "date": "2026-03-17",
-          "value": 0.0
-        }
-      ],
-      "hype_rank": 55,
-      "performance_rank": 33,
-      "gap": 22,
-      "story_tag": "noise"
+      "story_tag": "noise",
+      "logo_path": "/logos/prairie-view.svg"
     },
     {
       "team": "Wisconsin",
@@ -3778,83 +2703,10 @@
         }
       ],
       "hype_rank": 7,
-      "performance_rank": 33,
-      "gap": -26,
-      "story_tag": "overhyped"
-    },
-    {
-      "team": "Hawaii",
-      "seed": 13,
-      "region": "West",
-      "wins": 0,
-      "hype_raw": 3.54,
-      "hype_normalized": 2.49,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 6.77
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 5.46
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 8.17
-        },
-        {
-          "date": "2026-03-15",
-          "value": 13.7
-        },
-        {
-          "date": "2026-03-16",
-          "value": 9.67
-        },
-        {
-          "date": "2026-03-17",
-          "value": 5.33
-        }
-      ],
-      "hype_rank": 52,
-      "performance_rank": 33,
-      "gap": 19,
-      "story_tag": "noise"
+      "performance_rank": 36,
+      "gap": -29,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/wisconsin.svg"
     },
     {
       "team": "BYU",
@@ -3926,121 +2778,48 @@
         }
       ],
       "hype_rank": 45,
-      "performance_rank": 33,
-      "gap": 12,
-      "story_tag": "noise"
+      "performance_rank": 36,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/byu.svg"
     },
     {
-      "team": "Kennesaw State",
-      "seed": 14,
-      "region": "West",
+      "team": "North Carolina",
+      "seed": 6,
+      "region": "South",
       "wins": 0,
-      "hype_raw": 21.69,
-      "hype_normalized": 15.25,
+      "hype_raw": 12.4,
+      "hype_normalized": 8.72,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 0.0
+          "value": 8.0
         },
         {
           "date": "2026-03-04",
-          "value": 0.0
+          "value": 21.0
         },
         {
           "date": "2026-03-05",
-          "value": 7.47
-        },
-        {
-          "date": "2026-03-06",
-          "value": 19.38
-        },
-        {
-          "date": "2026-03-07",
-          "value": 18.7
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 51.41
-        },
-        {
-          "date": "2026-03-14",
-          "value": 36.3
-        },
-        {
-          "date": "2026-03-15",
-          "value": 98.92
-        },
-        {
-          "date": "2026-03-16",
-          "value": 49.41
-        },
-        {
-          "date": "2026-03-17",
-          "value": 32.73
-        }
-      ],
-      "hype_rank": 24,
-      "performance_rank": 33,
-      "gap": -9,
-      "story_tag": "as_expected"
-    },
-    {
-      "team": "Missouri",
-      "seed": 10,
-      "region": "West",
-      "wins": 0,
-      "hype_raw": 8.27,
-      "hype_normalized": 5.81,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 13.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 36.0
-        },
-        {
-          "date": "2026-03-08",
           "value": 5.0
         },
         {
-          "date": "2026-03-09",
+          "date": "2026-03-06",
           "value": 4.0
         },
         {
+          "date": "2026-03-07",
+          "value": 30.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 58.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
           "date": "2026-03-10",
           "value": 0.0
         },
@@ -4050,41 +2829,42 @@
         },
         {
           "date": "2026-03-12",
-          "value": 28.0
+          "value": 7.0
         },
         {
           "date": "2026-03-13",
-          "value": 6.0
+          "value": 26.0
         },
         {
           "date": "2026-03-14",
-          "value": 0.0
+          "value": 7.0
         },
         {
           "date": "2026-03-15",
-          "value": 10.0
+          "value": 5.0
         },
         {
           "date": "2026-03-16",
-          "value": 10.0
+          "value": 8.0
         },
         {
           "date": "2026-03-17",
-          "value": 8.0
+          "value": 7.0
         }
       ],
-      "hype_rank": 42,
-      "performance_rank": 33,
-      "gap": 9,
-      "story_tag": "as_expected"
+      "hype_rank": 35,
+      "performance_rank": 36,
+      "gap": -1,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/north-carolina.svg"
     },
     {
-      "team": "Queens",
-      "seed": 15,
-      "region": "West",
+      "team": "St. Mary's",
+      "seed": 7,
+      "region": "South",
       "wins": 0,
-      "hype_raw": 1.87,
-      "hype_normalized": 1.31,
+      "hype_raw": 4.08,
+      "hype_normalized": 2.87,
       "hype_daily": [
         {
           "date": "2026-03-03",
@@ -4108,7 +2888,7 @@
         },
         {
           "date": "2026-03-08",
-          "value": 8.0
+          "value": 0.0
         },
         {
           "date": "2026-03-09",
@@ -4116,7 +2896,7 @@
         },
         {
           "date": "2026-03-10",
-          "value": 0.0
+          "value": 10.8
         },
         {
           "date": "2026-03-11",
@@ -4136,95 +2916,97 @@
         },
         {
           "date": "2026-03-15",
+          "value": 5.48
+        },
+        {
+          "date": "2026-03-16",
+          "value": 24.86
+        },
+        {
+          "date": "2026-03-17",
+          "value": 20.0
+        }
+      ],
+      "hype_rank": 50,
+      "performance_rank": 36,
+      "gap": 14,
+      "story_tag": "noise",
+      "logo_path": "/logos/st-marys-ca.svg"
+    },
+    {
+      "team": "Clemson",
+      "seed": 8,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 6.67,
+      "hype_normalized": 4.69,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 15.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-13",
           "value": 20.0
         },
         {
-          "date": "2026-03-16",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 0.0
-        }
-      ],
-      "hype_rank": 63,
-      "performance_rank": 33,
-      "gap": 30,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Howard",
-      "seed": 16,
-      "region": "Midwest",
-      "wins": 0,
-      "hype_raw": 2.07,
-      "hype_normalized": 1.45,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
           "date": "2026-03-14",
-          "value": 0.0
+          "value": 23.0
         },
         {
           "date": "2026-03-15",
-          "value": 0.0
+          "value": 5.0
         },
         {
           "date": "2026-03-16",
-          "value": 0.0
+          "value": 9.0
         },
         {
           "date": "2026-03-17",
-          "value": 31.0
+          "value": 4.0
         }
       ],
-      "hype_rank": 62,
-      "performance_rank": 33,
-      "gap": 29,
-      "story_tag": "underhyped"
+      "hype_rank": 45,
+      "performance_rank": 36,
+      "gap": 9,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/clemson.svg"
     },
     {
       "team": "Georgia",
@@ -4296,267 +3078,46 @@
         }
       ],
       "hype_rank": 47,
-      "performance_rank": 33,
-      "gap": 14,
-      "story_tag": "noise"
+      "performance_rank": 36,
+      "gap": 11,
+      "story_tag": "noise",
+      "logo_path": "/logos/georgia.svg"
     },
     {
-      "team": "Akron",
-      "seed": 12,
-      "region": "Midwest",
+      "team": "Ohio State",
+      "seed": 8,
+      "region": "East",
       "wins": 0,
-      "hype_raw": 6.0,
-      "hype_normalized": 4.22,
+      "hype_raw": 15.13,
+      "hype_normalized": 10.64,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 5.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 9.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 23.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 25.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 10.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 7.0
-        }
-      ],
-      "hype_rank": 48,
-      "performance_rank": 33,
-      "gap": 15,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Hofstra",
-      "seed": 13,
-      "region": "Midwest",
-      "wins": 0,
-      "hype_raw": 2.4,
-      "hype_normalized": 1.69,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-09",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-10",
           "value": 6.0
         },
         {
-          "date": "2026-03-11",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-14",
-          "value": 0.0
-        },
-        {
-          "date": "2026-03-15",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-17",
-          "value": 7.0
-        }
-      ],
-      "hype_rank": 60,
-      "performance_rank": 33,
-      "gap": 27,
-      "story_tag": "underhyped"
-    },
-    {
-      "team": "Wright State",
-      "seed": 14,
-      "region": "Midwest",
-      "wins": 0,
-      "hype_raw": 26.11,
-      "hype_normalized": 18.36,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 0.0
-        },
-        {
           "date": "2026-03-04",
-          "value": 14.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 22.4
-        },
-        {
-          "date": "2026-03-06",
-          "value": 6.46
-        },
-        {
-          "date": "2026-03-07",
-          "value": 8.8
-        },
-        {
-          "date": "2026-03-08",
-          "value": 8.6
-        },
-        {
-          "date": "2026-03-09",
-          "value": 57.75
-        },
-        {
-          "date": "2026-03-10",
-          "value": 65.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 68.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 11.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 8.75
-        },
-        {
-          "date": "2026-03-14",
-          "value": 7.47
-        },
-        {
-          "date": "2026-03-15",
-          "value": 31.18
-        },
-        {
-          "date": "2026-03-16",
-          "value": 47.26
-        },
-        {
-          "date": "2026-03-17",
-          "value": 34.91
-        }
-      ],
-      "hype_rank": 19,
-      "performance_rank": 33,
-      "gap": -14,
-      "story_tag": "noise"
-    },
-    {
-      "team": "Miami (OH)",
-      "seed": 11,
-      "region": "Midwest",
-      "wins": 0,
-      "hype_raw": 20.53,
-      "hype_normalized": 14.44,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 17.0
-        },
-        {
-          "date": "2026-03-04",
-          "value": 38.0
-        },
-        {
-          "date": "2026-03-05",
           "value": 8.0
         },
         {
+          "date": "2026-03-05",
+          "value": 26.0
+        },
+        {
           "date": "2026-03-06",
-          "value": 20.0
+          "value": 8.0
         },
         {
           "date": "2026-03-07",
-          "value": 77.0
+          "value": 27.0
         },
         {
           "date": "2026-03-08",
-          "value": 13.0
+          "value": 21.0
         },
         {
           "date": "2026-03-09",
-          "value": 9.0
+          "value": 0.0
         },
         {
           "date": "2026-03-10",
@@ -4564,37 +3125,188 @@
         },
         {
           "date": "2026-03-11",
-          "value": 12.0
+          "value": 5.0
         },
         {
           "date": "2026-03-12",
-          "value": 52.0
+          "value": 29.0
         },
         {
           "date": "2026-03-13",
-          "value": 7.0
+          "value": 54.0
         },
         {
           "date": "2026-03-14",
-          "value": 10.0
+          "value": 8.0
         },
         {
           "date": "2026-03-15",
-          "value": 17.0
+          "value": 9.0
         },
         {
           "date": "2026-03-16",
-          "value": 18.0
+          "value": 15.0
         },
         {
           "date": "2026-03-17",
-          "value": 10.0
+          "value": 11.0
         }
       ],
-      "hype_rank": 26,
-      "performance_rank": 33,
-      "gap": -7,
-      "story_tag": "as_expected"
+      "hype_rank": 32,
+      "performance_rank": 36,
+      "gap": -4,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/ohio-st.svg"
+    },
+    {
+      "team": "Villanova",
+      "seed": 8,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 3.13,
+      "hype_normalized": 2.2,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 6.15
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 7.7
+        },
+        {
+          "date": "2026-03-09",
+          "value": 14.44
+        },
+        {
+          "date": "2026-03-10",
+          "value": 8.4
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 5.19
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 5.04
+        },
+        {
+          "date": "2026-03-17",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 55,
+      "performance_rank": 36,
+      "gap": 19,
+      "story_tag": "noise",
+      "logo_path": "/logos/villanova.svg"
+    },
+    {
+      "team": "Missouri",
+      "seed": 10,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 8.27,
+      "hype_normalized": 5.81,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 13.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 36.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 28.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 8.0
+        }
+      ],
+      "hype_rank": 42,
+      "performance_rank": 36,
+      "gap": 6,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/missouri.svg"
     },
     {
       "team": "Santa Clara",
@@ -4666,231 +3378,85 @@
         }
       ],
       "hype_rank": 65,
-      "performance_rank": 33,
-      "gap": 32,
-      "story_tag": "underhyped"
+      "performance_rank": 36,
+      "gap": 29,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/santa-clara.svg"
     },
     {
-      "team": "Tennessee State",
-      "seed": 15,
-      "region": "Midwest",
+      "team": "UCF",
+      "seed": 10,
+      "region": "East",
       "wins": 0,
-      "hype_raw": 36.38,
-      "hype_normalized": 25.59,
+      "hype_raw": 2.4,
+      "hype_normalized": 1.69,
       "hype_daily": [
         {
           "date": "2026-03-03",
-          "value": 22.91
+          "value": 0.0
         },
         {
           "date": "2026-03-04",
-          "value": 11.0
+          "value": 0.0
         },
         {
           "date": "2026-03-05",
-          "value": 27.73
+          "value": 0.0
         },
         {
           "date": "2026-03-06",
-          "value": 23.69
+          "value": 0.0
         },
         {
           "date": "2026-03-07",
-          "value": 70.4
+          "value": 5.0
         },
         {
           "date": "2026-03-08",
-          "value": 70.95
+          "value": 0.0
         },
         {
           "date": "2026-03-09",
-          "value": 33.6
+          "value": 0.0
         },
         {
           "date": "2026-03-10",
-          "value": 24.0
+          "value": 0.0
         },
         {
           "date": "2026-03-11",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 35.2
-        },
-        {
-          "date": "2026-03-13",
-          "value": 39.38
-        },
-        {
-          "date": "2026-03-14",
-          "value": 20.28
-        },
-        {
-          "date": "2026-03-15",
-          "value": 35.48
-        },
-        {
-          "date": "2026-03-16",
-          "value": 63.37
-        },
-        {
-          "date": "2026-03-17",
-          "value": 55.64
-        }
-      ],
-      "hype_rank": 11,
-      "performance_rank": 33,
-      "gap": -22,
-      "story_tag": "overhyped"
-    },
-    {
-      "team": "UMBC",
-      "seed": 16,
-      "region": "Midwest",
-      "wins": 0,
-      "hype_raw": 68.27,
-      "hype_normalized": 48.02,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
-          "value": 24.0
-        },
-        {
-          "date": "2026-03-04",
           "value": 8.0
         },
         {
-          "date": "2026-03-05",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 7.64
-        },
-        {
-          "date": "2026-03-07",
-          "value": 33.0
-        },
-        {
-          "date": "2026-03-08",
-          "value": 12.29
-        },
-        {
-          "date": "2026-03-09",
-          "value": 12.6
-        },
-        {
-          "date": "2026-03-10",
-          "value": 42.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 24.0
-        },
-        {
           "date": "2026-03-12",
-          "value": 14.67
+          "value": 15.0
         },
         {
           "date": "2026-03-13",
-          "value": 16.47
+          "value": 0.0
         },
         {
           "date": "2026-03-14",
-          "value": 217.25
+          "value": 0.0
         },
         {
           "date": "2026-03-15",
-          "value": 88.0
+          "value": 0.0
         },
         {
           "date": "2026-03-16",
-          "value": 120.14
-        },
-        {
-          "date": "2026-03-17",
-          "value": 400.0
-        }
-      ],
-      "hype_rank": 3,
-      "performance_rank": 33,
-      "gap": -30,
-      "story_tag": "overhyped"
-    },
-    {
-      "team": "Lehigh",
-      "seed": 16,
-      "region": "South",
-      "wins": 0,
-      "hype_raw": 37.15,
-      "hype_normalized": 26.13,
-      "hype_daily": [
-        {
-          "date": "2026-03-03",
           "value": 8.0
         },
         {
-          "date": "2026-03-04",
-          "value": 4.0
-        },
-        {
-          "date": "2026-03-05",
-          "value": 20.0
-        },
-        {
-          "date": "2026-03-06",
-          "value": 42.0
-        },
-        {
-          "date": "2026-03-07",
-          "value": 20.62
-        },
-        {
-          "date": "2026-03-08",
-          "value": 65.52
-        },
-        {
-          "date": "2026-03-09",
-          "value": 21.0
-        },
-        {
-          "date": "2026-03-10",
-          "value": 12.0
-        },
-        {
-          "date": "2026-03-11",
-          "value": 48.0
-        },
-        {
-          "date": "2026-03-12",
-          "value": 77.0
-        },
-        {
-          "date": "2026-03-13",
-          "value": 20.59
-        },
-        {
-          "date": "2026-03-14",
-          "value": 15.8
-        },
-        {
-          "date": "2026-03-15",
-          "value": 56.0
-        },
-        {
-          "date": "2026-03-16",
-          "value": 78.71
-        },
-        {
           "date": "2026-03-17",
-          "value": 68.0
+          "value": 0.0
         }
       ],
-      "hype_rank": 9,
-      "performance_rank": 33,
-      "gap": -24,
-      "story_tag": "overhyped"
+      "hype_rank": 60,
+      "performance_rank": 36,
+      "gap": 24,
+      "story_tag": "noise",
+      "logo_path": "/logos/ucf.svg"
     },
     {
       "team": "NC State",
@@ -4962,9 +3528,10 @@
         }
       ],
       "hype_rank": 1,
-      "performance_rank": 33,
-      "gap": -32,
-      "story_tag": "overhyped"
+      "performance_rank": 36,
+      "gap": -35,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/north-carolina-st.svg"
     },
     {
       "team": "SMU",
@@ -5036,9 +3603,1510 @@
         }
       ],
       "hype_rank": 5,
-      "performance_rank": 33,
-      "gap": -28,
-      "story_tag": "overhyped"
+      "performance_rank": 36,
+      "gap": -31,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/smu.svg"
+    },
+    {
+      "team": "South Florida",
+      "seed": 11,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 2.47,
+      "hype_normalized": 1.74,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 10.0
+        }
+      ],
+      "hype_rank": 59,
+      "performance_rank": 36,
+      "gap": 23,
+      "story_tag": "noise",
+      "logo_path": "/logos/south-fla.svg"
+    },
+    {
+      "team": "Akron",
+      "seed": 12,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 6.0,
+      "hype_normalized": 4.22,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 23.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 25.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 7.0
+        }
+      ],
+      "hype_rank": 48,
+      "performance_rank": 36,
+      "gap": 12,
+      "story_tag": "noise",
+      "logo_path": "/logos/akron.svg"
+    },
+    {
+      "team": "McNeese State",
+      "seed": 12,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 36.74,
+      "hype_normalized": 25.84,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 42.67
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 5.33
+        },
+        {
+          "date": "2026-03-06",
+          "value": 4.06
+        },
+        {
+          "date": "2026-03-07",
+          "value": 8.25
+        },
+        {
+          "date": "2026-03-08",
+          "value": 5.46
+        },
+        {
+          "date": "2026-03-09",
+          "value": 6.56
+        },
+        {
+          "date": "2026-03-10",
+          "value": 18.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 133.33
+        },
+        {
+          "date": "2026-03-12",
+          "value": 71.5
+        },
+        {
+          "date": "2026-03-13",
+          "value": 15.1
+        },
+        {
+          "date": "2026-03-14",
+          "value": 10.9
+        },
+        {
+          "date": "2026-03-15",
+          "value": 46.58
+        },
+        {
+          "date": "2026-03-16",
+          "value": 95.29
+        },
+        {
+          "date": "2026-03-17",
+          "value": 88.0
+        }
+      ],
+      "hype_rank": 10,
+      "performance_rank": 36,
+      "gap": -26,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/mcneese.svg"
+    },
+    {
+      "team": "Northern Iowa",
+      "seed": 12,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 24.68,
+      "hype_normalized": 17.36,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 8.89
+        },
+        {
+          "date": "2026-03-06",
+          "value": 17.18
+        },
+        {
+          "date": "2026-03-07",
+          "value": 54.35
+        },
+        {
+          "date": "2026-03-08",
+          "value": 97.47
+        },
+        {
+          "date": "2026-03-09",
+          "value": 13.36
+        },
+        {
+          "date": "2026-03-10",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 5.5
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 24.53
+        },
+        {
+          "date": "2026-03-16",
+          "value": 79.27
+        },
+        {
+          "date": "2026-03-17",
+          "value": 51.69
+        }
+      ],
+      "hype_rank": 21,
+      "performance_rank": 36,
+      "gap": -15,
+      "story_tag": "noise",
+      "logo_path": "/logos/uni.svg"
+    },
+    {
+      "team": "Cal Baptist",
+      "seed": 13,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 16.21,
+      "hype_normalized": 11.4,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 9.11
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 5.07
+        },
+        {
+          "date": "2026-03-14",
+          "value": 22.28
+        },
+        {
+          "date": "2026-03-15",
+          "value": 71.72
+        },
+        {
+          "date": "2026-03-16",
+          "value": 76.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 59.0
+        }
+      ],
+      "hype_rank": 30,
+      "performance_rank": 36,
+      "gap": -6,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/california-baptist.svg"
+    },
+    {
+      "team": "Hawaii",
+      "seed": 13,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 3.54,
+      "hype_normalized": 2.49,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 6.77
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 5.46
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 8.17
+        },
+        {
+          "date": "2026-03-15",
+          "value": 13.7
+        },
+        {
+          "date": "2026-03-16",
+          "value": 9.67
+        },
+        {
+          "date": "2026-03-17",
+          "value": 5.33
+        }
+      ],
+      "hype_rank": 52,
+      "performance_rank": 36,
+      "gap": 16,
+      "story_tag": "noise",
+      "logo_path": "/logos/hawaii.svg"
+    },
+    {
+      "team": "Hofstra",
+      "seed": 13,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 2.4,
+      "hype_normalized": 1.69,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 7.0
+        }
+      ],
+      "hype_rank": 60,
+      "performance_rank": 36,
+      "gap": 24,
+      "story_tag": "noise",
+      "logo_path": "/logos/hofstra.svg"
+    },
+    {
+      "team": "Troy",
+      "seed": 13,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 1.67,
+      "hype_normalized": 1.17,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 7.0
+        }
+      ],
+      "hype_rank": 66,
+      "performance_rank": 36,
+      "gap": 30,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/troy.svg"
+    },
+    {
+      "team": "Kennesaw State",
+      "seed": 14,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 21.69,
+      "hype_normalized": 15.25,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 7.47
+        },
+        {
+          "date": "2026-03-06",
+          "value": 19.38
+        },
+        {
+          "date": "2026-03-07",
+          "value": 18.7
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 51.41
+        },
+        {
+          "date": "2026-03-14",
+          "value": 36.3
+        },
+        {
+          "date": "2026-03-15",
+          "value": 98.92
+        },
+        {
+          "date": "2026-03-16",
+          "value": 49.41
+        },
+        {
+          "date": "2026-03-17",
+          "value": 32.73
+        }
+      ],
+      "hype_rank": 24,
+      "performance_rank": 36,
+      "gap": -12,
+      "story_tag": "noise",
+      "logo_path": "/logos/kennesaw-st.svg"
+    },
+    {
+      "team": "North Dakota State",
+      "seed": 14,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 19.92,
+      "hype_normalized": 14.01,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 22.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 16.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 21.66
+        },
+        {
+          "date": "2026-03-08",
+          "value": 48.56
+        },
+        {
+          "date": "2026-03-09",
+          "value": 39.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 10.14
+        },
+        {
+          "date": "2026-03-14",
+          "value": 11.14
+        },
+        {
+          "date": "2026-03-15",
+          "value": 32.32
+        },
+        {
+          "date": "2026-03-16",
+          "value": 43.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 29.0
+        }
+      ],
+      "hype_rank": 27,
+      "performance_rank": 36,
+      "gap": -9,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/north-dakota-st.svg"
+    },
+    {
+      "team": "Penn",
+      "seed": 14,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 2.8,
+      "hype_normalized": 1.97,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 7.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 4.0
+        }
+      ],
+      "hype_rank": 57,
+      "performance_rank": 36,
+      "gap": 21,
+      "story_tag": "noise",
+      "logo_path": "/logos/penn.svg"
+    },
+    {
+      "team": "Wright State",
+      "seed": 14,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 26.11,
+      "hype_normalized": 18.36,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 14.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 22.4
+        },
+        {
+          "date": "2026-03-06",
+          "value": 6.46
+        },
+        {
+          "date": "2026-03-07",
+          "value": 8.8
+        },
+        {
+          "date": "2026-03-08",
+          "value": 8.6
+        },
+        {
+          "date": "2026-03-09",
+          "value": 57.75
+        },
+        {
+          "date": "2026-03-10",
+          "value": 65.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 68.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 8.75
+        },
+        {
+          "date": "2026-03-14",
+          "value": 7.47
+        },
+        {
+          "date": "2026-03-15",
+          "value": 31.18
+        },
+        {
+          "date": "2026-03-16",
+          "value": 47.26
+        },
+        {
+          "date": "2026-03-17",
+          "value": 34.91
+        }
+      ],
+      "hype_rank": 19,
+      "performance_rank": 36,
+      "gap": -17,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/wright-st.svg"
+    },
+    {
+      "team": "Furman",
+      "seed": 15,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 30.4,
+      "hype_normalized": 21.38,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 25.78
+        },
+        {
+          "date": "2026-03-08",
+          "value": 49.58
+        },
+        {
+          "date": "2026-03-09",
+          "value": 100.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 86.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 10.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 8.12
+        },
+        {
+          "date": "2026-03-14",
+          "value": 8.1
+        },
+        {
+          "date": "2026-03-15",
+          "value": 38.38
+        },
+        {
+          "date": "2026-03-16",
+          "value": 59.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 52.0
+        }
+      ],
+      "hype_rank": 13,
+      "performance_rank": 36,
+      "gap": -23,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/furman.svg"
+    },
+    {
+      "team": "Idaho",
+      "seed": 15,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 7.53,
+      "hype_normalized": 5.3,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 23.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 31.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 14.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 6.0
+        }
+      ],
+      "hype_rank": 43,
+      "performance_rank": 36,
+      "gap": 7,
+      "story_tag": "as_expected",
+      "logo_path": "/logos/idaho.svg"
+    },
+    {
+      "team": "Queens",
+      "seed": 15,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 1.87,
+      "hype_normalized": 1.31,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 20.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 0.0
+        }
+      ],
+      "hype_rank": 63,
+      "performance_rank": 36,
+      "gap": 27,
+      "story_tag": "underhyped",
+      "logo_path": "/logos/queens-nc.svg"
+    },
+    {
+      "team": "Tennessee State",
+      "seed": 15,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 36.38,
+      "hype_normalized": 25.59,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 22.91
+        },
+        {
+          "date": "2026-03-04",
+          "value": 11.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 27.73
+        },
+        {
+          "date": "2026-03-06",
+          "value": 23.69
+        },
+        {
+          "date": "2026-03-07",
+          "value": 70.4
+        },
+        {
+          "date": "2026-03-08",
+          "value": 70.95
+        },
+        {
+          "date": "2026-03-09",
+          "value": 33.6
+        },
+        {
+          "date": "2026-03-10",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 35.2
+        },
+        {
+          "date": "2026-03-13",
+          "value": 39.38
+        },
+        {
+          "date": "2026-03-14",
+          "value": 20.28
+        },
+        {
+          "date": "2026-03-15",
+          "value": 35.48
+        },
+        {
+          "date": "2026-03-16",
+          "value": 63.37
+        },
+        {
+          "date": "2026-03-17",
+          "value": 55.64
+        }
+      ],
+      "hype_rank": 11,
+      "performance_rank": 36,
+      "gap": -25,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/tennessee-st.svg"
+    },
+    {
+      "team": "Lehigh",
+      "seed": 16,
+      "region": "South",
+      "wins": 0,
+      "hype_raw": 37.15,
+      "hype_normalized": 26.13,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 20.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 42.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 20.62
+        },
+        {
+          "date": "2026-03-08",
+          "value": 65.52
+        },
+        {
+          "date": "2026-03-09",
+          "value": 21.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 12.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 48.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 77.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 20.59
+        },
+        {
+          "date": "2026-03-14",
+          "value": 15.8
+        },
+        {
+          "date": "2026-03-15",
+          "value": 56.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 78.71
+        },
+        {
+          "date": "2026-03-17",
+          "value": 68.0
+        }
+      ],
+      "hype_rank": 9,
+      "performance_rank": 36,
+      "gap": -27,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/lehigh.svg"
+    },
+    {
+      "team": "Long Island",
+      "seed": 16,
+      "region": "West",
+      "wins": 0,
+      "hype_raw": 26.21,
+      "hype_normalized": 18.44,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 9.33
+        },
+        {
+          "date": "2026-03-04",
+          "value": 9.33
+        },
+        {
+          "date": "2026-03-05",
+          "value": 18.67
+        },
+        {
+          "date": "2026-03-06",
+          "value": 14.9
+        },
+        {
+          "date": "2026-03-07",
+          "value": 55.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 38.22
+        },
+        {
+          "date": "2026-03-09",
+          "value": 14.44
+        },
+        {
+          "date": "2026-03-10",
+          "value": 26.4
+        },
+        {
+          "date": "2026-03-11",
+          "value": 32.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 13.75
+        },
+        {
+          "date": "2026-03-13",
+          "value": 10.98
+        },
+        {
+          "date": "2026-03-14",
+          "value": 8.17
+        },
+        {
+          "date": "2026-03-15",
+          "value": 60.27
+        },
+        {
+          "date": "2026-03-16",
+          "value": 48.33
+        },
+        {
+          "date": "2026-03-17",
+          "value": 33.33
+        }
+      ],
+      "hype_rank": 18,
+      "performance_rank": 36,
+      "gap": -18,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/long-island.svg"
+    },
+    {
+      "team": "Siena",
+      "seed": 16,
+      "region": "East",
+      "wins": 0,
+      "hype_raw": 5.6,
+      "hype_normalized": 3.94,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 0.0
+        },
+        {
+          "date": "2026-03-09",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-10",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 14.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-13",
+          "value": 5.0
+        },
+        {
+          "date": "2026-03-14",
+          "value": 6.0
+        },
+        {
+          "date": "2026-03-15",
+          "value": 9.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 18.0
+        },
+        {
+          "date": "2026-03-17",
+          "value": 16.0
+        }
+      ],
+      "hype_rank": 49,
+      "performance_rank": 36,
+      "gap": 13,
+      "story_tag": "noise",
+      "logo_path": "/logos/siena.svg"
+    },
+    {
+      "team": "UMBC",
+      "seed": 16,
+      "region": "Midwest",
+      "wins": 0,
+      "hype_raw": 68.27,
+      "hype_normalized": 48.02,
+      "hype_daily": [
+        {
+          "date": "2026-03-03",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-04",
+          "value": 8.0
+        },
+        {
+          "date": "2026-03-05",
+          "value": 4.0
+        },
+        {
+          "date": "2026-03-06",
+          "value": 7.64
+        },
+        {
+          "date": "2026-03-07",
+          "value": 33.0
+        },
+        {
+          "date": "2026-03-08",
+          "value": 12.29
+        },
+        {
+          "date": "2026-03-09",
+          "value": 12.6
+        },
+        {
+          "date": "2026-03-10",
+          "value": 42.0
+        },
+        {
+          "date": "2026-03-11",
+          "value": 24.0
+        },
+        {
+          "date": "2026-03-12",
+          "value": 14.67
+        },
+        {
+          "date": "2026-03-13",
+          "value": 16.47
+        },
+        {
+          "date": "2026-03-14",
+          "value": 217.25
+        },
+        {
+          "date": "2026-03-15",
+          "value": 88.0
+        },
+        {
+          "date": "2026-03-16",
+          "value": 120.14
+        },
+        {
+          "date": "2026-03-17",
+          "value": 400.0
+        }
+      ],
+      "hype_rank": 3,
+      "performance_rank": 36,
+      "gap": -33,
+      "story_tag": "overhyped",
+      "logo_path": "/logos/umbc.svg"
     }
   ]
 }

@@ -16,35 +16,64 @@ A single-page editorial visualization of the gap between internet hype and tourn
 
 ```
 hype/
-├── data-pipeline/             Python — pulls hype from Google Trends, builds dataset
-│   ├── pull_trends.py         Trends pull with cross-batch normalization
-│   ├── build_dataset.py       Joins CSV + raw hype, computes ranks/gap/story_tag
-│   ├── tournament_results.csv 68-team bracket source of truth
+├── data-pipeline/                        Python — pulls hype from Google Trends, builds dataset
+│   ├── pull_trends.py                    Trends pull with cross-batch normalization (year-parameterized)
+│   ├── build_dataset.py                  Joins CSV + raw hype, computes ranks/gap/story_tag (year-parameterized)
+│   ├── tournament_results_<year>.csv     One per tournament year; 68 teams each
 │   ├── requirements.txt
-│   └── venv/                  (gitignored)
+│   └── venv/                             (gitignored)
 ├── data/
-│   └── data.json              Canonical dataset consumed by the web app
-└── web/                       Next.js 16 app
+│   └── <year>.json                       Canonical dataset, one per year. The web app currently bundles 2026.
+└── web/                                  Next.js 16 app
     ├── app/
-    │   ├── page.tsx           / — diverging gap chart
-    │   ├── bracket/page.tsx   /bracket — region grid
-    │   ├── layout.tsx         Fonts + global metadata
-    │   └── globals.css        Tailwind theme + custom @font-face
-    ├── components/            App shell + section components
-    ├── lib/data.ts            Typed dataset + color tokens
-    └── public/fonts/          Drop custom font files here
+    │   ├── page.tsx                      / — diverging gap chart
+    │   ├── bracket/page.tsx              /bracket — region grid
+    │   ├── layout.tsx                    Fonts + global metadata
+    │   └── globals.css                   Tailwind theme + custom @font-face
+    ├── components/                       App shell + section components
+    ├── lib/data.ts                       Typed dataset + color tokens
+    └── public/fonts/                     Drop custom font files here
 ```
 
 ## Quick start
 
-### Pull hype + build dataset
+### Pull hype + build dataset (existing year)
 
 ```bash
 cd data-pipeline
-./venv/bin/python pull_trends.py            # full 68-team pull (uses cache for re-runs)
-./venv/bin/python pull_trends.py --dry-run  # 3-team smoke test
-./venv/bin/python build_dataset.py          # produces ../data/data.json + sanity tables
+./venv/bin/python pull_trends.py --year 2026 --window 2026-03-03:2026-03-17            # full pull (uses cache on re-runs)
+./venv/bin/python pull_trends.py --year 2026 --window 2026-03-03:2026-03-17 --dry-run  # 3-team smoke test
+./venv/bin/python build_dataset.py --year 2026 --window 2026-03-03:2026-03-17          # produces ../data/2026.json + sanity tables
 ```
+
+`--year` and `--window` are required. `--window` must be `YYYY-MM-DD:YYYY-MM-DD` (colon-separated, exactly 15 days inclusive). `pull_trends.py` also accepts `--reference TEAM` (defaults to `Michigan` for 2026 backward compat).
+
+### Adding a tournament year
+
+Three commands. Each year is independent — adding a new year doesn't touch existing ones.
+
+```bash
+cd data-pipeline
+
+# 1. Fetch the bracket from the NCAA API
+#    Writes tournament_results_<year>.csv + cache/seonames_<year>.json
+./venv/bin/python fetch_bracket.py --year 2025
+
+# 2. Pull Google Trends hype curves for the year (writes raw_hype_<year>.csv)
+./venv/bin/python pull_trends.py --year 2025 --window 2025-03-18:2025-04-01 --reference Auburn
+
+# 3. Build the canonical dataset (writes ../data/2025.json)
+./venv/bin/python build_dataset.py --year 2025 --window 2025-03-18:2025-04-01
+```
+
+The only human decisions per year are:
+
+- **Hype window dates** — needs the tournament's actual start/end (15 days inclusive).
+- **Reference team** — needs to be a high-search-volume top seed actually in that year's field. The pipeline hard-fails if `--reference` isn't in the CSV, so picking is deliberate, not magical.
+
+**Optional:** `python fetch_logos.py --year 2025` downloads the year's team logo SVGs into `web/public/logos/`. The dataset is functional without it — `logo_path` is set to `null` per team when the SVG isn't on disk — but the logos are nice to have for any future UI work that wants them.
+
+The web UI continues to render only the bundled year (currently 2026). Adding 2025 produces `data/2025.json` for proof-of-concept and demoability without touching the live site.
 
 ### Run the web app
 
@@ -55,7 +84,7 @@ npm run dev      # localhost:3000
 npm run build    # production build
 ```
 
-`predev` and `prebuild` scripts copy `data/data.json` → `web/data.json` so it bundles into the Next.js build.
+`predev` and `prebuild` scripts copy `data/2026.json` → `web/data.json` so it bundles into the Next.js build. The web app's import target stays at `web/data.json` regardless of which year is bundled — only the source path in [web/package.json](web/package.json) changes if the bundled year ever switches.
 
 ## Editorial system
 
@@ -72,7 +101,7 @@ Asymmetric thresholds reflect the structural fact that the underhyped side of th
 
 ## Deploy
 
-Vercel auto-deploys on push to `main`. Set Vercel project's **Root Directory** to `web/` so it picks up the Next.js app, and enable "Include source files outside of the Root Directory" so the prebuild script can read `../data/data.json`.
+Vercel auto-deploys on push to `main`. Set Vercel project's **Root Directory** to `web/` so it picks up the Next.js app, and enable "Include source files outside of the Root Directory" so the prebuild script can read `../data/2026.json`.
 
 ## Brand
 
