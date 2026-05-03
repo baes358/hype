@@ -99,7 +99,12 @@ export function TimelineHeatmap({
   }, [teams]);
 
   return (
-    <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
+    // min-w-0 below: lets the section shrink below content width. Body is a
+    // flex column; flex items default to min-width: auto, so without this
+    // the heatmap grid's min-w-[680px] would expand the section past the
+    // viewport and the inner overflow-x-auto never triggers (heatmap div
+    // ends up the same width as its grid child).
+    <section className="mx-auto min-w-0 max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
@@ -138,12 +143,14 @@ export function TimelineHeatmap({
         })}
       </div>
 
-      {/* Heatmap grid: 1 label column + 15 day columns */}
-      <div className="overflow-x-auto">
+      {/* Heatmap grid: 1 label column + 15 day columns. Scrolls horizontally
+          on narrow viewports — the wrapper is w-full so the parent (a flex
+          item in body) pins its width and overflow-x-auto can take over. */}
+      <div className="w-full overflow-x-auto">
         <div
           className="grid min-w-[680px] gap-px bg-border/60"
           style={{
-            gridTemplateColumns: `minmax(140px, 180px) repeat(${windowDates.length}, minmax(28px, 1fr))`,
+            gridTemplateColumns: `minmax(120px, 180px) repeat(${windowDates.length}, minmax(28px, 1fr))`,
           }}
         >
           {/* Header row: spacer + day labels */}
