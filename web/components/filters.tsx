@@ -1,26 +1,41 @@
 "use client";
 
-import { Region, REGIONS, StoryTag, TAG_LABEL, TAG_ORDER, TAG_STYLE } from "@/lib/data";
+import {
+  Region,
+  REGIONS,
+  ROUND_LABEL,
+  ROUND_ORDER,
+  Round,
+  StoryTag,
+  TAG_LABEL,
+  TAG_ORDER,
+  TAG_STYLE,
+} from "@/lib/data";
 
 type Props = {
   selectedTags: Set<StoryTag>;
   selectedRegion: Region | "all";
+  selectedRound: Round;
   tagCounts: Record<StoryTag, number>;
   onToggleTag: (tag: StoryTag) => void;
   onSetRegion: (r: Region | "all") => void;
+  onSetRound: (r: Round) => void;
   onReset: () => void;
 };
 
 export function Filters({
   selectedTags,
   selectedRegion,
+  selectedRound,
   tagCounts,
   onToggleTag,
   onSetRegion,
+  onSetRound,
   onReset,
 }: Props) {
   const allTagsActive = selectedTags.size === TAG_ORDER.length;
-  const anyFilterActive = !allTagsActive || selectedRegion !== "all";
+  const anyFilterActive =
+    !allTagsActive || selectedRegion !== "all" || selectedRound !== "all";
 
   return (
     <div className="border-y border-border bg-background/60 backdrop-blur-sm">
@@ -87,6 +102,30 @@ export function Filters({
               Reset
             </button>
           )}
+        </div>
+
+        {/* Round filter — own row, two-line pills with date subtitles */}
+        <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
+          <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+            Round
+          </span>
+          {ROUND_ORDER.map((r) => {
+            const active = selectedRound === r;
+            return (
+              <button
+                key={r}
+                onClick={() => onSetRound(r)}
+                aria-pressed={active}
+                className={`rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-normal transition ${
+                  active
+                    ? "border-foreground bg-foreground text-background"
+                    : "border-border bg-transparent text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+                }`}
+              >
+                {ROUND_LABEL[r]}
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -14,9 +14,11 @@ import { TimelineHeatmap } from "@/components/timeline-heatmap";
 import {
   Dataset,
   Region,
+  Round,
   StoryTag,
   TAG_ORDER,
   Team,
+  applyRoundFilter,
   maxAbsGap,
   tagCounts,
 } from "@/lib/data";
@@ -71,15 +73,17 @@ export function AppShell({ data, view }: Props) {
   const [dataset, setDataset] = useState<Dataset>(data);
   const [selectedTags, setSelectedTags] = useState<Set<StoryTag>>(ALL_TAGS);
   const [selectedRegion, setSelectedRegion] = useState<Region | "all">("all");
+  const [selectedRound, setSelectedRound] = useState<Round>("all");
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
 
   const filteredTeams = useMemo(() => {
-    return dataset.teams.filter((t) => {
+    const tagRegion = dataset.teams.filter((t) => {
       if (!selectedTags.has(t.story_tag)) return false;
       if (selectedRegion !== "all" && t.region !== selectedRegion) return false;
       return true;
     });
-  }, [dataset.teams, selectedTags, selectedRegion]);
+    return applyRoundFilter(tagRegion, selectedRound);
+  }, [dataset.teams, selectedTags, selectedRegion, selectedRound]);
 
   // Counts and bar scale always reflect the FULL dataset, not the filtered view —
   // otherwise filtering rescales the bars and breaks visual comparison.
@@ -116,6 +120,7 @@ export function AppShell({ data, view }: Props) {
   const onReset = () => {
     setSelectedTags(new Set(ALL_TAGS));
     setSelectedRegion("all");
+    setSelectedRound("all");
   };
 
   return (
@@ -133,9 +138,11 @@ export function AppShell({ data, view }: Props) {
       <Filters
         selectedTags={selectedTags}
         selectedRegion={selectedRegion}
+        selectedRound={selectedRound}
         tagCounts={counts}
         onToggleTag={onToggleTag}
         onSetRegion={setSelectedRegion}
+        onSetRound={setSelectedRound}
         onReset={onReset}
       />
 

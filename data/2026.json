@@ -4,7 +4,7 @@
     "hype_window_start": "2026-03-03",
     "hype_window_end": "2026-03-17",
     "total_teams": 68,
-    "data_pulled_at": "2026-05-03T06:16:18.028318+00:00"
+    "data_pulled_at": "2026-05-03T17:26:00.449991+00:00"
   },
   "finding": "HYPE vs. PERFORMANCE",
   "teams": [
@@ -81,6 +81,7 @@
       "performance_rank": 1,
       "gap": 11,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/michigan.svg"
     },
     {
@@ -156,6 +157,7 @@
       "performance_rank": 2,
       "gap": 13,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/uconn.svg"
     },
     {
@@ -231,6 +233,7 @@
       "performance_rank": 3,
       "gap": 11,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/arizona.svg"
     },
     {
@@ -306,6 +309,7 @@
       "performance_rank": 3,
       "gap": 35,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/illinois.svg"
     },
     {
@@ -381,6 +385,7 @@
       "performance_rank": 5,
       "gap": 11,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/duke.svg"
     },
     {
@@ -456,6 +461,7 @@
       "performance_rank": 5,
       "gap": 26,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/purdue.svg"
     },
     {
@@ -531,6 +537,7 @@
       "performance_rank": 5,
       "gap": 35,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/tennessee.svg"
     },
     {
@@ -606,6 +613,7 @@
       "performance_rank": 5,
       "gap": 3,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/iowa.svg"
     },
     {
@@ -681,6 +689,7 @@
       "performance_rank": 5,
       "gap": 18,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/texas.svg"
     },
     {
@@ -756,6 +765,7 @@
       "performance_rank": 10,
       "gap": 10,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/houston.svg"
     },
     {
@@ -831,6 +841,7 @@
       "performance_rank": 10,
       "gap": 23,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/iowa-st.svg"
     },
     {
@@ -906,6 +917,7 @@
       "performance_rank": 10,
       "gap": 24,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/michigan-st.svg"
     },
     {
@@ -981,6 +993,7 @@
       "performance_rank": 10,
       "gap": 36,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/alabama.svg"
     },
     {
@@ -1056,6 +1069,7 @@
       "performance_rank": 10,
       "gap": 7,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/arkansas.svg"
     },
     {
@@ -1131,6 +1145,7 @@
       "performance_rank": 10,
       "gap": 27,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/nebraska.svg"
     },
     {
@@ -1206,6 +1221,7 @@
       "performance_rank": 10,
       "gap": -6,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/st-johns-ny.svg"
     },
     {
@@ -1281,6 +1297,7 @@
       "performance_rank": 17,
       "gap": -15,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/florida.svg"
     },
     {
@@ -1356,6 +1373,7 @@
       "performance_rank": 17,
       "gap": 41,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/gonzaga.svg"
     },
     {
@@ -1431,6 +1449,7 @@
       "performance_rank": 17,
       "gap": 22,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/virginia.svg"
     },
     {
@@ -1506,6 +1525,7 @@
       "performance_rank": 17,
       "gap": 11,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/kansas.svg"
     },
     {
@@ -1581,6 +1601,7 @@
       "performance_rank": 17,
       "gap": 39,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/texas-tech.svg"
     },
     {
@@ -1656,6 +1677,7 @@
       "performance_rank": 17,
       "gap": 27,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/vanderbilt.svg"
     },
     {
@@ -1731,6 +1753,7 @@
       "performance_rank": 17,
       "gap": 24,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/louisville.svg"
     },
     {
@@ -1806,6 +1829,7 @@
       "performance_rank": 17,
       "gap": 8,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/kentucky.svg"
     },
     {
@@ -1881,6 +1905,7 @@
       "performance_rank": 17,
       "gap": 5,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/miami-fl.svg"
     },
     {
@@ -1956,6 +1981,7 @@
       "performance_rank": 17,
       "gap": 19,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/ucla.svg"
     },
     {
@@ -2031,6 +2057,7 @@
       "performance_rank": 17,
       "gap": 36,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/saint-louis.svg"
     },
     {
@@ -2106,6 +2133,7 @@
       "performance_rank": 17,
       "gap": 34,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/tcu.svg"
     },
     {
@@ -2181,6 +2209,7 @@
       "performance_rank": 17,
       "gap": 47,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/utah-st.svg"
     },
     {
@@ -2256,6 +2285,7 @@
       "performance_rank": 17,
       "gap": 44,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/texas-am.svg"
     },
     {
@@ -2331,6 +2361,7 @@
       "performance_rank": 17,
       "gap": 9,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/miami-oh.svg"
     },
     {
@@ -2406,6 +2437,7 @@
       "performance_rank": 17,
       "gap": 37,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/vcu.svg"
     },
     {
@@ -2481,6 +2513,7 @@
       "performance_rank": 17,
       "gap": -11,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/high-point.svg"
     },
     {
@@ -2556,6 +2589,7 @@
       "performance_rank": 17,
       "gap": 45,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/howard.svg"
     },
     {
@@ -2631,6 +2665,7 @@
       "performance_rank": 17,
       "gap": 12,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/prairie-view.svg"
     },
     {
@@ -2706,6 +2741,7 @@
       "performance_rank": 36,
       "gap": -29,
       "story_tag": "overhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/wisconsin.svg"
     },
     {
@@ -2781,6 +2817,7 @@
       "performance_rank": 36,
       "gap": 9,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/byu.svg"
     },
     {
@@ -2856,6 +2893,7 @@
       "performance_rank": 36,
       "gap": -1,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/north-carolina.svg"
     },
     {
@@ -2931,6 +2969,7 @@
       "performance_rank": 36,
       "gap": 14,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/st-marys-ca.svg"
     },
     {
@@ -3006,6 +3045,7 @@
       "performance_rank": 36,
       "gap": 9,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/clemson.svg"
     },
     {
@@ -3081,6 +3121,7 @@
       "performance_rank": 36,
       "gap": 11,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/georgia.svg"
     },
     {
@@ -3156,6 +3197,7 @@
       "performance_rank": 36,
       "gap": -4,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/ohio-st.svg"
     },
     {
@@ -3231,6 +3273,7 @@
       "performance_rank": 36,
       "gap": 19,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/villanova.svg"
     },
     {
@@ -3306,6 +3349,7 @@
       "performance_rank": 36,
       "gap": 6,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/missouri.svg"
     },
     {
@@ -3381,6 +3425,7 @@
       "performance_rank": 36,
       "gap": 29,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/santa-clara.svg"
     },
     {
@@ -3456,6 +3501,7 @@
       "performance_rank": 36,
       "gap": 24,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/ucf.svg"
     },
     {
@@ -3531,6 +3577,7 @@
       "performance_rank": 36,
       "gap": -35,
       "story_tag": "overhyped",
+      "made_main_bracket": false,
       "logo_path": "/logos/north-carolina-st.svg"
     },
     {
@@ -3606,6 +3653,7 @@
       "performance_rank": 36,
       "gap": -31,
       "story_tag": "overhyped",
+      "made_main_bracket": false,
       "logo_path": "/logos/smu.svg"
     },
     {
@@ -3681,6 +3729,7 @@
       "performance_rank": 36,
       "gap": 23,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/south-fla.svg"
     },
     {
@@ -3756,6 +3805,7 @@
       "performance_rank": 36,
       "gap": 12,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/akron.svg"
     },
     {
@@ -3831,6 +3881,7 @@
       "performance_rank": 36,
       "gap": -26,
       "story_tag": "overhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/mcneese.svg"
     },
     {
@@ -3906,6 +3957,7 @@
       "performance_rank": 36,
       "gap": -15,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/uni.svg"
     },
     {
@@ -3981,6 +4033,7 @@
       "performance_rank": 36,
       "gap": -6,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/california-baptist.svg"
     },
     {
@@ -4056,6 +4109,7 @@
       "performance_rank": 36,
       "gap": 16,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/hawaii.svg"
     },
     {
@@ -4131,6 +4185,7 @@
       "performance_rank": 36,
       "gap": 24,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/hofstra.svg"
     },
     {
@@ -4206,6 +4261,7 @@
       "performance_rank": 36,
       "gap": 30,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/troy.svg"
     },
     {
@@ -4281,6 +4337,7 @@
       "performance_rank": 36,
       "gap": -12,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/kennesaw-st.svg"
     },
     {
@@ -4356,6 +4413,7 @@
       "performance_rank": 36,
       "gap": -9,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/north-dakota-st.svg"
     },
     {
@@ -4431,6 +4489,7 @@
       "performance_rank": 36,
       "gap": 21,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/penn.svg"
     },
     {
@@ -4506,6 +4565,7 @@
       "performance_rank": 36,
       "gap": -17,
       "story_tag": "overhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/wright-st.svg"
     },
     {
@@ -4581,6 +4641,7 @@
       "performance_rank": 36,
       "gap": -23,
       "story_tag": "overhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/furman.svg"
     },
     {
@@ -4656,6 +4717,7 @@
       "performance_rank": 36,
       "gap": 7,
       "story_tag": "as_expected",
+      "made_main_bracket": true,
       "logo_path": "/logos/idaho.svg"
     },
     {
@@ -4731,6 +4793,7 @@
       "performance_rank": 36,
       "gap": 27,
       "story_tag": "underhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/queens-nc.svg"
     },
     {
@@ -4806,6 +4869,7 @@
       "performance_rank": 36,
       "gap": -25,
       "story_tag": "overhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/tennessee-st.svg"
     },
     {
@@ -4881,6 +4945,7 @@
       "performance_rank": 36,
       "gap": -27,
       "story_tag": "overhyped",
+      "made_main_bracket": false,
       "logo_path": "/logos/lehigh.svg"
     },
     {
@@ -4956,6 +5021,7 @@
       "performance_rank": 36,
       "gap": -18,
       "story_tag": "overhyped",
+      "made_main_bracket": true,
       "logo_path": "/logos/long-island.svg"
     },
     {
@@ -5031,6 +5097,7 @@
       "performance_rank": 36,
       "gap": 13,
       "story_tag": "noise",
+      "made_main_bracket": true,
       "logo_path": "/logos/siena.svg"
     },
     {
@@ -5106,6 +5173,7 @@
       "performance_rank": 36,
       "gap": -33,
       "story_tag": "overhyped",
+      "made_main_bracket": false,
       "logo_path": "/logos/umbc.svg"
     }
   ]

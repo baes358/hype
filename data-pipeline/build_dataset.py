@@ -151,6 +151,18 @@ def main() -> int:
     df["story_tag"] = df["gap"].apply(story_tag)
     df["hype_raw"] = df["hype_raw"].round(2)
 
+    # Flag First Four losers via duplicate (region, seed) detection. The NCAA
+    # bracket only ever has duplicates for First Four matchups: both teams in a
+    # play-in inherit the winner's destination region+seed. The lower-wins team
+    # in each pair is the loser; everyone else made the main 64-team bracket.
+    df["made_main_bracket"] = True
+    duplicated = df.duplicated(subset=["region", "seed"], keep=False)
+    if duplicated.any():
+        ff_losers = df[duplicated].loc[
+            df[duplicated].groupby(["region", "seed"])["wins"].idxmin()
+        ].index
+        df.loc[ff_losers, "made_main_bracket"] = False
+
     teams = []
     for _, r in df.iterrows():
         daily_rounded = [
@@ -178,6 +190,7 @@ def main() -> int:
             "performance_rank": int(r["performance_rank"]),
             "gap": int(r["gap"]),
             "story_tag": r["story_tag"],
+            "made_main_bracket": bool(r["made_main_bracket"]),
             "logo_path": logo_path,
         })
 

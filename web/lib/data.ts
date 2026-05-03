@@ -15,8 +15,33 @@ export type Team = {
   performance_rank: number;
   gap: number;
   story_tag: StoryTag;
+  made_main_bracket: boolean;
   logo_path: string | null;
 };
+
+export type Round = "all" | "first" | "second" | "sweet16" | "elite8" | "final4";
+
+export const ROUND_ORDER: Round[] = ["all", "first", "second", "sweet16", "elite8", "final4"];
+
+export const ROUND_LABEL: Record<Round, string> = {
+  all: "All 68",
+  first: "First Round",
+  second: "Second Round",
+  sweet16: "Sweet 16",
+  elite8: "Elite Eight",
+  final4: "Final Four",
+};
+
+export function applyRoundFilter(teams: Team[], round: Round): Team[] {
+  switch (round) {
+    case "all":     return teams;
+    case "first":   return teams.filter((t) => t.made_main_bracket);
+    case "second":  return teams.filter((t) => t.wins >= 1);
+    case "sweet16": return teams.filter((t) => t.wins >= 2);
+    case "elite8":  return teams.filter((t) => t.wins >= 3);
+    case "final4":  return teams.filter((t) => t.wins >= 4);
+  }
+}
 
 export type Dataset = {
   metadata: {
