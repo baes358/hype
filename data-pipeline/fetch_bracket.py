@@ -24,6 +24,7 @@ import argparse
 import json
 import sys
 import time
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -35,6 +36,15 @@ CACHE_DIR = PIPELINE_DIR / "cache"
 API_BASE = "https://ncaa-api.henrygd.me"
 RATE_LIMIT_SLEEP = 0.25  # seconds between API calls (per API docs: 5 req/sec)
 REQUEST_TIMEOUT = 30
+
+# Hype window formula: (Selection Sunday − N days) to (Selection Sunday + M days),
+# 15 days inclusive. Captures pre-bracket-reveal hype build-up + Selection Sunday
+# peak + the First Four / R64 / R32 weekend + early Sweet 16 prep. Matches the
+# 2025 window exactly; 2026 predates this formula and uses an earlier window
+# (see CLAUDE.md "Open follow-ups").
+SS_OFFSET_BEFORE = 5
+SS_OFFSET_AFTER = 9
+WINDOW_DAYS = SS_OFFSET_BEFORE + 1 + SS_OFFSET_AFTER  # 15 — must match WINDOW_DAYS_INCLUSIVE in pull_trends.py / build_dataset.py
 
 # sectionId encoding observed in NCAA API responses:
 #   1 = First Four (region inherited from winner's destination bracket position)
@@ -88,6 +98,33 @@ def fetch_bracket_json(year: int, cache_path: Path) -> dict:
 
 def normalize_team_name(api_name: str) -> str:
     return NAME_NORMALIZE.get(api_name, api_name)
+
+
+def derive_window_from_bracket(bracket_data: dict) -> str:
+    """
+    Derive the canonical 15-day hype window from a cached NCAA bracket
+    response. Returns 'YYYY-MM-DD:YYYY-MM-DD' suitable for --window.
+
+    Selection Sunday = the Sunday on or before the earliest game's startDate
+    (which is a Tuesday for First Four years, or a Thursday for non-FF years).
+    Window = (SS - SS_OFFSET_BEFORE days) to (SS + SS_OFFSET_AFTER days),
+    inclusive — total span = WINDOW_DAYS.
+
+    Imported by pull_trends.py and build_dataset.py via their resolve_window()
+    helpers when --window is omitted on the CLI.
+    """
+    games = bracket_data["championships"][0]["games"]
+    earliest = min(
+        datetime.strptime(g["startDate"], "%m/%d/%Y").date()
+        for g in games
+    )
+    # weekday(): Monday=0, ..., Sunday=6. Distance back to the most recent
+    # Sunday (or 0 if `earliest` is already Sunday).
+    days_back = (earliest.weekday() - 6) % 7
+    ss = earliest - timedelta(days=days_back)
+    start = ss - timedelta(days=SS_OFFSET_BEFORE)
+    end = ss + timedelta(days=SS_OFFSET_AFTER)
+    return f"{start.isoformat()}:{end.isoformat()}"
 
 
 def parse_bracket(data: dict) -> tuple[pd.DataFrame, dict[str, str]]:

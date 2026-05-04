@@ -70,6 +70,29 @@ def parse_window(s: str) -> str:
     return s
 
 
+def resolve_window(year: int, explicit: str | None) -> str:
+    """
+    Pick the effective hype window: explicit --window if provided, otherwise
+    derive from the cached NCAA bracket via fetch_bracket.derive_window_from_bracket.
+
+    Hard-fails with a clear next-step message if the user didn't provide
+    --window AND fetch_bracket.py hasn't been run yet for this year.
+    """
+    if explicit is not None:
+        return explicit
+    cache_path = CACHE_DIR / f"ncaa_bracket_{year}.json"
+    if not cache_path.exists():
+        raise SystemExit(
+            f"ERROR: --window not provided AND {cache_path.relative_to(PIPELINE_DIR)} "
+            f"does not exist. Either pass --window YYYY-MM-DD:YYYY-MM-DD explicitly, "
+            f"or run `python fetch_bracket.py --year {year}` first."
+        )
+    from fetch_bracket import derive_window_from_bracket
+    bracket = json.loads(cache_path.read_text())
+    derived = derive_window_from_bracket(bracket)
+    return parse_window(derived)
+
+
 def story_tag(gap: int) -> str:
     if gap <= -15:
         return "overhyped"
@@ -89,8 +112,13 @@ def main() -> int:
         help="Tournament year (e.g. 2026). Drives input/output paths and metadata.",
     )
     parser.add_argument(
-        "--window", type=parse_window, required=True,
-        help="Hype window: YYYY-MM-DD:YYYY-MM-DD (must match the --window used for pull_trends.py).",
+        "--window", type=parse_window, default=None,
+        help=(
+            "Hype window: YYYY-MM-DD:YYYY-MM-DD. Optional — if omitted, "
+            "auto-derived from cache/ncaa_bracket_<year>.json (must match the "
+            "window used for pull_trends.py — both sides of the pipeline read "
+            "the same source of truth)."
+        ),
     )
     args = parser.parse_args()
 
@@ -98,7 +126,10 @@ def main() -> int:
     tournament_csv = PIPELINE_DIR / f"tournament_results_{year}.csv"
     raw_hype_csv = PIPELINE_DIR / f"raw_hype_{year}.csv"
     output_json = REPO_ROOT / "data" / f"{year}.json"
-    window_start, window_end = args.window.split(":")
+    window = resolve_window(year, args.window)
+    if args.window is None:
+        print(f"[window] auto-derived from bracket cache: {window}")
+    window_start, window_end = window.split(":")
 
     # Load seoname map if present (produced by fetch_bracket.py). logo_path is
     # set on each team only when (a) we have a seoname AND (b) the SVG file

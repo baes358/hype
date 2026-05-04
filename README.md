@@ -41,12 +41,15 @@ hype/
 
 ```bash
 cd data-pipeline
+# 2026 uses an explicit --window because its window predates the auto-derive
+# formula. See the "Adding a tournament year" section below for the
+# auto-derived workflow used by every other year.
 ./venv/bin/python pull_trends.py --year 2026 --window 2026-03-03:2026-03-17            # full pull (uses cache on re-runs)
 ./venv/bin/python pull_trends.py --year 2026 --window 2026-03-03:2026-03-17 --dry-run  # 3-team smoke test
 ./venv/bin/python build_dataset.py --year 2026 --window 2026-03-03:2026-03-17          # produces ../data/2026.json + sanity tables
 ```
 
-`--year` and `--window` are required. `--window` must be `YYYY-MM-DD:YYYY-MM-DD` (colon-separated, exactly 15 days inclusive). `pull_trends.py` also accepts `--reference TEAM` (defaults to `Michigan` for 2026 backward compat).
+`--year` is required. `--window` is optional — if omitted, it's auto-derived from the cached NCAA bracket via the `(Selection Sunday − 5, Selection Sunday + 9)` formula. Pass it explicitly only when you need to override (as 2026 does). `--window` format: `YYYY-MM-DD:YYYY-MM-DD` (colon-separated, exactly 15 days inclusive). `pull_trends.py` also accepts `--reference TEAM` (defaults to `Michigan` for 2026 backward compat).
 
 ### Adding a tournament year
 
@@ -56,20 +59,21 @@ Three commands. Each year is independent — adding a new year doesn't touch exi
 cd data-pipeline
 
 # 1. Fetch the bracket from the NCAA API
-#    Writes tournament_results_<year>.csv + cache/seonames_<year>.json
-./venv/bin/python fetch_bracket.py --year 2025
+#    Writes tournament_results_<year>.csv + cache/seonames_<year>.json + cache/ncaa_bracket_<year>.json
+./venv/bin/python fetch_bracket.py --year 2027
 
-# 2. Pull Google Trends hype curves for the year (writes raw_hype_<year>.csv)
-./venv/bin/python pull_trends.py --year 2025 --window 2025-03-18:2025-04-01 --reference Auburn
+# 2. Pull Google Trends hype curves for the year (window auto-derived from bracket cache)
+./venv/bin/python pull_trends.py --year 2027 --reference Florida
 
-# 3. Build the canonical dataset (writes ../data/2025.json)
-./venv/bin/python build_dataset.py --year 2025 --window 2025-03-18:2025-04-01
+# 3. Build the canonical dataset (writes ../data/2027.json)
+./venv/bin/python build_dataset.py --year 2027
 ```
 
-The only human decisions per year are:
+The only genuinely editorial decision per year is:
 
-- **Hype window dates** — needs the tournament's actual start/end (15 days inclusive).
-- **Reference team** — needs to be a high-search-volume top seed actually in that year's field. The pipeline hard-fails if `--reference` isn't in the CSV, so picking is deliberate, not magical.
+- **Reference team** — needs to be a high-search-volume top seed actually in that year's field, with a non-zero search baseline on every day of the window. The eventual champion is the safest pick. The pipeline hard-fails if `--reference` isn't in the CSV, so picking is deliberate, not magical.
+
+The hype window itself is auto-derived from the NCAA API bracket (Selection Sunday − 5 days through Selection Sunday + 9 days, 15 days inclusive). To override — e.g. for the 2026 backward-compat window — pass `--window YYYY-MM-DD:YYYY-MM-DD` explicitly to both `pull_trends.py` and `build_dataset.py`.
 
 **Optional:** `python fetch_logos.py --year 2025` downloads the year's team logo SVGs into `web/public/logos/`. The dataset is functional without it — `logo_path` is set to `null` per team when the SVG isn't on disk — but the logos are nice to have for any future UI work that wants them.
 

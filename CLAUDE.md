@@ -170,14 +170,16 @@ To retheme story_tag colors (or invert which tag is "danger" coded), edit `TAG_S
 
 ## Common workflows
 
-The pipeline is year-parameterized as of 2026-05-03. Both `pull_trends.py` and `build_dataset.py` REQUIRE `--year` and `--window` (no year-less default exists). CSVs, caches, and outputs are all year-suffixed: `tournament_results_<year>.csv`, `cache/raw_trends_<year>.json`, `raw_hype_<year>.csv`, `data/<year>.json`.
+The pipeline is year-parameterized as of 2026-05-03. Both `pull_trends.py` and `build_dataset.py` REQUIRE `--year`. CSVs, caches, and outputs are all year-suffixed: `tournament_results_<year>.csv`, `cache/raw_trends_<year>.json`, `raw_hype_<year>.csv`, `data/<year>.json`.
+
+`--window` is **optional** (auto-derived from the bracket cache as of 2026-05-04 — see [Hype window auto-derive](#hype-window-auto-derive) below). Pass it explicitly only to override the formula (e.g. for the 2026 backward-compat window).
 
 ### Add a team to a year's dataset
 
 1. Add row to `tournament_results_<year>.csv` (e.g. [tournament_results_2026.csv](data-pipeline/tournament_results_2026.csv))
 2. Add entry to `TEAM_QUERY_MAP` in [pull_trends.py](data-pipeline/pull_trends.py) (apply Flag 2 rules). The map is shared across years — if a team is in multiple years' CSVs, one entry covers them all.
-3. `cd data-pipeline && ./venv/bin/python pull_trends.py --year YYYY --window YYYY-MM-DD:YYYY-MM-DD` (cache skips existing teams, only queries new ones)
-4. `./venv/bin/python build_dataset.py --year YYYY --window YYYY-MM-DD:YYYY-MM-DD`
+3. `cd data-pipeline && ./venv/bin/python pull_trends.py --year YYYY` (cache skips existing teams, only queries new ones; window auto-derives from bracket cache)
+4. `./venv/bin/python build_dataset.py --year YYYY`
 5. `cd ../web && npm run dev` (or build)
 
 ### Refine a team's query
@@ -185,7 +187,7 @@ The pipeline is year-parameterized as of 2026-05-03. Both `pull_trends.py` and `
 1. Test variants in a Python REPL with the year's reference team as anchor
 2. Update `TEAM_QUERY_MAP` entry in [pull_trends.py](data-pipeline/pull_trends.py)
 3. Delete that team from `cache/raw_trends_<year>.json` (snippet below)
-4. Rerun `pull_trends.py --year YYYY --window ...` (re-queries only that team) + `build_dataset.py --year YYYY --window ...`
+4. Rerun `pull_trends.py --year YYYY` (re-queries only that team) + `build_dataset.py --year YYYY`
 
 ```python
 import json
@@ -200,17 +202,25 @@ p.write_text(json.dumps(c, indent=2))
 
 Findings are authored, not derived. Edit the `FINDINGS` dict in [data-pipeline/findings.py](data-pipeline/findings.py) — one entry per year, e.g. `2026: "HYPE vs. PERFORMANCE"`. Years not in the dict get `"[finding TBD]"` automatically (rendered italicized + muted in the hero as a visible "still to do" marker).
 
-Then rerun `build_dataset.py --year YYYY --window ...` and `cd web && npm run build`.
+Then rerun `build_dataset.py --year YYYY` and `cd web && npm run build`.
 
 Do **not** edit `data/<year>.json` directly — `build_dataset.py` regenerates it from CSV + raw_hype + findings.py and will overwrite manual edits. The findings module is the single source of truth.
 
 ### Adjust story_tag thresholds
 
-[data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69), then rerun `build_dataset.py --year YYYY --window ...`. Print of distribution at the bottom of stdout helps tune.
+[data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69), then rerun `build_dataset.py --year YYYY`. Print of distribution at the bottom of stdout helps tune.
+
+### Hype window auto-derive
+
+Window formula (as of 2026-05-04): `(Selection Sunday − 5 days) to (Selection Sunday + 9 days)`, 15 days inclusive. Selection Sunday is derived as the Sunday on or before the earliest game's `startDate` in the cached NCAA bracket (`cache/ncaa_bracket_<year>.json`). Helper lives in [fetch_bracket.py](data-pipeline/fetch_bracket.py) as `derive_window_from_bracket()`; both `pull_trends.py` and `build_dataset.py` call it via `resolve_window()` when `--window` is omitted.
+
+**Workflow contract:** `fetch_bracket.py` must run before `pull_trends.py` / `build_dataset.py` if you're relying on auto-derive. If the bracket cache is missing AND `--window` isn't passed, both scripts hard-fail with a clear "run fetch_bracket.py first" message.
+
+**2026 historical inconsistency:** 2026's window was set on day one of the project (`2026-03-03 to 2026-03-17`) before any methodology was articulated. The auto-derive formula would produce `2026-03-10 to 2026-03-24` for 2026, but we don't reconcile retroactively — re-pulling 2026 would invalidate 68 cached Trends queries and shift the live editorial output. Always pass `--window 2026-03-03:2026-03-17` explicitly when re-running 2026; for any other year, omit `--window` and let auto-derive take over.
 
 ### --window format
 
-Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects space-separated input, partial dates, and any window length other than 15 days inclusive. Internal conversion to pytrends' space-separated format happens at the use-site only — the canonical form on the CLI is colon-separated.
+Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects space-separated input, partial dates, and any window length other than 15 days inclusive. Internal conversion to pytrends' space-separated format happens at the use-site only — the canonical form on the CLI is colon-separated. The auto-derived value goes through the same validator before use, so a malformed bracket cache surfaces as a clear error rather than silent garbage.
 
 ## Anti-patterns — do not suggest
 

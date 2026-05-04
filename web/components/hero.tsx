@@ -14,11 +14,16 @@ function formatPulled(iso: string): string {
   }
 }
 
+// Parse the ISO date string directly — `new Date("YYYY-MM-DD")` reads as
+// UTC midnight, and `.toLocaleDateString()` then shifts to the viewer's
+// local timezone, subtracting a day in any negative-offset zone (US is
+// UTC-5 to -8). Same trap previously fixed in timeline-heatmap.tsx.
+const MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
+
 function formatWindow(start: string, end: string): string {
-  const s = new Date(start);
-  const e = new Date(end);
-  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
-  return `${s.toLocaleDateString(undefined, opts)} – ${e.toLocaleDateString(undefined, opts)}, ${e.getFullYear()}`;
+  const [, sm, sd] = start.split("-").map(Number);
+  const [ey, em, ed] = end.split("-").map(Number);
+  return `${MONTHS_SHORT[sm - 1]} ${sd} – ${MONTHS_SHORT[em - 1]} ${ed}, ${ey}`;
 }
 
 export function Hero({ data }: Props) {
