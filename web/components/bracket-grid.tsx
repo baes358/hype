@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+
 import { Region, REGIONS, Team, TAG_STYLE } from "@/lib/data";
 
 type Props = {
@@ -9,6 +12,19 @@ type Props = {
 };
 
 export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
+  // Tracks which regions are expanded on mobile. Only `<sm` viewports check
+  // this — the team list has `sm:block` so desktop ignores it entirely.
+  const [expanded, setExpanded] = useState<Set<Region>>(
+    () => new Set([REGIONS[0]])
+  );
+  const toggle = (r: Region) => {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(r)) next.delete(r);
+      else next.add(r);
+      return next;
+    });
+  };
   const byRegion: Record<Region, Team[]> = {
     East: [],
     West: [],
@@ -41,17 +57,32 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
       </header>
 
       <div className="grid grid-cols-1 gap-px bg-border/60 sm:grid-cols-2 lg:grid-cols-4">
-        {REGIONS.map((region) => (
+        {REGIONS.map((region) => {
+          const isOpen = expanded.has(region);
+          const listId = `bracket-region-${region.toLowerCase()}`;
+          return (
           <div key={region} className="bg-background">
-            <div className="flex items-baseline justify-between border-b border-border px-4 py-3">
-              <h3 className="font-mono text-[10px] uppercase tracking-normal text-foreground">
+            <button
+              type="button"
+              onClick={() => toggle(region)}
+              aria-expanded={isOpen}
+              aria-controls={listId}
+              className="flex w-full items-baseline justify-between border-b border-border px-4 py-3 text-left transition hover:bg-foreground/[0.02] sm:cursor-default sm:hover:bg-transparent"
+            >
+              <h3 className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-normal text-foreground">
                 {region}
+                <ChevronDown
+                  aria-hidden="true"
+                  className={`size-3 text-muted-foreground transition-transform sm:hidden ${
+                    isOpen ? "rotate-180" : ""
+                  }`}
+                />
               </h3>
               <span className="font-mono text-[9px] tabular-nums text-muted-foreground">
                 {byRegion[region].length} teams
               </span>
-            </div>
-            <ul>
+            </button>
+            <ul id={listId} className={`${isOpen ? "" : "hidden"} sm:block`}>
               {byRegion[region].map((t) => {
                 const style = TAG_STYLE[t.story_tag];
                 const isSelected = selectedTeam === t.team;
@@ -97,7 +128,8 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
               })}
             </ul>
           </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

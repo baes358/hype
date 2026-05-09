@@ -37,8 +37,8 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
         </div>
       </header>
 
-      {/* Axis labels */}
-      <div className="mb-2 grid grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+      {/* Desktop axis labels */}
+      <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-[9px] uppercase tracking-normal text-muted-foreground sm:grid">
         <div className="flex items-center justify-end gap-2 pr-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           ← Overhyped
@@ -48,6 +48,18 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
           Underhyped →
           <span className="size-1.5 rounded-full bg-sky-500" />
         </div>
+      </div>
+
+      {/* Mobile axis labels — bar position itself communicates the direction */}
+      <div className="mb-2 flex items-center justify-between font-mono text-[9px] uppercase tracking-normal text-muted-foreground sm:hidden">
+        <span className="flex items-center gap-2">
+          <span className="size-1.5 rounded-full bg-rose-500" />
+          Overhyped
+        </span>
+        <span className="flex items-center gap-2">
+          Underhyped
+          <span className="size-1.5 rounded-full bg-sky-500" />
+        </span>
       </div>
 
       {/* Bar rows */}
@@ -67,59 +79,101 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
             >
               <button
                 onClick={() => onSelect(t)}
-                className="grid w-full grid-cols-[minmax(0,1fr)_2px_minmax(0,1fr)] items-center py-2.5 text-left"
+                className="block w-full text-left"
               >
-                {/* LEFT half — overhyped lives here */}
-                <div className="flex items-center justify-end gap-3 pr-3">
-                  {isOver && (
-                    <>
-                      <div className="flex min-w-0 flex-1 items-center justify-end gap-3">
-                        <span className="truncate text-sm text-foreground">
-                          {t.team}{" "}
-                          <span className="text-muted-foreground">
-                            <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
-                          </span>
-                        </span>
+                {/* MOBILE: single-bar row, anchored left for overhyped, right for underhyped */}
+                <div className="relative h-10 w-full sm:hidden">
+                  <div
+                    style={{ width: `${widthPct}%` }}
+                    className={`absolute inset-y-0 ${isOver ? "left-0" : "right-0"} ${style.bar} opacity-25 transition-all`}
+                  />
+                  <div
+                    className={`relative flex h-full items-center gap-3 px-3 ${
+                      isOver ? "justify-start" : "justify-end"
+                    }`}
+                  >
+                    {isOver ? (
+                      <>
                         <span className="font-mono text-[10px] tabular-nums text-rose-600">
                           {t.gap}
                         </span>
-                      </div>
-                      <div
-                        style={{ width: `${widthPct}%` }}
-                        className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
-                      />
-                    </>
-                  )}
-                </div>
-
-                {/* CENTER axis */}
-                <div
-                  className={`h-6 w-px ${
-                    isSelected ? "bg-foreground" : "bg-border"
-                  }`}
-                />
-
-                {/* RIGHT half — underhyped lives here */}
-                <div className="flex items-center gap-3 pl-3">
-                  {!isOver && (
-                    <>
-                      <div
-                        style={{ width: `${widthPct}%` }}
-                        className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
-                      />
-                      <div className="flex min-w-0 flex-1 items-center gap-3">
+                        <span className="truncate text-sm text-foreground">
+                          {t.team}
+                        </span>
+                        <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+                          {String(t.seed).padStart(2, "0")}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+                          {String(t.seed).padStart(2, "0")}
+                        </span>
+                        <span className="truncate text-sm text-foreground">
+                          {t.team}
+                        </span>
                         <span className="font-mono text-[10px] tabular-nums text-sky-700">
                           +{t.gap}
                         </span>
-                        <span className="truncate text-sm text-foreground">
-                          {t.team}{" "}
-                          <span className="text-muted-foreground">
-                            <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* DESKTOP: 3-col butterfly */}
+                <div className="hidden grid-cols-[minmax(0,1fr)_2px_minmax(0,1fr)] items-center py-2.5 sm:grid">
+                  {/* LEFT half — overhyped lives here */}
+                  <div className="flex items-center justify-end gap-3 pr-3">
+                    {isOver && (
+                      <>
+                        <div className="flex min-w-0 flex-1 items-center justify-end gap-3">
+                          <span className="truncate text-sm text-foreground">
+                            {t.team}{" "}
+                            <span className="text-muted-foreground">
+                              <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
+                            </span>
                           </span>
-                        </span>
-                      </div>
-                    </>
-                  )}
+                          <span className="font-mono text-[10px] tabular-nums text-rose-600">
+                            {t.gap}
+                          </span>
+                        </div>
+                        <div
+                          style={{ width: `${widthPct}%` }}
+                          className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
+                        />
+                      </>
+                    )}
+                  </div>
+
+                  {/* CENTER axis */}
+                  <div
+                    className={`h-6 w-px ${
+                      isSelected ? "bg-foreground" : "bg-border"
+                    }`}
+                  />
+
+                  {/* RIGHT half — underhyped lives here */}
+                  <div className="flex items-center gap-3 pl-3">
+                    {!isOver && (
+                      <>
+                        <div
+                          style={{ width: `${widthPct}%` }}
+                          className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
+                        />
+                        <div className="flex min-w-0 flex-1 items-center gap-3">
+                          <span className="font-mono text-[10px] tabular-nums text-sky-700">
+                            +{t.gap}
+                          </span>
+                          <span className="truncate text-sm text-foreground">
+                            {t.team}{" "}
+                            <span className="text-muted-foreground">
+                              <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
+                            </span>
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               </button>
             </li>

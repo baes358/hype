@@ -1,8 +1,25 @@
 "use client";
 
-import { Fragment, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Team } from "@/lib/data";
+
+// Mobile detector. Initial render = false (SSR-safe), flips to true after
+// mount on small viewports. One-frame layout shift is acceptable.
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isMobile;
+}
+
+const MOBILE_WINDOW_SIZE = 5;
 
 type Props = {
   teams: Team[];
@@ -73,6 +90,13 @@ export function TimelineHeatmap({
   onSelect,
 }: Props) {
   const [sortKey, setSortKey] = useState<SortKey>("gap");
+  const isMobile = useIsMobile();
+  const [windowStart, setWindowStart] = useState(0);
+
+  const maxWindowStart = Math.max(0, windowDates.length - MOBILE_WINDOW_SIZE);
+  const visibleDates = isMobile
+    ? windowDates.slice(windowStart, windowStart + MOBILE_WINDOW_SIZE)
+    : windowDates;
 
   const sortedTeams = useMemo(() => {
     return [...teams].sort((a, b) => compareTeams(a, b, sortKey));
@@ -143,23 +167,48 @@ export function TimelineHeatmap({
         })}
       </div>
 
-      {/* Heatmap grid: 1 label column + 15 day columns. Scrolls horizontally
-          on narrow viewports. max-w is viewport-minus-section-padding so the
-          scroller's width doesn't depend on the grid's content (which would
-          let the grid push the section past the viewport, breaking scroll
-          and forcing body's overflow-x-hidden to clip the right edge). */}
+      {/* Mobile-only day scrubber. Shifts the visible 5-day window. */}
+      <div className="mb-3 flex items-center gap-3 sm:hidden">
+        <button
+          type="button"
+          onClick={() => setWindowStart((s) => Math.max(0, s - 1))}
+          disabled={windowStart === 0}
+          aria-label="Previous day"
+          className="rounded-full border border-border p-1.5 text-muted-foreground transition hover:text-foreground disabled:opacity-30 disabled:hover:text-muted-foreground"
+        >
+          <ChevronLeft className="size-3.5" />
+        </button>
+        <div className="flex-1 text-center font-mono text-[10px] uppercase tracking-normal text-foreground tabular-nums">
+          {visibleDates.length > 0 &&
+            `${shortDayLabel(visibleDates[0])} – ${shortDayLabel(visibleDates[visibleDates.length - 1])}`}
+        </div>
+        <button
+          type="button"
+          onClick={() => setWindowStart((s) => Math.min(maxWindowStart, s + 1))}
+          disabled={windowStart >= maxWindowStart}
+          aria-label="Next day"
+          className="rounded-full border border-border p-1.5 text-muted-foreground transition hover:text-foreground disabled:opacity-30 disabled:hover:text-muted-foreground"
+        >
+          <ChevronRight className="size-3.5" />
+        </button>
+      </div>
+
+      {/* Heatmap grid: 1 label column + N day columns. Mobile shows a 5-day
+          window (sm:min-w-[680px] only enforces the wide-grid scroll behavior
+          on desktop). max-w is viewport-minus-section-padding so the scroller's
+          width doesn't depend on the grid's content. */}
       <div className="w-full max-w-[calc(100vw-2.5rem)] overflow-x-auto sm:max-w-[calc(100vw-3rem)]">
         <div
-          className="grid min-w-[680px] gap-px bg-border/60"
+          className="grid gap-px bg-border/60 sm:min-w-[680px]"
           style={{
-            gridTemplateColumns: `minmax(120px, 180px) repeat(${windowDates.length}, minmax(28px, 1fr))`,
+            gridTemplateColumns: `minmax(120px, 180px) repeat(${visibleDates.length}, minmax(28px, 1fr))`,
           }}
         >
           {/* Header row: spacer + day labels */}
           <div className="sticky left-0 z-10 bg-background px-3 py-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground shadow-[4px_0_6px_-2px_rgba(0,0,0,0.08)]">
             Team
           </div>
-          {windowDates.map((date) => {
+          {visibleDates.map((date) => {
             const isSS = date === selectionSundayDate;
             return (
               <div
@@ -194,7 +243,7 @@ export function TimelineHeatmap({
                   </span>
                   <span className="truncate">{t.team.toUpperCase()}</span>
                 </button>
-                {windowDates.map((date) => {
+                {visibleDates.map((date) => {
                   const value = inner?.get(date) ?? 0;
                   const intensity = Math.min(1, value / maxDailyHype);
                   const isSS = date === selectionSundayDate;
