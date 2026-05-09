@@ -37,34 +37,36 @@ export function SectionNav({ teams, onSelectTeam }: Props) {
 
   return (
     <nav ref={navRef} className="border-b border-border">
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 sm:px-6">
-        <div className="min-w-0 flex-1 overflow-x-auto">
-          <div className="flex items-center gap-6 whitespace-nowrap">
-            {VIEWS.map((v) => {
-              const active = pathname === v.href;
-              return (
-                <Link
-                  key={v.href}
-                  href={v.href}
-                  scroll={false}
-                  onClick={handleTabClick}
-                  className={`relative py-3 font-mono text-[10px] uppercase tracking-normal transition ${
-                    active
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {v.label}
-                  {active && (
-                    <span className="absolute inset-x-0 -bottom-px h-px bg-brand" />
-                  )}
-                </Link>
-              );
-            })}
+      <div className="mx-auto max-w-7xl px-5 sm:px-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+          <div className="min-w-0 flex-1 overflow-x-auto">
+            <div className="flex items-center gap-6 whitespace-nowrap">
+              {VIEWS.map((v) => {
+                const active = pathname === v.href;
+                return (
+                  <Link
+                    key={v.href}
+                    href={v.href}
+                    scroll={false}
+                    onClick={handleTabClick}
+                    className={`relative py-3 font-mono text-[10px] uppercase tracking-normal transition ${
+                      active
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {v.label}
+                    {active && (
+                      <span className="absolute inset-x-0 -bottom-px h-px bg-brand" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div className="shrink-0 py-2">
-          <TeamSearch teams={teams} onSelect={onSelectTeam} />
+          <div className="shrink-0 pb-3 sm:py-2 sm:pb-0">
+            <TeamSearch teams={teams} onSelect={onSelectTeam} />
+          </div>
         </div>
       </div>
     </nav>

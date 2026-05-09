@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Search } from "lucide-react";
 
 import { Team } from "@/lib/data";
 
@@ -64,7 +65,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
   };
 
   return (
-    <div ref={wrapperRef} className="relative">
+    <div ref={wrapperRef} className="relative w-full sm:w-auto">
       <input
         type="text"
         value={query}
@@ -76,10 +77,14 @@ export function TeamSearch({ teams, onSelect }: Props) {
         onKeyDown={onKeyDown}
         placeholder="Search team"
         aria-label="Search team"
-        className="w-36 rounded border border-border bg-transparent px-2 py-1 text-[10px] uppercase tracking-normal text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-48"
+        className="w-full rounded-full border border-border bg-transparent py-1 pl-3 pr-8 text-[10px] uppercase tracking-normal text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-48"
+      />
+      <Search
+        aria-hidden="true"
+        className="pointer-events-none absolute right-3 top-1/2 size-3 -translate-y-1/2 text-muted-foreground"
       />
       {isOpen && query && (
-        <div className="absolute right-0 top-full z-20 mt-1 w-64 overflow-hidden rounded border border-border bg-background shadow-lg">
+        <div className="absolute right-0 top-full z-20 mt-1 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg sm:w-64">
           {matches.length === 0 ? (
             <div className="px-3 py-2 text-[10px] uppercase tracking-normal text-muted-foreground">
               No matches
