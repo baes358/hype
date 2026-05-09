@@ -76,12 +76,12 @@ export function TeamSearch({ teams, onSelect }: Props) {
         onKeyDown={onKeyDown}
         placeholder="Search team"
         aria-label="Search team"
-        className="w-36 rounded border border-border bg-transparent px-2 py-1 font-mono text-[10px] uppercase tracking-normal text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-48"
+        className="w-36 rounded border border-border bg-transparent px-2 py-1 text-[10px] uppercase tracking-normal text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-48"
       />
       {isOpen && query && (
         <div className="absolute right-0 top-full z-20 mt-1 w-64 overflow-hidden rounded border border-border bg-background shadow-lg">
           {matches.length === 0 ? (
-            <div className="px-3 py-2 font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+            <div className="px-3 py-2 text-[10px] uppercase tracking-normal text-muted-foreground">
               No matches
             </div>
           ) : (
@@ -95,12 +95,12 @@ export function TeamSearch({ teams, onSelect }: Props) {
                 }`}
               >
                 <span className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
-                    {t.seed}
+                  <span className="text-[10px] tabular-nums text-muted-foreground">
+                    {String(t.seed).padStart(2, "0")}
                   </span>
                   <span className="text-foreground">{t.team}</span>
                 </span>
-                <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+                <span className="text-[9px] uppercase tracking-normal text-muted-foreground">
                   {t.region}
                 </span>
               </button>

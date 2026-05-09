@@ -77,7 +77,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         <span className="truncate text-sm text-foreground">
                           {t.team}{" "}
                           <span className="text-muted-foreground">
-                            <span className="font-mono text-[10px] tabular-nums">{t.seed}</span>
+                            <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
                           </span>
                         </span>
                         <span className="font-mono text-[10px] tabular-nums text-rose-600">
@@ -114,7 +114,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         <span className="truncate text-sm text-foreground">
                           {t.team}{" "}
                           <span className="text-muted-foreground">
-                            <span className="font-mono text-[10px] tabular-nums">{t.seed}</span>
+                            <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
                           </span>
                         </span>
                       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   CartesianGrid,
   ReferenceLine,
@@ -17,6 +18,21 @@ import {
 import { ScatterCallouts } from "@/components/scatter-callouts";
 import { StoryTag, Team } from "@/lib/data";
 
+// Single-use mobile detector. Initial render is `false` (matches SSR), then
+// useEffect flips to `true` on small viewports. Brief layout shift on first
+// paint is acceptable here.
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isMobile;
+}
+
 type Props = {
   teams: Team[];
   selectedTeam: string | null;
@@ -32,6 +48,18 @@ const ROUND_LABELS: readonly string[] = [
   "Final Four",    // 4 wins
   "Runner-up",     // 5 wins
   "Champion",      // 6 wins
+];
+
+// Compact labels for mobile y-axis. NCAA bracket conventions (S16, E8, F4)
+// are recognizable; R64/R32 carry context from the chart title.
+const ROUND_LABELS_MOBILE: readonly string[] = [
+  "R64",
+  "R32",
+  "S16",
+  "E8",
+  "F4",
+  "RU",
+  "Champ",
 ];
 
 // Per-tag dot fill. Mirrors TAG_STYLE in lib/data.ts but as raw hex strings
@@ -73,6 +101,10 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payl
 }
 
 export function ScatterChartView({ teams, onSelect }: Props) {
+  const isMobile = useIsMobile();
+  const yAxisLabels = isMobile ? ROUND_LABELS_MOBILE : ROUND_LABELS;
+  const yAxisWidth = isMobile ? 44 : 120;
+
   if (teams.length === 0) {
     return (
       <div className="mx-auto max-w-7xl px-5 py-24 text-center text-sm text-muted-foreground sm:px-6">
@@ -100,7 +132,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
         <div className="min-w-0 md:flex-1">
           <ChartContainer config={chartConfig} className="aspect-[4/3] w-full">
-            <ScatterChart margin={{ top: 16, right: 24, bottom: 32, left: 88 }}>
+            <ScatterChart margin={{ top: 16, right: 16, bottom: 32, left: 0 }}>
               <CartesianGrid stroke="rgba(58,59,59,0.08)" />
               <XAxis
                 type="number"
@@ -125,8 +157,8 @@ export function ScatterChartView({ teams, onSelect }: Props) {
                 tickLine={false}
                 axisLine={false}
                 tick={AXIS_TICK_STYLE}
-                tickFormatter={(v: number) => ROUND_LABELS[v] ?? String(v)}
-                width={120}
+                tickFormatter={(v: number) => yAxisLabels[v] ?? String(v)}
+                width={yAxisWidth}
               />
               <ReferenceLine
                 segment={[

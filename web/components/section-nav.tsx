@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -20,8 +21,22 @@ type Props = {
 
 export function SectionNav({ teams, onSelectTeam }: Props) {
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
+
+  // Only scroll past the hero if the user is currently above the nav (i.e.,
+  // still at the hero). If they've already scrolled to the content, leave
+  // them where they are — preserves position when switching tabs mid-read,
+  // which is the common case on mobile.
+  const handleTabClick = () => {
+    if (!navRef.current) return;
+    const navTop = navRef.current.getBoundingClientRect().top;
+    if (navTop > 0) {
+      navRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <nav className="border-b border-border">
+    <nav ref={navRef} className="border-b border-border">
       <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 sm:px-6">
         <div className="min-w-0 flex-1 overflow-x-auto">
           <div className="flex items-center gap-6 whitespace-nowrap">
@@ -31,6 +46,8 @@ export function SectionNav({ teams, onSelectTeam }: Props) {
                 <Link
                   key={v.href}
                   href={v.href}
+                  scroll={false}
+                  onClick={handleTabClick}
                   className={`relative py-3 font-mono text-[10px] uppercase tracking-normal transition ${
                     active
                       ? "text-foreground"

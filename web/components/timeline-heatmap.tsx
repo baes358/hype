@@ -144,9 +144,11 @@ export function TimelineHeatmap({
       </div>
 
       {/* Heatmap grid: 1 label column + 15 day columns. Scrolls horizontally
-          on narrow viewports — the wrapper is w-full so the parent (a flex
-          item in body) pins its width and overflow-x-auto can take over. */}
-      <div className="w-full overflow-x-auto">
+          on narrow viewports. max-w is viewport-minus-section-padding so the
+          scroller's width doesn't depend on the grid's content (which would
+          let the grid push the section past the viewport, breaking scroll
+          and forcing body's overflow-x-hidden to clip the right edge). */}
+      <div className="w-full max-w-[calc(100vw-2.5rem)] overflow-x-auto sm:max-w-[calc(100vw-3rem)]">
         <div
           className="grid min-w-[680px] gap-px bg-border/60"
           style={{
@@ -154,7 +156,7 @@ export function TimelineHeatmap({
           }}
         >
           {/* Header row: spacer + day labels */}
-          <div className="bg-background px-3 py-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+          <div className="sticky left-0 z-10 bg-background px-3 py-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground shadow-[4px_0_6px_-2px_rgba(0,0,0,0.08)]">
             Team
           </div>
           {windowDates.map((date) => {
@@ -182,13 +184,13 @@ export function TimelineHeatmap({
               <Fragment key={t.team}>
                 <button
                   onClick={() => onSelect(t)}
-                  className={`flex items-center gap-2 truncate bg-background px-3 py-1.5 text-left font-mono text-[10px] uppercase tracking-normal transition hover:bg-foreground/[0.04] ${
+                  className={`sticky left-0 z-10 flex items-center gap-2 truncate bg-background px-3 py-1.5 text-left font-mono text-[10px] uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.08)] transition hover:bg-foreground/[0.04] ${
                     isSelected ? "bg-foreground/[0.06] text-foreground" : "text-foreground"
                   }`}
                   title={`${t.team} · ${t.seed} seed · ${t.wins} wins · gap ${t.gap > 0 ? "+" : ""}${t.gap}`}
                 >
                   <span className="tabular-nums text-muted-foreground">
-                    {String(t.seed).padStart(2, " ")}
+                    {String(t.seed).padStart(2, "0")}
                   </span>
                   <span className="truncate">{t.team.toUpperCase()}</span>
                 </button>
