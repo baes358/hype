@@ -12,6 +12,14 @@ export function Hero({ data }: Props) {
     <section className="border-b border-border">
       {/* Hero finding */}
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-32">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/media/hype-logo.svg"
+          alt="HYP3 logo"
+          width={54}
+          height={56}
+          className="mb-6 h-12 w-auto self-start sm:mb-8 sm:h-14"
+        />
         <div className="font-mono text-[10px] uppercase tracking-normal text-brand">
           The Gap
         </div>
