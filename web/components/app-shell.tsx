@@ -29,6 +29,28 @@ const VALID_TAGS = new Set<string>(TAG_ORDER);
 const VALID_REGIONS = new Set<string>(REGIONS);
 const VALID_ROUNDS = new Set<string>(ROUND_ORDER);
 
+function formatPulled(iso: string): string {
+  if (iso.startsWith("PLACEHOLDER")) return "—";
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  } catch {
+    return iso;
+  }
+}
+
+// Parse the ISO date string directly — `new Date("YYYY-MM-DD")` reads as
+// UTC midnight, and `.toLocaleDateString()` then shifts to the viewer's
+// local timezone, subtracting a day in any negative-offset zone (US is
+// UTC-5 to -8). Same trap previously fixed in timeline-heatmap.tsx.
+const MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] as const;
+
+function formatWindow(start: string, end: string): string {
+  const [, sm, sd] = start.split("-").map(Number);
+  const [ey, em, ed] = end.split("-").map(Number);
+  return `${MONTHS_SHORT[sm - 1]} ${sd} – ${MONTHS_SHORT[em - 1]} ${ed}, ${ey}`;
+}
+
 type Props = {
   data: Dataset;
   view: "gap" | "scatter" | "timeline" | "bracket";
@@ -289,7 +311,7 @@ export function AppShell({ data, view }: Props) {
       </Suspense>
 
       <Hero data={dataset} />
-      <SectionNav />
+      <SectionNav teams={dataset.teams} onSelectTeam={setSelectedTeam} />
 
       <Filters
         selectedTags={selectedTags}
@@ -338,12 +360,18 @@ export function AppShell({ data, view }: Props) {
       )}
 
       <footer className="mt-auto border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-5 font-mono text-[9px] uppercase tracking-normal text-muted-foreground sm:gap-x-6 sm:px-6 sm:py-6">
-          <span>HYP3 / 001</span>
-          <span>·</span>
-          <span>Data: Google Trends + 2026 NCAA results</span>
-          <span>·</span>
-          <span>Pulled {new Date(dataset.metadata.data_pulled_at).toISOString().slice(0, 10)}</span>
+        <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-3 sm:gap-x-6 sm:px-6">
+            <span className="text-foreground font-semibold">HYP3 / 001</span>
+            <span>·</span>
+            <span>{dataset.metadata.tournament_year} NCAA Men&rsquo;s Tournament</span>
+            <span>·</span>
+            <span>Hype window {formatWindow(dataset.metadata.hype_window_start, dataset.metadata.hype_window_end)}</span>
+            <span>·</span>
+            <span>{dataset.metadata.total_teams} teams</span>
+            <span>·</span>
+            <span>Pulled {formatPulled(dataset.metadata.data_pulled_at)}</span>
+          </div>
         </div>
       </footer>
 
