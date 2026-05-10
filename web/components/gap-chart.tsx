@@ -31,26 +31,26 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       <FadeInSection>
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-            01 / The diverging gap
+          <div className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+            <span className="font-mono">01</span> / The diverging gap
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             Every team, ranked by the wrongness of the internet&apos;s read
           </h2>
         </div>
-        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-          {sorted.length} teams shown
+        <div className="text-xs uppercase tracking-normal text-muted-foreground">
+          <span className="font-mono">{sorted.length}</span> teams shown
         </div>
       </header>
       </FadeInSection>
 
       {/* Desktop axis labels */}
-      <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-xs uppercase tracking-normal text-muted-foreground sm:grid">
+      <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 text-xs uppercase tracking-normal text-muted-foreground sm:grid">
         <div className="flex items-center justify-end gap-2 pr-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           ← Overhyped
         </div>
-        <div className="text-center text-foreground">0</div>
+        <div className="text-center font-mono text-foreground">0</div>
         <div className="flex items-center gap-2 pl-2">
           Underhyped →
           <span className="size-1.5 rounded-full bg-sky-500" />
@@ -58,7 +58,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       </div>
 
       {/* Mobile axis labels — bar position itself communicates the direction */}
-      <div className="mb-2 flex items-center justify-between font-mono text-xs uppercase tracking-normal text-muted-foreground sm:hidden">
+      <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-normal text-muted-foreground sm:hidden">
         <span className="flex items-center gap-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           Overhyped
@@ -196,8 +196,8 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       </FadeInSection>
 
       <FadeInSection delay={0.2}>
-        <p className="mt-4 font-mono text-xs uppercase tracking-normal text-muted-foreground">
-          Click any team to inspect its 15-day hype curve →
+        <p className="mt-4 text-xs uppercase tracking-normal text-muted-foreground">
+          Click any team to inspect its <span className="font-mono">15</span>-day hype curve →
         </p>
       </FadeInSection>
     </section>

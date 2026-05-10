@@ -11,8 +11,8 @@ export function Hero({ data }: Props) {
   return (
     <section className="border-b border-rule/60">
       <div className="mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-5 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-28">
-        <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-          The Gap · {data.metadata.tournament_year} Tournament
+        <div className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+          The Gap · <span className="font-mono">{data.metadata.tournament_year}</span> Tournament
         </div>
         <h1
           className={`mt-5 max-w-5xl text-balance font-heading text-3xl font-bold leading-[0.95] tracking-tight sm:mt-6 sm:text-5xl md:text-6xl lg:text-7xl ${

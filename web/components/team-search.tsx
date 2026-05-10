@@ -120,8 +120,8 @@ export function TeamSearch({ teams, onSelect }: Props) {
                     className="flex w-full items-baseline justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-foreground/[0.04] focus-visible:bg-foreground/[0.04] focus-visible:outline-none"
                   >
                     <span className="text-sm text-foreground">{t.team}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-                      {String(t.seed).padStart(2, "0")} · {t.region}
+                    <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                      <span className="font-mono">{String(t.seed).padStart(2, "0")}</span> · {t.region}
                     </span>
                   </button>
                 </li>

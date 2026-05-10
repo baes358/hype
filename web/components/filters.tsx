@@ -69,7 +69,7 @@ function ModePillBtn({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
+      className={`rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
         active ? `${accentBg} ${accentText} font-semibold` : "text-graphite-soft hover:text-ink"
       }`}
     >

@@ -107,9 +107,9 @@ export function TopNav({ dataset }: Props) {
           <motion.span
             animate={{ opacity: isScrolled ? 0 : 1, width: isScrolled ? 0 : "auto" }}
             transition={{ duration: 0.18 }}
-            className="hidden overflow-hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft sm:inline"
+            className="hidden overflow-hidden whitespace-nowrap text-[10px] uppercase tracking-[0.14em] text-graphite-soft sm:inline"
           >
-            D1 mens basketball
+            <span className="font-mono">D1</span> mens basketball
           </motion.span>
         </Link>
 
@@ -142,11 +142,11 @@ export function TopNav({ dataset }: Props) {
                   key={item.href}
                   href={item.href}
                   scroll={false}
-                  className={`relative whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.12em] ${
+                  className={`relative whitespace-nowrap text-[11px] uppercase tracking-[0.12em] ${
                     active ? "text-ink" : "text-graphite-soft"
                   }`}
                 >
-                  <span className="mr-1.5 text-graphite-soft">{item.marker}</span>
+                  <span className="mr-1.5 font-mono text-graphite-soft">{item.marker}</span>
                   {item.label}
                   {active && <span className="absolute inset-x-0 -bottom-1 h-[2px] bg-ink" />}
                 </Link>
@@ -172,10 +172,10 @@ export function TopNav({ dataset }: Props) {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_auto]">
                 <div className="max-w-2xl">
                   <div className="flex items-baseline gap-3">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-                      {hovered.marker} /
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+                      <span className="font-mono">{hovered.marker}</span> /
                     </span>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-graphite">
+                    <span className="text-[11px] uppercase tracking-[0.12em] text-graphite">
                       {hovered.label}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ export function TopNav({ dataset }: Props) {
                       <div className="font-display text-2xl leading-none tracking-tight text-ink">
                         {p.stat}
                       </div>
-                      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-graphite-soft">
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-graphite-soft">
                         {p.caption}
                       </div>
                     </div>

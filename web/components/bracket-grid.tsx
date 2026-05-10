@@ -49,8 +49,8 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-              04 / The bracket
+            <div className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+              <span className="font-mono">04</span> / The bracket
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
               By region, by seed — colored by the story they ended up telling
@@ -75,7 +75,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
               aria-controls={listId}
               className="flex w-full items-baseline justify-between border-b border-border px-4 py-3 text-left transition hover:bg-foreground/[0.02] sm:cursor-default sm:hover:bg-transparent"
             >
-              <h3 className="flex items-center gap-2 font-mono text-xs uppercase tracking-normal text-foreground">
+              <h3 className="flex items-center gap-2 text-xs uppercase tracking-normal text-foreground">
                 {region}
                 <ChevronDown
                   aria-hidden="true"
@@ -84,8 +84,8 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                   }`}
                 />
               </h3>
-              <span className="font-mono text-xs tabular-nums text-muted-foreground">
-                {byRegion[region].length} teams
+              <span className="text-xs text-muted-foreground">
+                <span className="font-mono tabular-nums">{byRegion[region].length}</span> teams
               </span>
             </button>
             <ul id={listId} className={`${isOpen ? "" : "hidden"} sm:block`}>

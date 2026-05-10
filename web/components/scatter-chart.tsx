@@ -91,13 +91,13 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payl
   return (
     <div className="rounded-md border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur-sm">
       <div className="font-semibold text-foreground">{t.team}</div>
-      <div className="mt-1 flex flex-col items-start font-mono text-sm uppercase tracking-normal text-muted-foreground">
-        <span>{t.seed} seed</span>
+      <div className="mt-1 flex flex-col items-start text-sm uppercase tracking-normal text-muted-foreground">
+        <span><span className="font-mono">{t.seed}</span> seed</span>
         <span>{round}</span>
       </div>
-      <div className="mt-1 flex flex-col items-start font-mono text-sm tabular-nums text-muted-foreground">
-        <span>Hype #{t.hype_rank}</span>
-        <span>gap {t.gap > 0 ? "+" : ""}{t.gap}</span>
+      <div className="mt-1 flex flex-col items-start text-sm text-muted-foreground">
+        <span>Hype <span className="font-mono tabular-nums">#{t.hype_rank}</span></span>
+        <span>gap <span className="font-mono tabular-nums">{t.gap > 0 ? "+" : ""}{t.gap}</span></span>
       </div>
     </div>
   );
@@ -121,15 +121,15 @@ export function ScatterChartView({ teams, onSelect }: Props) {
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-              02 / The scatter
+            <div className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+              <span className="font-mono">02</span> / The scatter
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
               Hype against performance, with the diagonal as the expected line
             </h2>
           </div>
-          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-            {teams.length} teams shown
+          <div className="text-xs uppercase tracking-normal text-muted-foreground">
+            <span className="font-mono">{teams.length}</span> teams shown
           </div>
         </header>
       </FadeInSection>
@@ -207,7 +207,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
           <StaggerGroup
             staggerMs={50}
             delay={0.25}
-            className="mt-4 flex flex-col items-start gap-y-1 font-mono text-xs uppercase tracking-normal text-muted-foreground"
+            className="mt-4 flex flex-col items-start gap-y-1 text-xs uppercase tracking-normal text-muted-foreground"
           >
             <span>Below the line ↘ overhyped</span>
             <span>Above the line ↗ underhyped</span>

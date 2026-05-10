@@ -40,7 +40,7 @@ export function SectionNav() {
                   href={v.href}
                   scroll={false}
                   onClick={handleTabClick}
-                  className={`relative py-3 font-mono text-sm uppercase tracking-normal transition ${
+                  className={`relative py-3 text-sm uppercase tracking-normal transition ${
                     active
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"

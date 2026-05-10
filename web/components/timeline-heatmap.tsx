@@ -154,22 +154,22 @@ export function TimelineHeatmap({
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: HEATMAP_THEME.textMuted }}>
-              03 / The timeline
+            <div className="text-[10px] uppercase tracking-[0.14em]" style={{ color: HEATMAP_THEME.textMuted }}>
+              <span className="font-mono">03</span> / The timeline
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl" style={{ color: HEATMAP_THEME.textPrimary }}>
               Daily hype intensity for every team across the 15-day window
             </h2>
           </div>
-          <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
-            {sortedTeams.length} teams shown
+          <div className="text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
+            <span className="font-mono">{sortedTeams.length}</span> teams shown
           </div>
         </header>
       </FadeInSection>
 
       {/* Sort segmented control */}
       <div className="mb-4 flex flex-wrap items-center gap-3">
-        <span className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
+        <span className="text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
           Sort
         </span>
         <div
@@ -245,7 +245,7 @@ export function TimelineHeatmap({
         >
           {/* Header row: spacer + day labels */}
           <div
-            className="sticky left-0 z-10 px-3 py-2 font-mono text-xs uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)]"
+            className="sticky left-0 z-10 px-3 py-2 text-xs uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)]"
             style={{ backgroundColor: HEATMAP_THEME.stickyBg, color: HEATMAP_THEME.textMuted }}
           >
             Team
@@ -315,7 +315,7 @@ export function TimelineHeatmap({
       <StaggerGroup
         staggerMs={50}
         delay={0.2}
-        className="mt-4 flex flex-col items-start gap-y-1 font-mono text-xs uppercase tracking-normal"
+        className="mt-4 flex flex-col items-start gap-y-1 text-xs uppercase tracking-normal"
       >
         <span style={{ color: HEATMAP_THEME.textMuted }}>Deep navy = low hype that day</span>
         <span style={{ color: HEATMAP_THEME.textMuted }}>White = peak day across the dataset</span>
