@@ -276,7 +276,7 @@ export function TimelineHeatmap({
               <Fragment key={t.team}>
                 <button
                   onClick={() => onSelect(t)}
-                  className="sticky left-0 z-10 flex items-center gap-2 truncate px-3 py-2 text-left font-mono text-sm uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)] transition hover:opacity-80"
+                  className="sticky left-0 z-10 flex items-center gap-2 truncate px-3 py-2 text-left text-sm shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)] transition hover:opacity-80"
                   style={{
                     backgroundColor: isSelected ? "rgba(255,255,255,0.08)" : HEATMAP_THEME.stickyBg,
                     color: HEATMAP_THEME.textPrimary,
@@ -286,7 +286,7 @@ export function TimelineHeatmap({
                   <span className="tabular-nums" style={{ color: HEATMAP_THEME.textMuted }}>
                     {String(t.seed).padStart(2, "0")}
                   </span>
-                  <span className="truncate">{t.team.toUpperCase()}</span>
+                  <span className="truncate">{t.team}</span>
                 </button>
                 {visibleDates.map((date) => {
                   const value = inner?.get(date) ?? 0;

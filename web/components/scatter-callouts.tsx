@@ -37,7 +37,7 @@ function CalloutSection({
               <span className="font-mono text-xs tabular-nums text-muted-foreground">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="truncate font-mono text-sm uppercase tracking-normal text-foreground">
+              <span className="truncate text-sm text-foreground">
                 {t.team}
               </span>
             </button>
