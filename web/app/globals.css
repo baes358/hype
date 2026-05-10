@@ -31,6 +31,16 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-paper-darker: var(--paper-darker);
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-graphite-soft: var(--graphite-soft);
+  --color-rule: var(--rule);
+  --color-crimson: var(--crimson);
+  --color-dusty: var(--dusty);
+  --color-gold: var(--gold);
   --font-sans: var(--font-host), "Helvetica Neue", system-ui, sans-serif;
   --font-mono: "FA-1", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --font-display: "Neue Black", "Helvetica Neue", "Arial Black", system-ui, sans-serif;
@@ -74,8 +84,20 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #3a3b3b;
+  /* Paper-toned editorial palette (added 2026-05-10 for premium nav). */
+  --paper: #f7f5f2;
+  --paper-deep: #f3f1ed;
+  --paper-darker: #ebe7e1;
+  --ink: #1c1c1b;
+  --graphite: #4a4a48;
+  --graphite-soft: #8a8884;
+  --rule: #d6d2cc;
+  --crimson: #9b2334;
+  --dusty: #3b5b78;
+  --gold: #b48a3a;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
   --brand: #44d1d1;
   --card: #ffffff;
   --card-foreground: #3a3b3b;

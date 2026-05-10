@@ -6,12 +6,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BracketGrid } from "@/components/bracket-grid";
 import { Filters } from "@/components/filters";
 import { GapChart } from "@/components/gap-chart";
-import { GapModeToggle } from "@/components/gap-mode-toggle";
 import { Hero } from "@/components/hero";
 import { ScatterChartView } from "@/components/scatter-chart";
-import { SectionNav } from "@/components/section-nav";
 import { TeamSheet } from "@/components/team-sheet";
 import { TimelineHeatmap } from "@/components/timeline-heatmap";
+import { TopNav } from "@/components/top-nav";
 import {
   Dataset,
   GapMode,
@@ -356,10 +355,13 @@ export function AppShell({ data, view }: Props) {
         />
       </Suspense>
 
-      <Hero data={dataset} />
-      <SectionNav />
+      <TopNav
+        dataset={dataset}
+        gapMode={gapMode}
+        setGapMode={setGapMode}
+      />
 
-      {view !== "bracket" && <GapModeToggle mode={gapMode} onChange={setGapMode} />}
+      <Hero data={dataset} />
 
       <Filters
         teams={dataset.teams}

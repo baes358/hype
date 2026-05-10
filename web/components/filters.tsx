@@ -238,7 +238,7 @@ export function Filters({
 
   return (
     <AnimatedToolbar className="sticky top-0 z-30 border-b border-border">
-      <div className="mx-auto max-w-7xl px-5 sm:px-6">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
         {/* Toolbar row. Vertical padding lives on AnimatedToolbar so it can
             condense on scroll. */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -314,7 +314,7 @@ export function Filters({
             }
           </FilterDropdown>
 
-          <div className="order-last w-full sm:order-none sm:ml-auto sm:w-64">
+          <div className="sm:ml-auto">
             <TeamSearch teams={teams} onSelect={onSelectTeam} />
           </div>
 
