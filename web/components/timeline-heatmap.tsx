@@ -4,7 +4,7 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { FadeInSection, StaggerGroup } from "@/components/motion";
-import { Team } from "@/lib/data";
+import { GapMode, Team } from "@/lib/data";
 
 // Mobile detector. Initial render = false (SSR-safe), flips to true after
 // mount on small viewports. One-frame layout shift is acceptable.
@@ -42,11 +42,19 @@ function intensityToColor(intensity: number): string {
 
 type Props = {
   teams: Team[];
-  windowDates: string[];        // 15 ISO date strings, in order
-  maxDailyHype: number;         // global max across the FULL dataset
+  mode: GapMode;                // tournament: daily cells; season: monthly buckets
+  windowDates: string[];        // 15 ISO date strings, used in tournament mode
+  maxDailyHype: number;         // global daily max, used in tournament mode
   selectionSundayDate?: string; // ISO date to mark vertically; default "2026-03-15"
   selectedTeam: string | null;
   onSelect: (team: Team) => void;
+};
+
+type Bucket = {
+  key: string;       // tournament: ISO date; season: "YYYY-MM"
+  label: string;     // header label (e.g. "MAR 15" or "NOV")
+  tooltip: string;   // hover label (e.g. "Sunday, March 15, 2026" or "November 2025")
+  isAnchor: boolean; // draws the Selection Sunday vertical divider
 };
 
 type SortKey = "gap" | "hype_rank" | "wins" | "seed" | "team";
@@ -102,6 +110,7 @@ function fullDayLabel(iso: string): string {
 
 export function TimelineHeatmap({
   teams,
+  mode,
   windowDates,
   maxDailyHype,
   selectionSundayDate = DEFAULT_SELECTION_SUNDAY,
@@ -112,14 +121,85 @@ export function TimelineHeatmap({
   const isMobile = useIsMobile();
   const [windowStart, setWindowStart] = useState(0);
 
-  const maxWindowStart = Math.max(0, windowDates.length - MOBILE_WINDOW_SIZE);
-  const visibleDates = isMobile
-    ? windowDates.slice(windowStart, windowStart + MOBILE_WINDOW_SIZE)
-    : windowDates;
-
   const sortedTeams = useMemo(() => {
     return [...teams].sort((a, b) => compareTeams(a, b, sortKey));
   }, [teams, sortKey]);
+
+  // Build the axis and per-team values once per mode change. Tournament mode
+  // is one cell per day; season mode buckets daily values by month and uses
+  // the mean of each team's season_hype_daily as the cell value. The intensity
+  // scale (globalMax) differs between modes, so each gets its own ramp.
+  const { buckets, valueLookup, globalMax } = useMemo(() => {
+    if (mode === "tournament") {
+      const bs: Bucket[] = windowDates.map((date) => ({
+        key: date,
+        label: shortDayLabel(date),
+        tooltip: fullDayLabel(date),
+        isAnchor: date === selectionSundayDate,
+      }));
+      const lookup = new Map<string, Map<string, number>>();
+      for (const t of teams) {
+        const inner = new Map<string, number>();
+        for (const d of t.hype_daily) inner.set(d.date, d.value);
+        lookup.set(t.team, inner);
+      }
+      return { buckets: bs, valueLookup: lookup, globalMax: maxDailyHype };
+    }
+
+    // Season mode: bucket each team's season_hype_daily into YYYY-MM months
+    // and take the mean per month. The month order is taken from the first
+    // team's series (every team shares the same season window).
+    const sample = teams[0]?.season_hype_daily ?? [];
+    const seen = new Set<string>();
+    const monthKeys: string[] = [];
+    for (const d of sample) {
+      const key = d.date.slice(0, 7);
+      if (!seen.has(key)) {
+        seen.add(key);
+        monthKeys.push(key);
+      }
+    }
+    const anchorMonth = selectionSundayDate ? selectionSundayDate.slice(0, 7) : null;
+    const bs: Bucket[] = monthKeys.map((key) => {
+      const [yStr, mStr] = key.split("-");
+      const m = Number(mStr);
+      return {
+        key,
+        label: MONTHS_SHORT[m - 1],
+        tooltip: `${MONTHS_FULL[m - 1]} ${yStr}`,
+        isAnchor: key === anchorMonth,
+      };
+    });
+
+    const lookup = new Map<string, Map<string, number>>();
+    let max = 0;
+    for (const t of teams) {
+      const sums = new Map<string, { sum: number; n: number }>();
+      for (const d of t.season_hype_daily) {
+        const key = d.date.slice(0, 7);
+        const cur = sums.get(key) ?? { sum: 0, n: 0 };
+        cur.sum += d.value;
+        cur.n += 1;
+        sums.set(key, cur);
+      }
+      const inner = new Map<string, number>();
+      for (const [key, { sum, n }] of sums) {
+        const mean = n > 0 ? sum / n : 0;
+        inner.set(key, mean);
+        if (mean > max) max = mean;
+      }
+      lookup.set(t.team, inner);
+    }
+    return { buckets: bs, valueLookup: lookup, globalMax: max || 1 };
+  }, [mode, teams, windowDates, maxDailyHype, selectionSundayDate]);
+
+  // Mobile scrubber is only meaningful in tournament mode (15 cells > 5
+  // visible). Season mode shows ~5 month buckets, which all fit.
+  const scrubberActive = isMobile && mode === "tournament";
+  const maxWindowStart = Math.max(0, buckets.length - MOBILE_WINDOW_SIZE);
+  const visibleBuckets = scrubberActive
+    ? buckets.slice(windowStart, windowStart + MOBILE_WINDOW_SIZE)
+    : buckets;
 
   if (sortedTeams.length === 0) {
     return (
@@ -128,18 +208,6 @@ export function TimelineHeatmap({
       </div>
     );
   }
-
-  // Index into hype_daily by date, for safe lookup even if a team's array
-  // doesn't include every window date (shouldn't happen, but defensive).
-  const dateMaps = useMemo(() => {
-    const map = new Map<string, Map<string, number>>();
-    for (const t of teams) {
-      const inner = new Map<string, number>();
-      for (const d of t.hype_daily) inner.set(d.date, d.value);
-      map.set(t.team, inner);
-    }
-    return map;
-  }, [teams]);
 
   return (
     // min-w-0 below: lets the section shrink below content width. Body is a
@@ -154,11 +222,13 @@ export function TimelineHeatmap({
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.14em]" style={{ color: HEATMAP_THEME.textMuted }}>
+            <div className="text-[12px] uppercase tracking-[0.14em]" style={{ color: HEATMAP_THEME.textMuted }}>
               <span className="font-mono">03</span> / The timeline
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl" style={{ color: HEATMAP_THEME.textPrimary }}>
-              Daily hype intensity for every team across the 15-day window
+              {mode === "tournament"
+                ? "Daily hype intensity for every team across the 15-day window"
+                : "Monthly mean hype intensity for every team across the season"}
             </h2>
           </div>
           <div className="text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
@@ -200,36 +270,39 @@ export function TimelineHeatmap({
         </div>
       </div>
 
-      {/* Mobile-only day scrubber. Shifts the visible 5-day window. */}
-      <div className="mb-3 flex items-center gap-3 sm:hidden">
-        <button
-          type="button"
-          onClick={() => setWindowStart((s) => Math.max(0, s - 1))}
-          disabled={windowStart === 0}
-          aria-label="Previous day"
-          className="rounded-full border p-1.5 transition disabled:opacity-30"
-          style={{ borderColor: HEATMAP_THEME.borderSubtle, color: HEATMAP_THEME.textMuted }}
-        >
-          <ChevronLeft className="size-3.5" />
-        </button>
-        <div
-          className="flex-1 text-center font-mono text-sm uppercase tracking-normal tabular-nums"
-          style={{ color: HEATMAP_THEME.textPrimary }}
-        >
-          {visibleDates.length > 0 &&
-            `${shortDayLabel(visibleDates[0])} – ${shortDayLabel(visibleDates[visibleDates.length - 1])}`}
+      {/* Mobile-only day scrubber. Tournament mode only — season has ~5
+          monthly buckets that already fit on a phone. */}
+      {scrubberActive && (
+        <div className="mb-3 flex items-center gap-3 sm:hidden">
+          <button
+            type="button"
+            onClick={() => setWindowStart((s) => Math.max(0, s - 1))}
+            disabled={windowStart === 0}
+            aria-label="Previous day"
+            className="rounded-full border p-1.5 transition disabled:opacity-30"
+            style={{ borderColor: HEATMAP_THEME.borderSubtle, color: HEATMAP_THEME.textMuted }}
+          >
+            <ChevronLeft className="size-3.5" />
+          </button>
+          <div
+            className="flex-1 text-center font-mono text-sm uppercase tracking-normal tabular-nums"
+            style={{ color: HEATMAP_THEME.textPrimary }}
+          >
+            {visibleBuckets.length > 0 &&
+              `${visibleBuckets[0].label} – ${visibleBuckets[visibleBuckets.length - 1].label}`}
+          </div>
+          <button
+            type="button"
+            onClick={() => setWindowStart((s) => Math.min(maxWindowStart, s + 1))}
+            disabled={windowStart >= maxWindowStart}
+            aria-label="Next day"
+            className="rounded-full border p-1.5 transition disabled:opacity-30"
+            style={{ borderColor: HEATMAP_THEME.borderSubtle, color: HEATMAP_THEME.textMuted }}
+          >
+            <ChevronRight className="size-3.5" />
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={() => setWindowStart((s) => Math.min(maxWindowStart, s + 1))}
-          disabled={windowStart >= maxWindowStart}
-          aria-label="Next day"
-          className="rounded-full border p-1.5 transition disabled:opacity-30"
-          style={{ borderColor: HEATMAP_THEME.borderSubtle, color: HEATMAP_THEME.textMuted }}
-        >
-          <ChevronRight className="size-3.5" />
-        </button>
-      </div>
+      )}
 
       {/* Heatmap grid: 1 label column + N day columns. Mobile shows a 5-day
           window (sm:min-w-[680px] only enforces the wide-grid scroll behavior
@@ -239,39 +312,36 @@ export function TimelineHeatmap({
         <div
           className="grid gap-px sm:min-w-[680px]"
           style={{
-            gridTemplateColumns: `minmax(120px, 180px) repeat(${visibleDates.length}, minmax(28px, 1fr))`,
+            gridTemplateColumns: `minmax(120px, 180px) repeat(${visibleBuckets.length}, minmax(28px, 1fr))`,
             backgroundColor: HEATMAP_THEME.gridGap,
           }}
         >
-          {/* Header row: spacer + day labels */}
+          {/* Header row: spacer + axis labels (day in tournament mode, month in season mode) */}
           <div
             className="sticky left-0 z-10 px-3 py-2 text-xs uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)]"
             style={{ backgroundColor: HEATMAP_THEME.stickyBg, color: HEATMAP_THEME.textMuted }}
           >
             Team
           </div>
-          {visibleDates.map((date) => {
-            const isSS = date === selectionSundayDate;
-            return (
-              <div
-                key={`hdr-${date}`}
-                className="px-1 py-2 text-center font-mono text-xs uppercase tracking-normal"
-                style={{
-                  backgroundColor: HEATMAP_THEME.sectionBg,
-                  color: isSS ? HEATMAP_THEME.textPrimary : HEATMAP_THEME.textMuted,
-                  borderLeft: isSS ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
-                }}
-                title={isSS ? `${fullDayLabel(date)} (Selection Sunday)` : fullDayLabel(date)}
-              >
-                {shortDayLabel(date)}
-              </div>
-            );
-          })}
+          {visibleBuckets.map((b) => (
+            <div
+              key={`hdr-${b.key}`}
+              className="px-1 py-2 text-center font-mono text-xs uppercase tracking-normal"
+              style={{
+                backgroundColor: HEATMAP_THEME.sectionBg,
+                color: b.isAnchor ? HEATMAP_THEME.textPrimary : HEATMAP_THEME.textMuted,
+                borderLeft: b.isAnchor ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
+              }}
+              title={b.isAnchor ? `${b.tooltip} (Selection Sunday)` : b.tooltip}
+            >
+              {b.label}
+            </div>
+          ))}
 
           {/* Body rows: team label + heat cells per team */}
           {sortedTeams.map((t) => {
             const isSelected = selectedTeam === t.team;
-            const inner = dateMaps.get(t.team);
+            const inner = valueLookup.get(t.team);
             return (
               <Fragment key={t.team}>
                 <button
@@ -288,21 +358,20 @@ export function TimelineHeatmap({
                   </span>
                   <span className="truncate">{t.team}</span>
                 </button>
-                {visibleDates.map((date) => {
-                  const value = inner?.get(date) ?? 0;
-                  const intensity = Math.min(1, value / maxDailyHype);
-                  const isSS = date === selectionSundayDate;
+                {visibleBuckets.map((b) => {
+                  const value = inner?.get(b.key) ?? 0;
+                  const intensity = Math.min(1, value / globalMax);
                   return (
                     <button
-                      key={`${t.team}-${date}`}
+                      key={`${t.team}-${b.key}`}
                       onClick={() => onSelect(t)}
-                      title={`${t.team} · ${fullDayLabel(date)} · hype ${value.toFixed(1)}`}
+                      title={`${t.team} · ${b.tooltip} · ${mode === "tournament" ? "hype" : "mean hype"} ${value.toFixed(1)}`}
                       className="transition hover:opacity-80"
                       style={{
                         backgroundColor: intensityToColor(intensity),
-                        borderLeft: isSS ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
+                        borderLeft: b.isAnchor ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
                       }}
-                      aria-label={`${t.team} on ${date}: hype ${value.toFixed(1)}`}
+                      aria-label={`${t.team} · ${b.tooltip}: ${value.toFixed(1)}`}
                     />
                   );
                 })}
@@ -319,7 +388,11 @@ export function TimelineHeatmap({
       >
         <span style={{ color: HEATMAP_THEME.textMuted }}>Deep navy = low hype that day</span>
         <span style={{ color: HEATMAP_THEME.textMuted }}>White = peak day across the dataset</span>
-        <span style={{ color: HEATMAP_THEME.textMuted }}>Vertical line = Selection Sunday</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>
+          {mode === "tournament"
+            ? "Vertical line = Selection Sunday"
+            : "Vertical line = Selection Sunday's month"}
+        </span>
         <span style={{ color: HEATMAP_THEME.textMuted }}>Click any row for details</span>
       </StaggerGroup>
     </section>

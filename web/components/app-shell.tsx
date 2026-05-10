@@ -394,6 +394,7 @@ export function AppShell({ data, view }: Props) {
       {view === "timeline" && (
         <TimelineHeatmap
           teams={filteredTeams}
+          mode={gapMode}
           windowDates={windowDates}
           maxDailyHype={maxDailyHype}
           selectedTeam={selectedTeam?.team ?? null}

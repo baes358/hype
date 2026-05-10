@@ -121,7 +121,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+            <div className="text-[12px] uppercase tracking-[0.14em] text-graphite-soft">
               <span className="font-mono">02</span> / The scatter
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
