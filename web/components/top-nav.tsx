@@ -107,7 +107,7 @@ export function TopNav({ dataset }: Props) {
           <motion.span
             animate={{ opacity: isScrolled ? 0 : 1, width: isScrolled ? 0 : "auto" }}
             transition={{ duration: 0.18 }}
-            className="hidden overflow-hidden whitespace-nowrap text-[12px] uppercase tracking-[0.14em] text-graphite-soft sm:inline"
+            className="overflow-hidden whitespace-nowrap text-[12px] uppercase tracking-[0.14em] text-graphite-soft"
           >
             <span className="font-mono">D1</span> mens basketball
           </motion.span>
@@ -134,7 +134,7 @@ export function TopNav({ dataset }: Props) {
       {/* Mobile horizontal nav */}
       <div className="md:hidden">
         <div className="overflow-x-auto border-t border-rule/50">
-          <div className="flex min-w-max items-center gap-4 px-5 py-2">
+          <div className="flex min-w-max items-center gap-4 px-5 py-3">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -147,7 +147,7 @@ export function TopNav({ dataset }: Props) {
                   }`}
                 >
                   <span className="mr-1.5 font-mono text-graphite-soft">{item.marker}</span>
-                  {item.label}
+                  <span className="font-display tracking-[0.06em]">{item.label}</span>
                   {active && <span className="absolute inset-x-0 -bottom-1 h-[2px] bg-ink" />}
                 </Link>
               );
