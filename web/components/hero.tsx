@@ -11,7 +11,7 @@ export function Hero({ data }: Props) {
   return (
     <section className="border-b border-rule/60">
       <div className="mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-5 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-28">
-        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-graphite-soft">
+        <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
           The Gap · {data.metadata.tournament_year} Tournament
         </div>
         <h1

@@ -154,7 +154,7 @@ export function TimelineHeatmap({
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
+            <div className="font-mono text-[10px] uppercase tracking-[0.14em]" style={{ color: HEATMAP_THEME.textMuted }}>
               03 / The timeline
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl" style={{ color: HEATMAP_THEME.textPrimary }}>

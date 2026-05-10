@@ -2,8 +2,8 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { Dataset } from "@/lib/data";
 
@@ -67,8 +67,6 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-const AVAILABLE_YEARS = [2025, 2026] as const;
-
 // -----------------------------------------------------------------------------
 // TopNav — sticky editorial nav with hover panels, scroll compression, search.
 // -----------------------------------------------------------------------------
@@ -90,7 +88,6 @@ export function TopNav({ dataset }: Props) {
   }, []);
 
   const hovered = hoveredHref ? NAV_ITEMS.find((n) => n.href === hoveredHref) : null;
-  const dataPulledLabel = formatPulledShort(dataset.metadata.data_pulled_at);
 
   return (
     <header
@@ -131,11 +128,7 @@ export function TopNav({ dataset }: Props) {
           })}
         </nav>
 
-        {/* RIGHT — utility cluster */}
-        <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-          <YearSelector currentYear={dataset.metadata.tournament_year} />
-          <DataStatus label={dataPulledLabel} />
-        </div>
+        <div className="ml-auto" />
       </motion.div>
 
       {/* Mobile horizontal nav */}
@@ -264,108 +257,3 @@ function PrimaryNavLink({
   );
 }
 
-// -----------------------------------------------------------------------------
-// YearSelector — dropdown that pushes ?year= and lets YearSwapper take over.
-// -----------------------------------------------------------------------------
-
-function YearSelector({ currentYear }: { currentYear: number }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onMouseDown = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", onMouseDown);
-    return () => document.removeEventListener("mousedown", onMouseDown);
-  }, [open]);
-
-  const pick = (year: number) => {
-    setOpen(false);
-    if (year === currentYear) return;
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("year", String(year));
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  };
-
-  return (
-    <div ref={ref} className="relative hidden md:block">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 rounded-full border border-rule px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-graphite transition-colors hover:border-ink hover:bg-paper-deep hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30"
-        aria-haspopup="listbox"
-        aria-expanded={open}
-      >
-        <span className="text-graphite-soft">YR</span>
-        <span className="font-semibold text-ink">{currentYear}</span>
-        <svg width="8" height="6" viewBox="0 0 8 6" aria-hidden className={`transition-transform ${open ? "rotate-180" : ""}`}>
-          <path d="M1 1l3 4 3-4" stroke="currentColor" fill="none" strokeWidth="1.2" />
-        </svg>
-      </button>
-      <AnimatePresence>
-        {open && (
-          <motion.ul
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.14 }}
-            role="listbox"
-            className="absolute right-0 z-10 mt-2 min-w-[120px] overflow-hidden rounded-md border border-rule bg-paper shadow-lg shadow-ink/[0.04]"
-          >
-            {AVAILABLE_YEARS.map((y) => (
-              <li key={y}>
-                <button
-                  type="button"
-                  role="option"
-                  aria-selected={y === currentYear}
-                  onClick={() => pick(y)}
-                  className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left font-mono text-[11px] uppercase tracking-[0.12em] transition-colors hover:bg-paper-deep ${
-                    y === currentYear ? "text-ink font-semibold" : "text-graphite"
-                  }`}
-                >
-                  <span>{y}</span>
-                  {y === currentYear && <span className="size-1 rounded-full bg-ink" />}
-                </button>
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// DataStatus — small "PULLED · MAY 10" indicator
-// -----------------------------------------------------------------------------
-
-function DataStatus({ label }: { label: string }) {
-  return (
-    <div className="hidden items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft xl:flex">
-      <span className="relative inline-flex h-1.5 w-1.5">
-        <span className="absolute inset-0 rounded-full bg-gold/70" />
-        <span className="absolute inset-0 animate-ping rounded-full bg-gold/40" />
-      </span>
-      <span>Data · {label}</span>
-    </div>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// Helpers
-// -----------------------------------------------------------------------------
-
-function formatPulledShort(iso: string): string {
-  if (!iso || iso.startsWith("PLACEHOLDER")) return "—";
-  try {
-    const d = new Date(iso);
-    return d.toLocaleDateString(undefined, { month: "short", day: "numeric" }).toUpperCase();
-  } catch {
-    return "—";
-  }
-}
