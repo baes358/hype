@@ -315,14 +315,11 @@ export function TimelineHeatmap({
       <StaggerGroup
         staggerMs={50}
         delay={0.2}
-        className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal"
+        className="mt-4 flex flex-col items-start gap-y-1 font-mono text-xs uppercase tracking-normal"
       >
         <span style={{ color: HEATMAP_THEME.textMuted }}>Deep navy = low hype that day</span>
-        <span style={{ color: HEATMAP_THEME.textMuted }}>·</span>
         <span style={{ color: HEATMAP_THEME.textMuted }}>White = peak day across the dataset</span>
-        <span style={{ color: HEATMAP_THEME.textMuted }}>·</span>
         <span style={{ color: HEATMAP_THEME.textMuted }}>Vertical line = Selection Sunday</span>
-        <span style={{ color: HEATMAP_THEME.textMuted }}>·</span>
         <span style={{ color: HEATMAP_THEME.textMuted }}>Click any row for details</span>
       </StaggerGroup>
     </section>

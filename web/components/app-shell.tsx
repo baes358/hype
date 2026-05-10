@@ -363,15 +363,11 @@ export function AppShell({ data, view }: Props) {
 
       <footer className="mt-auto border-t border-border">
         <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-3 sm:gap-x-6 sm:px-6">
+          <div className="mx-auto flex max-w-7xl flex-col items-start gap-y-1 px-5 py-3 sm:px-6">
             <span className="text-foreground font-semibold">HYP3 / 001</span>
-            <span>·</span>
             <span>{dataset.metadata.tournament_year} NCAA Men&rsquo;s Tournament</span>
-            <span>·</span>
             <span>Hype window {formatWindow(dataset.metadata.hype_window_start, dataset.metadata.hype_window_end)}</span>
-            <span>·</span>
             <span>{dataset.metadata.total_teams} teams</span>
-            <span>·</span>
             <span>Pulled {formatPulled(dataset.metadata.data_pulled_at)}</span>
           </div>
         </div>

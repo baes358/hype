@@ -62,13 +62,13 @@ function TeamSheetBody({ team }: { team: Team }) {
   return (
     <div className="flex flex-col gap-6 px-5 py-6 sm:gap-8 sm:px-6 sm:py-8">
       <SheetHeader className="px-0">
-        <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-normal text-muted-foreground">
-          <span className={`size-1.5 rounded-full ${style.dot}`} />
-          {TAG_LABEL[team.story_tag]}
-          <span>·</span>
-          <span>
-            {team.region} · {team.seed} seed
+        <div className="flex flex-col items-start gap-1 font-mono text-xs uppercase tracking-normal text-muted-foreground">
+          <span className="flex items-center gap-2">
+            <span className={`size-1.5 rounded-full ${style.dot}`} />
+            {TAG_LABEL[team.story_tag]}
           </span>
+          <span>{team.region}</span>
+          <span>{team.seed} seed</span>
         </div>
         <SheetTitle className="mt-3 text-balance text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl">
           {team.team}

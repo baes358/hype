@@ -91,11 +91,13 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payl
   return (
     <div className="rounded-md border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur-sm">
       <div className="font-semibold text-foreground">{t.team}</div>
-      <div className="mt-1 font-mono text-sm uppercase tracking-normal text-muted-foreground">
-        {t.seed} seed · {round}
+      <div className="mt-1 flex flex-col items-start font-mono text-sm uppercase tracking-normal text-muted-foreground">
+        <span>{t.seed} seed</span>
+        <span>{round}</span>
       </div>
-      <div className="mt-1 font-mono text-sm tabular-nums text-muted-foreground">
-        Hype #{t.hype_rank} · gap {t.gap > 0 ? "+" : ""}{t.gap}
+      <div className="mt-1 flex flex-col items-start font-mono text-sm tabular-nums text-muted-foreground">
+        <span>Hype #{t.hype_rank}</span>
+        <span>gap {t.gap > 0 ? "+" : ""}{t.gap}</span>
       </div>
     </div>
   );
@@ -205,12 +207,10 @@ export function ScatterChartView({ teams, onSelect }: Props) {
           <StaggerGroup
             staggerMs={50}
             delay={0.25}
-            className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal text-muted-foreground"
+            className="mt-4 flex flex-col items-start gap-y-1 font-mono text-xs uppercase tracking-normal text-muted-foreground"
           >
             <span>Below the line ↘ overhyped</span>
-            <span>·</span>
             <span>Above the line ↗ underhyped</span>
-            <span>·</span>
             <span>Click any dot for details</span>
           </StaggerGroup>
         </div>

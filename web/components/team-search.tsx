@@ -17,6 +17,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [highlighted, setHighlighted] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const matches = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -67,6 +68,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
   return (
     <div ref={wrapperRef} className="relative w-full sm:w-auto">
       <input
+        ref={inputRef}
         type="text"
         value={query}
         onChange={(e) => {
@@ -77,12 +79,25 @@ export function TeamSearch({ teams, onSelect }: Props) {
         onKeyDown={onKeyDown}
         placeholder="Search team"
         aria-label="Search team"
-        className="w-full rounded-full border border-border bg-transparent py-1.5 pl-3 pr-9 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-56 sm:py-1 sm:text-sm"
+        className="w-full rounded-full border border-border bg-transparent py-1.5 pl-3 pr-10 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-56 sm:py-1 sm:text-sm"
       />
-      <Search
-        aria-hidden="true"
-        className="pointer-events-none absolute right-3 top-1/2 size-3 -translate-y-1/2 text-muted-foreground"
-      />
+      <button
+        type="button"
+        onClick={() => {
+          // If the user has typed something, jump to the highlighted match.
+          // Otherwise, treat the icon click as "focus the search box".
+          if (matches[highlighted]) {
+            select(matches[highlighted]);
+          } else {
+            inputRef.current?.focus();
+            setIsOpen(true);
+          }
+        }}
+        aria-label="Search"
+        className="absolute right-1 top-1/2 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+      >
+        <Search aria-hidden className="size-3.5" />
+      </button>
       {isOpen && query && (
         <div className="absolute right-0 top-full z-50 mt-1 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg sm:w-64">
           {matches.length === 0 ? (
