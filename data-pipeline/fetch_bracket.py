@@ -76,6 +76,16 @@ NAME_NORMALIZE: dict[str, str] = {
     "Mississippi St.": "Mississippi State",
     "Norfolk St.": "Norfolk State",
     "San Diego St.": "San Diego State",
+    # Added 2026-05-10 — surfaced by fetch_season_records.py (standings endpoint
+    # uses different short forms than the bracket endpoint for some teams).
+    "St. John's (NY)": "St. John's",
+    "Prairie View": "Prairie View A&M",
+    "Saint Mary's (CA)": "St. Mary's",
+    "South Fla.": "South Florida",
+    "UNI": "Northern Iowa",
+    "California Baptist": "Cal Baptist",
+    "Queens (NC)": "Queens",
+    "LIU": "Long Island",
 }
 
 

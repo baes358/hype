@@ -39,7 +39,7 @@ function shortDate(iso: string): string {
 }
 
 function formatAcceleration(v: number): string {
-  if (!Number.isFinite(v) || v <= 0) return "—";
+  if (!Number.isFinite(v) || v < 0) return "—";
   return v < 100 ? `${v.toFixed(1)}×` : `${Math.round(v)}×`;
 }
 
@@ -100,44 +100,50 @@ function TeamSheetBody({
         </SheetDescription>
       </SheetHeader>
 
-      {/* Stat strip */}
+      {/* Stat strip — 6 stats, 2x3 on mobile / 3x2 on desktop */}
       <StaggerGroup
         staggerMs={70}
         delay={0.1}
-        className="grid grid-cols-2 gap-px bg-border sm:grid-cols-4"
+        className="grid grid-cols-2 gap-px bg-border sm:grid-cols-3"
       >
         <Stat label="Hype index" value={team.hype_normalized.toFixed(0)} hint="0–100, normalized" />
+        <Stat label="Hype rank" value={`#${team.hype_rank}`} hint="of 68" />
         <Stat
-          label="Hype rank"
-          value={`#${team.hype_rank}`}
-          hint={`of ${team.hype_rank > team.performance_rank ? "" : ""}68`}
+          label="Hype accel"
+          value={formatAcceleration(team.hype_acceleration)}
+          hint="tournament vs. season"
         />
         <Stat
           label="Perf rank"
           value={`#${team.performance_rank}`}
-          hint={`${team.wins} wins`}
+          hint={`${team.wins} tournament ${team.wins === 1 ? "win" : "wins"}`}
         />
         <Stat
-          label="Acceleration"
-          value={formatAcceleration(team.hype_acceleration)}
+          label="Season record"
+          value={`${team.season_wins}-${team.season_losses}`}
+          hint="full season"
+        />
+        <Stat
+          label="Perf accel"
+          value={formatAcceleration(team.performance_acceleration)}
           hint="tournament vs. season"
         />
       </StaggerGroup>
 
-      {/* Gap callout */}
-      <div className={`rounded-md border ${style.border} ${style.bg} px-4 py-3`}>
-        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-          Gap
-        </div>
-        <div className="mt-1 flex items-baseline gap-3">
-          <span className={`font-mono text-3xl font-bold tabular-nums ${style.text}`}>
-            {team.gap > 0 ? "+" : ""}
-            {team.gap}
-          </span>
-          <span className="text-sm text-muted-foreground">
-            hype rank − performance rank
-          </span>
-        </div>
+      {/* Dual gap callouts — tournament + season side-by-side */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <GapCallout
+          label="Tournament gap"
+          gap={team.gap}
+          tag={team.story_tag}
+          subtitle="hype rank − tournament wins rank"
+        />
+        <GapCallout
+          label="Season gap"
+          gap={team.season_gap}
+          tag={team.season_story_tag}
+          subtitle="season hype rank − season win % rank"
+        />
       </div>
 
       {/* Daily hype chart */}
@@ -210,6 +216,35 @@ function TeamSheetBody({
             />
           </AreaChart>
         </ChartContainer>
+      </div>
+    </div>
+  );
+}
+
+function GapCallout({
+  label,
+  gap,
+  tag,
+  subtitle,
+}: {
+  label: string;
+  gap: number;
+  tag: Team["story_tag"];
+  subtitle: string;
+}) {
+  const s = TAG_STYLE[tag];
+  return (
+    <div className={`rounded-md border ${s.border} ${s.bg} px-4 py-3`}>
+      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-normal text-muted-foreground">
+        <span className={`size-1.5 rounded-full ${s.dot}`} />
+        {label}
+      </div>
+      <div className="mt-1 flex items-baseline gap-3">
+        <span className={`font-mono text-3xl font-bold tabular-nums ${s.text}`}>
+          {gap > 0 ? "+" : ""}
+          {gap}
+        </span>
+        <span className="text-xs text-muted-foreground">{subtitle}</span>
       </div>
     </div>
   );

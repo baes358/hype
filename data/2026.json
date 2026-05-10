@@ -6,7 +6,7 @@
     "season_window_start": "2025-11-01",
     "season_window_end": "2026-03-24",
     "total_teams": 68,
-    "data_pulled_at": "2026-05-10T20:12:11.800494+00:00"
+    "data_pulled_at": "2026-05-10T21:10:50.776305+00:00"
   },
   "finding": "HYPE vs. PERFORMANCE",
   "teams": [
@@ -665,7 +665,17 @@
           "value": 13
         }
       ],
-      "hype_acceleration": 2.03
+      "hype_acceleration": 2.03,
+      "season_wins": 37,
+      "season_losses": 3,
+      "pre_tournament_wins": 31,
+      "pre_tournament_losses": 3,
+      "season_win_pct": 0.925,
+      "performance_acceleration": 1.1,
+      "season_hype_rank": 3,
+      "season_performance_rank": 2,
+      "season_gap": 1,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "UConn",
@@ -1322,7 +1332,17 @@
           "value": 30
         }
       ],
-      "hype_acceleration": 1.51
+      "hype_acceleration": 1.51,
+      "season_wins": 34,
+      "season_losses": 6,
+      "pre_tournament_wins": 29,
+      "pre_tournament_losses": 5,
+      "season_win_pct": 0.85,
+      "performance_acceleration": 0.98,
+      "season_hype_rank": 2,
+      "season_performance_rank": 7,
+      "season_gap": -5,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Arizona",
@@ -1979,7 +1999,17 @@
           "value": 23
         }
       ],
-      "hype_acceleration": 1.63
+      "hype_acceleration": 1.63,
+      "season_wins": 36,
+      "season_losses": 3,
+      "pre_tournament_wins": 32,
+      "pre_tournament_losses": 2,
+      "season_win_pct": 0.9231,
+      "performance_acceleration": 0.85,
+      "season_hype_rank": 1,
+      "season_performance_rank": 3,
+      "season_gap": -2,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Illinois",
@@ -2636,7 +2666,17 @@
           "value": 15
         }
       ],
-      "hype_acceleration": 1.43
+      "hype_acceleration": 1.43,
+      "season_wins": 28,
+      "season_losses": 9,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7568,
+      "performance_acceleration": 1.07,
+      "season_hype_rank": 6,
+      "season_performance_rank": 23,
+      "season_gap": -17,
+      "season_story_tag": "noise"
     },
     {
       "team": "Duke",
@@ -3293,7 +3333,17 @@
           "value": 3
         }
       ],
-      "hype_acceleration": 2.53
+      "hype_acceleration": 2.53,
+      "season_wins": 35,
+      "season_losses": 3,
+      "pre_tournament_wins": 32,
+      "pre_tournament_losses": 2,
+      "season_win_pct": 0.9211,
+      "performance_acceleration": 0.8,
+      "season_hype_rank": 37,
+      "season_performance_rank": 4,
+      "season_gap": 33,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Purdue",
@@ -3950,7 +4000,17 @@
           "value": 9
         }
       ],
-      "hype_acceleration": 2.44
+      "hype_acceleration": 2.44,
+      "season_wins": 30,
+      "season_losses": 9,
+      "pre_tournament_wins": 27,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7692,
+      "performance_acceleration": 0.97,
+      "season_hype_rank": 18,
+      "season_performance_rank": 22,
+      "season_gap": -4,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Tennessee",
@@ -4607,7 +4667,17 @@
           "value": 18
         }
       ],
-      "hype_acceleration": 1.31
+      "hype_acceleration": 1.31,
+      "season_wins": 25,
+      "season_losses": 12,
+      "pre_tournament_wins": 22,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6757,
+      "performance_acceleration": 1.12,
+      "season_hype_rank": 5,
+      "season_performance_rank": 44,
+      "season_gap": -39,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Iowa",
@@ -5264,7 +5334,17 @@
           "value": 13
         }
       ],
-      "hype_acceleration": 1.46
+      "hype_acceleration": 1.46,
+      "season_wins": 24,
+      "season_losses": 13,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 12,
+      "season_win_pct": 0.6486,
+      "performance_acceleration": 1.18,
+      "season_hype_rank": 20,
+      "season_performance_rank": 51,
+      "season_gap": -31,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Texas",
@@ -5921,7 +6001,17 @@
           "value": 17
         }
       ],
-      "hype_acceleration": 1.93
+      "hype_acceleration": 1.93,
+      "season_wins": 21,
+      "season_losses": 15,
+      "pre_tournament_wins": 18,
+      "pre_tournament_losses": 14,
+      "season_win_pct": 0.5833,
+      "performance_acceleration": 1.33,
+      "season_hype_rank": 22,
+      "season_performance_rank": 65,
+      "season_gap": -43,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Houston",
@@ -6578,7 +6668,17 @@
           "value": 17
         }
       ],
-      "hype_acceleration": 2.05
+      "hype_acceleration": 2.05,
+      "season_wins": 30,
+      "season_losses": 7,
+      "pre_tournament_wins": 28,
+      "pre_tournament_losses": 6,
+      "season_win_pct": 0.8108,
+      "performance_acceleration": 0.81,
+      "season_hype_rank": 4,
+      "season_performance_rank": 13,
+      "season_gap": -9,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Iowa State",
@@ -7235,7 +7335,17 @@
           "value": 6
         }
       ],
-      "hype_acceleration": 1.32
+      "hype_acceleration": 1.32,
+      "season_wins": 29,
+      "season_losses": 8,
+      "pre_tournament_wins": 27,
+      "pre_tournament_losses": 7,
+      "season_win_pct": 0.7838,
+      "performance_acceleration": 0.84,
+      "season_hype_rank": 17,
+      "season_performance_rank": 17,
+      "season_gap": 0,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Michigan State",
@@ -7892,7 +8002,17 @@
           "value": 8
         }
       ],
-      "hype_acceleration": 1.39
+      "hype_acceleration": 1.39,
+      "season_wins": 27,
+      "season_losses": 8,
+      "pre_tournament_wins": 25,
+      "pre_tournament_losses": 7,
+      "season_win_pct": 0.7714,
+      "performance_acceleration": 0.85,
+      "season_hype_rank": 9,
+      "season_performance_rank": 19,
+      "season_gap": -10,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Alabama",
@@ -8549,7 +8669,17 @@
           "value": 11
         }
       ],
-      "hype_acceleration": 1.38
+      "hype_acceleration": 1.38,
+      "season_wins": 25,
+      "season_losses": 10,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 9,
+      "season_win_pct": 0.7143,
+      "performance_acceleration": 0.93,
+      "season_hype_rank": 10,
+      "season_performance_rank": 34,
+      "season_gap": -24,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Arkansas",
@@ -9206,7 +9336,17 @@
           "value": 13
         }
       ],
-      "hype_acceleration": 2.26
+      "hype_acceleration": 2.26,
+      "season_wins": 28,
+      "season_losses": 9,
+      "pre_tournament_wins": 26,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7568,
+      "performance_acceleration": 0.87,
+      "season_hype_rank": 13,
+      "season_performance_rank": 23,
+      "season_gap": -10,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Nebraska",
@@ -9863,7 +10003,17 @@
           "value": 9
         }
       ],
-      "hype_acceleration": 1.44
+      "hype_acceleration": 1.44,
+      "season_wins": 28,
+      "season_losses": 7,
+      "pre_tournament_wins": 26,
+      "pre_tournament_losses": 6,
+      "season_win_pct": 0.8,
+      "performance_acceleration": 0.82,
+      "season_hype_rank": 25,
+      "season_performance_rank": 16,
+      "season_gap": 9,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "St. John's",
@@ -10520,7 +10670,17 @@
           "value": 10
         }
       ],
-      "hype_acceleration": 3.5
+      "hype_acceleration": 3.5,
+      "season_wins": 30,
+      "season_losses": 7,
+      "pre_tournament_wins": 28,
+      "pre_tournament_losses": 6,
+      "season_win_pct": 0.8108,
+      "performance_acceleration": 0.81,
+      "season_hype_rank": 36,
+      "season_performance_rank": 13,
+      "season_gap": 23,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Florida",
@@ -11177,7 +11337,17 @@
           "value": 9
         }
       ],
-      "hype_acceleration": 2.35
+      "hype_acceleration": 2.35,
+      "season_wins": 27,
+      "season_losses": 8,
+      "pre_tournament_wins": 26,
+      "pre_tournament_losses": 7,
+      "season_win_pct": 0.7714,
+      "performance_acceleration": 0.63,
+      "season_hype_rank": 19,
+      "season_performance_rank": 19,
+      "season_gap": 0,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Gonzaga",
@@ -11834,7 +12004,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 0.89
+      "hype_acceleration": 0.89,
+      "season_wins": 31,
+      "season_losses": 4,
+      "pre_tournament_wins": 30,
+      "pre_tournament_losses": 3,
+      "season_win_pct": 0.8857,
+      "performance_acceleration": 0.55,
+      "season_hype_rank": 29,
+      "season_performance_rank": 5,
+      "season_gap": 24,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Virginia",
@@ -12491,7 +12671,17 @@
           "value": 10
         }
       ],
-      "hype_acceleration": 3.94
+      "hype_acceleration": 3.94,
+      "season_wins": 30,
+      "season_losses": 6,
+      "pre_tournament_wins": 29,
+      "pre_tournament_losses": 5,
+      "season_win_pct": 0.8333,
+      "performance_acceleration": 0.59,
+      "season_hype_rank": 41,
+      "season_performance_rank": 8,
+      "season_gap": 33,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Kansas",
@@ -13148,7 +13338,17 @@
           "value": 7
         }
       ],
-      "hype_acceleration": 1.25
+      "hype_acceleration": 1.25,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.72,
+      "season_hype_rank": 12,
+      "season_performance_rank": 36,
+      "season_gap": -24,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Texas Tech",
@@ -13805,7 +14005,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 1.36
+      "hype_acceleration": 1.36,
+      "season_wins": 23,
+      "season_losses": 11,
+      "pre_tournament_wins": 22,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6765,
+      "performance_acceleration": 0.73,
+      "season_hype_rank": 23,
+      "season_performance_rank": 43,
+      "season_gap": -20,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Vanderbilt",
@@ -14462,7 +14672,17 @@
           "value": 7
         }
       ],
-      "hype_acceleration": 5.48
+      "hype_acceleration": 5.48,
+      "season_wins": 27,
+      "season_losses": 9,
+      "pre_tournament_wins": 26,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.75,
+      "performance_acceleration": 0.65,
+      "season_hype_rank": 45,
+      "season_performance_rank": 25,
+      "season_gap": 20,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Louisville",
@@ -15119,7 +15339,17 @@
           "value": 7
         }
       ],
-      "hype_acceleration": 1.55
+      "hype_acceleration": 1.55,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.72,
+      "season_hype_rank": 15,
+      "season_performance_rank": 36,
+      "season_gap": -21,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Kentucky",
@@ -15776,7 +16006,17 @@
           "value": 11
         }
       ],
-      "hype_acceleration": 1.46
+      "hype_acceleration": 1.46,
+      "season_wins": 22,
+      "season_losses": 14,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 13,
+      "season_win_pct": 0.6111,
+      "performance_acceleration": 0.81,
+      "season_hype_rank": 7,
+      "season_performance_rank": 58,
+      "season_gap": -51,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Miami (FL)",
@@ -16433,7 +16673,17 @@
           "value": 6
         }
       ],
-      "hype_acceleration": 2.2
+      "hype_acceleration": 2.2,
+      "season_wins": 26,
+      "season_losses": 9,
+      "pre_tournament_wins": 25,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7429,
+      "performance_acceleration": 0.66,
+      "season_hype_rank": 26,
+      "season_performance_rank": 26,
+      "season_gap": 0,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "UCLA",
@@ -17090,7 +17340,17 @@
           "value": 31
         }
       ],
-      "hype_acceleration": 2.66
+      "hype_acceleration": 2.66,
+      "season_wins": 24,
+      "season_losses": 12,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6667,
+      "performance_acceleration": 0.74,
+      "season_hype_rank": 14,
+      "season_performance_rank": 45,
+      "season_gap": -31,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Saint Louis",
@@ -17747,7 +18007,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 3.44
+      "hype_acceleration": 3.44,
+      "season_wins": 29,
+      "season_losses": 6,
+      "pre_tournament_wins": 28,
+      "pre_tournament_losses": 5,
+      "season_win_pct": 0.8286,
+      "performance_acceleration": 0.59,
+      "season_hype_rank": 58,
+      "season_performance_rank": 9,
+      "season_gap": 49,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "TCU",
@@ -18404,7 +18674,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 3.0
+      "hype_acceleration": 3.0,
+      "season_wins": 23,
+      "season_losses": 12,
+      "pre_tournament_wins": 22,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6571,
+      "performance_acceleration": 0.75,
+      "season_hype_rank": 59,
+      "season_performance_rank": 47,
+      "season_gap": 12,
+      "season_story_tag": "noise"
     },
     {
       "team": "Utah State",
@@ -19061,7 +19341,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 20.0
+      "hype_acceleration": 20.0,
+      "season_wins": 29,
+      "season_losses": 7,
+      "pre_tournament_wins": 28,
+      "pre_tournament_losses": 6,
+      "season_win_pct": 0.8056,
+      "performance_acceleration": 0.61,
+      "season_hype_rank": 47,
+      "season_performance_rank": 15,
+      "season_gap": 32,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Texas A&M",
@@ -19718,7 +20008,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 1.95
+      "hype_acceleration": 1.95,
+      "season_wins": 22,
+      "season_losses": 12,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6471,
+      "performance_acceleration": 0.76,
+      "season_hype_rank": 31,
+      "season_performance_rank": 52,
+      "season_gap": -21,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Miami (OH)",
@@ -20375,7 +20675,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 4.55
+      "hype_acceleration": 4.55,
+      "season_wins": 32,
+      "season_losses": 2,
+      "pre_tournament_wins": 31,
+      "pre_tournament_losses": 1,
+      "season_win_pct": 0.9412,
+      "performance_acceleration": 0.52,
+      "season_hype_rank": 27,
+      "season_performance_rank": 1,
+      "season_gap": 26,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "VCU",
@@ -21032,7 +21342,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 3.47
+      "hype_acceleration": 3.47,
+      "season_wins": 28,
+      "season_losses": 8,
+      "pre_tournament_wins": 27,
+      "pre_tournament_losses": 7,
+      "season_win_pct": 0.7778,
+      "performance_acceleration": 0.63,
+      "season_hype_rank": 61,
+      "season_performance_rank": 18,
+      "season_gap": 43,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "High Point",
@@ -21689,7 +22009,17 @@
           "value": 3
         }
       ],
-      "hype_acceleration": 3.6
+      "hype_acceleration": 3.6,
+      "season_wins": 31,
+      "season_losses": 5,
+      "pre_tournament_wins": 30,
+      "pre_tournament_losses": 4,
+      "season_win_pct": 0.8611,
+      "performance_acceleration": 0.57,
+      "season_hype_rank": 54,
+      "season_performance_rank": 6,
+      "season_gap": 48,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Howard",
@@ -22346,7 +22676,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 6.87
+      "hype_acceleration": 6.87,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.72,
+      "season_hype_rank": 56,
+      "season_performance_rank": 36,
+      "season_gap": 20,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Prairie View A&M",
@@ -23003,7 +23343,17 @@
           "value": 2
         }
       ],
-      "hype_acceleration": 5.6
+      "hype_acceleration": 5.6,
+      "season_wins": 19,
+      "season_losses": 18,
+      "pre_tournament_wins": 18,
+      "pre_tournament_losses": 17,
+      "season_win_pct": 0.5135,
+      "performance_acceleration": 0.97,
+      "season_hype_rank": 48,
+      "season_performance_rank": 68,
+      "season_gap": -20,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Wisconsin",
@@ -23660,7 +24010,17 @@
           "value": 3
         }
       ],
-      "hype_acceleration": 2.55
+      "hype_acceleration": 2.55,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 11,
+      "season_performance_rank": 36,
+      "season_gap": -25,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "BYU",
@@ -24317,7 +24677,17 @@
           "value": 9
         }
       ],
-      "hype_acceleration": 1.88
+      "hype_acceleration": 1.88,
+      "season_wins": 23,
+      "season_losses": 12,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6571,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 21,
+      "season_performance_rank": 47,
+      "season_gap": -26,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "North Carolina",
@@ -24974,7 +25344,17 @@
           "value": 5
         }
       ],
-      "hype_acceleration": 1.43
+      "hype_acceleration": 1.43,
+      "season_wins": 24,
+      "season_losses": 9,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7273,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 30,
+      "season_performance_rank": 30,
+      "season_gap": 0,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "St. Mary's",
@@ -25631,7 +26011,17 @@
           "value": 23
         }
       ],
-      "hype_acceleration": 5.9
+      "hype_acceleration": 5.9,
+      "season_wins": 27,
+      "season_losses": 6,
+      "pre_tournament_wins": 27,
+      "pre_tournament_losses": 5,
+      "season_win_pct": 0.8182,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 40,
+      "season_performance_rank": 12,
+      "season_gap": 28,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Clemson",
@@ -26288,7 +26678,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 4.44
+      "hype_acceleration": 4.44,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 33,
+      "season_performance_rank": 36,
+      "season_gap": -3,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Georgia",
@@ -26945,7 +27345,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 1.69
+      "hype_acceleration": 1.69,
+      "season_wins": 22,
+      "season_losses": 11,
+      "pre_tournament_wins": 22,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6667,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 24,
+      "season_performance_rank": 45,
+      "season_gap": -21,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Ohio State",
@@ -27602,7 +28012,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 2.2
+      "hype_acceleration": 2.2,
+      "season_wins": 21,
+      "season_losses": 13,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 12,
+      "season_win_pct": 0.6176,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 34,
+      "season_performance_rank": 57,
+      "season_gap": -23,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Villanova",
@@ -28259,7 +28679,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 1.89
+      "hype_acceleration": 1.89,
+      "season_wins": 24,
+      "season_losses": 9,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7273,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 32,
+      "season_performance_rank": 30,
+      "season_gap": 2,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Missouri",
@@ -28916,7 +29346,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 2.11
+      "hype_acceleration": 2.11,
+      "season_wins": 20,
+      "season_losses": 13,
+      "pre_tournament_wins": 20,
+      "pre_tournament_losses": 12,
+      "season_win_pct": 0.6061,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 16,
+      "season_performance_rank": 59,
+      "season_gap": -43,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Santa Clara",
@@ -29573,7 +30013,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 2.33
+      "hype_acceleration": 2.33,
+      "season_wins": 26,
+      "season_losses": 9,
+      "pre_tournament_wins": 26,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7429,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 66,
+      "season_performance_rank": 26,
+      "season_gap": 40,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "UCF",
@@ -30230,7 +30680,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 2.54
+      "hype_acceleration": 2.54,
+      "season_wins": 21,
+      "season_losses": 12,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6364,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 39,
+      "season_performance_rank": 55,
+      "season_gap": -16,
+      "season_story_tag": "noise"
     },
     {
       "team": "NC State",
@@ -30887,7 +31347,17 @@
           "value": 4
         }
       ],
-      "hype_acceleration": 1.59
+      "hype_acceleration": 1.59,
+      "season_wins": 20,
+      "season_losses": 14,
+      "pre_tournament_wins": 20,
+      "pre_tournament_losses": 13,
+      "season_win_pct": 0.5882,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 8,
+      "season_performance_rank": 63,
+      "season_gap": -55,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "SMU",
@@ -31544,7 +32014,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 2.15
+      "hype_acceleration": 2.15,
+      "season_wins": 20,
+      "season_losses": 14,
+      "pre_tournament_wins": 20,
+      "pre_tournament_losses": 13,
+      "season_win_pct": 0.5882,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 38,
+      "season_performance_rank": 63,
+      "season_gap": -25,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "South Florida",
@@ -32201,7 +32681,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 7.07
+      "hype_acceleration": 7.07,
+      "season_wins": 25,
+      "season_losses": 9,
+      "pre_tournament_wins": 25,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7353,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 62,
+      "season_performance_rank": 28,
+      "season_gap": 34,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Akron",
@@ -32858,7 +33348,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 11.33
+      "hype_acceleration": 11.33,
+      "season_wins": 29,
+      "season_losses": 6,
+      "pre_tournament_wins": 29,
+      "pre_tournament_losses": 5,
+      "season_win_pct": 0.8286,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 52,
+      "season_performance_rank": 9,
+      "season_gap": 43,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "McNeese State",
@@ -33515,7 +34015,17 @@
           "value": 2
         }
       ],
-      "hype_acceleration": 4.15
+      "hype_acceleration": 4.15,
+      "season_wins": 28,
+      "season_losses": 6,
+      "pre_tournament_wins": 28,
+      "pre_tournament_losses": 5,
+      "season_win_pct": 0.8235,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 46,
+      "season_performance_rank": 11,
+      "season_gap": 35,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Northern Iowa",
@@ -34172,7 +34682,17 @@
           "value": 4
         }
       ],
-      "hype_acceleration": 5.16
+      "hype_acceleration": 5.16,
+      "season_wins": 23,
+      "season_losses": 13,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 12,
+      "season_win_pct": 0.6389,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 28,
+      "season_performance_rank": 54,
+      "season_gap": -26,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Cal Baptist",
@@ -34829,7 +35349,17 @@
           "value": 2
         }
       ],
-      "hype_acceleration": 8.47
+      "hype_acceleration": 8.47,
+      "season_wins": 25,
+      "season_losses": 9,
+      "pre_tournament_wins": 25,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7353,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 51,
+      "season_performance_rank": 28,
+      "season_gap": 23,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Hawaii",
@@ -35486,7 +36016,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 1.1
+      "hype_acceleration": 1.1,
+      "season_wins": 24,
+      "season_losses": 9,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7273,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 50,
+      "season_performance_rank": 30,
+      "season_gap": 20,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Hofstra",
@@ -36143,7 +36683,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 7.33
+      "hype_acceleration": 7.33,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 63,
+      "season_performance_rank": 36,
+      "season_gap": 27,
+      "season_story_tag": "underhyped"
     },
     {
       "team": "Troy",
@@ -36800,7 +37350,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 2.6
+      "hype_acceleration": 2.6,
+      "season_wins": 22,
+      "season_losses": 12,
+      "pre_tournament_wins": 22,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6471,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 65,
+      "season_performance_rank": 52,
+      "season_gap": 13,
+      "season_story_tag": "noise"
     },
     {
       "team": "Kennesaw State",
@@ -37457,7 +38017,17 @@
           "value": 1
         }
       ],
-      "hype_acceleration": 4.65
+      "hype_acceleration": 4.65,
+      "season_wins": 21,
+      "season_losses": 14,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 13,
+      "season_win_pct": 0.6,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 53,
+      "season_performance_rank": 60,
+      "season_gap": -7,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "North Dakota State",
@@ -38114,7 +38684,17 @@
           "value": 5
         }
       ],
-      "hype_acceleration": 4.96
+      "hype_acceleration": 4.96,
+      "season_wins": 27,
+      "season_losses": 8,
+      "pre_tournament_wins": 27,
+      "pre_tournament_losses": 7,
+      "season_win_pct": 0.7714,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 35,
+      "season_performance_rank": 19,
+      "season_gap": 16,
+      "season_story_tag": "noise"
     },
     {
       "team": "Penn",
@@ -38771,7 +39351,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 11.73
+      "hype_acceleration": 11.73,
+      "season_wins": 18,
+      "season_losses": 12,
+      "pre_tournament_wins": 18,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 60,
+      "season_performance_rank": 60,
+      "season_gap": 0,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Wright State",
@@ -39428,7 +40018,17 @@
           "value": 1
         }
       ],
-      "hype_acceleration": 4.24
+      "hype_acceleration": 4.24,
+      "season_wins": 23,
+      "season_losses": 12,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6571,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 48,
+      "season_performance_rank": 47,
+      "season_gap": 1,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Furman",
@@ -40085,7 +40685,17 @@
           "value": 1
         }
       ],
-      "hype_acceleration": 3.8
+      "hype_acceleration": 3.8,
+      "season_wins": 22,
+      "season_losses": 13,
+      "pre_tournament_wins": 22,
+      "pre_tournament_losses": 12,
+      "season_win_pct": 0.6286,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 49,
+      "season_performance_rank": 56,
+      "season_gap": -7,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Idaho",
@@ -40742,7 +41352,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 12.13
+      "hype_acceleration": 12.13,
+      "season_wins": 21,
+      "season_losses": 15,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 14,
+      "season_win_pct": 0.5833,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 55,
+      "season_performance_rank": 65,
+      "season_gap": -10,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Queens",
@@ -41399,7 +42019,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 10.07
+      "hype_acceleration": 10.07,
+      "season_wins": 21,
+      "season_losses": 14,
+      "pre_tournament_wins": 21,
+      "pre_tournament_losses": 13,
+      "season_win_pct": 0.6,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 57,
+      "season_performance_rank": 60,
+      "season_gap": -3,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Tennessee State",
@@ -42056,7 +42686,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 4.02
+      "hype_acceleration": 4.02,
+      "season_wins": 23,
+      "season_losses": 10,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 9,
+      "season_win_pct": 0.697,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 42,
+      "season_performance_rank": 35,
+      "season_gap": 7,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Lehigh",
@@ -42713,7 +43353,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 6.06
+      "hype_acceleration": 6.06,
+      "season_wins": 18,
+      "season_losses": 17,
+      "pre_tournament_wins": 18,
+      "pre_tournament_losses": 16,
+      "season_win_pct": 0.5143,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 43,
+      "season_performance_rank": 67,
+      "season_gap": -24,
+      "season_story_tag": "overhyped"
     },
     {
       "team": "Long Island",
@@ -43370,7 +44020,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 5.43
+      "hype_acceleration": 5.43,
+      "season_wins": 24,
+      "season_losses": 11,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 10,
+      "season_win_pct": 0.6857,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 44,
+      "season_performance_rank": 36,
+      "season_gap": 8,
+      "season_story_tag": "as_expected"
     },
     {
       "team": "Siena",
@@ -44027,7 +44687,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 3.13
+      "hype_acceleration": 3.13,
+      "season_wins": 23,
+      "season_losses": 12,
+      "pre_tournament_wins": 23,
+      "pre_tournament_losses": 11,
+      "season_win_pct": 0.6571,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 64,
+      "season_performance_rank": 47,
+      "season_gap": 17,
+      "season_story_tag": "noise"
     },
     {
       "team": "UMBC",
@@ -44684,7 +45354,17 @@
           "value": 0
         }
       ],
-      "hype_acceleration": 12.57
+      "hype_acceleration": 12.57,
+      "season_wins": 24,
+      "season_losses": 9,
+      "pre_tournament_wins": 24,
+      "pre_tournament_losses": 8,
+      "season_win_pct": 0.7273,
+      "performance_acceleration": 0.0,
+      "season_hype_rank": 46,
+      "season_performance_rank": 30,
+      "season_gap": 16,
+      "season_story_tag": "noise"
     }
   ]
 }

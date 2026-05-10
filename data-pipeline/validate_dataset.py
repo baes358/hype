@@ -40,6 +40,11 @@ EXISTING_FIELDS = [
 NEW_FIELDS = [
     "season_hype_raw", "season_hype_normalized",
     "season_hype_daily", "hype_acceleration",
+    "season_wins", "season_losses",
+    "pre_tournament_wins", "pre_tournament_losses",
+    "season_win_pct", "performance_acceleration",
+    "season_hype_rank", "season_performance_rank",
+    "season_gap", "season_story_tag",
 ]
 ALL_FIELDS = EXISTING_FIELDS + NEW_FIELDS
 
@@ -144,6 +149,39 @@ def main() -> int:
     max_norm_teams = [t["team"] for t in teams if t["season_hype_normalized"] == 100.0]
     if len(max_norm_teams) != 1:
         warn(f"expected exactly one team with season_hype_normalized == 100, got {len(max_norm_teams)}: {max_norm_teams}")
+        soft_warnings += 1
+
+    # Performance: season totals, accel, parallel rank/gap
+    season_gaps = []
+    for t in teams:
+        if t["season_wins"] < t["wins"]:
+            fail(f"{t['team']!r}: season_wins ({t['season_wins']}) < wins ({t['wins']}) — subtraction inverted")
+            hard_failures += 1
+        if t["season_losses"] < 0:
+            fail(f"{t['team']!r}: season_losses < 0")
+            hard_failures += 1
+        if not (0 <= t["season_win_pct"] <= 1):
+            fail(f"{t['team']!r}: season_win_pct out of [0, 1]: {t['season_win_pct']}")
+            hard_failures += 1
+        pre_games = t["pre_tournament_wins"] + t["pre_tournament_losses"]
+        if pre_games < 25:
+            warn(f"{t['team']!r}: pre-tournament games = {pre_games} (< 25, unusually short D1 schedule)")
+            soft_warnings += 1
+        if not (0 <= t["performance_acceleration"] <= 5):
+            warn(f"{t['team']!r}: performance_acceleration out of sane range [0, 5]: {t['performance_acceleration']}")
+            soft_warnings += 1
+        if t["season_story_tag"] not in VALID_STORY_TAGS:
+            fail(f"{t['team']!r}: invalid season_story_tag: {t['season_story_tag']!r}")
+            hard_failures += 1
+        season_gaps.append(t["season_gap"])
+
+    season_gaps_sorted = sorted(season_gaps)
+    s_p5 = statistics.quantiles(season_gaps_sorted, n=20)[0]
+    s_p50 = statistics.median(season_gaps_sorted)
+    s_p95 = statistics.quantiles(season_gaps_sorted, n=20)[18]
+    print(f"season_gap percentiles: p5={s_p5:.1f}  p50={s_p50:.1f}  p95={s_p95:.1f}")
+    if abs(s_p50) > 5:
+        warn(f"season_gap median = {s_p50:.1f} (|p50| > 5); rank assignments may be misaligned")
         soft_warnings += 1
 
     # 4. Distribution sanity for hype_acceleration

@@ -116,6 +116,47 @@ Edit at [data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69) i
 
 `hype_raw` is the **mean of unrounded daily values**. Rounding happens at output time only. Don't pre-aggregate in `pull_trends.py` — `raw_hype_<year>.csv` only contains `team` + `hype_daily` (the daily series); `build_dataset.py` computes the mean.
 
+### Performance: tournament vs. season
+
+Performance has a parallel structure to hype:
+
+| Hype | Performance |
+|---|---|
+| `hype_raw` (15-day window, cross-batch normalized) | `wins` (tournament wins 0-7) |
+| `season_hype_raw` (standalone-pull, intra-team) | `season_wins` (overall season W from NCAA API standings) |
+| `hype_acceleration` (in-window mean ÷ pre-window mean of season_hype_daily) | `performance_acceleration` (tournament win % ÷ pre-tournament win %) |
+| `hype_rank` / `gap` / `story_tag` (tournament-anchored) | `performance_rank` / `gap` / `story_tag` (tournament-anchored — UNCHANGED, drives editorial homepage) |
+| `season_hype_rank` | `season_performance_rank` (rank by `season_win_pct`, `method="min"`) |
+| — | `season_gap` = `season_hype_rank − season_performance_rank` |
+| — | `season_story_tag` (separate thresholds — see below) |
+
+`season_wins` / `season_losses` come from the NCAA API standings endpoint via [fetch_season_records.py](data-pipeline/fetch_season_records.py). They are **overall** — they include the NCAA tournament wins/losses. This is symmetric with `season_hype_raw`, which is also a full-season measure (the tournament window sits inside the season window). To get the regular-season slice, subtract:
+
+- `pre_tournament_wins = season_wins - wins`
+- `pre_tournament_losses = season_losses - tournament_losses` (where `tournament_losses = 0` for the champion, else `1`)
+
+Stored fields cover both partitions so consumers can pick the right one for the story.
+
+### Performance acceleration formula
+
+```
+performance_acceleration = (wins / (wins + tournament_losses))
+                         / (pre_tournament_wins / (pre_tournament_wins + pre_tournament_losses))
+```
+
+NO epsilon floor — every D1 tournament team has > 25 pre-tournament games and a pre-tournament win rate above ~0.5, so the denominator can't approach zero. The validator's range check (`0 ≤ accel ≤ 5`) catches NaN if data ever gets corrupted.
+
+### Season-anchored story_tag thresholds
+
+Tuned 2026-05-10 from the 2026 distribution:
+
+- `overhyped`: `season_gap <= -20`
+- `underhyped`: `season_gap >= +20`
+- `as_expected`: `|season_gap| <= 10`
+- `noise`: `10 < |season_gap| < 20`
+
+Symmetric (unlike tournament-side ±15 / ±25). The tournament asymmetry was driven by the 33-team 0-win cluster collapsing `performance_rank` — that doesn't exist on the season side where every team has a distinct win-rate rank. The 2026 distribution shape: 22 as_expected / 20 overhyped / 19 underhyped / 7 noise. Retune for future years if the distribution drifts.
+
 ### `season_hype_raw` and `hype_acceleration`
 
 `season_hype_raw` is the same math as `hype_raw` but on the standalone season curve (`raw_hype_season_<year>.csv`) — mean of unrounded daily values, rounded once at output. `season_hype_normalized` scales it to 0-100 across the field, but on its OWN scale (separate `max` from `hype_normalized`), because the underlying values are not cross-team comparable in magnitude.
@@ -226,6 +267,7 @@ The pipeline is year-parameterized as of 2026-05-03. Both `pull_trends.py` and `
 ```
 cd data-pipeline
 ./venv/bin/python fetch_bracket.py --year YYYY
+./venv/bin/python fetch_season_records.py --year YYYY                                 # NCAA API standings → cache/season_records_YYYY.json
 ./venv/bin/python probe_reference.py --year YYYY --team "Florida" --mode tournament   # pick a team that scores 0
 ./venv/bin/python pull_trends.py --year YYYY --reference Florida                      # tournament mode
 ./venv/bin/python pull_trends.py --year YYYY --mode season                            # season mode (no --reference needed)
@@ -296,6 +338,9 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). Internal conversion to pytrend
 - **Sharing caches between `--mode tournament` and `--mode season`** — the day grids are different, the math is different, and the team keys would silently collide. Two cache files, two output CSVs, two normalizations.
 - **Mixing scales when computing `hype_acceleration`** — both numerator and denominator must come from `season_hype_daily`. Don't divide tournament-mode `hype_raw` by season-mode pre-window mean; they're on different scales.
 - **Treating `season_hype_normalized` as cross-team comparable** — it isn't. Each team's standalone curve is normalized within its own history, so the 0-100 scale means different things per team. Use it as a soft sort key only.
+- **Adding an ε floor to `performance_acceleration`** — math is bounded by D1 schedule realities (pre-tournament games > 25, win rate > 0.5). No denominator can approach zero. Safety belongs in `validate_dataset.py`, not the formula.
+- **Filtering season-mode views by `team.story_tag`** — `app-shell.tsx` projects teams via `projectTeamForMode()` which swaps `gap`/`story_tag` to their `season_*` equivalents on the way to gap-chart/filters. Downstream code reading the ORIGINAL team object (e.g. `team-sheet.tsx`) must reference `season_gap` / `season_story_tag` by name. Don't shortcut through `t.story_tag` in places that need the underlying-mode-aware value.
+- **Treating `season_wins` as regular-season-only** — it's the API's `Overall W`, which **includes** the NCAA tournament. Subtract `wins` to get pre-tournament. (Symmetric with `season_hype_raw` which also includes the tournament window inside the season window.)
 
 ## Open follow-ups
 

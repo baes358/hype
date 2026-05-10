@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BracketGrid } from "@/components/bracket-grid";
 import { Filters } from "@/components/filters";
 import { GapChart } from "@/components/gap-chart";
+import { GapModeToggle } from "@/components/gap-mode-toggle";
 import { Hero } from "@/components/hero";
 import { ScatterChartView } from "@/components/scatter-chart";
 import { SectionNav } from "@/components/section-nav";
@@ -13,6 +14,7 @@ import { TeamSheet } from "@/components/team-sheet";
 import { TimelineHeatmap } from "@/components/timeline-heatmap";
 import {
   Dataset,
+  GapMode,
   REGIONS,
   Region,
   ROUND_ORDER,
@@ -22,12 +24,14 @@ import {
   Team,
   applyRoundFilter,
   maxAbsGap,
+  projectTeamForMode,
   tagCounts,
 } from "@/lib/data";
 
 const VALID_TAGS = new Set<string>(TAG_ORDER);
 const VALID_REGIONS = new Set<string>(REGIONS);
 const VALID_ROUNDS = new Set<string>(ROUND_ORDER);
+const VALID_MODES = new Set<GapMode>(["tournament", "season"]);
 
 function formatPulled(iso: string): string {
   if (iso.startsWith("PLACEHOLDER")) return "—";
@@ -111,11 +115,13 @@ type UrlSyncState = {
   selectedRegion: Region | "all";
   selectedRound: Round;
   selectedTeam: Team | null;
+  gapMode: GapMode;
   teams: Team[];
   setSelectedTags: (s: Set<StoryTag>) => void;
   setSelectedRegion: (r: Region | "all") => void;
   setSelectedRound: (r: Round) => void;
   setSelectedTeam: (t: Team | null) => void;
+  setGapMode: (m: GapMode) => void;
 };
 
 function UrlSync({
@@ -123,11 +129,13 @@ function UrlSync({
   selectedRegion,
   selectedRound,
   selectedTeam,
+  gapMode,
   teams,
   setSelectedTags,
   setSelectedRegion,
   setSelectedRound,
   setSelectedTeam,
+  setGapMode,
 }: UrlSyncState) {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -183,6 +191,14 @@ function UrlSync({
       didSeed = true;
     }
 
+    const modeRaw = searchParams.get("mode");
+    const expectedMode: GapMode =
+      modeRaw && VALID_MODES.has(modeRaw as GapMode) ? (modeRaw as GapMode) : "tournament";
+    if (expectedMode !== gapMode) {
+      setGapMode(expectedMode);
+      didSeed = true;
+    }
+
     if (didSeed) readJustSeeded.current = true;
     // selectedX deps deliberately omitted — comparing them inside the effect
     // is the whole point. Adding them would make the effect re-fire on
@@ -217,6 +233,9 @@ function UrlSync({
     if (!selectedTeam) params.delete("team");
     else params.set("team", selectedTeam.team);
 
+    if (gapMode === "tournament") params.delete("mode");
+    else params.set("mode", gapMode);
+
     const next = params.toString();
     const current = searchParams.toString();
     if (next === current) return;
@@ -226,6 +245,7 @@ function UrlSync({
     selectedRegion,
     selectedRound,
     selectedTeam,
+    gapMode,
     pathname,
     router,
     searchParams,
@@ -242,20 +262,31 @@ export function AppShell({ data, view }: Props) {
   const [selectedRegion, setSelectedRegion] = useState<Region | "all">("all");
   const [selectedRound, setSelectedRound] = useState<Round>("all");
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
+  const [gapMode, setGapMode] = useState<GapMode>("tournament");
+
+  // Project every team's gap/story_tag to match the current mode. Downstream
+  // components (gap chart, filters) read t.gap / t.story_tag as if mode-blind.
+  // The team sheet receives the original (unprojected) team to render both
+  // gap callouts side-by-side.
+  const projectedTeams = useMemo(
+    () => dataset.teams.map((t) => projectTeamForMode(t, gapMode)),
+    [dataset.teams, gapMode]
+  );
 
   const filteredTeams = useMemo(() => {
-    const tagRegion = dataset.teams.filter((t) => {
+    const tagRegion = projectedTeams.filter((t) => {
       if (!selectedTags.has(t.story_tag)) return false;
       if (selectedRegion !== "all" && t.region !== selectedRegion) return false;
       return true;
     });
     return applyRoundFilter(tagRegion, selectedRound);
-  }, [dataset.teams, selectedTags, selectedRegion, selectedRound]);
+  }, [projectedTeams, selectedTags, selectedRegion, selectedRound]);
 
-  // Counts and bar scale always reflect the FULL dataset, not the filtered view —
-  // otherwise filtering rescales the bars and breaks visual comparison.
-  const counts = useMemo(() => tagCounts(dataset.teams), [dataset.teams]);
-  const scale = useMemo(() => maxAbsGap(dataset.teams), [dataset.teams]);
+  // Counts and bar scale always reflect the FULL projected dataset, not the
+  // filtered view — otherwise filtering rescales the bars and breaks visual
+  // comparison.
+  const counts = useMemo(() => tagCounts(projectedTeams), [projectedTeams]);
+  const scale = useMemo(() => maxAbsGap(projectedTeams), [projectedTeams]);
 
   // For the timeline heatmap: global max daily hype across all teams × all
   // days, plus the canonical date list. Filters narrow rows but never
@@ -290,6 +321,19 @@ export function AppShell({ data, view }: Props) {
     setSelectedRound("all");
   };
 
+  // When a click in gap-chart / bracket / scatter selects a team, the row
+  // received is the PROJECTED team (gap/story_tag swapped by mode). For the
+  // team sheet we want the ORIGINAL Team so both gap callouts render their
+  // true values. Resolve by team name.
+  const selectTeamByOriginal = (t: Team | null) => {
+    if (t === null) {
+      setSelectedTeam(null);
+      return;
+    }
+    const original = dataset.teams.find((x) => x.team === t.team) ?? t;
+    setSelectedTeam(original);
+  };
+
   return (
     <>
       <Suspense fallback={null}>
@@ -302,16 +346,20 @@ export function AppShell({ data, view }: Props) {
           selectedRegion={selectedRegion}
           selectedRound={selectedRound}
           selectedTeam={selectedTeam}
+          gapMode={gapMode}
           teams={dataset.teams}
           setSelectedTags={setSelectedTags}
           setSelectedRegion={setSelectedRegion}
           setSelectedRound={setSelectedRound}
           setSelectedTeam={setSelectedTeam}
+          setGapMode={setGapMode}
         />
       </Suspense>
 
       <Hero data={dataset} />
       <SectionNav />
+
+      {view !== "bracket" && <GapModeToggle mode={gapMode} onChange={setGapMode} />}
 
       <Filters
         teams={dataset.teams}
@@ -323,7 +371,7 @@ export function AppShell({ data, view }: Props) {
         onSetRegion={setSelectedRegion}
         onSetRound={setSelectedRound}
         onReset={onReset}
-        onSelectTeam={setSelectedTeam}
+        onSelectTeam={selectTeamByOriginal}
       />
 
       {view === "gap" && (
@@ -331,7 +379,7 @@ export function AppShell({ data, view }: Props) {
           teams={filteredTeams}
           maxAbsGap={scale}
           selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => setSelectedTeam(t)}
+          onSelect={(t) => selectTeamByOriginal(t)}
         />
       )}
 
@@ -339,7 +387,7 @@ export function AppShell({ data, view }: Props) {
         <ScatterChartView
           teams={filteredTeams}
           selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => setSelectedTeam(t)}
+          onSelect={(t) => selectTeamByOriginal(t)}
         />
       )}
 
@@ -349,7 +397,7 @@ export function AppShell({ data, view }: Props) {
           windowDates={windowDates}
           maxDailyHype={maxDailyHype}
           selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => setSelectedTeam(t)}
+          onSelect={(t) => selectTeamByOriginal(t)}
         />
       )}
 
@@ -357,7 +405,7 @@ export function AppShell({ data, view }: Props) {
         <BracketGrid
           teams={filteredTeams}
           selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => setSelectedTeam(t)}
+          onSelect={(t) => selectTeamByOriginal(t)}
         />
       )}
 

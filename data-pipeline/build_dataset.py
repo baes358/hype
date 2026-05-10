@@ -163,6 +163,26 @@ def story_tag(gap: int) -> str:
     return "noise"
 
 
+def season_story_tag(gap: int) -> str:
+    """
+    Threshold function for season-anchored gap (season_hype_rank − season_performance_rank).
+
+    Symmetric ±20 / ±10 — tuned 2026-05-10 from the 2026 distribution. Tournament-
+    side asymmetry (-15/+25) was driven by the 33-team 0-win cluster, which
+    doesn't exist on the season side where every team has a distinct win-rate
+    rank. With a season_gap range of ~[-55, +50], the ±20/±10 split yields ~30/30/30/10
+    over/under/as_expected/noise — comparable shape to the tournament-side
+    distribution. Retune for future years if their distribution diverges.
+    """
+    if gap <= -20:
+        return "overhyped"
+    if gap >= 20:
+        return "underhyped"
+    if abs(gap) <= 10:
+        return "as_expected"
+    return "noise"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Build canonical data/<year>.json from CSV + raw hype.",
@@ -189,6 +209,14 @@ def main() -> int:
             "window used for `pull_trends.py --mode season`."
         ),
     )
+    parser.add_argument(
+        "--season-records-cache", dest="season_records_cache", type=Path, default=None,
+        help=(
+            "Path to season_records JSON. Defaults to "
+            "cache/season_records_<year>.json. Run fetch_season_records.py "
+            "first if it doesn't exist."
+        ),
+    )
     args = parser.parse_args()
 
     year = args.year
@@ -210,6 +238,14 @@ def main() -> int:
             f"ERROR: {raw_hype_season_csv.relative_to(PIPELINE_DIR)} does not exist. "
             f"Run `python pull_trends.py --year {year} --mode season` first."
         )
+
+    season_records_path = args.season_records_cache or (CACHE_DIR / f"season_records_{year}.json")
+    if not season_records_path.exists():
+        raise SystemExit(
+            f"ERROR: {season_records_path.relative_to(PIPELINE_DIR)} does not exist. "
+            f"Run `python fetch_season_records.py --year {year}` first."
+        )
+    season_records: dict[str, dict[str, int]] = json.loads(season_records_path.read_text())
 
     print("[byte-compat] preserving existing tournament-mode fields; appending season + acceleration")
 
@@ -302,6 +338,33 @@ def main() -> int:
     df["season_hype_raw"] = df["season_hype_raw"].round(2)
     df["hype_acceleration"] = df["hype_acceleration"].round(2)
 
+    # ---------- Performance: season + acceleration + parallel rank/gap ----------
+    # season_wins / season_losses come from the NCAA API standings cache and
+    # include the NCAA tournament. tournament_losses is 0 for the champion
+    # (6 wins) and 1 for everyone else (every team in df made past First Four;
+    # they each lost exactly once in the main bracket or won it all).
+    df["season_wins"] = df["team"].map(lambda t: season_records.get(t, {}).get("overall_w", 0)).astype(int)
+    df["season_losses"] = df["team"].map(lambda t: season_records.get(t, {}).get("overall_l", 0)).astype(int)
+    missing_records = df[df["season_wins"] == 0]["team"].tolist()
+    if missing_records:
+        print(f"WARNING: {len(missing_records)} teams have no season-records data: {missing_records}")
+
+    df["tournament_losses"] = df["wins"].apply(lambda w: 0 if w == 6 else 1)
+    df["pre_tournament_wins"] = (df["season_wins"] - df["wins"]).astype(int)
+    df["pre_tournament_losses"] = (df["season_losses"] - df["tournament_losses"]).astype(int)
+
+    df["season_win_pct"] = (df["season_wins"] / (df["season_wins"] + df["season_losses"])).round(4)
+    pre_games = df["pre_tournament_wins"] + df["pre_tournament_losses"]
+    pre_win_pct = (df["pre_tournament_wins"] / pre_games).round(4)
+    tournament_games = df["wins"] + df["tournament_losses"]
+    tourn_win_pct = (df["wins"] / tournament_games).round(4)
+    df["performance_acceleration"] = (tourn_win_pct / pre_win_pct).round(2)
+
+    df["season_performance_rank"] = df["season_win_pct"].rank(method="min", ascending=False).astype(int)
+    df["season_hype_rank"] = df["season_hype_raw"].rank(method="dense", ascending=False).astype(int)
+    df["season_gap"] = (df["season_hype_rank"] - df["season_performance_rank"]).astype(int)
+    df["season_story_tag"] = df["season_gap"].apply(season_story_tag)
+
     # Flag First Four losers via duplicate (region, seed) detection. The NCAA
     # bracket only ever has duplicates for First Four matchups: both teams in a
     # play-in inherit the winner's destination region+seed. The lower-wins team
@@ -351,6 +414,16 @@ def main() -> int:
             "season_hype_normalized": float(r["season_hype_normalized"]) if pd.notna(r["season_hype_normalized"]) else 0.0,
             "season_hype_daily": season_daily_rounded,
             "hype_acceleration": float(r["hype_acceleration"]) if pd.notna(r["hype_acceleration"]) else 0.0,
+            "season_wins": int(r["season_wins"]),
+            "season_losses": int(r["season_losses"]),
+            "pre_tournament_wins": int(r["pre_tournament_wins"]),
+            "pre_tournament_losses": int(r["pre_tournament_losses"]),
+            "season_win_pct": float(r["season_win_pct"]),
+            "performance_acceleration": float(r["performance_acceleration"]),
+            "season_hype_rank": int(r["season_hype_rank"]),
+            "season_performance_rank": int(r["season_performance_rank"]),
+            "season_gap": int(r["season_gap"]),
+            "season_story_tag": r["season_story_tag"],
         })
 
     output = {
@@ -390,6 +463,24 @@ def main() -> int:
     print()
     print(f"=== {year} story_tag distribution ===")
     print(df["story_tag"].value_counts().to_string())
+
+    print()
+    print(f"=== {year} TOP 10 MOST SEASON-OVERHYPED ===")
+    s_over = df.sort_values("season_gap").head(10)
+    print(s_over[["team", "seed", "season_wins", "season_losses", "season_hype_rank", "season_performance_rank", "season_gap", "season_story_tag"]].to_string(index=False))
+
+    print()
+    print(f"=== {year} TOP 10 MOST SEASON-UNDERHYPED ===")
+    s_under = df.sort_values("season_gap", ascending=False).head(10)
+    print(s_under[["team", "seed", "season_wins", "season_losses", "season_hype_rank", "season_performance_rank", "season_gap", "season_story_tag"]].to_string(index=False))
+
+    print()
+    print(f"=== {year} season_gap percentiles ===")
+    print(df["season_gap"].describe(percentiles=[0.05, 0.25, 0.5, 0.75, 0.95]).to_string())
+
+    print()
+    print(f"=== {year} season_story_tag distribution ===")
+    print(df["season_story_tag"].value_counts().to_string())
 
     return 0
 
