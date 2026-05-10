@@ -6,6 +6,7 @@ import { Check, ChevronDown, X } from "lucide-react";
 import { AnimatedToolbar } from "@/components/motion";
 import { TeamSearch } from "@/components/team-search";
 import {
+  GapMode,
   Region,
   REGIONS,
   ROUND_LABEL,
@@ -24,12 +25,58 @@ type Props = {
   selectedRegion: Region | "all";
   selectedRound: Round;
   tagCounts: Record<StoryTag, number>;
+  gapMode: GapMode;
   onToggleTag: (tag: StoryTag) => void;
   onSetRegion: (r: Region | "all") => void;
   onSetRound: (r: Round) => void;
+  onSetGapMode: (m: GapMode) => void;
   onReset: () => void;
   onSelectTeam: (team: Team) => void;
 };
+
+// ---------------------------------------------------------------------------
+// ModePill — tournament / season segmented toggle. Lifted from top-nav so the
+// mode switch lives alongside the other filter controls.
+// ---------------------------------------------------------------------------
+
+function ModePill({ mode, setMode }: { mode: GapMode; setMode: (m: GapMode) => void }) {
+  return (
+    <div className="hidden items-center rounded-full border border-rule bg-paper/60 p-0.5 sm:flex">
+      <ModePillBtn active={mode === "tournament"} onClick={() => setMode("tournament")} accent="crimson">
+        Tournament
+      </ModePillBtn>
+      <ModePillBtn active={mode === "season"} onClick={() => setMode("season")} accent="dusty">
+        Season
+      </ModePillBtn>
+    </div>
+  );
+}
+
+function ModePillBtn({
+  active,
+  onClick,
+  accent,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  accent: "crimson" | "dusty";
+  children: React.ReactNode;
+}) {
+  const accentBg = accent === "crimson" ? "bg-crimson/12" : "bg-dusty/12";
+  const accentText = accent === "crimson" ? "text-crimson" : "text-dusty";
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
+        active ? `${accentBg} ${accentText} font-semibold` : "text-graphite-soft hover:text-ink"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // FilterDropdown — button + popover panel. Closed state is a low-weight pill;
@@ -218,9 +265,11 @@ export function Filters({
   selectedRegion,
   selectedRound,
   tagCounts,
+  gapMode,
   onToggleTag,
   onSetRegion,
   onSetRound,
+  onSetGapMode,
   onReset,
   onSelectTeam,
 }: Props) {
@@ -242,6 +291,8 @@ export function Filters({
         {/* Toolbar row. Vertical padding lives on AnimatedToolbar so it can
             condense on scroll. */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <ModePill mode={gapMode} setMode={onSetGapMode} />
+
           <FilterDropdown label="Story" badge={tagsCount} active={!allTagsActive}>
             {() =>
               TAG_ORDER.map((tag) => {

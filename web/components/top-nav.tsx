@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-import { Dataset, GapMode } from "@/lib/data";
+import { Dataset } from "@/lib/data";
 
 // -----------------------------------------------------------------------------
 // Nav config — primary route links + editorial metadata for hover panels.
@@ -75,11 +75,9 @@ const AVAILABLE_YEARS = [2025, 2026] as const;
 
 type Props = {
   dataset: Dataset;
-  gapMode: GapMode;
-  setGapMode: (m: GapMode) => void;
 };
 
-export function TopNav({ dataset, gapMode, setGapMode }: Props) {
+export function TopNav({ dataset }: Props) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
@@ -114,7 +112,7 @@ export function TopNav({ dataset, gapMode, setGapMode }: Props) {
             transition={{ duration: 0.18 }}
             className="hidden overflow-hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft sm:inline"
           >
-            {dataset.metadata.tournament_year} NCAA Tournament
+            D1 mens basketball
           </motion.span>
         </Link>
 
@@ -135,7 +133,6 @@ export function TopNav({ dataset, gapMode, setGapMode }: Props) {
 
         {/* RIGHT — utility cluster */}
         <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-          <ModePill mode={gapMode} setMode={setGapMode} />
           <YearSelector currentYear={dataset.metadata.tournament_year} />
           <DataStatus label={dataPulledLabel} />
         </div>
@@ -264,49 +261,6 @@ function PrimaryNavLink({
         <span className="absolute inset-x-2 -bottom-[1px] h-[1px] origin-left scale-x-0 bg-ink/60 transition-transform duration-200 group-hover:scale-x-100 lg:inset-x-3" />
       )}
     </Link>
-  );
-}
-
-// -----------------------------------------------------------------------------
-// ModePill — tournament / season segmented toggle
-// -----------------------------------------------------------------------------
-
-function ModePill({ mode, setMode }: { mode: GapMode; setMode: (m: GapMode) => void }) {
-  return (
-    <div className="hidden items-center rounded-full border border-rule bg-paper/60 p-0.5 sm:flex">
-      <ModePillBtn active={mode === "tournament"} onClick={() => setMode("tournament")} accent="crimson">
-        Tournament
-      </ModePillBtn>
-      <ModePillBtn active={mode === "season"} onClick={() => setMode("season")} accent="dusty">
-        Season
-      </ModePillBtn>
-    </div>
-  );
-}
-
-function ModePillBtn({
-  active,
-  onClick,
-  accent,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  accent: "crimson" | "dusty";
-  children: React.ReactNode;
-}) {
-  const accentBg = accent === "crimson" ? "bg-crimson/12" : "bg-dusty/12";
-  const accentText = accent === "crimson" ? "text-crimson" : "text-dusty";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
-        active ? `${accentBg} ${accentText} font-semibold` : "text-graphite-soft hover:text-ink"
-      }`}
-    >
-      {children}
-    </button>
   );
 }
 

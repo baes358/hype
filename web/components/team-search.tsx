@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { Team } from "@/lib/data";
 
@@ -37,10 +37,14 @@ export function TeamSearch({ teams, onSelect }: Props) {
       if (!wrapperRef.current) return;
       if (!wrapperRef.current.contains(e.target as Node)) {
         setOpen(false);
+        setQuery("");
       }
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        setQuery("");
+      }
     };
     document.addEventListener("mousedown", onMouseDown);
     document.addEventListener("keydown", onKey);
@@ -57,73 +61,73 @@ export function TeamSearch({ teams, onSelect }: Props) {
   };
 
   return (
-    <div ref={wrapperRef}>
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        aria-haspopup="dialog"
-        className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1 ${
+    <div ref={wrapperRef} className="relative">
+      <div
+        style={{ width: open ? 288 : 152 }}
+        className={`overflow-hidden rounded-full border transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
           open
-            ? "border-foreground/80 bg-foreground/[0.04] text-foreground"
-            : "border-border bg-transparent text-foreground hover:border-foreground/40"
+            ? "border-foreground/80 bg-foreground/[0.04]"
+            : "border-border bg-transparent hover:border-foreground/40"
         }`}
       >
-        <Search aria-hidden className="size-3.5 text-muted-foreground" />
-        <span>Search team</span>
-        <ChevronDown
-          aria-hidden
-          className={`size-4 text-muted-foreground transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-
-      {open && (
-        <div
-          role="dialog"
-          aria-label="Search teams"
-          className="absolute inset-x-0 top-full z-40 border-b border-border bg-background animate-in fade-in slide-in-from-top-1 duration-150"
-        >
-          <div className="mx-auto max-w-7xl px-5 py-4 sm:px-6">
-            <div className="flex items-center gap-3 border-b border-border pb-2">
-              <Search aria-hidden className="size-4 text-muted-foreground" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Escape") setOpen(false);
-                  if (e.key === "Enter" && matches.length > 0) select(matches[0]);
-                }}
-                placeholder="Search any of the 68 teams…"
-                aria-label="Search teams"
-                className="w-full bg-transparent text-base text-foreground placeholder:text-muted-foreground focus:outline-none"
-              />
-              <span className="hidden font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:inline">
-                esc to close
-              </span>
-            </div>
-            {matches.length > 0 && (
-              <ul className="mt-3 grid grid-cols-1 gap-1 sm:grid-cols-2">
-                {matches.map((t) => (
-                  <li key={t.team}>
-                    <button
-                      type="button"
-                      onClick={() => select(t)}
-                      className="flex w-full items-baseline justify-between gap-3 rounded px-2 py-1.5 text-left transition-colors hover:bg-foreground/[0.04] focus-visible:bg-foreground/[0.04] focus-visible:outline-none"
-                    >
-                      <span className="text-sm text-foreground">{t.team}</span>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-                        {String(t.seed).padStart(2, "0")} · {t.region}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
+        {open ? (
+          <div className="flex h-full items-center gap-2 px-4 py-1.5 text-sm font-medium sm:py-1">
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && matches.length > 0) select(matches[0]);
+              }}
+              placeholder="Search team"
+              aria-label="Search teams"
+              className="w-full bg-transparent text-foreground placeholder:text-foreground/60 focus:outline-none"
+            />
+            <Search aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />
           </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-expanded={open}
+            aria-haspopup="listbox"
+            className="flex h-full w-full items-center justify-center gap-2 px-4 py-1.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1"
+          >
+            <span className="opacity-60">Search team</span>
+            <Search aria-hidden className="size-3.5 text-muted-foreground" />
+          </button>
+        )}
+      </div>
+
+      {open && query && (
+        <div
+          role="listbox"
+          aria-label="Search results"
+          className="absolute right-0 top-full z-40 mt-2 w-72 overflow-hidden rounded-2xl border border-border bg-background shadow-lg animate-in fade-in slide-in-from-top-1 duration-150"
+        >
+          {matches.length === 0 ? (
+            <div className="px-3 py-2 text-sm text-muted-foreground">
+              No matches
+            </div>
+          ) : (
+            <ul className="p-1">
+              {matches.map((t) => (
+                <li key={t.team}>
+                  <button
+                    type="button"
+                    onClick={() => select(t)}
+                    className="flex w-full items-baseline justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-foreground/[0.04] focus-visible:bg-foreground/[0.04] focus-visible:outline-none"
+                  >
+                    <span className="text-sm text-foreground">{t.team}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                      {String(t.seed).padStart(2, "0")} · {t.region}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
     </div>

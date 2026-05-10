@@ -355,11 +355,7 @@ export function AppShell({ data, view }: Props) {
         />
       </Suspense>
 
-      <TopNav
-        dataset={dataset}
-        gapMode={gapMode}
-        setGapMode={setGapMode}
-      />
+      <TopNav dataset={dataset} />
 
       <Hero data={dataset} />
 
@@ -369,9 +365,11 @@ export function AppShell({ data, view }: Props) {
         selectedRegion={selectedRegion}
         selectedRound={selectedRound}
         tagCounts={counts}
+        gapMode={gapMode}
         onToggleTag={onToggleTag}
         onSetRegion={setSelectedRegion}
         onSetRound={setSelectedRound}
+        onSetGapMode={setGapMode}
         onReset={onReset}
         onSelectTeam={selectTeamByOriginal}
       />
