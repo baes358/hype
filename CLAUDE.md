@@ -46,6 +46,27 @@ print(df.iloc[:, 0].min())  # must be > 0
 
 If min == 0, pick another team. For unfinished tournaments (no champion yet), use a 1-seed with sustained pre-tournament hype that you've spot-checked has min > 0.
 
+The probe is automated as [data-pipeline/probe_reference.py](data-pipeline/probe_reference.py). Run it before kicking off a tournament-mode pull for any new year:
+
+```
+./venv/bin/python probe_reference.py --year YYYY --team "Florida" --mode tournament
+```
+
+Exits 0 (pass), 1 (min == 0, hard fail), or 2 (min > 0 but ≥5 sub-5 days, soft warn). On non-zero exit, prints a list of year-round national programs to try as alternates.
+
+### Season mode is standalone, not cross-batch
+
+Season mode (`pull_trends.py --mode season`) does **not** use cross-batch normalization. The 4.5-month season window has too many sub-integer-resolution days — even Duke, Florida, Kentucky, UNC, Kansas, and Michigan all have ≥38 zero-baseline days when probed over `2025-11-01:2026-03-24` (verified empirically on 2026-05-10). Cross-batch math depends on `ref_in_batch[d] > 0` every day; over 6 months that's unattainable.
+
+Instead, season mode pulls each team **standalone** (one keyword per pytrends call, no reference, no normalization). Each team's `season_hype_daily` is a 0-100 curve normalized within the team's own history — intra-team comparable but **NOT cross-team comparable in absolute magnitude**.
+
+Consumers of season-mode data must treat values as intra-team only:
+- `hype_acceleration` is `(in-window mean) / max(pre-window mean, ε=1.0)` — both sides on the same intra-team scale, so the ratio is meaningful.
+- `season_hype_daily` is rendered one team at a time in the team detail sheet — no cross-team comparison.
+- `season_hype_normalized` (mean of season curve, scaled 0-100 across the field) is fuzzy by construction; treat as a soft sort key, not an editorial number.
+
+The `--reference` flag is silently ignored in season mode. Probe `probe_reference.py --mode season` is now mostly informational (no team is "the" anchor) but still useful as a sanity check on a candidate team's signal density.
+
 ### Query string disambiguation (Flag 2)
 
 The naive query "Texas basketball" picks up football noise, "Michigan basketball" picks up state news, etc. But "Texas Longhorns basketball" works while "Saint Mary's Gaels basketball" returns **all zeros** because the long mascot phrase has no Trends index. The rule learned the hard way:
@@ -65,14 +86,17 @@ The full disambiguated map is `TEAM_QUERY_MAP` at the top of [pull_trends.py](da
 
 ### Cache is by team, baseline is separate
 
-[data-pipeline/cache/raw_trends.json](data-pipeline/cache/) (gitignored) keys by team. Re-runs only re-query missing teams. The Michigan baseline lives separately and is only re-pulled if the cache file is deleted entirely.
+[data-pipeline/cache/raw_trends_<year>.json](data-pipeline/cache/) (gitignored) keys by team. Re-runs only re-query missing teams. The reference baseline lives separately under `cache["baseline"]` and is only re-pulled if the cache file is deleted entirely.
+
+**Season-mode caches and outputs do not share with tournament-mode siblings.** Season mode writes `cache/raw_trends_season_<year>.json` and `raw_hype_season_<year>.csv` — clearing one does not invalidate the other. Season caches have no `baseline` entry (standalone pulls don't need one).
 
 To force a re-pull of one team (e.g. after changing its query string):
 
 ```python
 import json
 from pathlib import Path
-p = Path("cache/raw_trends.json")
+p = Path("cache/raw_trends_2026.json")            # tournament mode
+# p = Path("cache/raw_trends_season_2026.json")   # season mode
 c = json.loads(p.read_text())
 c["teams"].pop("TeamName", None)
 p.write_text(json.dumps(c, indent=2))
@@ -91,6 +115,19 @@ Edit at [data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69) i
 ### `hype_raw` math
 
 `hype_raw` is the **mean of unrounded daily values**. Rounding happens at output time only. Don't pre-aggregate in `pull_trends.py` — `raw_hype_<year>.csv` only contains `team` + `hype_daily` (the daily series); `build_dataset.py` computes the mean.
+
+### `season_hype_raw` and `hype_acceleration`
+
+`season_hype_raw` is the same math as `hype_raw` but on the standalone season curve (`raw_hype_season_<year>.csv`) — mean of unrounded daily values, rounded once at output. `season_hype_normalized` scales it to 0-100 across the field, but on its OWN scale (separate `max` from `hype_normalized`), because the underlying values are not cross-team comparable in magnitude.
+
+`hype_acceleration` is computed entirely from `season_hype_daily` (NOT from `hype_raw`) so numerator and denominator share the same intra-team standalone scale:
+
+```
+hype_acceleration = mean(season_hype_daily where date ∈ tournament window)
+                  / max(mean(season_hype_daily where date < tournament window), ε)
+```
+
+with `ε = 1.0` (`ACCELERATION_EPSILON` in [build_dataset.py](data-pipeline/build_dataset.py)). The ε floor prevents the ratio from blowing up when a mid-major has near-zero pre-tournament search volume — the resulting numbers stay readable (no 4-digit acceleration values cluttering the editorial framing). Don't mix `hype_raw` (cross-batch normalized scale) with the season denominator (standalone scale) — they're on different scales and the ratio is meaningless.
 
 ### First Four placeholders
 
@@ -138,7 +175,7 @@ For Vercel: enable "Include source files outside of the Root Directory in the Bu
 | [web/components/filters.tsx](web/components/filters.tsx) | story_tag + region pills |
 | [web/components/gap-chart.tsx](web/components/gap-chart.tsx) | Diverging horizontal bar chart (CSS, not Recharts) |
 | [web/components/bracket-grid.tsx](web/components/bracket-grid.tsx) | 4-region grid of teams sorted by seed |
-| [web/components/team-sheet.tsx](web/components/team-sheet.tsx) | shadcn Sheet with daily area chart + stat block |
+| [web/components/team-sheet.tsx](web/components/team-sheet.tsx) | shadcn Sheet with full-season area chart (tournament window highlighted via ReferenceArea) + 4-stat KPI block |
 
 ### Filter state is page-local
 
@@ -178,9 +215,25 @@ The pipeline is year-parameterized as of 2026-05-03. Both `pull_trends.py` and `
 
 1. Add row to `tournament_results_<year>.csv` (e.g. [tournament_results_2026.csv](data-pipeline/tournament_results_2026.csv))
 2. Add entry to `TEAM_QUERY_MAP` in [pull_trends.py](data-pipeline/pull_trends.py) (apply Flag 2 rules). The map is shared across years — if a team is in multiple years' CSVs, one entry covers them all.
-3. `cd data-pipeline && ./venv/bin/python pull_trends.py --year YYYY` (cache skips existing teams, only queries new ones; window auto-derives from bracket cache)
-4. `./venv/bin/python build_dataset.py --year YYYY`
-5. `cd ../web && npm run dev` (or build)
+3. `cd data-pipeline && ./venv/bin/python pull_trends.py --year YYYY` (tournament mode, default; cache skips existing teams, only queries new ones; window auto-derives from bracket cache)
+4. `./venv/bin/python pull_trends.py --year YYYY --mode season` (standalone-pull season curves; cache skips existing teams)
+5. `./venv/bin/python build_dataset.py --year YYYY`
+6. `./venv/bin/python validate_dataset.py --year YYYY` (schema + range + distribution sanity)
+7. `cd ../web && npm run dev` (or build)
+
+### Add a year (full pipeline from scratch)
+
+```
+cd data-pipeline
+./venv/bin/python fetch_bracket.py --year YYYY
+./venv/bin/python probe_reference.py --year YYYY --team "Florida" --mode tournament   # pick a team that scores 0
+./venv/bin/python pull_trends.py --year YYYY --reference Florida                      # tournament mode
+./venv/bin/python pull_trends.py --year YYYY --mode season                            # season mode (no --reference needed)
+./venv/bin/python fetch_logos.py --year YYYY                                          # optional, populates web/public/logos/
+./venv/bin/python build_dataset.py --year YYYY
+./venv/bin/python validate_dataset.py --year YYYY
+cd ../web && npm run build
+```
 
 ### Refine a team's query
 
@@ -210,17 +263,22 @@ Do **not** edit `data/<year>.json` directly — `build_dataset.py` regenerates i
 
 [data-pipeline/build_dataset.py:69](data-pipeline/build_dataset.py:69), then rerun `build_dataset.py --year YYYY`. Print of distribution at the bottom of stdout helps tune.
 
-### Hype window auto-derive
+### Hype window auto-derive (tournament & season)
 
-Window formula (as of 2026-05-04): `(Selection Sunday − 5 days) to (Selection Sunday + 9 days)`, 15 days inclusive. Selection Sunday is derived as the Sunday on or before the earliest game's `startDate` in the cached NCAA bracket (`cache/ncaa_bracket_<year>.json`). Helper lives in [fetch_bracket.py](data-pipeline/fetch_bracket.py) as `derive_window_from_bracket()`; both `pull_trends.py` and `build_dataset.py` call it via `resolve_window()` when `--window` is omitted.
+**Tournament window** formula (as of 2026-05-04): `(Selection Sunday − 5 days) to (Selection Sunday + 9 days)`, 15 days inclusive. Selection Sunday is derived as the Sunday on or before the earliest game's `startDate` in the cached NCAA bracket (`cache/ncaa_bracket_<year>.json`). Helper lives in [fetch_bracket.py](data-pipeline/fetch_bracket.py) as `derive_window_from_bracket()`; `pull_trends.py` (in tournament mode) and `build_dataset.py` (`--window`) call it via `resolve_window()` when no explicit window is provided.
 
-**Workflow contract:** `fetch_bracket.py` must run before `pull_trends.py` / `build_dataset.py` if you're relying on auto-derive. If the bracket cache is missing AND `--window` isn't passed, both scripts hard-fail with a clear "run fetch_bracket.py first" message.
+**Season window** formula (as of 2026-05-10): `(prior-year Nov 1) to (Selection Sunday + 9 days)`, ~144 days. Tournament window is a strict subset by construction, which keeps the pre-tournament partition for `hype_acceleration` clean. Helper is `derive_season_window_from_bracket()` in the same file. `pull_trends.py --mode season` and `build_dataset.py --season-window` call it via `resolve_season_window()` when not provided.
+
+**Workflow contract:** `fetch_bracket.py` must run before `pull_trends.py` / `build_dataset.py` if you're relying on auto-derive. If the bracket cache is missing AND `--window`/`--season-window` aren't passed, both scripts hard-fail with a clear "run fetch_bracket.py first" message.
 
 **2026 historical inconsistency:** 2026's window was set on day one of the project (`2026-03-03 to 2026-03-17`) before any methodology was articulated. The auto-derive formula would produce `2026-03-10 to 2026-03-24` for 2026, but we don't reconcile retroactively — re-pulling 2026 would invalidate 68 cached Trends queries and shift the live editorial output. Always pass `--window 2026-03-03:2026-03-17` explicitly when re-running 2026; for any other year, omit `--window` and let auto-derive take over.
 
 ### --window format
 
-Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects space-separated input, partial dates, and any window length other than 15 days inclusive. Internal conversion to pytrends' space-separated format happens at the use-site only — the canonical form on the CLI is colon-separated. The auto-derived value goes through the same validator before use, so a malformed bracket cache surfaces as a clear error rather than silent garbage.
+Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). Internal conversion to pytrends' space-separated format happens at the use-site only — the canonical form on the CLI is colon-separated. The auto-derived value goes through the same validator before use, so a malformed bracket cache surfaces as a clear error rather than silent garbage.
+
+- **tournament mode**: `parse_window` rejects anything other than 15 days inclusive.
+- **season mode**: `parse_season_window` accepts 60-270 days inclusive (lower bound is sanity, upper bound is pytrends' daily-resolution ceiling).
 
 ## Anti-patterns — do not suggest
 
@@ -232,8 +290,12 @@ Always `YYYY-MM-DD:YYYY-MM-DD` (colon-separated). The validator strictly rejects
 - **Importing `data.json` from outside `/web` in production** — use the prebuild copy script.
 - **Symmetric story_tag thresholds** — the 33-team 0-win cluster makes the underhyped side too easy.
 - **Adding URL search params, search box, or sort controls** without being asked. v1 is intentionally minimal.
-- **Mocking dependencies or writing tests** — explicit no-test policy for the 72-hour scope.
+- **Mocking dependencies or writing tests** — explicit no-test policy for the 72-hour scope. (`validate_dataset.py` is a schema/range checker, not a test suite.)
 - **Lowercase "Hyp3"** — brand is HYP3 caps.
+- **Using cross-batch normalization in season mode** — empirically broken on a 6-month window even with the strongest year-round programs as anchors. Season mode pulls each team standalone; treat values as intra-team only.
+- **Sharing caches between `--mode tournament` and `--mode season`** — the day grids are different, the math is different, and the team keys would silently collide. Two cache files, two output CSVs, two normalizations.
+- **Mixing scales when computing `hype_acceleration`** — both numerator and denominator must come from `season_hype_daily`. Don't divide tournament-mode `hype_raw` by season-mode pre-window mean; they're on different scales.
+- **Treating `season_hype_normalized` as cross-team comparable** — it isn't. Each team's standalone curve is normalized within its own history, so the 0-100 scale means different things per team. Use it as a soft sort key only.
 
 ## Open follow-ups
 

@@ -24,7 +24,7 @@ import argparse
 import json
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -123,6 +123,28 @@ def derive_window_from_bracket(bracket_data: dict) -> str:
     days_back = (earliest.weekday() - 6) % 7
     ss = earliest - timedelta(days=days_back)
     start = ss - timedelta(days=SS_OFFSET_BEFORE)
+    end = ss + timedelta(days=SS_OFFSET_AFTER)
+    return f"{start.isoformat()}:{end.isoformat()}"
+
+
+def derive_season_window_from_bracket(bracket_data: dict) -> str:
+    """
+    Derive the canonical season hype window from a cached NCAA bracket.
+    Returns 'YYYY-MM-DD:YYYY-MM-DD' suitable for --window in --mode season.
+
+    Window = (prior-year Nov 1) to (Selection Sunday + SS_OFFSET_AFTER days),
+    inclusive. Tournament window is a strict subset of this range, which
+    keeps the pre-tournament/tournament partition clean for the
+    hype_acceleration math in build_dataset.py.
+    """
+    games = bracket_data["championships"][0]["games"]
+    earliest = min(
+        datetime.strptime(g["startDate"], "%m/%d/%Y").date()
+        for g in games
+    )
+    days_back = (earliest.weekday() - 6) % 7
+    ss = earliest - timedelta(days=days_back)
+    start = date(ss.year - 1, 11, 1)
     end = ss + timedelta(days=SS_OFFSET_AFTER)
     return f"{start.isoformat()}:{end.isoformat()}"
 

@@ -17,6 +17,10 @@ export type Team = {
   story_tag: StoryTag;
   made_main_bracket: boolean;
   logo_path: string | null;
+  season_hype_raw: number;
+  season_hype_normalized: number;
+  season_hype_daily: { date: string; value: number }[];
+  hype_acceleration: number;
 };
 
 export type Round = "all" | "first" | "second" | "sweet16" | "elite8" | "final4";
@@ -48,6 +52,8 @@ export type Dataset = {
     tournament_year: number;
     hype_window_start: string;
     hype_window_end: string;
+    season_window_start: string;
+    season_window_end: string;
     total_teams: number;
     data_pulled_at: string;
   };

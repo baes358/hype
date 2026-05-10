@@ -379,6 +379,8 @@ export function AppShell({ data, view }: Props) {
         onOpenChange={(open) => {
           if (!open) setSelectedTeam(null);
         }}
+        hypeWindowStart={dataset.metadata.hype_window_start}
+        hypeWindowEnd={dataset.metadata.hype_window_end}
       />
     </>
   );

@@ -49,8 +49,10 @@ BATCH_SIZE = 5  # Trends max kw_list size — REFERENCE + 4 others
 SLEEP_BETWEEN_BATCHES = 2
 RATE_LIMIT_BACKOFF = 60
 MAX_RETRIES = 1
-ZERO_REF_DAY_WARN_THRESHOLD = 3  # > N zero-ref days in window => loud flag
+ZERO_REF_DAY_WARN_THRESHOLD = 3  # > N zero-ref days in tournament window => loud flag
 WINDOW_DAYS_INCLUSIVE = 15  # safety net — adjust deliberately if ever changed
+SEASON_WINDOW_MIN_DAYS = 60   # season validator lower bound
+SEASON_WINDOW_MAX_DAYS = 270  # pytrends ceiling for daily-resolution data
 
 
 # Mascot-disambiguated query strings (Flag 2). Keys MUST match CSV `team`.
@@ -230,6 +232,40 @@ def parse_window(s: str) -> str:
     return s
 
 
+def parse_season_window(s: str) -> str:
+    """
+    Strict argparse-style validator for the season-mode --window.
+
+    Same canonical form as parse_window ('YYYY-MM-DD:YYYY-MM-DD'), but
+    accepts any window length in [SEASON_WINDOW_MIN_DAYS, SEASON_WINDOW_MAX_DAYS]
+    inclusive. Upper bound is the pytrends 270-day daily-resolution ceiling.
+    Tournament-mode parse_window stays strict-15-days.
+    """
+    m = _WINDOW_RE.match(s)
+    if not m:
+        raise argparse.ArgumentTypeError(
+            f"--window must be 'YYYY-MM-DD:YYYY-MM-DD' (colon-separated). Got: {s!r}"
+        )
+    start_str, end_str = m.group(1), m.group(2)
+    try:
+        start = date.fromisoformat(start_str)
+        end = date.fromisoformat(end_str)
+    except ValueError as e:
+        raise argparse.ArgumentTypeError(f"--window contains invalid date: {e}")
+    if end <= start:
+        raise argparse.ArgumentTypeError(
+            f"--window end ({end}) must be after start ({start})"
+        )
+    days = (end - start).days + 1
+    if days < SEASON_WINDOW_MIN_DAYS or days > SEASON_WINDOW_MAX_DAYS:
+        raise argparse.ArgumentTypeError(
+            f"--window must span between {SEASON_WINDOW_MIN_DAYS} and "
+            f"{SEASON_WINDOW_MAX_DAYS} days inclusive in --mode season. "
+            f"Got {days} days."
+        )
+    return s
+
+
 def resolve_window(year: int, explicit: str | None) -> str:
     """
     Pick the effective hype window: explicit --window if provided, otherwise
@@ -258,6 +294,23 @@ def resolve_window(year: int, explicit: str | None) -> str:
     # malformed bracket cache (or future formula change) gets caught loudly
     # instead of silently producing weird windows.
     return parse_window(derived)
+
+
+def resolve_season_window(year: int, explicit: str | None) -> str:
+    """Mirror of resolve_window for --mode season."""
+    if explicit is not None:
+        return explicit
+    cache_path = CACHE_DIR / f"ncaa_bracket_{year}.json"
+    if not cache_path.exists():
+        raise SystemExit(
+            f"ERROR: --window not provided AND {cache_path.relative_to(PIPELINE_DIR)} "
+            f"does not exist. Either pass --window YYYY-MM-DD:YYYY-MM-DD explicitly, "
+            f"or run `python fetch_bracket.py --year {year}` first."
+        )
+    from fetch_bracket import derive_season_window_from_bracket
+    bracket = json.loads(cache_path.read_text())
+    derived = derive_season_window_from_bracket(bracket)
+    return parse_season_window(derived)
 
 
 # ---------------------------------------------------------------------------
@@ -316,6 +369,8 @@ def normalize_team_against_baseline(
     team_in_batch: list[dict],
     ref_in_batch: list[dict],
     ref_baseline: list[dict],
+    zero_warn_threshold: int = ZERO_REF_DAY_WARN_THRESHOLD,
+    window_days: int = WINDOW_DAYS_INCLUSIVE,
 ) -> tuple[list[dict], list[str]]:
     """
     Normalize a single team's daily curve to the reference baseline scale.
@@ -324,8 +379,10 @@ def normalize_team_against_baseline(
 
     Done per-day so the time-series shape is preserved. If
     ref_in_batch[d] is 0, that day cannot be normalized — we record 0
-    and emit a warning. If more than ZERO_REF_DAY_WARN_THRESHOLD days
-    are affected for one team, escalate to a louder flag for review.
+    and emit a warning. If more than zero_warn_threshold days are
+    affected, escalate to a louder flag. Threshold and window_days are
+    args so season mode can pass a proportionally larger threshold and
+    have the LOUD FLAG ratio message reflect the actual window.
     """
     by_team = {d["date"]: d["value"] for d in team_in_batch}
     by_ref_batch = {d["date"]: d["value"] for d in ref_in_batch}
@@ -355,9 +412,9 @@ def normalize_team_against_baseline(
         value = (team_val / ref_batch_val) * ref_baseline_val
         normalized.append({"date": date_key, "value": value})
 
-    if zero_ref_days > ZERO_REF_DAY_WARN_THRESHOLD:
+    if zero_ref_days > zero_warn_threshold:
         warnings.append(
-            f"  [LOUD FLAG] {team_name}: {zero_ref_days}/{WINDOW_DAYS_INCLUSIVE} days had "
+            f"  [LOUD FLAG] {team_name}: {zero_ref_days}/{window_days} days had "
             f"reference-batch=0. Normalization is unreliable; consider "
             f"rebatching with a different anchor."
         )
@@ -374,8 +431,8 @@ def load_team_list(csv_path: Path) -> list[str]:
     return [t for t in df["team"].tolist() if not t.startswith("First Four Loser")]
 
 
-def validate_setup(team_list: list[str], reference_team: str) -> None:
-    if reference_team not in team_list:
+def validate_setup(team_list: list[str], reference_team: str | None = None) -> None:
+    if reference_team is not None and reference_team not in team_list:
         raise SystemExit(
             f"ERROR: --reference={reference_team!r} is not in the loaded "
             f"team list. Pick a different reference team that's in the field."
@@ -422,6 +479,8 @@ def pull_batch(
     reference_team: str,
     cache_file: Path,
     timeframe: str,
+    zero_warn_threshold: int = ZERO_REF_DAY_WARN_THRESHOLD,
+    window_days: int = WINDOW_DAYS_INCLUSIVE,
 ) -> None:
     ref_query = TEAM_QUERY_MAP[reference_team]
     other_queries = [TEAM_QUERY_MAP[t] for t in others]
@@ -447,7 +506,9 @@ def pull_batch(
             print(f"  [SKIP] {team_name}: empty series")
             continue
         normalized, warnings = normalize_team_against_baseline(
-            team_name, team_in_batch, ref_in_batch, ref_baseline
+            team_name, team_in_batch, ref_in_batch, ref_baseline,
+            zero_warn_threshold=zero_warn_threshold,
+            window_days=window_days,
         )
         for w in warnings:
             print(w)
@@ -458,6 +519,65 @@ def pull_batch(
         }
         save_cache(cache, cache_file)
     time.sleep(SLEEP_BETWEEN_BATCHES)
+
+
+def pull_team_standalone(
+    pytrends: TrendReq,
+    team_name: str,
+    cache: dict,
+    cache_file: Path,
+    timeframe: str,
+) -> None:
+    """
+    Pull one team's standalone curve. Used by --mode season, where
+    cross-batch normalization is unviable (6-month windows produce too
+    many zero days even for top-tier programs — see CLAUDE.md
+    "Reference team selection rule"). Each team's curve is 0-100 within
+    its own history; cross-team magnitude is NOT comparable, but
+    intra-team consumers (hype_acceleration, team detail sheet chart)
+    don't need cross-team scale.
+    """
+    query = TEAM_QUERY_MAP[team_name]
+    print(f"[standalone] {team_name} (query={query!r})")
+    try:
+        df = fetch_interest(pytrends, [query], timeframe)
+    except TooManyRequestsError:
+        print("  [SKIP] rate-limited twice; will retry on next run")
+        return
+    except Exception as e:
+        print(f"  [SKIP] error: {type(e).__name__}: {e}")
+        return
+
+    daily = df_to_daily(df, query)
+    if not daily:
+        print(f"  [SKIP] {team_name}: empty series")
+        return
+    cache["teams"][team_name] = {
+        "query": query,
+        "hype_daily": daily,
+        "warnings": [],
+    }
+    save_cache(cache, cache_file)
+    time.sleep(SLEEP_BETWEEN_BATCHES)
+
+
+def write_output_csv_standalone(
+    cache: dict,
+    team_list: list[str],
+    output_csv: Path,
+) -> None:
+    """Output CSV for season mode — every team is in cache['teams'], no baseline row."""
+    rows = []
+    for team in team_list:
+        entry = cache["teams"].get(team)
+        if not entry:
+            continue
+        rows.append({
+            "team": team,
+            "hype_daily": json.dumps(entry["hype_daily"]),
+        })
+    pd.DataFrame(rows).to_csv(output_csv, index=False)
+    print(f"\nWrote {len(rows)} rows to {output_csv}")
 
 
 def write_output_csv(
@@ -503,11 +623,23 @@ def main() -> int:
         help="Tournament year (e.g. 2026). Drives CSV/cache/output paths.",
     )
     parser.add_argument(
-        "--window", type=parse_window, default=None,
+        "--mode", choices=["tournament", "season"], default="tournament",
         help=(
-            "Hype window: YYYY-MM-DD:YYYY-MM-DD (colon-separated, exactly 15 days inclusive). "
-            "Optional — if omitted, auto-derived from cache/ncaa_bracket_<year>.json "
-            "via the canonical (Selection Sunday − 5, Selection Sunday + 9) formula. "
+            "tournament (default): 15-day Selection-Sunday window, writes "
+            "cache/raw_trends_<year>.json + raw_hype_<year>.csv. "
+            "season: ~4.5-month season window (prior-Nov-1 → SS+9), writes "
+            "cache/raw_trends_season_<year>.json + raw_hype_season_<year>.csv. "
+            "Each mode has its own validator and reference-team requirements; "
+            "they do not share caches."
+        ),
+    )
+    parser.add_argument(
+        "--window", type=str, default=None,
+        help=(
+            "Hype window: YYYY-MM-DD:YYYY-MM-DD (colon-separated). "
+            "tournament mode: exactly 15 days inclusive. "
+            "season mode: 60-270 days inclusive (pytrends daily-data ceiling). "
+            "Optional — if omitted, auto-derived from cache/ncaa_bracket_<year>.json. "
             "Pass explicitly to override (e.g. for the 2026 backward-compat window)."
         ),
     )
@@ -523,15 +655,49 @@ def main() -> int:
 
     year = args.year
     csv_path = PIPELINE_DIR / f"tournament_results_{year}.csv"
+    print(f"[mode] {args.mode}")
+    team_list = load_team_list(csv_path)
+
+    if args.mode == "season":
+        cache_file = CACHE_DIR / f"raw_trends_season_{year}.json"
+        output_csv = PIPELINE_DIR / f"raw_hype_season_{year}.csv"
+        explicit = parse_season_window(args.window) if args.window else None
+        window = resolve_season_window(year, explicit)
+        if args.window is None:
+            print(f"[window] auto-derived from bracket cache: {window}")
+        timeframe = window.replace(":", " ")
+
+        validate_setup(team_list, reference_team=None)
+        if args.dry_run:
+            team_list = team_list[:3]
+            print(f"[DRY RUN] using {team_list}")
+
+        pytrends = TrendReq(hl="en-US", tz=360)
+        cache = load_cache(cache_file)
+        uncached = [t for t in team_list if t not in cache["teams"]]
+        skipped = [t for t in team_list if t in cache["teams"]]
+        if skipped:
+            print(f"[cache] skipping already-cached: {skipped}")
+        if not uncached:
+            print("[cache] all teams cached; writing output only")
+        else:
+            for team in uncached:
+                pull_team_standalone(pytrends, team, cache, cache_file, timeframe)
+
+        write_output_csv_standalone(cache, team_list, output_csv)
+        print(f"\nDone. Pulled at: {datetime.now(timezone.utc).isoformat()}")
+        return 0
+
+    # tournament mode (existing — preserved byte-for-byte)
     cache_file = CACHE_DIR / f"raw_trends_{year}.json"
     output_csv = PIPELINE_DIR / f"raw_hype_{year}.csv"
-    window = resolve_window(year, args.window)
+    explicit = parse_window(args.window) if args.window else None
+    window = resolve_window(year, explicit)
     if args.window is None:
         print(f"[window] auto-derived from bracket cache: {window}")
-    timeframe = window.replace(":", " ")  # pytrends format
+    timeframe = window.replace(":", " ")
     reference_team = args.reference
 
-    team_list = load_team_list(csv_path)
     validate_setup(team_list, reference_team)
 
     if args.dry_run:
@@ -553,7 +719,11 @@ def main() -> int:
         print("[cache] all teams cached; writing output only")
     else:
         for batch in chunked(uncached, BATCH_SIZE - 1):
-            pull_batch(pytrends, batch, ref_baseline, cache, reference_team, cache_file, timeframe)
+            pull_batch(
+                pytrends, batch, ref_baseline, cache, reference_team, cache_file, timeframe,
+                zero_warn_threshold=ZERO_REF_DAY_WARN_THRESHOLD,
+                window_days=WINDOW_DAYS_INCLUSIVE,
+            )
 
     write_output_csv(cache, team_list, output_csv, reference_team)
     print(f"\nDone. Pulled at: {datetime.now(timezone.utc).isoformat()}")

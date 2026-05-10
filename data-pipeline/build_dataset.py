@@ -1,9 +1,11 @@
 """
 build_dataset.py
 
-Combines tournament_results_<year>.csv + raw_hype_<year>.csv into data/<year>.json.
+Combines tournament_results_<year>.csv + raw_hype_<year>.csv +
+raw_hype_season_<year>.csv into data/<year>.json.
 
-Computes:
+Computes (tournament window — cross-batch-normalized scale, byte-for-byte
+preserved with prior versions of this script):
   hype_raw         = mean of normalized daily values (full precision input)
   hype_normalized  = scaled to 0-100 across all teams (100 = max)
   performance_rank = 'min' rank by wins (descending; champion = 1)
@@ -11,6 +13,16 @@ Computes:
   gap              = hype_rank - performance_rank
                      (negative => overhyped, positive => underhyped)
   story_tag        = overhyped / underhyped / as_expected / noise
+
+Computes (season window — standalone-pull scale, intra-team comparable only):
+  season_hype_daily      = full standalone curve (~144 days)
+  season_hype_raw        = mean of season_hype_daily values
+  season_hype_normalized = scaled to 0-100 across teams (separate scale from hype_normalized)
+  hype_acceleration      = (mean of season_hype_daily inside tournament window)
+                          / max(mean of season_hype_daily before tournament window, ε=1.0)
+                         Both numerator and denominator are on the same intra-team
+                         standalone-pull scale — ratio is meaningful even though
+                         absolute values aren't cross-team comparable.
 
 Run:
   python build_dataset.py --year 2026 --window 2026-03-03:2026-03-17
@@ -34,6 +46,11 @@ CACHE_DIR = PIPELINE_DIR / "cache"
 LOGOS_DIR = REPO_ROOT / "web" / "public" / "logos"
 
 WINDOW_DAYS_INCLUSIVE = 15  # safety net — must match pull_trends.py
+SEASON_WINDOW_MIN_DAYS = 60   # match pull_trends.py
+SEASON_WINDOW_MAX_DAYS = 270
+ACCELERATION_EPSILON = 1.0  # denominator floor for hype_acceleration; prevents
+                            # division blowups when pre-tournament hype is
+                            # near-zero (mid-major Cinderellas in November).
 
 
 # ---------------------------------------------------------------------------
@@ -70,6 +87,32 @@ def parse_window(s: str) -> str:
     return s
 
 
+def parse_season_window(s: str) -> str:
+    """argparse type for --season-window. Allows 60-270 days inclusive."""
+    m = _WINDOW_RE.match(s)
+    if not m:
+        raise argparse.ArgumentTypeError(
+            f"--season-window must be 'YYYY-MM-DD:YYYY-MM-DD' (colon-separated). Got: {s!r}"
+        )
+    start_str, end_str = m.group(1), m.group(2)
+    try:
+        start = date.fromisoformat(start_str)
+        end = date.fromisoformat(end_str)
+    except ValueError as e:
+        raise argparse.ArgumentTypeError(f"--season-window contains invalid date: {e}")
+    if end <= start:
+        raise argparse.ArgumentTypeError(
+            f"--season-window end ({end}) must be after start ({start})"
+        )
+    days = (end - start).days + 1
+    if days < SEASON_WINDOW_MIN_DAYS or days > SEASON_WINDOW_MAX_DAYS:
+        raise argparse.ArgumentTypeError(
+            f"--season-window must span between {SEASON_WINDOW_MIN_DAYS} and "
+            f"{SEASON_WINDOW_MAX_DAYS} days inclusive. Got {days} days."
+        )
+    return s
+
+
 def resolve_window(year: int, explicit: str | None) -> str:
     """
     Pick the effective hype window: explicit --window if provided, otherwise
@@ -91,6 +134,23 @@ def resolve_window(year: int, explicit: str | None) -> str:
     bracket = json.loads(cache_path.read_text())
     derived = derive_window_from_bracket(bracket)
     return parse_window(derived)
+
+
+def resolve_season_window(year: int, explicit: str | None) -> str:
+    """Mirror of resolve_window for --season-window."""
+    if explicit is not None:
+        return explicit
+    cache_path = CACHE_DIR / f"ncaa_bracket_{year}.json"
+    if not cache_path.exists():
+        raise SystemExit(
+            f"ERROR: --season-window not provided AND {cache_path.relative_to(PIPELINE_DIR)} "
+            f"does not exist. Either pass --season-window YYYY-MM-DD:YYYY-MM-DD explicitly, "
+            f"or run `python fetch_bracket.py --year {year}` first."
+        )
+    from fetch_bracket import derive_season_window_from_bracket
+    bracket = json.loads(cache_path.read_text())
+    derived = derive_season_window_from_bracket(bracket)
+    return parse_season_window(derived)
 
 
 def story_tag(gap: int) -> str:
@@ -120,16 +180,38 @@ def main() -> int:
             "the same source of truth)."
         ),
     )
+    parser.add_argument(
+        "--season-window", dest="season_window", type=parse_season_window, default=None,
+        help=(
+            "Season hype window: YYYY-MM-DD:YYYY-MM-DD, 60-270 days inclusive. "
+            "Optional — if omitted, auto-derived via "
+            "fetch_bracket.derive_season_window_from_bracket. Must match the "
+            "window used for `pull_trends.py --mode season`."
+        ),
+    )
     args = parser.parse_args()
 
     year = args.year
     tournament_csv = PIPELINE_DIR / f"tournament_results_{year}.csv"
     raw_hype_csv = PIPELINE_DIR / f"raw_hype_{year}.csv"
+    raw_hype_season_csv = PIPELINE_DIR / f"raw_hype_season_{year}.csv"
     output_json = REPO_ROOT / "data" / f"{year}.json"
     window = resolve_window(year, args.window)
+    season_window = resolve_season_window(year, args.season_window)
     if args.window is None:
         print(f"[window] auto-derived from bracket cache: {window}")
+    if args.season_window is None:
+        print(f"[season-window] auto-derived from bracket cache: {season_window}")
     window_start, window_end = window.split(":")
+    season_window_start, season_window_end = season_window.split(":")
+
+    if not raw_hype_season_csv.exists():
+        raise SystemExit(
+            f"ERROR: {raw_hype_season_csv.relative_to(PIPELINE_DIR)} does not exist. "
+            f"Run `python pull_trends.py --year {year} --mode season` first."
+        )
+
+    print("[byte-compat] preserving existing tournament-mode fields; appending season + acceleration")
 
     # Load seoname map if present (produced by fetch_bracket.py). logo_path is
     # set on each team only when (a) we have a seoname AND (b) the SVG file
@@ -142,6 +224,7 @@ def main() -> int:
 
     tournament = pd.read_csv(tournament_csv)
     raw_hype = pd.read_csv(raw_hype_csv)
+    raw_hype_season = pd.read_csv(raw_hype_season_csv)
 
     placeholder_mask = tournament["team"].str.startswith("First Four Loser")
     skipped = tournament[placeholder_mask]["team"].tolist()
@@ -155,16 +238,48 @@ def main() -> int:
         lambda d: sum(x["value"] for x in d) / len(d) if d else 0.0
     )
 
+    raw_hype_season["season_hype_daily_parsed"] = raw_hype_season["hype_daily"].apply(json.loads)
+    raw_hype_season["season_hype_raw"] = raw_hype_season["season_hype_daily_parsed"].apply(
+        lambda d: sum(x["value"] for x in d) / len(d) if d else 0.0
+    )
+    # Acceleration: split season_hype_daily at the tournament window boundary.
+    # Pre-tournament = entries with date < window_start. Numerator is the
+    # tournament-window slice of the SAME season_hype_daily series (not the
+    # cross-batch normalized hype_raw — different scale).
+    def _split_means(daily: list[dict]) -> tuple[float, float]:
+        pre_vals = [x["value"] for x in daily if x["date"] < window_start]
+        in_vals = [x["value"] for x in daily if window_start <= x["date"] <= window_end]
+        pre_mean = sum(pre_vals) / len(pre_vals) if pre_vals else 0.0
+        in_mean = sum(in_vals) / len(in_vals) if in_vals else 0.0
+        return pre_mean, in_mean
+
+    pre_in_means = raw_hype_season["season_hype_daily_parsed"].apply(_split_means)
+    raw_hype_season["pre_tournament_mean"] = [m[0] for m in pre_in_means]
+    raw_hype_season["in_tournament_mean"] = [m[1] for m in pre_in_means]
+    raw_hype_season["hype_acceleration"] = (
+        raw_hype_season["in_tournament_mean"]
+        / raw_hype_season["pre_tournament_mean"].clip(lower=ACCELERATION_EPSILON)
+    )
+
     df = tournament.merge(
         raw_hype[["team", "hype_raw", "hype_daily_parsed"]],
+        on="team",
+        how="left",
+    )
+    df = df.merge(
+        raw_hype_season[["team", "season_hype_raw", "season_hype_daily_parsed", "hype_acceleration"]],
         on="team",
         how="left",
     )
 
     missing = df[df["hype_raw"].isna()]["team"].tolist()
     if missing:
-        print(f"WARNING: {len(missing)} teams have no hype data: {missing}")
+        print(f"WARNING: {len(missing)} teams have no tournament hype data: {missing}")
         df = df.dropna(subset=["hype_raw"]).copy()
+
+    missing_season = df[df["season_hype_raw"].isna()]["team"].tolist()
+    if missing_season:
+        print(f"WARNING: {len(missing_season)} teams have no season hype data: {missing_season}")
 
     zero_hype = df[df["hype_raw"] == 0]["team"].tolist()
     if zero_hype:
@@ -181,6 +296,11 @@ def main() -> int:
     df["gap"] = (df["hype_rank"] - df["performance_rank"]).astype(int)
     df["story_tag"] = df["gap"].apply(story_tag)
     df["hype_raw"] = df["hype_raw"].round(2)
+
+    max_season_hype = df["season_hype_raw"].max()
+    df["season_hype_normalized"] = (df["season_hype_raw"] / max_season_hype * 100).round(2)
+    df["season_hype_raw"] = df["season_hype_raw"].round(2)
+    df["hype_acceleration"] = df["hype_acceleration"].round(2)
 
     # Flag First Four losers via duplicate (region, seed) detection. The NCAA
     # bracket only ever has duplicates for First Four matchups: both teams in a
@@ -200,6 +320,10 @@ def main() -> int:
             {"date": d["date"], "value": round(d["value"], 2)}
             for d in r["hype_daily_parsed"]
         ]
+        season_daily_rounded = [
+            {"date": d["date"], "value": round(d["value"], 2)}
+            for d in (r["season_hype_daily_parsed"] or [])
+        ] if isinstance(r["season_hype_daily_parsed"], list) else []
         slug = seonames.get(r["team"])
         # Only set logo_path if the SVG was actually fetched. Avoids data.json
         # pointing at 404s when fetch_logos.py hasn't been run or when a team's
@@ -223,6 +347,10 @@ def main() -> int:
             "story_tag": r["story_tag"],
             "made_main_bracket": bool(r["made_main_bracket"]),
             "logo_path": logo_path,
+            "season_hype_raw": float(r["season_hype_raw"]) if pd.notna(r["season_hype_raw"]) else 0.0,
+            "season_hype_normalized": float(r["season_hype_normalized"]) if pd.notna(r["season_hype_normalized"]) else 0.0,
+            "season_hype_daily": season_daily_rounded,
+            "hype_acceleration": float(r["hype_acceleration"]) if pd.notna(r["hype_acceleration"]) else 0.0,
         })
 
     output = {
@@ -230,6 +358,8 @@ def main() -> int:
             "tournament_year": year,
             "hype_window_start": window_start,
             "hype_window_end": window_end,
+            "season_window_start": season_window_start,
+            "season_window_end": season_window_end,
             "total_teams": len(teams),
             "data_pulled_at": datetime.now(timezone.utc).isoformat(),
         },

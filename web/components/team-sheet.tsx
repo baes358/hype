@@ -1,6 +1,6 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid, ReferenceLine, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, ReferenceArea, ReferenceLine, XAxis, YAxis } from "recharts";
 
 import {
   ChartConfig,
@@ -22,6 +22,8 @@ type Props = {
   team: Team | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  hypeWindowStart: string;
+  hypeWindowEnd: string;
 };
 
 const chartConfig: ChartConfig = {
@@ -36,14 +38,25 @@ function shortDate(iso: string): string {
   return d.toLocaleDateString(undefined, { month: "numeric", day: "numeric" });
 }
 
-export function TeamSheet({ team, open, onOpenChange }: Props) {
+function formatAcceleration(v: number): string {
+  if (!Number.isFinite(v) || v <= 0) return "—";
+  return v < 100 ? `${v.toFixed(1)}×` : `${Math.round(v)}×`;
+}
+
+export function TeamSheet({ team, open, onOpenChange, hypeWindowStart, hypeWindowEnd }: Props) {
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
         className="w-full overflow-y-auto sm:max-w-xl border-l border-border bg-background"
       >
-        {team && <TeamSheetBody team={team} />}
+        {team && (
+          <TeamSheetBody
+            team={team}
+            hypeWindowStart={hypeWindowStart}
+            hypeWindowEnd={hypeWindowEnd}
+          />
+        )}
         {!team && (
           <SheetHeader>
             <SheetTitle>Loading…</SheetTitle>
@@ -55,9 +68,18 @@ export function TeamSheet({ team, open, onOpenChange }: Props) {
   );
 }
 
-function TeamSheetBody({ team }: { team: Team }) {
+function TeamSheetBody({
+  team,
+  hypeWindowStart,
+  hypeWindowEnd,
+}: {
+  team: Team;
+  hypeWindowStart: string;
+  hypeWindowEnd: string;
+}) {
   const style = TAG_STYLE[team.story_tag];
-  const peak = team.hype_daily.reduce((m, d) => (d.value > m.value ? d : m), team.hype_daily[0]);
+  const seasonDaily = team.season_hype_daily.length > 0 ? team.season_hype_daily : team.hype_daily;
+  const peak = seasonDaily.reduce((m, d) => (d.value > m.value ? d : m), seasonDaily[0]);
 
   return (
     <div className="flex flex-col gap-6 px-5 py-6 sm:gap-8 sm:px-6 sm:py-8">
@@ -78,11 +100,11 @@ function TeamSheetBody({ team }: { team: Team }) {
         </SheetDescription>
       </SheetHeader>
 
-      {/* Three-up stat strip */}
+      {/* Stat strip */}
       <StaggerGroup
         staggerMs={70}
         delay={0.1}
-        className="grid grid-cols-3 gap-x-px bg-border"
+        className="grid grid-cols-2 gap-px bg-border sm:grid-cols-4"
       >
         <Stat label="Hype index" value={team.hype_normalized.toFixed(0)} hint="0–100, normalized" />
         <Stat
@@ -94,6 +116,11 @@ function TeamSheetBody({ team }: { team: Team }) {
           label="Perf rank"
           value={`#${team.performance_rank}`}
           hint={`${team.wins} wins`}
+        />
+        <Stat
+          label="Acceleration"
+          value={formatAcceleration(team.hype_acceleration)}
+          hint="tournament vs. season"
         />
       </StaggerGroup>
 
@@ -118,7 +145,7 @@ function TeamSheetBody({ team }: { team: Team }) {
         <div className="mb-3 flex items-end justify-between">
           <div>
             <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-              Daily hype, 15-day window
+              Daily hype, full season
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
               Peaked at <span className="font-mono tabular-nums text-foreground">{peak.value.toFixed(0)}</span> on{" "}
@@ -129,7 +156,7 @@ function TeamSheetBody({ team }: { team: Team }) {
 
         <ChartContainer config={chartConfig} className="aspect-[16/9] w-full">
           <AreaChart
-            data={team.hype_daily}
+            data={seasonDaily}
             margin={{ top: 8, right: 8, bottom: 0, left: 0 }}
           >
             <defs>
@@ -156,7 +183,24 @@ function TeamSheetBody({ team }: { team: Team }) {
                 />
               }
             />
-            <ReferenceLine y={100} stroke="rgba(58,59,59,0.2)" strokeDasharray="2 2" />
+            <ReferenceArea
+              x1={hypeWindowStart}
+              x2={hypeWindowEnd}
+              fill="#44d1d1"
+              fillOpacity={0.1}
+              stroke="none"
+            />
+            <ReferenceLine
+              y={team.season_hype_raw}
+              stroke="rgba(58,59,59,0.25)"
+              strokeDasharray="2 2"
+              label={{
+                value: "season avg",
+                position: "right",
+                fill: "rgba(58,59,59,0.6)",
+                fontSize: 10,
+              }}
+            />
             <Area
               type="monotone"
               dataKey="value"
