@@ -91,7 +91,7 @@ export function TopNav({ dataset }: Props) {
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-rule/70 bg-paper/85 backdrop-blur supports-[backdrop-filter]:bg-paper/70"
+      className="sticky top-0 z-40 border-b border-rule/40 bg-white/90 shadow-[0_4px_16px_-8px_rgba(0,0,0,0.08)] backdrop-blur supports-[backdrop-filter]:bg-white/75"
       onMouseLeave={() => setHoveredHref(null)}
     >
       <motion.div
@@ -165,7 +165,7 @@ export function TopNav({ dataset }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute inset-x-0 top-full hidden border-b border-rule/70 bg-paper-deep/95 backdrop-blur md:block"
+            className="absolute inset-x-0 top-full hidden border-b border-rule/40 bg-white/95 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.1)] backdrop-blur md:block"
             onMouseEnter={() => setHoveredHref(hovered.href)}
           >
             <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">

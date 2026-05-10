@@ -41,7 +41,7 @@ type Props = {
 
 function ModePill({ mode, setMode }: { mode: GapMode; setMode: (m: GapMode) => void }) {
   return (
-    <div className="hidden items-center rounded-full border border-rule bg-paper/60 p-0.5 sm:flex">
+    <div className="hidden items-center rounded-full border border-rule bg-white/60 p-0.5 sm:flex">
       <ModePillBtn active={mode === "tournament"} onClick={() => setMode("tournament")} accent="crimson">
         Tournament
       </ModePillBtn>

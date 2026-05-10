@@ -96,7 +96,7 @@
   --dusty: #3b5b78;
   --gold: #b48a3a;
 
-  --background: var(--paper);
+  --background: #ffffff;
   --foreground: var(--ink);
   --brand: #44d1d1;
   --card: #ffffff;
@@ -149,3 +149,4 @@
     letter-spacing: 0.02em;
   }
 }
+
