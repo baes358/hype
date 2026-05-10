@@ -82,7 +82,7 @@ function TeamSheetBody({ team }: { team: Team }) {
       <StaggerGroup
         staggerMs={70}
         delay={0.1}
-        className="grid grid-cols-3 gap-px bg-border"
+        className="grid grid-cols-3 gap-x-px bg-border"
       >
         <Stat label="Hype index" value={team.hype_normalized.toFixed(0)} hint="0–100, normalized" />
         <Stat
@@ -146,7 +146,7 @@ function TeamSheetBody({ team }: { team: Team }) {
               axisLine={false}
               minTickGap={24}
             />
-            <YAxis tickLine={false} axisLine={false} width={28} />
+            <YAxis tickLine={false} axisLine={false} width={40} interval={0} />
             <ChartTooltip
               cursor={{ stroke: "rgba(58,59,59,0.3)", strokeDasharray: "2 4" }}
               content={
@@ -173,15 +173,15 @@ function TeamSheetBody({ team }: { team: Team }) {
 
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
-    <div className="bg-background px-4 py-3">
-      <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
+    <div className="h-full bg-background px-4 py-3">
+      <div className="text-sm uppercase tracking-normal text-muted-foreground">
         {label}
       </div>
       <div className="mt-1 font-mono text-2xl font-semibold tabular-nums text-foreground">
         {value}
       </div>
       {hint && (
-        <div className="mt-0.5 font-mono text-xs text-muted-foreground">{hint}</div>
+        <div className="mt-0.5 text-xs uppercase tracking-normal text-muted-foreground">{hint}</div>
       )}
     </div>
   );

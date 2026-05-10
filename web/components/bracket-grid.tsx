@@ -61,7 +61,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
 
       <StaggerGroup
         staggerMs={80}
-        className="grid grid-cols-1 gap-px bg-border/60 sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-px bg-background sm:grid-cols-2 lg:grid-cols-4"
       >
         {REGIONS.map((region) => {
           const isOpen = expanded.has(region);
@@ -104,7 +104,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                       onClick={() => onSelect(t)}
                       className="group grid w-full grid-cols-[28px_1fr_auto] items-center gap-3 px-4 py-2.5 text-left transition hover:bg-foreground/[0.02]"
                     >
-                      <span className="font-mono text-sm tabular-nums text-muted-foreground">
+                      <span className="font-mono text-sm tabular-nums text-brand">
                         {String(t.seed).padStart(2, "0")}
                       </span>
                       <div className="min-w-0">
@@ -112,20 +112,20 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                           <span className={`size-1.5 rounded-full ${style.dot}`} />
                           <span className="truncate text-sm text-foreground">{t.team}</span>
                         </div>
-                        <div className="mt-1.5 h-px w-full bg-border/40">
+                        <div className="mt-1.5 h-0.5 w-full bg-border/40">
                           <div
                             style={{ width: `${meterPct}%` }}
-                            className={`h-px ${style.bar} transition-all`}
+                            className={`h-0.5 ${style.bar} transition-all`}
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col items-end font-mono text-xs tabular-nums leading-tight">
-                        <span className="text-muted-foreground">
-                          {t.wins}W
-                        </span>
-                        <span className={t.gap < 0 ? "text-rose-600" : t.gap > 0 ? "text-sky-700" : "text-muted-foreground"}>
+                      <div className="flex flex-col items-end gap-[0.25em] font-mono tabular-nums leading-tight">
+                        <span className={`text-xs ${t.gap < 0 ? "text-rose-600" : t.gap > 0 ? "text-sky-700" : "text-muted-foreground"}`}>
                           {t.gap > 0 ? "+" : ""}
                           {t.gap}
+                        </span>
+                        <span className="text-[8px] text-muted-foreground">
+                          {t.wins}W
                         </span>
                       </div>
                     </button>

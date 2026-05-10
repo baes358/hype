@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, X } from "lucide-react";
 
 import { AnimatedToolbar } from "@/components/motion";
+import { TeamSearch } from "@/components/team-search";
 import {
   Region,
   REGIONS,
@@ -14,9 +15,11 @@ import {
   TAG_LABEL,
   TAG_ORDER,
   TAG_STYLE,
+  Team,
 } from "@/lib/data";
 
 type Props = {
+  teams: Team[];
   selectedTags: Set<StoryTag>;
   selectedRegion: Region | "all";
   selectedRound: Round;
@@ -25,6 +28,7 @@ type Props = {
   onSetRegion: (r: Region | "all") => void;
   onSetRound: (r: Round) => void;
   onReset: () => void;
+  onSelectTeam: (team: Team) => void;
 };
 
 // ---------------------------------------------------------------------------
@@ -74,7 +78,7 @@ function FilterDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 ${
+        className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1 ${
           isActive
             ? "border-foreground/80 bg-foreground/[0.04] text-foreground"
             : "border-border bg-transparent text-foreground hover:border-foreground/40"
@@ -209,6 +213,7 @@ function FilterChip({
 // ---------------------------------------------------------------------------
 
 export function Filters({
+  teams,
   selectedTags,
   selectedRegion,
   selectedRound,
@@ -217,6 +222,7 @@ export function Filters({
   onSetRegion,
   onSetRound,
   onReset,
+  onSelectTeam,
 }: Props) {
   const allTagsActive = selectedTags.size === TAG_ORDER.length;
   const tagsCount = allTagsActive ? null : selectedTags.size;
@@ -308,11 +314,15 @@ export function Filters({
             }
           </FilterDropdown>
 
+          <div className="order-last w-full sm:order-none sm:ml-auto sm:w-64">
+            <TeamSearch teams={teams} onSelect={onSelectTeam} />
+          </div>
+
           {hasActive && (
             <button
               type="button"
               onClick={onReset}
-              className="ml-auto text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:underline"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:underline"
             >
               Clear all
             </button>

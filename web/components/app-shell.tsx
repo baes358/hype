@@ -311,9 +311,10 @@ export function AppShell({ data, view }: Props) {
       </Suspense>
 
       <Hero data={dataset} />
-      <SectionNav teams={dataset.teams} onSelectTeam={setSelectedTeam} />
+      <SectionNav />
 
       <Filters
+        teams={dataset.teams}
         selectedTags={selectedTags}
         selectedRegion={selectedRegion}
         selectedRound={selectedRound}
@@ -322,6 +323,7 @@ export function AppShell({ data, view }: Props) {
         onSetRegion={setSelectedRegion}
         onSetRound={setSelectedRound}
         onReset={onReset}
+        onSelectTeam={setSelectedTeam}
       />
 
       {view === "gap" && (
