@@ -43,7 +43,7 @@ export function Filters({
         <div className="flex flex-col gap-y-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8">
           {/* Tag filter group */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[9px] uppercase tracking-normal text-muted-foreground">
+            <span className="text-xs uppercase tracking-normal text-muted-foreground">
               Story
             </span>
             {TAG_ORDER.map((tag) => {
@@ -54,7 +54,7 @@ export function Filters({
                   key={tag}
                   onClick={() => onToggleTag(tag)}
                   aria-pressed={active}
-                  className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium transition ${
+                  className={`group inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium transition ${
                     active
                       ? `${style.border} ${style.bg} text-foreground`
                       : "border-border bg-transparent text-muted-foreground hover:border-foreground/40 hover:text-foreground"
@@ -62,7 +62,7 @@ export function Filters({
                 >
                   <span className={`size-1.5 rounded-full ${style.dot}`} />
                   {TAG_LABEL[tag]}
-                  <span className="text-[9px] tabular-nums opacity-60">
+                  <span className="text-xs tabular-nums opacity-60">
                     {tagCounts[tag]}
                   </span>
                 </button>
@@ -72,7 +72,7 @@ export function Filters({
 
           {/* Region filter group */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[9px] uppercase tracking-normal text-muted-foreground">
+            <span className="text-xs uppercase tracking-normal text-muted-foreground">
               Region
             </span>
             {(["all", ...REGIONS] as const).map((r) => {
@@ -82,7 +82,7 @@ export function Filters({
                   key={r}
                   onClick={() => onSetRegion(r)}
                   aria-pressed={active}
-                  className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+                  className={`rounded-full border px-3 py-1 text-sm font-medium transition ${
                     active
                       ? "border-foreground bg-foreground text-background"
                       : "border-border bg-transparent text-muted-foreground hover:border-foreground/40 hover:text-foreground"
@@ -97,7 +97,7 @@ export function Filters({
           {anyFilterActive && (
             <button
               onClick={onReset}
-              className="self-start text-[9px] uppercase tracking-normal text-muted-foreground hover:text-foreground sm:ml-auto sm:self-auto"
+              className="self-start text-xs uppercase tracking-normal text-muted-foreground hover:text-foreground sm:ml-auto sm:self-auto"
             >
               Reset
             </button>
@@ -106,7 +106,7 @@ export function Filters({
 
         {/* Round filter — own row, two-line pills with date subtitles */}
         <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
-          <span className="text-[9px] uppercase tracking-normal text-muted-foreground">
+          <span className="text-xs uppercase tracking-normal text-muted-foreground">
             Round
           </span>
           {ROUND_ORDER.map((r) => {
@@ -116,7 +116,7 @@ export function Filters({
                 key={r}
                 onClick={() => onSetRound(r)}
                 aria-pressed={active}
-                className={`rounded-full border px-3 py-1 text-[10px] uppercase tracking-normal transition ${
+                className={`rounded-full border px-3 py-1 text-sm uppercase tracking-normal transition ${
                   active
                     ? "border-foreground bg-foreground text-background"
                     : "border-border bg-transparent text-muted-foreground hover:border-foreground/40 hover:text-foreground"

@@ -18,7 +18,7 @@ function CalloutSection({
 }) {
   return (
     <div>
-      <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+      <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
         {title}
       </div>
       <ul className="mt-3 space-y-1">
@@ -33,10 +33,10 @@ function CalloutSection({
                 aria-hidden="true"
                 className={`inline-block size-2 shrink-0 rounded-full ${TAG_STYLE[t.story_tag].dot}`}
               />
-              <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+              <span className="font-mono text-xs tabular-nums text-muted-foreground">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="truncate font-mono text-[11px] uppercase tracking-normal text-foreground">
+              <span className="truncate font-mono text-sm uppercase tracking-normal text-foreground">
                 {t.team}
               </span>
             </button>

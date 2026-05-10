@@ -20,7 +20,7 @@ export function Hero({ data }: Props) {
           height={56}
           className="mb-6 h-12 w-auto self-start sm:mb-8 sm:h-14"
         />
-        <div className="font-mono text-[10px] uppercase tracking-normal text-brand">
+        <div className="font-mono text-xs uppercase tracking-normal text-brand">
           The Gap
         </div>
         <h1
@@ -30,7 +30,7 @@ export function Hero({ data }: Props) {
         >
           {finding}
         </h1>
-        <p className="mt-6 max-w-2xl text-sm leading-6 text-muted-foreground sm:mt-8 sm:text-base sm:leading-7">
+        <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:mt-8">
           HYP3 measures the distance between how loudly the internet talked about each
           team and how far they actually went. <span className="text-foreground">Negative gap</span>{" "}
           means a team got more hype than their wins justified.{" "}

@@ -21,6 +21,24 @@ function useIsMobile() {
 
 const MOBILE_WINDOW_SIZE = 5;
 
+// Dark heatmap theme. The section gets a deep navy background and cells step
+// through 5 discrete blue shades from low (deep navy) to peak (white).
+const HEATMAP_THEME = {
+  sectionBg: "#0d1f33",
+  gridGap: "#1a3349",
+  stickyBg: "#0d1f33",
+  textPrimary: "#f0f5fa",
+  textMuted: "#7d9bb5",
+  borderSubtle: "rgba(255,255,255,0.15)",
+  selectionDivider: "rgba(255,255,255,0.4)",
+  bins: ["#1f3a52", "#345a78", "#5d96b6", "#aad0e0", "#ffffff"] as const,
+} as const;
+
+function intensityToColor(intensity: number): string {
+  const idx = Math.min(4, Math.max(0, Math.floor(intensity * 5)));
+  return HEATMAP_THEME.bins[idx];
+}
+
 type Props = {
   teams: Team[];
   windowDates: string[];        // 15 ISO date strings, in order
@@ -104,7 +122,7 @@ export function TimelineHeatmap({
 
   if (sortedTeams.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-5 py-24 text-center text-sm text-muted-foreground sm:px-6">
+      <div className="mx-auto max-w-7xl px-5 py-24 text-center text-base text-muted-foreground sm:px-6">
         No teams match the current filters.
       </div>
     );
@@ -128,24 +146,27 @@ export function TimelineHeatmap({
     // the heatmap grid's min-w-[680px] would expand the section past the
     // viewport and the inner overflow-x-auto never triggers (heatmap div
     // ends up the same width as its grid child).
-    <section className="mx-auto min-w-0 max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
+    <section
+      className="mx-auto min-w-0 max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16"
+      style={{ backgroundColor: HEATMAP_THEME.sectionBg, color: HEATMAP_THEME.textPrimary }}
+    >
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+          <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
             03 / The timeline
           </div>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl" style={{ color: HEATMAP_THEME.textPrimary }}>
             Daily hype intensity for every team across the 15-day window
           </h2>
         </div>
-        <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+        <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
           {sortedTeams.length} teams shown
         </div>
       </header>
 
       {/* Sort pill control */}
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+        <span className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
           Sort
         </span>
         {SORT_OPTIONS.map((opt) => {
@@ -155,11 +176,12 @@ export function TimelineHeatmap({
               key={opt.key}
               onClick={() => setSortKey(opt.key)}
               aria-pressed={active}
-              className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+              className="rounded-full border px-3 py-1 text-sm font-medium transition"
+              style={
                 active
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border bg-transparent text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-              }`}
+                  ? { borderColor: HEATMAP_THEME.textPrimary, backgroundColor: HEATMAP_THEME.textPrimary, color: HEATMAP_THEME.sectionBg }
+                  : { borderColor: HEATMAP_THEME.borderSubtle, backgroundColor: "transparent", color: HEATMAP_THEME.textMuted }
+              }
             >
               {opt.label}
             </button>
@@ -174,11 +196,15 @@ export function TimelineHeatmap({
           onClick={() => setWindowStart((s) => Math.max(0, s - 1))}
           disabled={windowStart === 0}
           aria-label="Previous day"
-          className="rounded-full border border-border p-1.5 text-muted-foreground transition hover:text-foreground disabled:opacity-30 disabled:hover:text-muted-foreground"
+          className="rounded-full border p-1.5 transition disabled:opacity-30"
+          style={{ borderColor: HEATMAP_THEME.borderSubtle, color: HEATMAP_THEME.textMuted }}
         >
           <ChevronLeft className="size-3.5" />
         </button>
-        <div className="flex-1 text-center font-mono text-[10px] uppercase tracking-normal text-foreground tabular-nums">
+        <div
+          className="flex-1 text-center font-mono text-sm uppercase tracking-normal tabular-nums"
+          style={{ color: HEATMAP_THEME.textPrimary }}
+        >
           {visibleDates.length > 0 &&
             `${shortDayLabel(visibleDates[0])} – ${shortDayLabel(visibleDates[visibleDates.length - 1])}`}
         </div>
@@ -187,7 +213,8 @@ export function TimelineHeatmap({
           onClick={() => setWindowStart((s) => Math.min(maxWindowStart, s + 1))}
           disabled={windowStart >= maxWindowStart}
           aria-label="Next day"
-          className="rounded-full border border-border p-1.5 text-muted-foreground transition hover:text-foreground disabled:opacity-30 disabled:hover:text-muted-foreground"
+          className="rounded-full border p-1.5 transition disabled:opacity-30"
+          style={{ borderColor: HEATMAP_THEME.borderSubtle, color: HEATMAP_THEME.textMuted }}
         >
           <ChevronRight className="size-3.5" />
         </button>
@@ -199,13 +226,17 @@ export function TimelineHeatmap({
           width doesn't depend on the grid's content. */}
       <div className="w-full max-w-[calc(100vw-2.5rem)] overflow-x-auto sm:max-w-[calc(100vw-3rem)]">
         <div
-          className="grid gap-px bg-border/60 sm:min-w-[680px]"
+          className="grid gap-px sm:min-w-[680px]"
           style={{
             gridTemplateColumns: `minmax(120px, 180px) repeat(${visibleDates.length}, minmax(28px, 1fr))`,
+            backgroundColor: HEATMAP_THEME.gridGap,
           }}
         >
           {/* Header row: spacer + day labels */}
-          <div className="sticky left-0 z-10 bg-background px-3 py-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground shadow-[4px_0_6px_-2px_rgba(0,0,0,0.08)]">
+          <div
+            className="sticky left-0 z-10 px-3 py-2 font-mono text-xs uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)]"
+            style={{ backgroundColor: HEATMAP_THEME.stickyBg, color: HEATMAP_THEME.textMuted }}
+          >
             Team
           </div>
           {visibleDates.map((date) => {
@@ -213,11 +244,12 @@ export function TimelineHeatmap({
             return (
               <div
                 key={`hdr-${date}`}
-                className={`bg-background px-1 py-2 text-center font-mono text-[9px] uppercase tracking-normal ${
-                  isSS
-                    ? "border-l border-l-foreground/30 text-foreground"
-                    : "text-muted-foreground"
-                }`}
+                className="px-1 py-2 text-center font-mono text-xs uppercase tracking-normal"
+                style={{
+                  backgroundColor: HEATMAP_THEME.sectionBg,
+                  color: isSS ? HEATMAP_THEME.textPrimary : HEATMAP_THEME.textMuted,
+                  borderLeft: isSS ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
+                }}
                 title={isSS ? `${fullDayLabel(date)} (Selection Sunday)` : fullDayLabel(date)}
               >
                 {shortDayLabel(date)}
@@ -225,7 +257,7 @@ export function TimelineHeatmap({
             );
           })}
 
-          {/* Body rows: team label + 15 heat cells per team */}
+          {/* Body rows: team label + heat cells per team */}
           {sortedTeams.map((t) => {
             const isSelected = selectedTeam === t.team;
             const inner = dateMaps.get(t.team);
@@ -233,12 +265,14 @@ export function TimelineHeatmap({
               <Fragment key={t.team}>
                 <button
                   onClick={() => onSelect(t)}
-                  className={`sticky left-0 z-10 flex items-center gap-2 truncate bg-background px-3 py-1.5 text-left font-mono text-[10px] uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.08)] transition hover:bg-foreground/[0.04] ${
-                    isSelected ? "bg-foreground/[0.06] text-foreground" : "text-foreground"
-                  }`}
+                  className="sticky left-0 z-10 flex items-center gap-2 truncate px-3 py-2 text-left font-mono text-sm uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)] transition hover:opacity-80"
+                  style={{
+                    backgroundColor: isSelected ? "rgba(255,255,255,0.08)" : HEATMAP_THEME.stickyBg,
+                    color: HEATMAP_THEME.textPrimary,
+                  }}
                   title={`${t.team} · ${t.seed} seed · ${t.wins} wins · gap ${t.gap > 0 ? "+" : ""}${t.gap}`}
                 >
-                  <span className="tabular-nums text-muted-foreground">
+                  <span className="tabular-nums" style={{ color: HEATMAP_THEME.textMuted }}>
                     {String(t.seed).padStart(2, "0")}
                   </span>
                   <span className="truncate">{t.team.toUpperCase()}</span>
@@ -252,11 +286,10 @@ export function TimelineHeatmap({
                       key={`${t.team}-${date}`}
                       onClick={() => onSelect(t)}
                       title={`${t.team} · ${fullDayLabel(date)} · hype ${value.toFixed(1)}`}
-                      className={`bg-background transition hover:opacity-80 ${
-                        isSS ? "border-l border-l-foreground/30" : ""
-                      }`}
+                      className="transition hover:opacity-80"
                       style={{
-                        backgroundColor: `rgba(68, 209, 209, ${intensity})`,
+                        backgroundColor: intensityToColor(intensity),
+                        borderLeft: isSS ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
                       }}
                       aria-label={`${t.team} on ${date}: hype ${value.toFixed(1)}`}
                     />
@@ -268,10 +301,13 @@ export function TimelineHeatmap({
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
-        <span>Pale = low hype that day</span>
+      <div
+        className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal"
+        style={{ color: HEATMAP_THEME.textMuted }}
+      >
+        <span>Deep navy = low hype that day</span>
         <span>·</span>
-        <span>Saturated teal = peak day across the dataset</span>
+        <span>White = peak day across the dataset</span>
         <span>·</span>
         <span>Vertical line = Selection Sunday</span>
         <span>·</span>

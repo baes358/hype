@@ -77,7 +77,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
         onKeyDown={onKeyDown}
         placeholder="Search team"
         aria-label="Search team"
-        className="w-full rounded-full border border-border bg-transparent py-1 pl-3 pr-8 text-[10px] uppercase tracking-normal text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-48"
+        className="w-full rounded-full border border-border bg-transparent py-1.5 pl-3 pr-9 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-56 sm:py-1 sm:text-sm"
       />
       <Search
         aria-hidden="true"
@@ -86,7 +86,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
       {isOpen && query && (
         <div className="absolute right-0 top-full z-20 mt-1 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg sm:w-64">
           {matches.length === 0 ? (
-            <div className="px-3 py-2 text-[10px] uppercase tracking-normal text-muted-foreground">
+            <div className="px-3 py-2 text-sm text-muted-foreground">
               No matches
             </div>
           ) : (
@@ -95,17 +95,17 @@ export function TeamSearch({ teams, onSelect }: Props) {
                 key={t.team}
                 onClick={() => select(t)}
                 onMouseEnter={() => setHighlighted(i)}
-                className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-xs transition ${
+                className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm transition ${
                   i === highlighted ? "bg-foreground/5" : ""
                 }`}
               >
                 <span className="flex items-center gap-2">
-                  <span className="text-[10px] tabular-nums text-muted-foreground">
+                  <span className="text-xs tabular-nums text-muted-foreground">
                     {String(t.seed).padStart(2, "0")}
                   </span>
                   <span className="text-foreground">{t.team}</span>
                 </span>
-                <span className="text-[9px] uppercase tracking-normal text-muted-foreground">
+                <span className="text-xs uppercase tracking-normal text-muted-foreground">
                   {t.region}
                 </span>
               </button>

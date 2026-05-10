@@ -360,7 +360,7 @@ export function AppShell({ data, view }: Props) {
       )}
 
       <footer className="mt-auto border-t border-border">
-        <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-1 px-5 py-3 sm:gap-x-6 sm:px-6">
             <span className="text-foreground font-semibold">HYP3 / 001</span>
             <span>·</span>

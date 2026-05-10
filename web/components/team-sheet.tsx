@@ -61,7 +61,7 @@ function TeamSheetBody({ team }: { team: Team }) {
   return (
     <div className="flex flex-col gap-6 px-5 py-6 sm:gap-8 sm:px-6 sm:py-8">
       <SheetHeader className="px-0">
-        <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+        <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-normal text-muted-foreground">
           <span className={`size-1.5 rounded-full ${style.dot}`} />
           {TAG_LABEL[team.story_tag]}
           <span>·</span>
@@ -94,7 +94,7 @@ function TeamSheetBody({ team }: { team: Team }) {
 
       {/* Gap callout */}
       <div className={`rounded-md border ${style.border} ${style.bg} px-4 py-3`}>
-        <div className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
           Gap
         </div>
         <div className="mt-1 flex items-baseline gap-3">
@@ -112,7 +112,7 @@ function TeamSheetBody({ team }: { team: Team }) {
       <div>
         <div className="mb-3 flex items-end justify-between">
           <div>
-            <div className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+            <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
               Daily hype, 15-day window
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
@@ -169,14 +169,14 @@ function TeamSheetBody({ team }: { team: Team }) {
 function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
   return (
     <div className="bg-background px-4 py-3">
-      <div className="font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+      <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
         {label}
       </div>
       <div className="mt-1 font-mono text-2xl font-semibold tabular-nums text-foreground">
         {value}
       </div>
       {hint && (
-        <div className="mt-0.5 font-mono text-[9px] text-muted-foreground">{hint}</div>
+        <div className="mt-0.5 font-mono text-xs text-muted-foreground">{hint}</div>
       )}
     </div>
   );

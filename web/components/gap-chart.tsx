@@ -15,7 +15,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
 
   if (sorted.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-6 py-24 text-center text-sm text-muted-foreground">
+      <div className="mx-auto max-w-7xl px-6 py-24 text-center text-base text-muted-foreground">
         No teams match the current filters.
       </div>
     );
@@ -25,20 +25,20 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
             01 / The diverging gap
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             Every team, ranked by the wrongness of the internet&apos;s read
           </h2>
         </div>
-        <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
           {sorted.length} teams shown
         </div>
       </header>
 
       {/* Desktop axis labels */}
-      <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-[9px] uppercase tracking-normal text-muted-foreground sm:grid">
+      <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-xs uppercase tracking-normal text-muted-foreground sm:grid">
         <div className="flex items-center justify-end gap-2 pr-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           ← Overhyped
@@ -51,7 +51,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       </div>
 
       {/* Mobile axis labels — bar position itself communicates the direction */}
-      <div className="mb-2 flex items-center justify-between font-mono text-[9px] uppercase tracking-normal text-muted-foreground sm:hidden">
+      <div className="mb-2 flex items-center justify-between font-mono text-xs uppercase tracking-normal text-muted-foreground sm:hidden">
         <span className="flex items-center gap-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           Overhyped
@@ -94,25 +94,25 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                   >
                     {isOver ? (
                       <>
-                        <span className="font-mono text-[10px] tabular-nums text-rose-600">
+                        <span className="font-mono text-xs tabular-nums text-rose-600">
                           {t.gap}
                         </span>
                         <span className="truncate text-sm text-foreground">
                           {t.team}
                         </span>
-                        <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+                        <span className="font-mono text-xs tabular-nums text-muted-foreground">
                           {String(t.seed).padStart(2, "0")}
                         </span>
                       </>
                     ) : (
                       <>
-                        <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+                        <span className="font-mono text-xs tabular-nums text-muted-foreground">
                           {String(t.seed).padStart(2, "0")}
                         </span>
                         <span className="truncate text-sm text-foreground">
                           {t.team}
                         </span>
-                        <span className="font-mono text-[10px] tabular-nums text-sky-700">
+                        <span className="font-mono text-xs tabular-nums text-sky-700">
                           +{t.gap}
                         </span>
                       </>
@@ -130,10 +130,10 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                           <span className="truncate text-sm text-foreground">
                             {t.team}{" "}
                             <span className="text-muted-foreground">
-                              <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
+                              <span className="font-mono text-xs tabular-nums">{String(t.seed).padStart(2, "0")}</span>
                             </span>
                           </span>
-                          <span className="font-mono text-[10px] tabular-nums text-rose-600">
+                          <span className="font-mono text-xs tabular-nums text-rose-600">
                             {t.gap}
                           </span>
                         </div>
@@ -161,13 +161,13 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                           className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
                         />
                         <div className="flex min-w-0 flex-1 items-center gap-3">
-                          <span className="font-mono text-[10px] tabular-nums text-sky-700">
+                          <span className="font-mono text-xs tabular-nums text-sky-700">
                             +{t.gap}
                           </span>
                           <span className="truncate text-sm text-foreground">
                             {t.team}{" "}
                             <span className="text-muted-foreground">
-                              <span className="font-mono text-[10px] tabular-nums">{String(t.seed).padStart(2, "0")}</span>
+                              <span className="font-mono text-xs tabular-nums">{String(t.seed).padStart(2, "0")}</span>
                             </span>
                           </span>
                         </div>
@@ -181,7 +181,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
         })}
       </ul>
 
-      <p className="mt-4 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+      <p className="mt-4 font-mono text-xs uppercase tracking-normal text-muted-foreground">
         Click any team to inspect its 15-day hype curve →
       </p>
     </section>

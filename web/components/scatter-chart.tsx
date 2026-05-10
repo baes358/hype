@@ -79,7 +79,7 @@ const chartConfig: ChartConfig = {
 
 const AXIS_TICK_STYLE = {
   fill: "var(--muted-foreground)",
-  fontSize: 10,
+  fontSize: 12,
   fontFamily: "var(--font-mono)",
 } as const;
 
@@ -90,10 +90,10 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payl
   return (
     <div className="rounded-md border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur-sm">
       <div className="font-semibold text-foreground">{t.team}</div>
-      <div className="mt-1 font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+      <div className="mt-1 font-mono text-sm uppercase tracking-normal text-muted-foreground">
         {t.seed} seed · {round}
       </div>
-      <div className="mt-1 font-mono text-[10px] tabular-nums text-muted-foreground">
+      <div className="mt-1 font-mono text-sm tabular-nums text-muted-foreground">
         Hype #{t.hype_rank} · gap {t.gap > 0 ? "+" : ""}{t.gap}
       </div>
     </div>
@@ -107,7 +107,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
 
   if (teams.length === 0) {
     return (
-      <div className="mx-auto max-w-7xl px-5 py-24 text-center text-sm text-muted-foreground sm:px-6">
+      <div className="mx-auto max-w-7xl px-5 py-24 text-center text-base text-muted-foreground sm:px-6">
         No teams match the current filters.
       </div>
     );
@@ -117,14 +117,14 @@ export function ScatterChartView({ teams, onSelect }: Props) {
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
             02 / The scatter
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             Hype against performance, with the diagonal as the expected line
           </h2>
         </div>
-        <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
           {teams.length} teams shown
         </div>
       </header>
@@ -146,7 +146,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
                   value: "Hype index (0–100)",
                   position: "bottom",
                   offset: 8,
-                  style: { fill: "var(--muted-foreground)", fontSize: 10, fontFamily: "var(--font-mono)", textTransform: "uppercase" },
+                  style: { fill: "var(--muted-foreground)", fontSize: 12, fontFamily: "var(--font-mono)", textTransform: "uppercase" },
                 }}
               />
               <YAxis
@@ -197,7 +197,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
             </ScatterChart>
           </ChartContainer>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[9px] uppercase tracking-normal text-muted-foreground">
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal text-muted-foreground">
             <span>Below the line ↘ overhyped</span>
             <span>·</span>
             <span>Above the line ↗ underhyped</span>

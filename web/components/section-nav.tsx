@@ -49,7 +49,7 @@ export function SectionNav({ teams, onSelectTeam }: Props) {
                     href={v.href}
                     scroll={false}
                     onClick={handleTabClick}
-                    className={`relative py-3 font-mono text-[10px] uppercase tracking-normal transition ${
+                    className={`relative py-3 font-mono text-sm uppercase tracking-normal transition ${
                       active
                         ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"

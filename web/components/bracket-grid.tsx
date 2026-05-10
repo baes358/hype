@@ -47,7 +47,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-normal text-muted-foreground">
+          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
             04 / The bracket
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
@@ -69,7 +69,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
               aria-controls={listId}
               className="flex w-full items-baseline justify-between border-b border-border px-4 py-3 text-left transition hover:bg-foreground/[0.02] sm:cursor-default sm:hover:bg-transparent"
             >
-              <h3 className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-normal text-foreground">
+              <h3 className="flex items-center gap-2 font-mono text-xs uppercase tracking-normal text-foreground">
                 {region}
                 <ChevronDown
                   aria-hidden="true"
@@ -78,7 +78,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                   }`}
                 />
               </h3>
-              <span className="font-mono text-[9px] tabular-nums text-muted-foreground">
+              <span className="font-mono text-xs tabular-nums text-muted-foreground">
                 {byRegion[region].length} teams
               </span>
             </button>
@@ -98,7 +98,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                       onClick={() => onSelect(t)}
                       className="group grid w-full grid-cols-[28px_1fr_auto] items-center gap-3 px-4 py-2.5 text-left transition hover:bg-foreground/[0.02]"
                     >
-                      <span className="font-mono text-[10px] tabular-nums text-muted-foreground">
+                      <span className="font-mono text-sm tabular-nums text-muted-foreground">
                         {String(t.seed).padStart(2, "0")}
                       </span>
                       <div className="min-w-0">
@@ -113,7 +113,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col items-end font-mono text-[9px] tabular-nums leading-tight">
+                      <div className="flex flex-col items-end font-mono text-xs tabular-nums leading-tight">
                         <span className="text-muted-foreground">
                           {t.wins}W
                         </span>
