@@ -17,7 +17,32 @@ export type Team = {
   story_tag: StoryTag;
   made_main_bracket: boolean;
   logo_path: string | null;
+  season_hype_raw: number;
+  season_hype_normalized: number;
+  season_hype_daily: { date: string; value: number }[];
+  hype_acceleration: number;
+  season_wins: number;
+  season_losses: number;
+  pre_tournament_wins: number;
+  pre_tournament_losses: number;
+  season_win_pct: number;
+  performance_acceleration: number;
+  season_hype_rank: number;
+  season_performance_rank: number;
+  season_gap: number;
+  season_story_tag: StoryTag;
 };
+
+export type GapMode = "tournament" | "season";
+
+// Project a team into the shape used by gap-chart / filters. In season mode,
+// we swap `gap`/`story_tag` to their `season_*` equivalents so downstream
+// components don't need to know about modes. The team-sheet receives the
+// ORIGINAL team object so it can render both gap callouts.
+export function projectTeamForMode(t: Team, mode: GapMode): Team {
+  if (mode === "tournament") return t;
+  return { ...t, gap: t.season_gap, story_tag: t.season_story_tag };
+}
 
 export type Round = "all" | "first" | "second" | "sweet16" | "elite8" | "final4";
 
@@ -48,6 +73,8 @@ export type Dataset = {
     tournament_year: number;
     hype_window_start: string;
     hype_window_end: string;
+    season_window_start: string;
+    season_window_end: string;
     total_teams: number;
     data_pulled_at: string;
   };

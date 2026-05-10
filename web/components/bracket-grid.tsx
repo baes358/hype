@@ -49,7 +49,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
+            <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
               04 / The bracket
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">

@@ -10,12 +10,11 @@ type Props = {
   onSelect: (team: Team) => void;
 };
 
-const MAX_RESULTS = 6;
+const MAX_RESULTS = 8;
 
 export function TeamSearch({ teams, onSelect }: Props) {
+  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [highlighted, setHighlighted] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,103 +27,106 @@ export function TeamSearch({ teams, onSelect }: Props) {
   }, [query, teams]);
 
   useEffect(() => {
-    setHighlighted(0);
-  }, [query]);
+    if (!open) return;
+    inputRef.current?.focus();
+  }, [open]);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!open) return;
     const onMouseDown = (e: MouseEvent) => {
       if (!wrapperRef.current) return;
       if (!wrapperRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
+        setOpen(false);
+        setQuery("");
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        setQuery("");
       }
     };
     document.addEventListener("mousedown", onMouseDown);
-    return () => document.removeEventListener("mousedown", onMouseDown);
-  }, [isOpen]);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   const select = (team: Team) => {
     onSelect(team);
     setQuery("");
-    setIsOpen(false);
-  };
-
-  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setHighlighted((h) => Math.min(h + 1, Math.max(matches.length - 1, 0)));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setHighlighted((h) => Math.max(h - 1, 0));
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      if (matches[highlighted]) select(matches[highlighted]);
-    } else if (e.key === "Escape") {
-      setQuery("");
-      setIsOpen(false);
-    }
+    setOpen(false);
   };
 
   return (
-    <div ref={wrapperRef} className="relative w-full sm:w-auto">
-      <input
-        ref={inputRef}
-        type="text"
-        value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          setIsOpen(true);
-        }}
-        onFocus={() => setIsOpen(true)}
-        onKeyDown={onKeyDown}
-        placeholder="Search team"
-        aria-label="Search team"
-        className="w-full rounded-full border border-border bg-transparent py-1.5 pl-3 pr-10 text-base text-foreground placeholder:text-muted-foreground focus:border-brand focus:outline-none sm:w-56 sm:py-1 sm:text-sm"
-      />
-      <button
-        type="button"
-        onClick={() => {
-          // If the user has typed something, jump to the highlighted match.
-          // Otherwise, treat the icon click as "focus the search box".
-          if (matches[highlighted]) {
-            select(matches[highlighted]);
-          } else {
-            inputRef.current?.focus();
-            setIsOpen(true);
-          }
-        }}
-        aria-label="Search"
-        className="absolute right-1 top-1/2 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20"
+    <div ref={wrapperRef} className="relative">
+      <div
+        style={{ width: open ? 288 : 152 }}
+        className={`overflow-hidden rounded-full border transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          open
+            ? "border-foreground/80 bg-foreground/[0.04]"
+            : "border-border bg-transparent hover:border-foreground/40"
+        }`}
       >
-        <Search aria-hidden className="size-3.5" />
-      </button>
-      {isOpen && query && (
-        <div className="absolute right-0 top-full z-50 mt-1 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg sm:w-64">
+        {open ? (
+          <div className="flex h-full items-center gap-2 px-4 py-1.5 text-sm font-medium sm:py-1">
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && matches.length > 0) select(matches[0]);
+              }}
+              placeholder="Search team"
+              aria-label="Search teams"
+              className="w-full bg-transparent text-foreground placeholder:text-foreground/60 focus:outline-none"
+            />
+            <Search aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-expanded={open}
+            aria-haspopup="listbox"
+            className="flex h-full w-full items-center justify-center gap-2 px-4 py-1.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1"
+          >
+            <span className="opacity-60">Search team</span>
+            <Search aria-hidden className="size-3.5 text-muted-foreground" />
+          </button>
+        )}
+      </div>
+
+      {open && query && (
+        <div
+          role="listbox"
+          aria-label="Search results"
+          className="absolute right-0 top-full z-40 mt-2 w-72 overflow-hidden rounded-2xl border border-border bg-background shadow-lg animate-in fade-in slide-in-from-top-1 duration-150"
+        >
           {matches.length === 0 ? (
             <div className="px-3 py-2 text-sm text-muted-foreground">
               No matches
             </div>
           ) : (
-            matches.map((t, i) => (
-              <button
-                key={t.team}
-                onClick={() => select(t)}
-                onMouseEnter={() => setHighlighted(i)}
-                className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm transition ${
-                  i === highlighted ? "bg-foreground/5" : ""
-                }`}
-              >
-                <span className="flex items-center gap-2">
-                  <span className="text-xs tabular-nums text-muted-foreground">
-                    {String(t.seed).padStart(2, "0")}
-                  </span>
-                  <span className="text-foreground">{t.team}</span>
-                </span>
-                <span className="text-xs uppercase tracking-normal text-muted-foreground">
-                  {t.region}
-                </span>
-              </button>
-            ))
+            <ul className="p-1">
+              {matches.map((t) => (
+                <li key={t.team}>
+                  <button
+                    type="button"
+                    onClick={() => select(t)}
+                    className="flex w-full items-baseline justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-foreground/[0.04] focus-visible:bg-foreground/[0.04] focus-visible:outline-none"
+                  >
+                    <span className="text-sm text-foreground">{t.team}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                      {String(t.seed).padStart(2, "0")} · {t.region}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
           )}
         </div>
       )}
