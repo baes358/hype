@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+import { FadeInSection, StaggerGroup } from "@/components/motion";
 import { Region, REGIONS, Team, TAG_STYLE } from "@/lib/data";
 
 type Props = {
@@ -45,18 +46,23 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
-      <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div>
-          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-            04 / The bracket
+      <FadeInSection>
+        <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <div>
+            <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
+              04 / The bracket
+            </div>
+            <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+              By region, by seed — colored by the story they ended up telling
+            </h2>
           </div>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
-            By region, by seed — colored by the story they ended up telling
-          </h2>
-        </div>
-      </header>
+        </header>
+      </FadeInSection>
 
-      <div className="grid grid-cols-1 gap-px bg-border/60 sm:grid-cols-2 lg:grid-cols-4">
+      <StaggerGroup
+        staggerMs={80}
+        className="grid grid-cols-1 gap-px bg-border/60 sm:grid-cols-2 lg:grid-cols-4"
+      >
         {REGIONS.map((region) => {
           const isOpen = expanded.has(region);
           const listId = `bracket-region-${region.toLowerCase()}`;
@@ -130,7 +136,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
           </div>
           );
         })}
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

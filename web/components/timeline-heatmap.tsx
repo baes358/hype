@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import { FadeInSection, StaggerGroup } from "@/components/motion";
 import { Team } from "@/lib/data";
 
 // Mobile detector. Initial render = false (SSR-safe), flips to true after
@@ -150,43 +151,53 @@ export function TimelineHeatmap({
       className="mx-auto min-w-0 max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16"
       style={{ backgroundColor: HEATMAP_THEME.sectionBg, color: HEATMAP_THEME.textPrimary }}
     >
-      <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div>
-          <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
-            03 / The timeline
+      <FadeInSection>
+        <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <div>
+            <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
+              03 / The timeline
+            </div>
+            <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl" style={{ color: HEATMAP_THEME.textPrimary }}>
+              Daily hype intensity for every team across the 15-day window
+            </h2>
           </div>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl" style={{ color: HEATMAP_THEME.textPrimary }}>
-            Daily hype intensity for every team across the 15-day window
-          </h2>
-        </div>
-        <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
-          {sortedTeams.length} teams shown
-        </div>
-      </header>
+          <div className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
+            {sortedTeams.length} teams shown
+          </div>
+        </header>
+      </FadeInSection>
 
-      {/* Sort pill control */}
-      <div className="mb-4 flex flex-wrap items-center gap-2">
+      {/* Sort segmented control */}
+      <div className="mb-4 flex flex-wrap items-center gap-3">
         <span className="font-mono text-xs uppercase tracking-normal" style={{ color: HEATMAP_THEME.textMuted }}>
           Sort
         </span>
-        {SORT_OPTIONS.map((opt) => {
-          const active = sortKey === opt.key;
-          return (
-            <button
-              key={opt.key}
-              onClick={() => setSortKey(opt.key)}
-              aria-pressed={active}
-              className="rounded-full border px-3 py-1 text-sm font-medium transition"
-              style={
-                active
-                  ? { borderColor: HEATMAP_THEME.textPrimary, backgroundColor: HEATMAP_THEME.textPrimary, color: HEATMAP_THEME.sectionBg }
-                  : { borderColor: HEATMAP_THEME.borderSubtle, backgroundColor: "transparent", color: HEATMAP_THEME.textMuted }
-              }
-            >
-              {opt.label}
-            </button>
-          );
-        })}
+        <div
+          role="group"
+          aria-label="Sort teams by"
+          className="inline-flex items-center rounded-full border p-0.5"
+          style={{ borderColor: HEATMAP_THEME.borderSubtle, backgroundColor: "rgba(255,255,255,0.03)" }}
+        >
+          {SORT_OPTIONS.map((opt) => {
+            const active = sortKey === opt.key;
+            return (
+              <button
+                key={opt.key}
+                type="button"
+                onClick={() => setSortKey(opt.key)}
+                aria-pressed={active}
+                className="rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none"
+                style={
+                  active
+                    ? { backgroundColor: HEATMAP_THEME.textPrimary, color: HEATMAP_THEME.sectionBg }
+                    : { color: HEATMAP_THEME.textMuted, backgroundColor: "transparent" }
+                }
+              >
+                {opt.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Mobile-only day scrubber. Shifts the visible 5-day window. */}
@@ -224,7 +235,7 @@ export function TimelineHeatmap({
           window (sm:min-w-[680px] only enforces the wide-grid scroll behavior
           on desktop). max-w is viewport-minus-section-padding so the scroller's
           width doesn't depend on the grid's content. */}
-      <div className="w-full max-w-[calc(100vw-2.5rem)] overflow-x-auto sm:max-w-[calc(100vw-3rem)]">
+      <FadeInSection delay={0.1} className="w-full max-w-[calc(100vw-2.5rem)] overflow-x-auto sm:max-w-[calc(100vw-3rem)]">
         <div
           className="grid gap-px sm:min-w-[680px]"
           style={{
@@ -299,20 +310,21 @@ export function TimelineHeatmap({
             );
           })}
         </div>
-      </div>
+      </FadeInSection>
 
-      <div
+      <StaggerGroup
+        staggerMs={50}
+        delay={0.2}
         className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal"
-        style={{ color: HEATMAP_THEME.textMuted }}
       >
-        <span>Deep navy = low hype that day</span>
-        <span>·</span>
-        <span>White = peak day across the dataset</span>
-        <span>·</span>
-        <span>Vertical line = Selection Sunday</span>
-        <span>·</span>
-        <span>Click any row for details</span>
-      </div>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>Deep navy = low hype that day</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>·</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>White = peak day across the dataset</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>·</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>Vertical line = Selection Sunday</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>·</span>
+        <span style={{ color: HEATMAP_THEME.textMuted }}>Click any row for details</span>
+      </StaggerGroup>
     </section>
   );
 }

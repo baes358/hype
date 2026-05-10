@@ -1,5 +1,6 @@
 "use client";
 
+import { StaggerGroup } from "@/components/motion";
 import { TAG_STYLE, Team } from "@/lib/data";
 
 type Props = {
@@ -21,9 +22,9 @@ function CalloutSection({
       <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
         {title}
       </div>
-      <ul className="mt-3 space-y-1">
+      <StaggerGroup staggerMs={50} delay={0.1} className="mt-3 space-y-1">
         {items.map((t, i) => (
-          <li key={t.team}>
+          <div key={t.team}>
             <button
               type="button"
               onClick={() => onSelect(t)}
@@ -40,9 +41,9 @@ function CalloutSection({
                 {t.team}
               </span>
             </button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </StaggerGroup>
     </div>
   );
 }

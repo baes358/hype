@@ -15,6 +15,7 @@ import {
   ChartConfig,
   ChartContainer,
 } from "@/components/ui/chart";
+import { FadeInSection, StaggerGroup } from "@/components/motion";
 import { ScatterCallouts } from "@/components/scatter-callouts";
 import { StoryTag, Team } from "@/lib/data";
 
@@ -115,22 +116,25 @@ export function ScatterChartView({ teams, onSelect }: Props) {
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
-      <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-        <div>
-          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-            02 / The scatter
+      <FadeInSection>
+        <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <div>
+            <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
+              02 / The scatter
+            </div>
+            <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+              Hype against performance, with the diagonal as the expected line
+            </h2>
           </div>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
-            Hype against performance, with the diagonal as the expected line
-          </h2>
-        </div>
-        <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
-          {teams.length} teams shown
-        </div>
-      </header>
+          <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
+            {teams.length} teams shown
+          </div>
+        </header>
+      </FadeInSection>
 
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
         <div className="min-w-0 md:flex-1">
+          <FadeInSection delay={0.15}>
           <ChartContainer config={chartConfig} className="aspect-[4/3] w-full">
             <ScatterChart margin={{ top: 16, right: 16, bottom: 32, left: 0 }}>
               <CartesianGrid stroke="rgba(58,59,59,0.08)" />
@@ -196,14 +200,19 @@ export function ScatterChartView({ teams, onSelect }: Props) {
               />
             </ScatterChart>
           </ChartContainer>
+          </FadeInSection>
 
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal text-muted-foreground">
+          <StaggerGroup
+            staggerMs={50}
+            delay={0.25}
+            className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-normal text-muted-foreground"
+          >
             <span>Below the line ↘ overhyped</span>
             <span>·</span>
             <span>Above the line ↗ underhyped</span>
             <span>·</span>
             <span>Click any dot for details</span>
-          </div>
+          </StaggerGroup>
         </div>
 
         <ScatterCallouts teams={teams} onSelect={onSelect} />

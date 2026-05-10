@@ -15,6 +15,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { StaggerGroup } from "@/components/motion";
 import { Team, TAG_LABEL, TAG_STYLE } from "@/lib/data";
 
 type Props = {
@@ -78,7 +79,11 @@ function TeamSheetBody({ team }: { team: Team }) {
       </SheetHeader>
 
       {/* Three-up stat strip */}
-      <dl className="grid grid-cols-3 gap-px bg-border">
+      <StaggerGroup
+        staggerMs={70}
+        delay={0.1}
+        className="grid grid-cols-3 gap-px bg-border"
+      >
         <Stat label="Hype index" value={team.hype_normalized.toFixed(0)} hint="0–100, normalized" />
         <Stat
           label="Hype rank"
@@ -90,7 +95,7 @@ function TeamSheetBody({ team }: { team: Team }) {
           value={`#${team.performance_rank}`}
           hint={`${team.wins} wins`}
         />
-      </dl>
+      </StaggerGroup>
 
       {/* Gap callout */}
       <div className={`rounded-md border ${style.border} ${style.bg} px-4 py-3`}>

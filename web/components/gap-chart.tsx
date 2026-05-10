@@ -1,5 +1,10 @@
 "use client";
 
+import {
+  AnimatedListReorder,
+  AnimatedRow,
+  FadeInSection,
+} from "@/components/motion";
 import { Team, TAG_STYLE } from "@/lib/data";
 
 type Props = {
@@ -23,6 +28,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
 
   return (
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
+      <FadeInSection>
       <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
         <div>
           <div className="font-mono text-xs uppercase tracking-normal text-muted-foreground">
@@ -36,6 +42,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
           {sorted.length} teams shown
         </div>
       </header>
+      </FadeInSection>
 
       {/* Desktop axis labels */}
       <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 font-mono text-xs uppercase tracking-normal text-muted-foreground sm:grid">
@@ -62,8 +69,13 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
         </span>
       </div>
 
-      {/* Bar rows */}
-      <ul className="divide-y divide-border/40 border-y border-border/40">
+      {/* Bar rows. AnimatedListReorder coordinates FLIP transitions when sort/
+          filters change; AnimatedRow handles per-row layout + hover lift. */}
+      <FadeInSection delay={0.1}>
+      <AnimatedListReorder
+        id="gap-chart"
+        className="divide-y divide-border/40 border-y border-border/40"
+      >
         {sorted.map((t) => {
           const isOver = t.gap < 0;
           const widthPct = (Math.abs(t.gap) / maxAbsGap) * 100;
@@ -71,9 +83,10 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
           const isSelected = selectedTeam === t.team;
 
           return (
-            <li
+            <AnimatedRow
               key={t.team}
-              className={`group cursor-pointer transition ${
+              hoverLift={false}
+              className={`group cursor-pointer transition-colors ${
                 isSelected ? "bg-foreground/[0.04]" : "hover:bg-foreground/[0.02]"
               }`}
             >
@@ -176,14 +189,17 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                   </div>
                 </div>
               </button>
-            </li>
+            </AnimatedRow>
           );
         })}
-      </ul>
+      </AnimatedListReorder>
+      </FadeInSection>
 
-      <p className="mt-4 font-mono text-xs uppercase tracking-normal text-muted-foreground">
-        Click any team to inspect its 15-day hype curve →
-      </p>
+      <FadeInSection delay={0.2}>
+        <p className="mt-4 font-mono text-xs uppercase tracking-normal text-muted-foreground">
+          Click any team to inspect its 15-day hype curve →
+        </p>
+      </FadeInSection>
     </section>
   );
 }
