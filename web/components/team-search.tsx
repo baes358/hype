@@ -84,7 +84,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
         className="pointer-events-none absolute right-3 top-1/2 size-3 -translate-y-1/2 text-muted-foreground"
       />
       {isOpen && query && (
-        <div className="absolute right-0 top-full z-20 mt-1 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg sm:w-64">
+        <div className="absolute right-0 top-full z-50 mt-1 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg sm:w-64">
           {matches.length === 0 ? (
             <div className="px-3 py-2 text-sm text-muted-foreground">
               No matches
