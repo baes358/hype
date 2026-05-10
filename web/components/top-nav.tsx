@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Dataset } from "@/lib/data";
 
@@ -79,6 +79,7 @@ export function TopNav({ dataset }: Props) {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredHref, setHoveredHref] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 16);
@@ -87,10 +88,30 @@ export function TopNav({ dataset }: Props) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Publish the rendered nav height as a CSS variable so other sticky
+  // elements (the filter toolbar) can offset themselves below it instead of
+  // sitting under the higher-z-index nav. ResizeObserver picks up both
+  // viewport-driven layout shifts and the motion.div padding animation.
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const write = () => {
+      document.documentElement.style.setProperty(
+        "--hyp3-nav-h",
+        `${el.offsetHeight}px`
+      );
+    };
+    write();
+    const ro = new ResizeObserver(write);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   const hovered = hoveredHref ? NAV_ITEMS.find((n) => n.href === hoveredHref) : null;
 
   return (
     <header
+      ref={headerRef}
       className="sticky top-0 z-40 border-b border-rule/40 bg-white/90 shadow-[0_4px_16px_-8px_rgba(0,0,0,0.08)] backdrop-blur supports-[backdrop-filter]:bg-white/75"
       onMouseLeave={() => setHoveredHref(null)}
     >

@@ -41,7 +41,7 @@ type Props = {
 
 function ModePill({ mode, setMode }: { mode: GapMode; setMode: (m: GapMode) => void }) {
   return (
-    <div className="hidden items-center rounded-full border border-rule bg-white/60 p-0.5 sm:flex">
+    <div className="flex items-center rounded-full border border-rule bg-white/60 p-0.5">
       <ModePillBtn active={mode === "tournament"} onClick={() => setMode("tournament")} accent="crimson">
         Tournament
       </ModePillBtn>
@@ -286,7 +286,7 @@ export function Filters({
     : [];
 
   return (
-    <AnimatedToolbar className="sticky top-0 z-30 border-b border-border">
+    <AnimatedToolbar className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
         {/* Toolbar row. Vertical padding lives on AnimatedToolbar so it can
             condense on scroll. */}

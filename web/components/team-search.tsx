@@ -82,7 +82,9 @@ export function TeamSearch({ teams, onSelect }: Props) {
               }}
               placeholder="Search team"
               aria-label="Search teams"
-              className="w-full bg-transparent text-foreground placeholder:text-foreground/60 focus:outline-none"
+              // text-base (16px) prevents iOS Safari from auto-zooming on focus;
+              // sm:text-sm restores the original 14px visual on tablet and up.
+              className="w-full bg-transparent text-base text-foreground placeholder:text-foreground/60 focus:outline-none sm:text-sm"
             />
             <Search aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />
           </div>
