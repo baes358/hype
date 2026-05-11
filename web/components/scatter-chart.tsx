@@ -92,7 +92,7 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payl
     <div className="rounded-md border border-border bg-background/95 px-3 py-2 shadow-sm backdrop-blur-sm">
       <div className="font-semibold text-foreground">{t.team}</div>
       <div className="mt-1 flex flex-col items-start text-sm uppercase tracking-normal text-muted-foreground">
-        <span><span className="font-mono">{t.seed}</span> seed</span>
+        <span><span className="font-mono text-brand">{t.seed}</span> seed</span>
         <span>{round}</span>
       </div>
       <div className="mt-1 flex flex-col items-start text-sm text-muted-foreground">
@@ -149,7 +149,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
                 domain={[0, 100]}
                 ticks={[0, 25, 50, 75, 100]}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: "#1a3349" }}
                 tick={AXIS_TICK_STYLE}
                 label={{
                   value: "Hype index (0–100)",
@@ -164,7 +164,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
                 domain={[0, 6]}
                 ticks={[0, 1, 2, 3, 4, 5, 6]}
                 tickLine={false}
-                axisLine={false}
+                axisLine={{ stroke: "#1a3349" }}
                 tick={AXIS_TICK_STYLE}
                 tickFormatter={(v: number) => yAxisLabels[v] ?? String(v)}
                 width={yAxisWidth}

@@ -59,7 +59,9 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       <FadeInSection delay={0.1}>
       <AnimatedListReorder
         id="gap-chart"
-        className="divide-y divide-border border-y border-border"
+        // Row dividers match the timeline grid-gap navy so the editorial frame
+        // reads consistently between the gap and timeline views.
+        className="divide-y divide-[#1a3349] border-y border-[#1a3349]"
       >
         {sorted.map((t) => {
           const isOver = t.gap < 0;
@@ -99,13 +101,13 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         <span className="truncate text-sm text-foreground">
                           {t.team}
                         </span>
-                        <span className="font-mono text-xs tabular-nums text-muted-foreground">
+                        <span className="font-mono text-xs tabular-nums text-brand">
                           {String(t.seed).padStart(2, "0")}
                         </span>
                       </>
                     ) : (
                       <>
-                        <span className="font-mono text-xs tabular-nums text-muted-foreground">
+                        <span className="font-mono text-xs tabular-nums text-brand">
                           {String(t.seed).padStart(2, "0")}
                         </span>
                         <span className="truncate text-sm text-foreground">

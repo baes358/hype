@@ -40,6 +40,13 @@ function intensityToColor(intensity: number): string {
   return HEATMAP_THEME.bins[idx];
 }
 
+// White rail used by the team column and the dates/months header row.
+// Sits OUTSIDE the navy heatmap palette and uses dark text for readability.
+const LABEL_RAIL_BG = "#ffffff";
+const LABEL_RAIL_TEXT_PRIMARY = "#1c1c1b";
+const LABEL_RAIL_TEXT_MUTED = "#5a6770";
+const LABEL_RAIL_DIVIDER = "rgba(13, 31, 51, 0.45)";
+
 type Props = {
   teams: Team[];
   mode: GapMode;                // tournament: daily cells; season: monthly buckets
@@ -310,8 +317,8 @@ export function TimelineHeatmap({
         >
           {/* Header row: spacer + axis labels (day in tournament mode, month in season mode) */}
           <div
-            className="sticky left-0 z-10 px-3 py-2 text-sm uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)]"
-            style={{ backgroundColor: HEATMAP_THEME.stickyBg, color: HEATMAP_THEME.textMuted }}
+            className="sticky left-0 z-10 px-3 py-2 text-sm uppercase tracking-normal shadow-[4px_0_6px_-2px_rgba(0,0,0,0.15)]"
+            style={{ backgroundColor: LABEL_RAIL_BG, color: LABEL_RAIL_TEXT_MUTED }}
           >
             Team
           </div>
@@ -320,9 +327,9 @@ export function TimelineHeatmap({
               key={`hdr-${b.key}`}
               className="px-1 py-2 text-center font-mono text-xs uppercase tracking-normal"
               style={{
-                backgroundColor: HEATMAP_THEME.sectionBg,
-                color: b.isAnchor ? HEATMAP_THEME.textPrimary : HEATMAP_THEME.textMuted,
-                borderLeft: b.isAnchor ? `1px solid ${HEATMAP_THEME.selectionDivider}` : undefined,
+                backgroundColor: LABEL_RAIL_BG,
+                color: b.isAnchor ? LABEL_RAIL_TEXT_PRIMARY : LABEL_RAIL_TEXT_MUTED,
+                borderLeft: b.isAnchor ? `1px solid ${LABEL_RAIL_DIVIDER}` : undefined,
               }}
               title={b.isAnchor ? `${b.tooltip} (Selection Sunday)` : b.tooltip}
             >
@@ -340,17 +347,14 @@ export function TimelineHeatmap({
                   onClick={() => onSelect(t)}
                   // Mobile: stack seed above team name, left-aligned, larger seed.
                   // sm+: original side-by-side row.
-                  className="sticky left-0 z-10 flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm shadow-[4px_0_6px_-2px_rgba(0,0,0,0.4)] transition hover:opacity-80 sm:flex-row sm:items-center sm:gap-2"
+                  className="sticky left-0 z-10 flex w-full flex-col items-start gap-0.5 px-3 py-2 text-left text-sm shadow-[4px_0_6px_-2px_rgba(0,0,0,0.15)] transition hover:opacity-80 sm:flex-row sm:items-center sm:gap-2"
                   style={{
-                    backgroundColor: isSelected ? "rgba(255,255,255,0.08)" : HEATMAP_THEME.stickyBg,
-                    color: HEATMAP_THEME.textPrimary,
+                    backgroundColor: isSelected ? "rgba(58,59,59,0.18)" : LABEL_RAIL_BG,
+                    color: LABEL_RAIL_TEXT_PRIMARY,
                   }}
                   title={`${t.team} · ${t.seed} seed · ${t.wins} wins · gap ${t.gap > 0 ? "+" : ""}${t.gap}`}
                 >
-                  <span
-                    className="font-mono tabular-nums text-base sm:text-sm"
-                    style={{ color: HEATMAP_THEME.textMuted }}
-                  >
+                  <span className="font-mono tabular-nums text-base text-brand sm:text-sm">
                     {String(t.seed).padStart(2, "0")}
                   </span>
                   <span className="w-full break-words leading-tight sm:truncate sm:leading-normal">{t.team}</span>
