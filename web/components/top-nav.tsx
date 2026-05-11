@@ -196,7 +196,7 @@ export function TopNav({ dataset }: Props) {
                     <span className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
                       <span className="font-mono">{hovered.marker}</span> /
                     </span>
-                    <span className="text-sm uppercase tracking-[0.12em] text-graphite">
+                    <span className="font-display text-sm uppercase tracking-[0.06em] text-graphite">
                       {hovered.label}
                     </span>
                   </div>

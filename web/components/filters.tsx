@@ -125,10 +125,10 @@ function FilterDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className={`inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1 ${
+        className={`inline-flex items-center gap-2 rounded-full border bg-white/60 px-4 py-1.5 text-sm font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1 ${
           isActive
-            ? "border-foreground/80 bg-foreground/[0.04] text-foreground"
-            : "border-border bg-transparent text-foreground hover:border-foreground/40"
+            ? "border-foreground/80 text-foreground"
+            : "border-border text-foreground hover:border-foreground/40"
         }`}
       >
         <span>{label}</span>

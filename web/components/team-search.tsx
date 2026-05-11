@@ -64,10 +64,10 @@ export function TeamSearch({ teams, onSelect }: Props) {
     <div ref={wrapperRef} className="relative w-full sm:w-auto">
       <div
         // Mobile: full width in both states. sm+: animated 152 ↔ 288px pill.
-        className={`overflow-hidden rounded-full border transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] w-full ${
+        className={`overflow-hidden rounded-full border bg-white/60 transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] w-full ${
           open
-            ? "sm:w-[288px] border-foreground/80 bg-foreground/[0.04]"
-            : "sm:w-[152px] border-border bg-transparent hover:border-foreground/40"
+            ? "sm:w-[288px] border-foreground/80"
+            : "sm:w-[152px] border-border hover:border-foreground/40"
         }`}
       >
         {open ? (

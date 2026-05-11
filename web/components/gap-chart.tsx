@@ -31,7 +31,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       <FadeInSection>
       <header className="mb-6 sm:mb-8">
         <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-          <span className="font-mono">01</span> / The diverging gap
+          <span className="font-mono">01</span> / <span className="font-display tracking-[0.06em]">The diverging gap</span>
         </div>
         <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
           Every team, ranked by the wrongness of the internet&apos;s read

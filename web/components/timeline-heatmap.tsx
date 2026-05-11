@@ -219,7 +219,7 @@ export function TimelineHeatmap({
       <FadeInSection>
         <header className="mb-6 sm:mb-8">
           <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-            <span className="font-mono">03</span> / The timeline
+            <span className="font-mono">03</span> / <span className="font-display tracking-[0.06em]">The timeline</span>
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             {mode === "tournament"
