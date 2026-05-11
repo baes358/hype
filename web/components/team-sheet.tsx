@@ -84,7 +84,7 @@ function TeamSheetBody({
   return (
     <div className="flex flex-col gap-6 px-5 py-6 sm:gap-8 sm:px-6 sm:py-8">
       <SheetHeader className="px-0">
-        <div className="flex flex-col items-start gap-1 text-xs uppercase tracking-normal text-muted-foreground">
+        <div className="flex flex-col items-start gap-1 text-sm uppercase tracking-normal text-muted-foreground">
           <span className="flex items-center gap-2">
             <span className={`size-1.5 rounded-full ${style.dot}`} />
             {TAG_LABEL[team.story_tag]}
@@ -150,7 +150,7 @@ function TeamSheetBody({
       <div>
         <div className="mb-3 flex items-end justify-between">
           <div>
-            <div className="text-xs uppercase tracking-normal text-muted-foreground">
+            <div className="text-sm uppercase tracking-normal text-muted-foreground">
               Daily hype, full season
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
@@ -235,7 +235,7 @@ function GapCallout({
   const s = TAG_STYLE[tag];
   return (
     <div className={`rounded-md border ${s.border} ${s.bg} px-4 py-3`}>
-      <div className="flex items-center gap-2 text-xs uppercase tracking-normal text-muted-foreground">
+      <div className="flex items-center gap-2 text-sm uppercase tracking-normal text-muted-foreground">
         <span className={`size-1.5 rounded-full ${s.dot}`} />
         {label}
       </div>
@@ -244,7 +244,7 @@ function GapCallout({
           {gap > 0 ? "+" : ""}
           {gap}
         </span>
-        <span className="text-xs text-muted-foreground">{subtitle}</span>
+        <span className="text-sm text-muted-foreground">{subtitle}</span>
       </div>
     </div>
   );
@@ -260,7 +260,7 @@ function Stat({ label, value, hint }: { label: string; value: string; hint?: str
         {value}
       </div>
       {hint && (
-        <div className="mt-0.5 text-xs uppercase tracking-normal text-muted-foreground">{hint}</div>
+        <div className="mt-0.5 text-sm uppercase tracking-normal text-muted-foreground">{hint}</div>
       )}
     </div>
   );

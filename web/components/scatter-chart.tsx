@@ -119,16 +119,14 @@ export function ScatterChartView({ teams, onSelect }: Props) {
   return (
     <section className="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12 md:py-16">
       <FadeInSection>
-        <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-          <div>
-            <div className="text-[12px] uppercase tracking-[0.14em] text-graphite-soft">
-              <span className="font-mono">02</span> / The scatter
-            </div>
-            <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
-              Hype against performance, with the diagonal as the expected line
-            </h2>
+        <header className="mb-6 sm:mb-8">
+          <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
+            <span className="font-mono">02</span> / The scatter
           </div>
-          <div className="text-xs uppercase tracking-normal text-muted-foreground">
+          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+            Hype against performance, with the diagonal as the expected line
+          </h2>
+          <div className="mt-3 text-sm uppercase tracking-normal text-muted-foreground">
             <span className="font-mono">{teams.length}</span> teams shown
           </div>
         </header>
@@ -207,7 +205,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
           <StaggerGroup
             staggerMs={50}
             delay={0.25}
-            className="mt-4 flex flex-col items-start gap-y-1 text-xs uppercase tracking-normal text-muted-foreground"
+            className="mt-4 flex flex-col items-start gap-y-1 text-sm uppercase tracking-normal text-muted-foreground"
           >
             <span>Below the line ↘ overhyped</span>
             <span>Above the line ↗ underhyped</span>

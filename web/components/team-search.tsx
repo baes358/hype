@@ -61,13 +61,13 @@ export function TeamSearch({ teams, onSelect }: Props) {
   };
 
   return (
-    <div ref={wrapperRef} className="relative">
+    <div ref={wrapperRef} className="relative w-full sm:w-auto">
       <div
-        style={{ width: open ? 288 : 152 }}
-        className={`overflow-hidden rounded-full border transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
+        // Mobile: full width in both states. sm+: animated 152 ↔ 288px pill.
+        className={`overflow-hidden rounded-full border transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] w-full ${
           open
-            ? "border-foreground/80 bg-foreground/[0.04]"
-            : "border-border bg-transparent hover:border-foreground/40"
+            ? "sm:w-[288px] border-foreground/80 bg-foreground/[0.04]"
+            : "sm:w-[152px] border-border bg-transparent hover:border-foreground/40"
         }`}
       >
         {open ? (
@@ -94,7 +94,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
             onClick={() => setOpen(true)}
             aria-expanded={open}
             aria-haspopup="listbox"
-            className="flex h-full w-full items-center justify-center gap-2 px-4 py-1.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1"
+            className="flex h-full w-full items-center justify-between gap-2 px-4 py-1.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1"
           >
             <span className="opacity-60">Search team</span>
             <Search aria-hidden className="size-3.5 text-muted-foreground" />
@@ -106,7 +106,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
         <div
           role="listbox"
           aria-label="Search results"
-          className="absolute right-0 top-full z-40 mt-2 w-72 overflow-hidden rounded-2xl border border-border bg-background shadow-lg animate-in fade-in slide-in-from-top-1 duration-150"
+          className="absolute inset-x-0 top-full z-40 mt-2 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg animate-in fade-in slide-in-from-top-1 duration-150 sm:inset-x-auto sm:right-0 sm:w-72"
         >
           {matches.length === 0 ? (
             <div className="px-3 py-2 text-sm text-muted-foreground">
@@ -122,7 +122,7 @@ export function TeamSearch({ teams, onSelect }: Props) {
                     className="flex w-full items-baseline justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-foreground/[0.04] focus-visible:bg-foreground/[0.04] focus-visible:outline-none"
                   >
                     <span className="text-sm text-foreground">{t.team}</span>
-                    <span className="text-[12px] uppercase tracking-[0.12em] text-muted-foreground">
+                    <span className="text-sm uppercase tracking-[0.12em] text-muted-foreground">
                       <span className="font-mono">{String(t.seed).padStart(2, "0")}</span> · {t.region}
                     </span>
                   </button>

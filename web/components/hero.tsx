@@ -9,9 +9,9 @@ export function Hero({ data }: Props) {
   const isPlaceholder = finding.includes("TBD");
 
   return (
-    <section className="border-b border-rule/60">
+    <section className="border-b border-rule">
       <div className="mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-5 pt-12 pb-16 sm:px-6 sm:pt-24 sm:pb-28">
-        <div className="text-[12px] uppercase tracking-[0.14em] text-graphite-soft">
+        <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
           March Madness · <span className="font-mono">{data.metadata.tournament_year}</span> Tournament
         </div>
         <h1

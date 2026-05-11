@@ -69,7 +69,7 @@ function ModePillBtn({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-3 py-1 text-[12px] uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
+      className={`rounded-full px-3 py-1 text-sm uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
         active ? `${accentBg} ${accentText} font-semibold` : "text-graphite-soft hover:text-ink"
       }`}
     >
@@ -133,7 +133,7 @@ function FilterDropdown({
       >
         <span>{label}</span>
         {badge != null && (
-          <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-foreground/10 px-1.5 text-xs font-semibold tabular-nums">
+          <span className="inline-flex min-w-5 items-center justify-center rounded-full bg-foreground/10 px-1.5 text-sm font-semibold tabular-nums">
             {badge}
           </span>
         )}
@@ -305,7 +305,7 @@ export function Filters({
                   >
                     <span className={`size-2 rounded-full ${TAG_STYLE[tag].dot}`} />
                     <span className="flex-1">{TAG_LABEL[tag]}</span>
-                    <span className="text-xs tabular-nums text-muted-foreground">
+                    <span className="text-sm tabular-nums text-muted-foreground">
                       {tagCounts[tag]}
                     </span>
                   </DropdownItem>
@@ -365,7 +365,7 @@ export function Filters({
             }
           </FilterDropdown>
 
-          <div className="sm:ml-auto">
+          <div className="w-full sm:ml-auto sm:w-auto">
             <TeamSearch teams={teams} onSelect={onSelectTeam} />
           </div>
 

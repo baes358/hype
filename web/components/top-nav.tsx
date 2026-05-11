@@ -112,7 +112,7 @@ export function TopNav({ dataset }: Props) {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-40 border-b border-rule/40 bg-white/90 shadow-[0_4px_16px_-8px_rgba(0,0,0,0.08)] backdrop-blur supports-[backdrop-filter]:bg-white/75"
+      className="sticky top-0 z-40 border-b border-rule bg-white/90 shadow-[0_4px_16px_-8px_rgba(0,0,0,0.08)] backdrop-blur supports-[backdrop-filter]:bg-white/75"
       onMouseLeave={() => setHoveredHref(null)}
     >
       <motion.div
@@ -128,7 +128,7 @@ export function TopNav({ dataset }: Props) {
           <motion.span
             animate={{ opacity: isScrolled ? 0 : 1, width: isScrolled ? 0 : "auto" }}
             transition={{ duration: 0.18 }}
-            className="overflow-hidden whitespace-nowrap text-[12px] uppercase tracking-[0.14em] text-graphite-soft"
+            className="overflow-hidden whitespace-nowrap text-sm uppercase tracking-[0.14em] text-graphite-soft"
           >
             <span className="font-mono">D1</span> mens basketball
           </motion.span>
@@ -154,7 +154,7 @@ export function TopNav({ dataset }: Props) {
 
       {/* Mobile horizontal nav */}
       <div className="md:hidden">
-        <div className="overflow-x-auto border-t border-rule/50">
+        <div className="overflow-x-auto border-t border-rule">
           <div className="flex min-w-max items-center gap-4 px-5 py-3">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href;
@@ -186,17 +186,17 @@ export function TopNav({ dataset }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute inset-x-0 top-full hidden border-b border-rule/40 bg-white/95 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.1)] backdrop-blur md:block"
+            className="absolute inset-x-0 top-full hidden border-b border-rule bg-white/95 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.1)] backdrop-blur md:block"
             onMouseEnter={() => setHoveredHref(hovered.href)}
           >
             <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_auto]">
                 <div className="max-w-2xl">
                   <div className="flex items-baseline gap-3">
-                    <span className="text-[12px] uppercase tracking-[0.14em] text-graphite-soft">
+                    <span className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
                       <span className="font-mono">{hovered.marker}</span> /
                     </span>
-                    <span className="text-[11px] uppercase tracking-[0.12em] text-graphite">
+                    <span className="text-sm uppercase tracking-[0.12em] text-graphite">
                       {hovered.label}
                     </span>
                   </div>
@@ -210,7 +210,7 @@ export function TopNav({ dataset }: Props) {
                       <div className="font-display text-2xl leading-none tracking-tight text-ink">
                         {p.stat}
                       </div>
-                      <div className="mt-1 text-[12px] uppercase tracking-[0.12em] text-graphite-soft">
+                      <div className="mt-1 text-sm uppercase tracking-[0.12em] text-graphite-soft">
                         {p.caption}
                       </div>
                     </div>

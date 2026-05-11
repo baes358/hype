@@ -91,14 +91,14 @@
   --ink: #1c1c1b;
   --graphite: #4a4a48;
   --graphite-soft: #8a8884;
-  --rule: #d6d2cc;
+  --rule: #c0cdd2;
   --crimson: #9b2334;
   --dusty: #3b5b78;
   --gold: #b48a3a;
 
   --background: #ffffff;
   --foreground: var(--ink);
-  --brand: #44d1d1;
+  --brand: #4899b9;
   --card: #ffffff;
   --card-foreground: #3a3b3b;
   --popover: #ffffff;
@@ -112,7 +112,7 @@
   --accent: #f4f4f4;
   --accent-foreground: #3a3b3b;
   --destructive: #e11d48;
-  --border: #e5e5e5;
+  --border: #c0cdd2;
   --input: #e5e5e5;
   --ring: #c4c4c4;
   --chart-1: #3a3b3b;
@@ -137,6 +137,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Host Grotesk baseline tracking. Overridden per-element by Tailwind
+       tracking-* utilities; reset on display/mono families below. */
+    letter-spacing: 0.02em;
   }
   html {
     @apply font-sans;
@@ -147,6 +150,24 @@
   }
   h2 {
     letter-spacing: 0.02em;
+  }
+  /* Mono labels keep their own tighter tracking; specific call-sites
+     override via tracking-* utilities. */
+  .font-mono {
+    letter-spacing: 0;
+  }
+}
+
+@layer utilities {
+  /* Make Tailwind's tracking-normal honor the Host Grotesk baseline.
+     The shadcn preset binds tracking-normal to 0em; we want 0.02em on
+     body text so the global rule stays consistent when a component
+     explicitly opts into "normal" tracking. */
+  .tracking-normal {
+    letter-spacing: 0.02em;
+  }
+  .font-mono.tracking-normal {
+    letter-spacing: 0;
   }
 }
 

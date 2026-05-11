@@ -19,7 +19,7 @@ function CalloutSection({
 }) {
   return (
     <div>
-      <div className="text-xs uppercase tracking-normal text-muted-foreground">
+      <div className="text-sm uppercase tracking-normal text-muted-foreground">
         {title}
       </div>
       <StaggerGroup staggerMs={50} delay={0.1} className="mt-3 space-y-1">

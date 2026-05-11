@@ -411,7 +411,7 @@ export function AppShell({ data, view }: Props) {
       )}
 
       <footer className="mt-auto border-t border-border">
-        <div className="text-xs uppercase tracking-normal text-muted-foreground">
+        <div className="text-sm uppercase tracking-normal text-muted-foreground">
           <div className="mx-auto flex max-w-7xl flex-col items-start gap-y-1 px-5 py-3 sm:px-6">
             <span className="text-foreground font-semibold">HYP3 / <span className="font-mono">001</span></span>
             <span><span className="font-mono">{dataset.metadata.tournament_year}</span> NCAA Men&rsquo;s Tournament</span>

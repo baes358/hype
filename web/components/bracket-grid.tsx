@@ -49,7 +49,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
       <FadeInSection>
         <header className="mb-6 flex flex-col items-start gap-2 sm:mb-8 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
           <div>
-            <div className="text-[12px] uppercase tracking-[0.14em] text-graphite-soft">
+            <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
               <span className="font-mono">04</span> / The bracket
             </div>
             <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
@@ -61,13 +61,16 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
 
       <StaggerGroup
         staggerMs={80}
-        className="grid grid-cols-1 gap-px bg-background sm:grid-cols-2 lg:grid-cols-4"
+        // gap-[2px] bg-foreground/15 renders as a 2px divider between region
+        // cards. Each card has its own bg-background that paints over the
+        // grid, so only the gap area shows through.
+        className="grid grid-cols-1 gap-[2px] bg-foreground/15 sm:grid-cols-2 lg:grid-cols-4"
       >
         {REGIONS.map((region) => {
           const isOpen = expanded.has(region);
           const listId = `bracket-region-${region.toLowerCase()}`;
           return (
-          <div key={region} className="bg-background">
+          <div key={region} className="h-full bg-background">
             <button
               type="button"
               onClick={() => toggle(region)}
@@ -75,7 +78,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
               aria-controls={listId}
               className="flex w-full items-baseline justify-between border-b border-border px-4 py-3 text-left transition hover:bg-foreground/[0.02] sm:cursor-default sm:hover:bg-transparent"
             >
-              <h3 className="flex items-center gap-2 text-xs uppercase tracking-normal text-foreground">
+              <h3 className="flex items-center gap-2 text-sm uppercase tracking-normal text-foreground">
                 {region}
                 <ChevronDown
                   aria-hidden="true"
@@ -84,7 +87,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                   }`}
                 />
               </h3>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-sm text-muted-foreground">
                 <span className="font-mono tabular-nums">{byRegion[region].length}</span> teams
               </span>
             </button>
@@ -96,7 +99,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                 return (
                   <li
                     key={t.team}
-                    className={`border-b border-border/40 last:border-b-0 ${
+                    className={`border-b border-border last:border-b-0 ${
                       isSelected ? "bg-foreground/[0.04]" : ""
                     }`}
                   >
