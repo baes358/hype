@@ -239,8 +239,8 @@ function GapCallout({
         <span className={`size-1.5 rounded-full ${s.dot}`} />
         {label}
       </div>
-      <div className="mt-1 flex items-baseline gap-3">
-        <span className={`font-mono text-3xl font-bold tabular-nums ${s.text}`}>
+      <div className="mt-1 flex flex-col items-start gap-0.5">
+        <span className={`font-mono text-3xl font-bold tabular-nums leading-none ${s.text}`}>
           {gap > 0 ? "+" : ""}
           {gap}
         </span>

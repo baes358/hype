@@ -106,7 +106,12 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: { payl
 export function ScatterChartView({ teams, onSelect }: Props) {
   const isMobile = useIsMobile();
   const yAxisLabels = isMobile ? ROUND_LABELS_MOBILE : ROUND_LABELS;
-  const yAxisWidth = isMobile ? 44 : 120;
+  // Desktop labels include "Second Round" / "Final Four" / "Runner-up" — at
+  // 12px FA-1 mono they need ~95–100px plus Recharts' default tick padding.
+  // 120 was clipping; 150 leaves headroom. Mobile bumped to 72 so "Champ"
+  // (~58px in FA-1 at 12px) clears the y-axis without overflowing the
+  // section's px-5 gutter.
+  const yAxisWidth = isMobile ? 72 : 150;
 
   if (teams.length === 0) {
     return (
@@ -136,7 +141,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
         <div className="min-w-0 md:flex-1">
           <FadeInSection delay={0.15}>
           <ChartContainer config={chartConfig} className="aspect-[4/3] w-full">
-            <ScatterChart margin={{ top: 16, right: 16, bottom: 32, left: 0 }}>
+            <ScatterChart margin={{ top: 16, right: 28, bottom: 32, left: 0 }}>
               <CartesianGrid stroke="rgba(58,59,59,0.08)" />
               <XAxis
                 type="number"

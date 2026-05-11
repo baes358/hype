@@ -42,21 +42,8 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       </header>
       </FadeInSection>
 
-      {/* Desktop axis labels */}
-      <div className="mb-2 hidden grid-cols-[1fr_auto_1fr] items-end gap-4 text-sm uppercase tracking-normal text-muted-foreground sm:grid">
-        <div className="flex items-center justify-end gap-2 pr-2">
-          <span className="size-1.5 rounded-full bg-rose-500" />
-          ← Overhyped
-        </div>
-        <div className="text-center font-mono text-foreground">0</div>
-        <div className="flex items-center gap-2 pl-2">
-          Underhyped →
-          <span className="size-1.5 rounded-full bg-sky-500" />
-        </div>
-      </div>
-
-      {/* Mobile axis labels — bar position itself communicates the direction */}
-      <div className="mb-2 flex items-center justify-between text-sm uppercase tracking-normal text-muted-foreground sm:hidden">
+      {/* Axis labels — bar's anchor side (left vs right) communicates direction. */}
+      <div className="mb-2 flex items-center justify-between text-sm uppercase tracking-normal text-muted-foreground">
         <span className="flex items-center gap-2">
           <span className="size-1.5 rounded-full bg-rose-500" />
           Overhyped
@@ -92,8 +79,9 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                 onClick={() => onSelect(t)}
                 className="block w-full text-left"
               >
-                {/* MOBILE: single-bar row, anchored left for overhyped, right for underhyped */}
-                <div className="relative h-10 w-full sm:hidden">
+                {/* Single-bar row at every viewport. Bar anchors left for
+                    overhyped and right for underhyped; labels float on top. */}
+                <div className="relative h-10 w-full sm:h-11">
                   <div
                     style={{ width: `${widthPct}%` }}
                     className={`absolute inset-y-0 ${isOver ? "left-0" : "right-0"} ${style.bar} opacity-25 transition-all`}
@@ -126,62 +114,6 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
                         <span className="font-mono text-xs tabular-nums text-sky-700">
                           +{t.gap}
                         </span>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {/* DESKTOP: 3-col butterfly */}
-                <div className="hidden grid-cols-[minmax(0,1fr)_2px_minmax(0,1fr)] items-center py-2.5 sm:grid">
-                  {/* LEFT half — overhyped lives here */}
-                  <div className="flex items-center justify-end gap-3 pr-3">
-                    {isOver && (
-                      <>
-                        <div className="flex min-w-0 flex-1 items-center justify-end gap-3">
-                          <span className="truncate text-sm text-foreground">
-                            {t.team}{" "}
-                            <span className="text-muted-foreground">
-                              <span className="font-mono text-xs tabular-nums">{String(t.seed).padStart(2, "0")}</span>
-                            </span>
-                          </span>
-                          <span className="font-mono text-xs tabular-nums text-rose-600">
-                            {t.gap}
-                          </span>
-                        </div>
-                        <div
-                          style={{ width: `${widthPct}%` }}
-                          className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
-                        />
-                      </>
-                    )}
-                  </div>
-
-                  {/* CENTER axis */}
-                  <div
-                    className={`h-6 w-px ${
-                      isSelected ? "bg-foreground" : "bg-border"
-                    }`}
-                  />
-
-                  {/* RIGHT half — underhyped lives here */}
-                  <div className="flex items-center gap-3 pl-3">
-                    {!isOver && (
-                      <>
-                        <div
-                          style={{ width: `${widthPct}%` }}
-                          className={`h-2 ${style.bar} transition-all group-hover:opacity-90`}
-                        />
-                        <div className="flex min-w-0 flex-1 items-center gap-3">
-                          <span className="font-mono text-xs tabular-nums text-sky-700">
-                            +{t.gap}
-                          </span>
-                          <span className="truncate text-sm text-foreground">
-                            {t.team}{" "}
-                            <span className="text-muted-foreground">
-                              <span className="font-mono text-xs tabular-nums">{String(t.seed).padStart(2, "0")}</span>
-                            </span>
-                          </span>
-                        </div>
                       </>
                     )}
                   </div>
