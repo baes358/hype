@@ -149,7 +149,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
                 domain={[0, 100]}
                 ticks={[0, 25, 50, 75, 100]}
                 tickLine={false}
-                axisLine={{ stroke: "#1a3349" }}
+                axisLine={{ stroke: "#11495F" }}
                 tick={AXIS_TICK_STYLE}
                 label={{
                   value: "Hype index (0–100)",
@@ -164,7 +164,7 @@ export function ScatterChartView({ teams, onSelect }: Props) {
                 domain={[0, 6]}
                 ticks={[0, 1, 2, 3, 4, 5, 6]}
                 tickLine={false}
-                axisLine={{ stroke: "#1a3349" }}
+                axisLine={{ stroke: "#11495F" }}
                 tick={AXIS_TICK_STYLE}
                 tickFormatter={(v: number) => yAxisLabels[v] ?? String(v)}
                 width={yAxisWidth}

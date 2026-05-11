@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -121,10 +122,15 @@ export function TopNav({ dataset }: Props) {
         className="mx-auto flex max-w-7xl items-center gap-4 px-5 sm:px-6"
       >
         {/* LEFT — wordmark + tournament metadata */}
-        <Link href="/" className="group flex shrink-0 items-baseline gap-3" aria-label="HYP3 home">
-          <span className="font-display text-2xl font-bold leading-none tracking-tight text-ink transition-colors group-hover:text-graphite sm:text-[28px]">
-            HYP3
-          </span>
+        <Link href="/" className="group flex shrink-0 items-end gap-3" aria-label="HYP3 home">
+          <Image
+            src="/media/hype-logo.png"
+            alt="HYP3"
+            width={430}
+            height={112}
+            priority
+            className="h-6 w-auto transition-opacity group-hover:opacity-80 sm:h-7"
+          />
           <motion.span
             animate={{ opacity: isScrolled ? 0 : 1, width: isScrolled ? 0 : "auto" }}
             transition={{ duration: 0.18 }}
@@ -135,7 +141,7 @@ export function TopNav({ dataset }: Props) {
         </Link>
 
         {/* CENTER — primary nav */}
-        <nav className="hidden flex-1 items-center justify-center gap-1 md:flex" aria-label="Primary">
+        <nav className="hidden flex-1 items-center justify-center gap-1 min-[900px]:flex" aria-label="Primary">
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href;
             return (
@@ -153,7 +159,7 @@ export function TopNav({ dataset }: Props) {
       </motion.div>
 
       {/* Mobile horizontal nav */}
-      <div className="md:hidden">
+      <div className="min-[900px]:hidden">
         <div className="overflow-x-auto border-t border-rule">
           <div className="flex min-w-max items-center gap-4 px-5 py-3">
             {NAV_ITEMS.map((item) => {
@@ -167,8 +173,10 @@ export function TopNav({ dataset }: Props) {
                     active ? "text-ink" : "text-graphite-soft"
                   }`}
                 >
-                  <span className="mr-1.5 font-mono text-graphite-soft">{item.marker}</span>
-                  <span className="font-display tracking-[0.06em]">{item.label}</span>
+                  <span className={`font-mono text-graphite-soft ${active ? "mr-1.5" : ""}`}>{item.marker}</span>
+                  {active && (
+                    <span className="font-display text-sm tracking-[0.06em]">{item.label}</span>
+                  )}
                   {active && <span className="absolute inset-x-0 -bottom-1 h-[2px] bg-ink" />}
                 </Link>
               );
@@ -186,7 +194,7 @@ export function TopNav({ dataset }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute inset-x-0 top-full hidden border-b border-rule bg-white/95 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.1)] backdrop-blur md:block"
+            className="absolute inset-x-0 top-full hidden border-b border-rule bg-white/95 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.1)] backdrop-blur min-[900px]:block"
             onMouseEnter={() => setHoveredHref(hovered.href)}
           >
             <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">

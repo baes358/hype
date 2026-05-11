@@ -365,7 +365,7 @@ export function Filters({
             }
           </FilterDropdown>
 
-          <div className="w-full sm:ml-auto sm:w-auto">
+          <div className="w-full sm:w-auto lg:ml-auto">
             <TeamSearch teams={teams} onSelect={onSelectTeam} />
           </div>
 

@@ -59,9 +59,9 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       <FadeInSection delay={0.1}>
       <AnimatedListReorder
         id="gap-chart"
-        // Row dividers match the timeline grid-gap navy so the editorial frame
-        // reads consistently between the gap and timeline views.
-        className="divide-y divide-[#1a3349] border-y border-[#1a3349]"
+        // Shared divider color across gap / scatter / timeline / bracket so
+        // the editorial frame reads consistently.
+        className="divide-y divide-[#11495F] border-y border-[#11495F]"
       >
         {sorted.map((t) => {
           const isOver = t.gap < 0;

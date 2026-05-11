@@ -61,11 +61,11 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
 
       <StaggerGroup
         staggerMs={80}
-        // gap-[2px] bg-[#1a3349] renders as a 2px navy divider between region
-        // cards — matches the timeline grid gap and gap-chart row dividers.
+        // gap-[2px] bg-[#11495F] renders a 2px divider between region cards
+        // — shared editorial divider color across gap / scatter / timeline.
         // Each card has its own bg-background that paints over the grid, so
         // only the gap area shows through.
-        className="grid grid-cols-1 gap-[2px] bg-[#1a3349] sm:grid-cols-2 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-[2px] bg-[#11495F] sm:grid-cols-2 lg:grid-cols-4"
       >
         {REGIONS.map((region) => {
           const isOpen = expanded.has(region);
@@ -77,7 +77,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
               onClick={() => toggle(region)}
               aria-expanded={isOpen}
               aria-controls={listId}
-              className="flex w-full items-baseline justify-between border-b border-[#1a3349] px-4 py-3 text-left transition hover:bg-foreground/[0.02] sm:cursor-default sm:hover:bg-transparent"
+              className="flex w-full items-baseline justify-between border-b border-[#11495F] px-4 py-3 text-left transition hover:bg-foreground/[0.02] sm:cursor-default sm:hover:bg-transparent"
             >
               <h3 className="flex items-center gap-2 text-sm uppercase tracking-normal text-foreground">
                 {region}
@@ -100,7 +100,7 @@ export function BracketGrid({ teams, selectedTeam, onSelect }: Props) {
                 return (
                   <li
                     key={t.team}
-                    className={`border-b border-[#1a3349] last:border-b-0 ${
+                    className={`border-b border-[#11495F] last:border-b-0 ${
                       isSelected ? "bg-foreground/[0.04]" : ""
                     }`}
                   >

@@ -26,7 +26,10 @@ const MOBILE_WINDOW_SIZE = 5;
 // through 5 discrete blue shades from low (deep navy) to peak (white).
 const HEATMAP_THEME = {
   sectionBg: "#0d1f33",
-  gridGap: "#1a3349",
+  // gridGap paints the 1px gap between heatmap cells and the rails — uses
+  // the shared editorial divider color (matches gap / bracket / scatter axis
+  // lines).
+  gridGap: "#11495F",
   stickyBg: "#0d1f33",
   textPrimary: "#f0f5fa",
   textMuted: "#7d9bb5",
