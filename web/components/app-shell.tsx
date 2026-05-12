@@ -486,14 +486,30 @@ export function AppShell({ data, view }: Props) {
         )}
       </div>
 
-      <footer className="mt-auto border-t border-border">
-        <div className="text-sm uppercase tracking-normal text-muted-foreground">
-          <div className="mx-auto flex max-w-7xl flex-col items-start gap-y-1 px-5 py-3 sm:px-6">
-            <span className="text-foreground font-semibold">HYP3 / 001</span>
-            <span>{dataset.metadata.tournament_year} NCAA Men&rsquo;s Tournament</span>
-            <span>Hype window {formatWindow(dataset.metadata.hype_window_start, dataset.metadata.hype_window_end)}</span>
-            <span>{dataset.metadata.total_teams} teams</span>
-            <span>Pulled {formatPulled(dataset.metadata.data_pulled_at)}</span>
+      <footer className="mt-auto bg-paper-darker">
+        <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-14 sm:px-10 sm:py-20">
+          <div className="font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl">
+            HYP3
+          </div>
+          <div className="text-lg leading-snug text-ink sm:text-xl">
+            <div>Built for the Underdogs.</div>
+            <div>&copy; {dataset.metadata.tournament_year} Sophia Bae. All rights reserved.</div>
+          </div>
+          <div className="flex flex-col gap-3 text-lg text-ink sm:text-xl">
+            <a
+              href="https://github.com/sophbae99/hype"
+              target="_blank"
+              rel="noreferrer"
+              className="w-fit transition-opacity hover:opacity-60"
+            >
+              [About the Project]
+            </a>
+            <a
+              href="mailto:sophbae99@gmail.com?subject=HYP3%20correction"
+              className="w-fit transition-opacity hover:opacity-60"
+            >
+              [Submit a Correction]
+            </a>
           </div>
         </div>
       </footer>
