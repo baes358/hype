@@ -50,6 +50,10 @@ export function Filters({
   onSetRound,
   onReset,
 }: Props) {
+  // Mobile collapsible. Default collapsed; toggle button visible only below md.
+  // At md+ the filter content is always rendered (no toggle).
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-[rgba(10,10,12,0.85)] backdrop-blur-xl backdrop-saturate-[140%]">
       <div
@@ -58,6 +62,24 @@ export function Filters({
           padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.75rem)",
         }}
       >
+        {/* Mobile-only toggle. Hidden at md+ where filters are always shown. */}
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          aria-controls="hyp3-filter-panel"
+          className="inline-flex min-h-11 w-full items-center justify-between rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:hidden"
+        >
+          <span>Filters</span>
+          <span aria-hidden className="font-mono text-base text-ink-2">
+            {open ? "▴" : "▾"}
+          </span>
+        </button>
+
+        <div
+          id="hyp3-filter-panel"
+          className={`${open ? "flex" : "hidden"} flex-col gap-4 md:flex`}
+        >
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline. */}
         <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-end md:gap-6">
@@ -86,8 +108,8 @@ export function Filters({
                     type="button"
                     onClick={() => onToggleTag(tag)}
                     aria-pressed={active}
-                    // Min 44px tap height.
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-sm font-semibold uppercase tracking-[0.08em] transition-all"
+                    // Min 44px tap height kept; font/padding tuned per spec.
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.08em] transition-all"
                     style={{
                       borderColor: active ? color : "var(--border)",
                       background: active ? `${color}22` : "transparent",
@@ -102,7 +124,7 @@ export function Filters({
                     />
                     {TAG_LABEL[tag]}
                     <span
-                      className="ml-0.5 rounded-full border bg-black/30 px-1.5 py-px font-mono text-sm tabular-nums"
+                      className="ml-0.5 rounded-full border bg-black/30 px-1.5 py-px font-mono text-[12px] tabular-nums"
                       style={{ borderColor: "currentColor" }}
                     >
                       {tagCounts[tag] ?? 0}
@@ -139,7 +161,7 @@ export function Filters({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg border border-border bg-transparent px-3 py-2 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:self-auto"
+            className="inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:self-auto"
           >
             <svg
               width="12"
@@ -155,6 +177,7 @@ export function Filters({
             </svg>
             Reset filters
           </button>
+        </div>
         </div>
       </div>
     </div>
@@ -228,7 +251,7 @@ function ModeToggle({
             type="button"
             onClick={() => setMode(m.id)}
             aria-pressed={active}
-            className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-3.5 py-2 transition-all sm:px-4 ${
+            className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2.5 py-1.5 transition-all sm:px-3 ${
               active
                 ? "bg-[rgba(18,119,222,0.22)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4)]"
                 : "text-ink-2 hover:text-ink"
@@ -239,10 +262,10 @@ function ModeToggle({
               className="size-1.5 shrink-0 rounded-full bg-core-bright shadow-[0_0_8px_var(--core-bright)]"
               style={{ opacity: active ? 1 : 0.3 }}
             />
-            <span className="font-display text-sm font-bold uppercase leading-none tracking-[0.08em]">
+            <span className="font-display text-[13px] font-black uppercase leading-none tracking-[0.08em]">
               {m.label}
             </span>
-            <span className="ml-1 hidden border-l border-border pl-1.5 font-mono text-sm tracking-[0.1em] text-ink-3 sm:inline">
+            <span className="ml-1 hidden border-l border-border pl-1.5 font-mono text-[12px] tracking-[0.1em] text-ink-3 sm:inline">
               {m.sub}
             </span>
           </button>
@@ -274,7 +297,7 @@ function Segmented({
             type="button"
             onClick={() => onChange(o.id)}
             aria-pressed={active}
-            className={`inline-flex min-h-11 items-center rounded-[7px] px-3 py-1.5 font-mono text-sm uppercase tracking-[0.06em] transition-all ${
+            className={`inline-flex min-h-11 items-center rounded-[7px] px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.06em] transition-all ${
               active
                 ? "bg-[rgba(255,255,255,0.06)] text-ink shadow-[inset_0_0_0_1px_var(--border-hi)]"
                 : "text-ink-1 hover:text-ink"
@@ -321,7 +344,7 @@ function RoundDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-3 py-2 font-mono text-sm uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto"
+        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto"
       >
         <span>{ROUND_LABEL[value]}</span>
         <ChevronDown
@@ -346,7 +369,7 @@ function RoundDropdown({
                 }}
                 role="menuitemcheckbox"
                 aria-checked={active}
-                className={`flex min-h-11 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left font-mono text-sm uppercase tracking-[0.06em] transition-colors ${
+                className={`flex min-h-11 w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left font-display text-[13px] font-black uppercase tracking-[0.06em] transition-colors ${
                   active
                     ? "bg-[rgba(255,255,255,0.04)] text-ink"
                     : "text-ink-1 hover:bg-[rgba(255,255,255,0.03)] hover:text-ink"

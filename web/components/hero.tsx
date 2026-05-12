@@ -29,19 +29,26 @@ export function Hero({ data }: Props) {
           animation: "hero-fade-b 12s ease-in-out infinite",
         }}
       />
-      {/* Heavy dark overlay + bottom fade */}
+      {/* Dark overlay — gentle ramp instead of stepped bands so there's no
+          visible horizontal seam mid-hero. */}
       <div
         aria-hidden
         className="absolute inset-0 z-[1]"
         style={{
           background:
-            "linear-gradient(180deg, rgba(10,10,12,0.78) 0%, rgba(10,10,12,0.55) 30%, rgba(10,10,12,0.78) 80%, rgba(10,10,12,0.95) 100%)",
+            "linear-gradient(180deg, rgba(10,10,12,0.72) 0%, rgba(10,10,12,0.58) 45%, rgba(10,10,12,0.88) 95%, var(--bg) 100%)",
         }}
       />
+      {/* Bottom fade — tall + early start so the hero blends seamlessly into
+          the body --bg below it. Terminal explicitly matches --bg so the
+          filter bar sits on the same color. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 z-[1] h-36"
-        style={{ background: "linear-gradient(180deg, transparent, var(--bg) 95%)" }}
+        className="absolute inset-x-0 bottom-0 z-[1] h-60"
+        style={{
+          background:
+            "linear-gradient(180deg, transparent 0%, rgba(10,10,12,0.55) 35%, var(--bg) 85%, var(--bg) 100%)",
+        }}
       />
       {/* Dot grid overlay on top of the photo */}
       <div aria-hidden className="bg-dotgrid z-[1]" />

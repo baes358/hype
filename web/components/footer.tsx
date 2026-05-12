@@ -5,7 +5,10 @@ type Props = { data: Dataset };
 export function Footer({ data }: Props) {
   return (
     <footer
-      className="relative z-[1] mt-10 border-t border-border bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.5))]"
+      // Feather from transparent (matches body --bg at top) gradually down to
+      // a 0.25-alpha black at the very bottom. Previously terminated at 0.5
+      // which created a visibly darker rectangle right where the footer began.
+      className="relative z-[1] mt-10 border-t border-border bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.12)_40%,rgba(0,0,0,0.25)_100%)]"
       style={{
         padding:
           "clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 1.5rem)",

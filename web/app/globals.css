@@ -184,9 +184,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Radial glow at top fades all the way out by its full extent (not 70%)
+       so the transition into pure --bg below the hero is gradual rather
+       than a soft-edged disc. The blue is the only chromatic source on the
+       page, so feathering it across the full radius is what removes the
+       visible seam at the disc's edge. */
     background:
-      radial-gradient(1200px 600px at 50% -200px, rgba(18, 119, 222, 0.18), transparent 70%),
+      radial-gradient(1200px 700px at 50% -240px, rgba(18, 119, 222, 0.18), rgba(18, 119, 222, 0.08) 45%, transparent 100%),
       var(--bg);
+    background-color: var(--bg);
     letter-spacing: 0.005em;
     font-feature-settings: "ss01", "cv11", "tnum";
     /* Floor body text at 16px to dodge iOS auto-zoom on inputs and meet

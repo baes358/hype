@@ -135,7 +135,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
 
         {/* Rows */}
         <div className="relative z-[1] flex flex-col gap-px px-2 py-2 sm:px-6">
-          {sorted.map((t, i) => {
+          {sorted.map((t) => {
             const widthPct = (Math.abs(t.gap) / maxAbsGap) * 100;
             return (
               <DivRow
@@ -145,7 +145,6 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
                 isOver={t.gap < 0}
                 color={TAG_COLOR[t.story_tag]}
                 isSel={selectedTeam === t.team}
-                rank={i + 1}
                 onSelect={onSelect}
               />
             );
@@ -193,11 +192,10 @@ type RowProps = {
   isOver: boolean;
   color: string;
   isSel: boolean;
-  rank: number;
   onSelect: (t: Team) => void;
 };
 
-function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowProps) {
+function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
   const gap = team.gap;
   return (
     <button
@@ -207,7 +205,11 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
         isSel ? "bg-[rgba(114,184,255,0.06)]" : "hover:bg-[rgba(255,255,255,0.025)]"
       }`}
     >
-      {/* LEFT half (overhyped) */}
+      {/* LEFT half (overhyped).
+          Mobile (<md): team name on the far-left edge, gap badge nudged to the
+          inner edge (near center) so the team name has the full half-width to
+          breathe and never truncates the way it did with the inner label.
+          md+: original layout (gap badge outer, labels inner). */}
       <div className="relative h-full">
         {isOver && (
           <>
@@ -229,9 +231,12 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
                 background: `radial-gradient(ellipse at right, ${color}33, transparent 70%)`,
               }}
             />
-            {/* Outer-edge gap badge */}
+            {/* Gap badge sits ACROSS the center division — anchored to the
+                right edge of the left half (the center line) and nudged into
+                the right-half area. The opposite half is empty on this row
+                (only !isOver renders right-half content), so it never collides. */}
             <div
-              className="absolute left-1.5 top-1/2 z-[4] inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] sm:left-2 sm:px-2.5"
+              className="absolute left-full right-auto top-1/2 z-[4] ml-1.5 inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:ml-2 md:px-2.5"
               style={{ borderColor: `${color}66` }}
             >
               <span
@@ -241,15 +246,14 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
                 {gap}
               </span>
             </div>
-            {/* Inner-edge team labels. Rank dot hidden on small screens. */}
-            <div className="absolute right-2 inset-y-0 z-[3] flex items-center gap-2 sm:right-3 sm:gap-2.5">
-              <span className="hidden font-mono text-sm tabular-nums text-ink-3 sm:inline">
-                ·{String(rank).padStart(2, "0")}
-              </span>
+            {/* Labels — anchored at the center-side edge (right edge of the
+                left half) at all breakpoints, so seed + team name read against
+                the center division the same way they do on desktop. */}
+            <div className="absolute inset-y-0 right-2 z-[3] flex items-center gap-2 md:right-3 md:gap-2.5">
               <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
                 {String(team.seed).padStart(2, "0")}
               </span>
-              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink sm:text-[15px]">
+              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
                 {team.team}
               </span>
             </div>
@@ -257,7 +261,9 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
         )}
       </div>
 
-      {/* RIGHT half (underhyped) */}
+      {/* RIGHT half (underhyped).
+          Mobile (<md): team name on the far-right edge, gap badge near the
+          center. md+: original layout (labels inner, gap badge outer). */}
       <div className="relative h-full">
         {!isOver && (
           <>
@@ -279,19 +285,20 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
                 background: `radial-gradient(ellipse at left, ${color}33, transparent 70%)`,
               }}
             />
-            <div className="absolute left-2 inset-y-0 z-[3] flex items-center gap-2 sm:left-3 sm:gap-2.5">
-              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink sm:text-[15px]">
+            {/* Labels — anchored at the center-side edge (left edge of the
+                right half) at all breakpoints. */}
+            <div className="absolute inset-y-0 left-2 z-[3] flex items-center gap-2 md:left-3 md:gap-2.5">
+              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
                 {team.team}
               </span>
               <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
                 {String(team.seed).padStart(2, "0")}
               </span>
-              <span className="hidden font-mono text-sm tabular-nums text-ink-3 sm:inline">
-                {String(rank).padStart(2, "0")}·
-              </span>
             </div>
+            {/* Gap badge sits ACROSS the center division — anchored to the
+                left edge of the right half and nudged into the left-half area. */}
             <div
-              className="absolute right-1.5 top-1/2 z-[4] inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] sm:right-2 sm:px-2.5"
+              className="absolute right-full left-auto top-1/2 z-[4] mr-1.5 inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:mr-2 md:px-2.5"
               style={{ borderColor: `${color}66` }}
             >
               <span
