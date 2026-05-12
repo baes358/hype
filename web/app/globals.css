@@ -137,7 +137,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* Epilogue baseline tracking. Overridden per-element by Tailwind
+    /* Host Grotesk baseline tracking. Overridden per-element by Tailwind
        tracking-* utilities; reset on display/mono families below. */
     letter-spacing: 0.02em;
   }
@@ -159,7 +159,7 @@
 }
 
 @layer utilities {
-  /* Make Tailwind's tracking-normal honor the Epilogue baseline.
+  /* Make Tailwind's tracking-normal honor the Host Grotesk baseline.
      The shadcn preset binds tracking-normal to 0em; we want 0.02em on
      body text so the global rule stays consistent when a component
      explicitly opts into "normal" tracking. */

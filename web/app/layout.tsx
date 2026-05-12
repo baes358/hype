@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Epilogue } from "next/font/google";
+import { Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import { IntroLoader } from "@/components/intro-loader";
 
-const epilogue = Epilogue({
+const hostGrotesk = Host_Grotesk({
   variable: "--font-host",
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${epilogue.variable} h-full antialiased`}
+      className={`${hostGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground font-sans font-medium selection:bg-brand/30">
         <IntroLoader />
