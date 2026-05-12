@@ -181,3 +181,10 @@
   0%, 40%, 100% { opacity: 0; }
   50%, 90%      { opacity: 1; }
 }
+
+/* Kill the iOS "tap to play" overlay and any default media controls inside
+   the intro loader. The video is muted + playsInline + autoplay, so we
+   should never need the native play affordance. */
+[data-hyp3-loader] video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+[data-hyp3-loader] video::-webkit-media-controls { display: none !important; }
+[data-hyp3-loader] video::-webkit-media-controls-panel { display: none !important; }
