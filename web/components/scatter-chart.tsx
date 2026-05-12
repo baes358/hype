@@ -126,13 +126,13 @@ export function ScatterChartView({ teams, onSelect }: Props) {
       <FadeInSection>
         <header className="mb-6 sm:mb-8">
           <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-            <span className="font-mono">02</span> / <span className="font-display tracking-[0.06em]">The scatter</span>
+            <span>02</span> / <span className="font-display tracking-[0.06em]">The scatter</span>
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             Hype against performance, with the diagonal as the expected line
           </h2>
           <div className="mt-3 text-sm uppercase tracking-normal text-muted-foreground">
-            <span className="font-mono">{teams.length}</span> teams shown
+            <span>{teams.length}</span> teams shown
           </div>
         </header>
       </FadeInSection>

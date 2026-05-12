@@ -155,7 +155,7 @@ function TeamSheetBody({
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
               Peaked at <span className="font-mono tabular-nums text-foreground">{peak.value.toFixed(0)}</span> on{" "}
-              <span className="font-mono tabular-nums text-foreground">{shortDate(peak.date)}</span>
+              <span className="tabular-nums text-foreground">{shortDate(peak.date)}</span>
             </div>
           </div>
         </div>

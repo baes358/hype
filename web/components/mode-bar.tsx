@@ -44,7 +44,7 @@ export function ModeBar({ mode, setMode }: Props) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 sm:px-6">
         <span className="text-xs uppercase tracking-[0.16em] text-graphite-soft">
-          <span className="font-mono">mode</span>
+          mode
         </span>
         <div className="flex items-center rounded-full border border-rule bg-white/60 p-0.5">
           <ModeBtn active={mode === "tournament"} onClick={() => setMode("tournament")} accent="crimson">

@@ -229,7 +229,7 @@ export function TimelineHeatmap({
       <FadeInSection>
         <header className="mb-6 sm:mb-8">
           <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-            <span className="font-mono">03</span> / <span className="font-display tracking-[0.06em]">The timeline</span>
+            <span>03</span> / <span className="font-display tracking-[0.06em]">The timeline</span>
           </div>
           <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             {mode === "tournament"
@@ -237,7 +237,7 @@ export function TimelineHeatmap({
               : "Monthly mean hype intensity for every team across the season"}
           </h2>
           <div className="mt-3 text-sm uppercase tracking-normal text-graphite-soft">
-            <span className="font-mono">{sortedTeams.length}</span> teams shown
+            <span>{sortedTeams.length}</span> teams shown
           </div>
         </header>
       </FadeInSection>

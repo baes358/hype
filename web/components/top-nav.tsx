@@ -172,7 +172,7 @@ export function TopNav({ dataset }: Props) {
             transition={{ duration: 0.18 }}
             className="overflow-hidden whitespace-nowrap text-sm uppercase tracking-[0.14em] text-graphite-soft"
           >
-            <span className="font-mono">D1</span> mens basketball
+            D1 mens basketball
           </motion.span>
         </Link>
 
@@ -211,7 +211,7 @@ export function TopNav({ dataset }: Props) {
                     active ? "text-ink" : "text-graphite-soft"
                   }`}
                 >
-                  <span className={`font-mono text-graphite-soft ${active ? "mr-1.5" : ""}`}>{item.marker}</span>
+                  <span className={`text-graphite-soft ${active ? "mr-1.5" : ""}`}>{item.marker}</span>
                   {active && (
                     <span className="font-display text-sm tracking-[0.06em]">{item.label}</span>
                   )}
@@ -240,7 +240,7 @@ export function TopNav({ dataset }: Props) {
                 <div className="max-w-2xl">
                   <div className="flex items-baseline gap-3">
                     <span className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-                      <span className="font-mono">{hovered.marker}</span> /
+                      <span>{hovered.marker}</span> /
                     </span>
                     <span className="font-display text-sm uppercase tracking-[0.06em] text-graphite">
                       {hovered.label}
@@ -304,7 +304,7 @@ function PrimaryNavLink({
         transition={{ duration: 0.18, ease: "easeOut" }}
         className="flex items-baseline gap-2 whitespace-nowrap"
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
+        <span className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
           {item.marker}
         </span>
         <span

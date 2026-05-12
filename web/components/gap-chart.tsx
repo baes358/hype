@@ -31,13 +31,13 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
       <FadeInSection>
       <header className="mb-6 sm:mb-8">
         <div className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-          <span className="font-mono">01</span> / <span className="font-display tracking-[0.06em]">The diverging gap</span>
+          <span>01</span> / <span className="font-display tracking-[0.06em]">The diverging gap</span>
         </div>
         <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
           Every team, ranked by the wrongness of the internet&apos;s read
         </h2>
         <div className="mt-3 text-sm uppercase tracking-normal text-muted-foreground">
-          <span className="font-mono">{sorted.length}</span> teams shown
+          <span>{sorted.length}</span> teams shown
         </div>
       </header>
       </FadeInSection>
@@ -129,7 +129,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
 
       <FadeInSection delay={0.2}>
         <p className="mt-4 text-sm uppercase tracking-normal text-muted-foreground">
-          Click any team to inspect its <span className="font-mono">15</span>-day hype curve →
+          Click any team to inspect its 15-day hype curve →
         </p>
       </FadeInSection>
     </section>
