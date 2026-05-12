@@ -200,10 +200,16 @@ export function TimelineHeatmap({
   }
 
   return (
-    <section className="relative mx-auto min-w-0 max-w-[1440px] px-5 pt-12 pb-20 sm:px-7 sm:pt-14">
-      <header className="mb-6 flex flex-wrap items-end justify-between gap-6">
+    <section
+      className="relative mx-auto min-w-0 max-w-[1440px]"
+      style={{
+        padding:
+          "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
+      }}
+    >
+      <header className="mb-6 flex flex-col gap-4 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
         <div>
-          <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
+          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">03</span> /{" "}
             <span className="text-ink-1">The Timeline</span>
           </div>
@@ -221,18 +227,18 @@ export function TimelineHeatmap({
               15-day window
             </span>
           </h2>
-          <div className="mt-3.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-2">
-            <span className="text-ink">{sortedTeams.length}</span> teams · vertical
-            line = Selection Sunday
+          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
+            <span className="text-ink">{sortedTeams.length}</span> teams ·
+            vertical line = Selection Sunday
           </div>
         </div>
 
         {/* Sort */}
         <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-3">
+          <span className="font-mono text-sm uppercase tracking-[0.18em] text-ink-3">
             SORT
           </span>
-          <div className="inline-flex rounded-full border border-border bg-[rgba(255,255,255,0.025)] p-[3px]">
+          <div className="inline-flex w-fit max-w-full flex-wrap rounded-full border border-border bg-[rgba(255,255,255,0.025)] p-[3px]">
             {SORT_OPTIONS.map((opt) => {
               const active = sortKey === opt.key;
               return (
@@ -241,7 +247,7 @@ export function TimelineHeatmap({
                   type="button"
                   onClick={() => setSortKey(opt.key)}
                   aria-pressed={active}
-                  className={`rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.06em] transition-all ${
+                  className={`inline-flex min-h-11 items-center rounded-full px-3 py-1 font-mono text-sm uppercase tracking-[0.06em] transition-all ${
                     active
                       ? "bg-[rgba(255,255,255,0.08)] text-ink"
                       : "text-ink-1 hover:text-ink"
@@ -322,15 +328,14 @@ export function TimelineHeatmap({
                   <button
                     type="button"
                     onClick={() => onSelect(t)}
-                    className={`flex items-center gap-2 px-3.5 py-1 text-left transition ${
+                    className={`flex min-h-11 items-center gap-2 px-3.5 py-1 text-left transition ${
                       isSel ? "bg-[rgba(114,184,255,0.06)]" : "bg-transparent"
                     }`}
-                    style={{ height: 34 }}
                   >
-                    <span className="font-mono text-[10px] tabular-nums text-core-bright">
+                    <span className="font-mono text-sm tabular-nums text-core-bright">
                       {String(t.seed).padStart(2, "0")}
                     </span>
-                    <span className="truncate font-sans text-[12px] text-ink">
+                    <span className="truncate font-sans text-sm text-ink">
                       {t.team}
                     </span>
                   </button>
@@ -352,17 +357,17 @@ export function TimelineHeatmap({
                           borderLeft: b.isAnchor
                             ? "1px solid rgba(114,184,255,0.6)"
                             : undefined,
-                          margin: "4px 2px",
+                          margin: "6px 2px",
                           borderRadius: 3,
-                          height: 26,
+                          minHeight: 32,
                         }}
                         aria-label={`${t.team} · ${b.tooltip}: ${value.toFixed(1)}`}
                       />
                     );
                   })}
                   <div
-                    className="flex items-center justify-center border-l border-border bg-transparent font-mono text-[11px] font-bold tabular-nums"
-                    style={{ color: TAG_COLOR[t.story_tag], height: 34 }}
+                    className="flex min-h-11 items-center justify-center border-l border-border bg-transparent font-mono text-sm font-bold tabular-nums"
+                    style={{ color: TAG_COLOR[t.story_tag] }}
                   >
                     {t.gap > 0 ? `+${t.gap}` : t.gap}
                   </div>

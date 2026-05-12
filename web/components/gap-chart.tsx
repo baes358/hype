@@ -29,10 +29,16 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
   }
 
   return (
-    <section className="relative mx-auto max-w-[1440px] px-5 pt-12 pb-20 sm:px-7 sm:pt-14">
-      <header className="mb-8 flex flex-wrap items-end justify-between gap-6">
+    <section
+      className="relative mx-auto max-w-[1440px]"
+      style={{
+        padding:
+          "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
+      }}
+    >
+      <header className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
         <div>
-          <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
+          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">01</span> /{" "}
             <span className="text-ink-1">The Diverging Gap</span>
           </div>
@@ -51,15 +57,15 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
             </span>{" "}
             of the internet&apos;s read
           </h2>
-          <div className="mt-3.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-2">
+          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
             <span className="text-ink">{sorted.length}</span> teams · sorted
             overhyped <span className="mx-1 text-core-bright">→</span> underhyped
             · {mode === "season" ? "season" : "tournament"} window
           </div>
         </div>
 
-        {/* Legend */}
-        <div className="flex items-center gap-4 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
+        {/* Legend — wraps so it never blows out the row width. */}
+        <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
           <LegendItem color="var(--overhyped)" label="Overhyped" arrow="←" />
           <LegendItem color="var(--noise)" label="Noise" />
           <LegendItem color="var(--as-expected)" label="As expected" />
@@ -93,25 +99,34 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
           }}
         />
 
-        {/* Axis label row */}
-        <div className="relative z-[2] grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-b border-border bg-black/30 px-6 py-3.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-1 backdrop-blur">
-          <div className="flex items-center justify-between">
-            <span className="text-overhyped">← MORE OVERHYPED</span>
-            <span className="mr-2 text-ink-2">−{maxAbsGap}</span>
+        {/* Axis label row.
+            Mobile (<480px): compact 3-col with abbreviated arrow labels.
+            sm+ (≥480px): full labels. */}
+        <div className="relative z-[2] grid grid-cols-[1fr_auto_1fr] items-center gap-2 border-b border-border bg-black/30 px-3 py-3 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 backdrop-blur sm:gap-4 sm:px-6 sm:tracking-[0.16em]">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-overhyped">
+              <span className="hidden sm:inline">← MORE OVERHYPED</span>
+              <span className="sm:hidden">← OVER</span>
+            </span>
+            <span className="mr-1 text-ink-2 sm:mr-2">−{maxAbsGap}</span>
           </div>
-          <div className="rounded-full border border-border-hi bg-[rgba(18,119,222,0.12)] px-3.5 py-1 font-mono text-[10px] tracking-[0.16em] text-core-bright">
-            0 · ZERO GAP
+          <div className="rounded-full border border-border-hi bg-[rgba(18,119,222,0.12)] px-3 py-1 font-mono text-sm tracking-[0.12em] text-core-bright sm:px-3.5 sm:tracking-[0.16em]">
+            <span className="hidden sm:inline">0 · ZERO GAP</span>
+            <span className="sm:hidden">0</span>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="ml-2 text-ink-2">+{maxAbsGap}</span>
-            <span className="text-underhyped">MORE UNDERHYPED →</span>
+          <div className="flex items-center justify-between gap-2">
+            <span className="ml-1 text-ink-2 sm:ml-2">+{maxAbsGap}</span>
+            <span className="text-underhyped">
+              <span className="hidden sm:inline">MORE UNDERHYPED →</span>
+              <span className="sm:hidden">UNDER →</span>
+            </span>
           </div>
         </div>
 
         {/* Center axis line */}
         <div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-[50px] bottom-0 z-[2] w-px"
+          className="pointer-events-none absolute left-1/2 top-[58px] bottom-0 z-[2] w-px"
           style={{
             background:
               "linear-gradient(180deg, transparent, var(--border-hi) 10%, var(--border-hi) 90%, transparent)",
@@ -119,7 +134,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
         />
 
         {/* Rows */}
-        <div className="relative z-[1] flex flex-col gap-px px-6 py-2">
+        <div className="relative z-[1] flex flex-col gap-px px-2 py-2 sm:px-6">
           {sorted.map((t, i) => {
             const widthPct = (Math.abs(t.gap) / maxAbsGap) * 100;
             return (
@@ -188,7 +203,7 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
     <button
       type="button"
       onClick={() => onSelect(team)}
-      className={`group relative grid h-[28px] w-full grid-cols-2 items-stretch border-0 bg-transparent p-0 transition-colors ${
+      className={`group relative grid min-h-11 w-full grid-cols-2 items-stretch border-0 bg-transparent p-0 transition-colors ${
         isSel ? "bg-[rgba(114,184,255,0.06)]" : "hover:bg-[rgba(255,255,255,0.025)]"
       }`}
     >
@@ -216,25 +231,25 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
             />
             {/* Outer-edge gap badge */}
             <div
-              className="absolute left-2 top-1/2 z-[4] inline-flex min-w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2.5 py-0.5 shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
+              className="absolute left-1.5 top-1/2 z-[4] inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] sm:left-2 sm:px-2.5"
               style={{ borderColor: `${color}66` }}
             >
               <span
-                className="font-mono text-[13px] font-bold tabular-nums tracking-[0.02em]"
+                className="font-mono text-sm font-bold tabular-nums tracking-[0.02em]"
                 style={{ color, textShadow: "0 0 12px currentColor" }}
               >
                 {gap}
               </span>
             </div>
-            {/* Inner-edge team labels */}
-            <div className="absolute right-3 inset-y-0 z-[3] flex items-center gap-2.5">
-              <span className="font-mono text-[10px] tabular-nums text-ink-3">
+            {/* Inner-edge team labels. Rank dot hidden on small screens. */}
+            <div className="absolute right-2 inset-y-0 z-[3] flex items-center gap-2 sm:right-3 sm:gap-2.5">
+              <span className="hidden font-mono text-sm tabular-nums text-ink-3 sm:inline">
                 ·{String(rank).padStart(2, "0")}
               </span>
-              <span className="font-mono text-[10px] font-semibold tabular-nums text-core-bright">
+              <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
                 {String(team.seed).padStart(2, "0")}
               </span>
-              <span className="whitespace-nowrap font-sans text-[12.5px] font-medium tracking-[0.01em] text-ink">
+              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink sm:text-[15px]">
                 {team.team}
               </span>
             </div>
@@ -264,23 +279,23 @@ function DivRow({ team, widthPct, isOver, color, isSel, rank, onSelect }: RowPro
                 background: `radial-gradient(ellipse at left, ${color}33, transparent 70%)`,
               }}
             />
-            <div className="absolute left-3 inset-y-0 z-[3] flex items-center gap-2.5">
-              <span className="whitespace-nowrap font-sans text-[12.5px] font-medium tracking-[0.01em] text-ink">
+            <div className="absolute left-2 inset-y-0 z-[3] flex items-center gap-2 sm:left-3 sm:gap-2.5">
+              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink sm:text-[15px]">
                 {team.team}
               </span>
-              <span className="font-mono text-[10px] font-semibold tabular-nums text-core-bright">
+              <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
                 {String(team.seed).padStart(2, "0")}
               </span>
-              <span className="font-mono text-[10px] tabular-nums text-ink-3">
+              <span className="hidden font-mono text-sm tabular-nums text-ink-3 sm:inline">
                 {String(rank).padStart(2, "0")}·
               </span>
             </div>
             <div
-              className="absolute right-2 top-1/2 z-[4] inline-flex min-w-12 -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2.5 py-0.5 shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
+              className="absolute right-1.5 top-1/2 z-[4] inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] sm:right-2 sm:px-2.5"
               style={{ borderColor: `${color}66` }}
             >
               <span
-                className="font-mono text-[13px] font-bold tabular-nums tracking-[0.02em]"
+                className="font-mono text-sm font-bold tabular-nums tracking-[0.02em]"
                 style={{ color, textShadow: "0 0 12px currentColor" }}
               >
                 +{gap}

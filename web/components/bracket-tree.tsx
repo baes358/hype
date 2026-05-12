@@ -72,10 +72,16 @@ export function BracketTree({
   const champion = teams.find((t) => t.wins === 6) ?? null;
 
   return (
-    <section className="relative mx-auto max-w-[1440px] px-5 pt-12 pb-20 sm:px-7 sm:pt-14">
-      <header className="mb-8 flex flex-wrap items-end justify-between gap-6">
+    <section
+      className="relative mx-auto max-w-[1440px]"
+      style={{
+        padding:
+          "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
+      }}
+    >
+      <header className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
         <div>
-          <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
+          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">04</span> /{" "}
             <span className="text-ink-1">The Bracket</span>
           </div>
@@ -94,8 +100,8 @@ export function BracketTree({
             </span>{" "}
             — colored by the story each team ended up telling
           </h2>
-          <div className="mt-3.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-2">
-            {teams.length} teams · 4 regions · click any team for the full story
+          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
+            {teams.length} teams · 4 regions · tap any team
           </div>
         </div>
 
@@ -136,14 +142,14 @@ export function BracketTree({
 
 function Legend() {
   return (
-    <div className="flex items-center gap-3.5 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
+    <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
       {(Object.keys(TAG_COLOR) as StoryTag[]).map((tag) => (
         <span key={tag} className="inline-flex items-center gap-1.5">
           <span
             className="size-2 rounded-[2px]"
             style={{ background: TAG_COLOR[tag] }}
           />
-          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-1">
+          <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
             {tag === "as_expected" ? "As expected" : tag.charAt(0).toUpperCase() + tag.slice(1)}
           </span>
         </span>

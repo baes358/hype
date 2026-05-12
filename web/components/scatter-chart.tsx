@@ -56,10 +56,16 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
   const yFor = (wins: number) => PAD_T + PH - (wins / 6) * PH;
 
   return (
-    <section className="relative mx-auto max-w-[1440px] px-5 pt-12 pb-20 sm:px-7 sm:pt-14">
-      <header className="mb-8 flex flex-wrap items-end justify-between gap-6">
+    <section
+      className="relative mx-auto max-w-[1440px]"
+      style={{
+        padding:
+          "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
+      }}
+    >
+      <header className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
         <div>
-          <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
+          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">02</span> /{" "}
             <span className="text-ink-1">The Scatter</span>
           </div>
@@ -78,19 +84,19 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             </span>{" "}
             is the expected line
           </h2>
-          <div className="mt-3.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-2">
-            <span className="text-ink">{teams.length}</span> teams · outliers are
-            the story · X = hype index 0–100 · Y = tournament wins
+          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
+            <span className="text-ink">{teams.length}</span> teams · outliers
+            are the story · X = hype index · Y = wins
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-3.5">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <CalloutGroup label="Most underhyped" tag="underhyped" teams={calls.above} arrow="↑" />
           <CalloutGroup label="Most overhyped" tag="overhyped" teams={calls.below} arrow="↓" />
         </div>
       </header>
 
-      <div className="relative aspect-[11/6] overflow-hidden rounded-[14px] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.012),rgba(255,255,255,0.003))]">
+      <div className="relative min-h-[320px] overflow-hidden rounded-[14px] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.012),rgba(255,255,255,0.003))] sm:min-h-0 sm:aspect-[11/6]">
         <div
           aria-hidden
           className="aurora"
@@ -297,7 +303,7 @@ function CalloutGroup({
   return (
     <div className="min-w-[200px] rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-4 py-3">
       <div
-        className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em]"
+        className="mb-2 font-mono text-sm uppercase tracking-[0.14em]"
         style={{ color }}
       >
         {arrow} {label}
@@ -306,16 +312,16 @@ function CalloutGroup({
         {teams.map((t) => (
           <div
             key={t.team}
-            className="grid grid-cols-[40px_1fr_auto] items-center gap-2"
+            className="grid grid-cols-[44px_1fr_auto] items-center gap-2"
           >
             <span
-              className="font-mono text-[12px] font-bold tabular-nums"
+              className="font-mono text-sm font-bold tabular-nums"
               style={{ color }}
             >
               {t.gap > 0 ? `+${t.gap}` : t.gap}
             </span>
-            <span className="font-sans text-[12px] text-ink">{t.team}</span>
-            <span className="font-mono text-[10px] tabular-nums text-core-bright">
+            <span className="truncate font-sans text-sm text-ink">{t.team}</span>
+            <span className="font-mono text-sm tabular-nums text-core-bright">
               {String(t.seed).padStart(2, "0")}
             </span>
           </div>

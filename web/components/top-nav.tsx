@@ -72,12 +72,13 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
       ref={headerRef}
       className="sticky top-0 z-40 border-b border-border bg-[rgba(10,10,12,0.78)] backdrop-blur-md backdrop-saturate-[140%]"
     >
-      <div className="mx-auto grid max-w-[1440px] grid-cols-[auto_1fr_auto] items-center gap-6 px-5 py-3 sm:px-7 sm:py-3.5">
-        {/* LEFT — wordmark + sub */}
+      {/* Top row — logo + (desktop) tab pills + search + docs.
+          On mobile/tablet, this row only holds the logo + a docs link. */}
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:gap-6">
         <Link
           href="/"
           aria-label="HYP3 home"
-          className="flex shrink-0 items-center gap-3"
+          className="flex shrink-0 items-center"
         >
           <Image
             src="/media/hype-logo.png"
@@ -85,14 +86,14 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
             width={430}
             height={112}
             priority
-            className="h-7 w-auto"
+            className="h-6 w-auto sm:h-7"
           />
         </Link>
 
-        {/* CENTER — 4 numbered tab pills */}
+        {/* Desktop tab pills (lg+) */}
         <nav
           aria-label="Primary"
-          className="hidden items-center justify-center min-[900px]:flex"
+          className="hidden flex-1 justify-center lg:flex"
         >
           <div className="inline-flex items-center gap-1 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1">
             {NAV_ITEMS.map((item) => (
@@ -106,8 +107,8 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
           </div>
         </nav>
 
-        {/* RIGHT — search + docs */}
-        <div className="hidden items-center gap-3 min-[900px]:flex">
+        {/* Right cluster — search (lg+ inline), docs links */}
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <div className="hidden lg:block">
             <TeamSearch teams={dataset.teams} onSelect={onSelectTeam} />
           </div>
@@ -115,7 +116,7 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
             href="https://github.com/sophbae99/hype"
             target="_blank"
             rel="noreferrer"
-            className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink"
+            className="hidden font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink sm:inline"
           >
             Docs ↗
           </a>
@@ -123,17 +124,18 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
             href="https://github.com/sophbae99/hype"
             target="_blank"
             rel="noreferrer"
-            className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink"
+            className="hidden font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink lg:inline"
           >
             API ↗
           </a>
         </div>
       </div>
 
-      {/* Mobile horizontal nav */}
-      <div className="min-[900px]:hidden">
+      {/* Mobile / tablet nav — horizontally scrolling pills below the top row.
+          Visible until lg breakpoint where pills move into the top row. */}
+      <div className="lg:hidden">
         <div className="overflow-x-auto border-t border-border">
-          <div className="flex min-w-max items-center gap-2 px-5 py-2">
+          <div className="flex min-w-max items-center gap-2 px-4 py-2 sm:px-6">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -142,7 +144,8 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
                   href={item.href}
                   scroll={false}
                   onClick={() => handleTabClick(item.href)}
-                  className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] ${
+                  // Min 44px tap target.
+                  className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-3 py-2 font-mono text-sm uppercase tracking-[0.1em] ${
                     active
                       ? "bg-[rgba(18,119,222,0.16)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4)]"
                       : "text-ink-1"
@@ -151,11 +154,22 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
                   <span className={active ? "text-core-bright" : "text-ink-3"}>
                     {item.marker}
                   </span>
-                  <span className="font-display tracking-[0.08em]">{item.label}</span>
+                  <span className="font-display tracking-[0.08em]">
+                    {item.label}
+                  </span>
                 </Link>
               );
             })}
           </div>
+        </div>
+
+        {/* Search — full-width on mobile, sits below tabs and above page. */}
+        <div className="border-t border-border px-4 py-2 sm:px-6">
+          <TeamSearch
+            teams={dataset.teams}
+            onSelect={onSelectTeam}
+            fullWidth
+          />
         </div>
       </div>
     </header>
@@ -176,20 +190,21 @@ function NavPill({
       href={item.href}
       scroll={false}
       onClick={onClick}
-      className={`relative inline-flex items-center gap-2.5 rounded-lg px-4 py-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-bright/60 ${
+      // Min 44px tap height.
+      className={`relative inline-flex min-h-11 items-center gap-2.5 rounded-lg px-3.5 py-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-bright/60 ${
         active
           ? "bg-[rgba(18,119,222,0.16)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4),0_0_28px_-8px_rgba(114,184,255,0.55)]"
           : "text-ink-1 hover:bg-[rgba(255,255,255,0.04)] hover:text-ink"
       }`}
     >
       <span
-        className={`font-mono text-[10px] font-semibold tracking-[0.14em] ${
+        className={`font-mono text-sm font-semibold tracking-[0.14em] ${
           active ? "text-core-bright" : "text-ink-3"
         }`}
       >
         {item.marker}
       </span>
-      <span className="font-display text-[12px] font-bold uppercase leading-none tracking-[0.08em] lg:text-[13px]">
+      <span className="font-display text-sm font-bold uppercase leading-none tracking-[0.08em]">
         {item.label}
       </span>
     </Link>

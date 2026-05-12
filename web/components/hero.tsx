@@ -46,23 +46,29 @@ export function Hero({ data }: Props) {
       {/* Dot grid overlay on top of the photo */}
       <div aria-hidden className="bg-dotgrid z-[1]" />
 
-      <div className="relative z-[2] mx-auto max-w-[1280px] px-5 pt-14 pb-20 sm:px-7 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28">
-        <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink backdrop-blur">
+      <div
+        className="relative z-[2] mx-auto max-w-[1280px]"
+        style={{
+          padding:
+            "clamp(2rem, 6vw, 4.5rem) clamp(1rem, 4vw, 1.75rem) clamp(3rem, 8vw, 6rem)",
+        }}
+      >
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
             <span
               aria-hidden
               className="size-1.5 rounded-full bg-overhyped shadow-[0_0_10px_var(--overhyped)]"
             />
-            March Madness · {data.metadata.tournament_year} Tournament
+            March Madness · {data.metadata.tournament_year}
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
+          <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
             EDITION 03 · ISSUE 12
           </span>
         </div>
 
         <h1
           className="m-0 mb-6 break-words font-display font-bold leading-[0.95] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(36px, 7vw, 96px)" }}
+          style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)" }}
         >
           <span className="text-ink">HYPE</span>{" "}
           <span className="italic font-normal text-ink-2">vs.</span>{" "}
@@ -77,7 +83,7 @@ export function Hero({ data }: Props) {
           </span>
         </h1>
 
-        <p className="m-0 mb-10 max-w-2xl text-[15px] leading-[1.55] text-ink-1 sm:text-base sm:leading-relaxed lg:mb-12 lg:text-[17px]">
+        <p className="m-0 mb-8 max-w-2xl text-base leading-relaxed text-ink-1 lg:mb-12 lg:text-[17px]">
           HYP3 measures the distance between how loudly the internet talked
           about each team and how far they actually went.{" "}
           <span className="text-overhyped">Negative gap</span> means a team got
@@ -86,10 +92,8 @@ export function Hero({ data }: Props) {
           robbed of attention.
         </p>
 
-        {/* Stat row — 4 evenly-spaced cards. Centered horizontally with
-            consistent baseline so values sit at the same vertical line.
-            Below sm: stack 1-up; sm: 2-up; lg: 4-up. */}
-        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        {/* Stat row — 2×2 on mobile, 4-across on desktop. */}
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4">
           <StatCard
             label="Most overhyped"
             value={mostOver?.team ?? "—"}
@@ -133,19 +137,19 @@ function StatCard({
 }) {
   return (
     <div className="flex h-full flex-col bg-black/60 p-4 backdrop-blur sm:p-5 lg:p-6">
-      <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-2">
+      <div className="mb-2 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
         {label}
       </div>
       <div
-        className="break-words font-display font-bold leading-[1.05] tracking-[-0.01em]"
+        className="break-words font-display font-bold leading-[1.1] tracking-[-0.01em]"
         style={{
           color,
-          fontSize: "clamp(18px, 2.6vw, 30px)",
+          fontSize: "clamp(1.125rem, 2.4vw, 1.75rem)",
         }}
       >
         {value}
       </div>
-      <div className="mt-2 font-mono text-[10px] tracking-[0.06em] text-ink-2 sm:text-[11px]">
+      <div className="mt-2 font-mono text-sm tracking-[0.06em] text-ink-2">
         {sub}
       </div>
     </div>

@@ -161,9 +161,26 @@
   --sidebar-ring: var(--core-bright);
 }
 
+/* ── Spacing scale (mobile-first) ──────────────────────────────
+   Use --space-section for top/bottom of major sections; clamps the
+   value between 24px (mobile) and 48px (desktop) so airy at larger
+   widths without overpowering small ones. */
+:root {
+  --space-section: clamp(1.5rem, 4vw, 3rem);
+  --space-gutter: clamp(1rem, 3vw, 1.75rem);
+  --space-stack: clamp(0.75rem, 2vw, 1.25rem);
+}
+
 @layer base {
   * {
     @apply border-border;
+  }
+  /* Lock page-level horizontal overflow. Children should never produce a
+     scrollbar on the document; if a wide grid (heatmap, bracket) needs
+     scroll, it must do so inside its own overflow-x-auto container. */
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
   body {
     @apply bg-background text-foreground;
@@ -172,6 +189,10 @@
       var(--bg);
     letter-spacing: 0.005em;
     font-feature-settings: "ss01", "cv11", "tnum";
+    /* Floor body text at 16px to dodge iOS auto-zoom on inputs and meet
+       the readable-on-mobile minimum. */
+    font-size: 16px;
+    line-height: 1.5;
   }
   html {
     @apply font-sans;

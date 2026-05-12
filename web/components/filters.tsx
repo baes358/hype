@@ -52,14 +52,20 @@ export function Filters({
 }: Props) {
   return (
     <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-[rgba(10,10,12,0.85)] backdrop-blur-xl backdrop-saturate-[140%]">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-3.5 px-5 pt-4 pb-3 sm:px-7">
-        {/* PRIMARY ROW — Scope + Story + total */}
-        <div className="flex flex-wrap items-end gap-5">
+      <div
+        className="mx-auto flex max-w-[1440px] flex-col gap-4"
+        style={{
+          padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.75rem)",
+        }}
+      >
+        {/* PRIMARY ROW — Scope + Story.
+            Mobile: stack vertically. md+: lay out inline. */}
+        <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-end md:gap-6">
           <PrimaryGroup marker="A" label="SCOPE">
             <ModeToggle mode={mode} setMode={setMode} />
           </PrimaryGroup>
 
-          <div className="hidden self-stretch border-r border-border sm:block" />
+          <div className="hidden self-stretch border-r border-border md:block" />
 
           <PrimaryGroup
             marker="B"
@@ -80,7 +86,8 @@ export function Filters({
                     type="button"
                     onClick={() => onToggleTag(tag)}
                     aria-pressed={active}
-                    className="inline-flex h-[34px] items-center gap-2 rounded-full border px-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.08em] transition-all"
+                    // Min 44px tap height.
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-sm font-semibold uppercase tracking-[0.08em] transition-all"
                     style={{
                       borderColor: active ? color : "var(--border)",
                       background: active ? `${color}22` : "transparent",
@@ -95,7 +102,7 @@ export function Filters({
                     />
                     {TAG_LABEL[tag]}
                     <span
-                      className="ml-0.5 rounded-full border bg-black/30 px-1.5 py-px font-mono text-[10px] tabular-nums"
+                      className="ml-0.5 rounded-full border bg-black/30 px-1.5 py-px font-mono text-sm tabular-nums"
                       style={{ borderColor: "currentColor" }}
                     >
                       {tagCounts[tag] ?? 0}
@@ -105,11 +112,11 @@ export function Filters({
               })}
             </div>
           </PrimaryGroup>
-
         </div>
 
-        {/* SECONDARY ROW — refinements */}
-        <div className="flex flex-wrap items-center gap-3.5 border-t border-border pt-2.5">
+        {/* SECONDARY ROW — refinements.
+            Mobile: stack. md+: inline with Reset pushed right. */}
+        <div className="flex flex-col gap-3 border-t border-border pt-3 md:flex-row md:flex-wrap md:items-center md:gap-4">
           <SecondaryGroup label="Region">
             <Segmented
               options={[{ id: "all", label: "All" }, ...REGIONS.map((r) => ({ id: r, label: r }))]}
@@ -120,23 +127,23 @@ export function Filters({
 
           {showRoundFilter && (
             <>
-              <div className="h-4 w-px self-center bg-border" />
+              <div className="hidden h-4 w-px self-center bg-border md:block" />
               <SecondaryGroup label="Round">
                 <RoundDropdown value={selectedRound} setValue={onSetRound} />
               </SecondaryGroup>
             </>
           )}
 
-          <div className="ml-auto" />
+          <div className="hidden md:block md:ml-auto" />
 
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex h-7 items-center gap-1.5 rounded-lg border border-border bg-transparent px-3 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink"
+            className="inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg border border-border bg-transparent px-3 py-2 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:self-auto"
           >
             <svg
-              width="10"
-              height="10"
+              width="12"
+              height="12"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -167,13 +174,13 @@ function PrimaryGroup({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="inline-flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-1">
-        <span className="inline-flex size-4 items-center justify-center rounded border border-border-hi bg-[rgba(18,119,222,0.15)] text-[9px] text-core-bright">
+      <div className="inline-flex items-center gap-2 font-mono text-sm font-semibold uppercase tracking-[0.16em] text-ink-1">
+        <span className="inline-flex size-5 items-center justify-center rounded border border-border-hi bg-[rgba(18,119,222,0.15)] text-xs text-core-bright">
           {marker}
         </span>
         <span>{label}</span>
         {sublabel && (
-          <span className="ml-1 font-mono text-[10px] tracking-[0.1em] text-ink-3">
+          <span className="ml-1 font-mono text-sm tracking-[0.1em] text-ink-3">
             {sublabel}
           </span>
         )}
@@ -191,8 +198,8 @@ function SecondaryGroup({
   children: React.ReactNode;
 }) {
   return (
-    <div className="inline-flex items-center gap-2.5">
-      <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-3">
+    <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-2.5">
+      <span className="font-mono text-sm uppercase tracking-[0.18em] text-ink-3">
         {label}
       </span>
       {children}
@@ -212,7 +219,7 @@ function ModeToggle({
     { id: "season", label: "Season", sub: "5-mo" },
   ];
   return (
-    <div className="inline-flex gap-0.5 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1">
+    <div className="inline-flex w-fit gap-0.5 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1">
       {modes.map((m) => {
         const active = mode === m.id;
         return (
@@ -221,7 +228,7 @@ function ModeToggle({
             type="button"
             onClick={() => setMode(m.id)}
             aria-pressed={active}
-            className={`inline-flex h-[34px] items-center gap-2 rounded-lg px-4 transition-all ${
+            className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-3.5 py-2 transition-all sm:px-4 ${
               active
                 ? "bg-[rgba(18,119,222,0.22)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4)]"
                 : "text-ink-2 hover:text-ink"
@@ -232,10 +239,10 @@ function ModeToggle({
               className="size-1.5 shrink-0 rounded-full bg-core-bright shadow-[0_0_8px_var(--core-bright)]"
               style={{ opacity: active ? 1 : 0.3 }}
             />
-            <span className="font-display text-[13px] font-bold uppercase leading-none tracking-[0.08em]">
+            <span className="font-display text-sm font-bold uppercase leading-none tracking-[0.08em]">
               {m.label}
             </span>
-            <span className="ml-1 border-l border-border pl-1.5 font-mono text-[10px] tracking-[0.1em] text-ink-3">
+            <span className="ml-1 hidden border-l border-border pl-1.5 font-mono text-sm tracking-[0.1em] text-ink-3 sm:inline">
               {m.sub}
             </span>
           </button>
@@ -257,7 +264,7 @@ function Segmented({
   return (
     <div
       role="group"
-      className="inline-flex rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] p-[3px]"
+      className="inline-flex w-fit max-w-full flex-wrap rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] p-[3px]"
     >
       {options.map((o) => {
         const active = value === o.id;
@@ -267,7 +274,7 @@ function Segmented({
             type="button"
             onClick={() => onChange(o.id)}
             aria-pressed={active}
-            className={`rounded-[7px] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.06em] transition-all ${
+            className={`inline-flex min-h-11 items-center rounded-[7px] px-3 py-1.5 font-mono text-sm uppercase tracking-[0.06em] transition-all ${
               active
                 ? "bg-[rgba(255,255,255,0.06)] text-ink shadow-[inset_0_0_0_1px_var(--border-hi)]"
                 : "text-ink-1 hover:text-ink"
@@ -314,7 +321,7 @@ function RoundDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex h-7 min-w-[150px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-3 font-mono text-[11px] uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi"
+        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-3 py-2 font-mono text-sm uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto"
       >
         <span>{ROUND_LABEL[value]}</span>
         <ChevronDown
@@ -339,7 +346,7 @@ function RoundDropdown({
                 }}
                 role="menuitemcheckbox"
                 aria-checked={active}
-                className={`flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-left font-mono text-[11px] uppercase tracking-[0.06em] transition-colors ${
+                className={`flex min-h-11 w-full items-center gap-2 rounded-md px-2.5 py-2 text-left font-mono text-sm uppercase tracking-[0.06em] transition-colors ${
                   active
                     ? "bg-[rgba(255,255,255,0.04)] text-ink"
                     : "text-ink-1 hover:bg-[rgba(255,255,255,0.03)] hover:text-ink"

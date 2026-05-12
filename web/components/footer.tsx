@@ -4,16 +4,22 @@ type Props = { data: Dataset };
 
 export function Footer({ data }: Props) {
   return (
-    <footer className="relative z-[1] mt-10 border-t border-border bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.5))] px-7 pb-6 pt-16">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-10 border-b border-border pb-10 md:grid-cols-[2fr_1fr_1fr_1fr]">
-        <div className="col-span-2 flex flex-col gap-3 md:col-span-1">
+    <footer
+      className="relative z-[1] mt-10 border-t border-border bg-[linear-gradient(180deg,transparent,rgba(0,0,0,0.5))]"
+      style={{
+        padding:
+          "clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 1.5rem)",
+      }}
+    >
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-8 border-b border-border pb-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div className="flex flex-col gap-3">
           <span
             className="font-display font-bold leading-none tracking-[0.04em] text-ink"
-            style={{ fontSize: "clamp(36px, 5vw, 48px)" }}
+            style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
           >
             HYP3
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
+          <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
             Built for the underdogs.
           </span>
         </div>
@@ -44,11 +50,11 @@ export function Footer({ data }: Props) {
           <FootLink href="mailto:sophbae99@gmail.com">Contact</FootLink>
         </Column>
       </div>
-      <div className="mx-auto mt-6 flex max-w-[1440px] flex-wrap justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-2">
+      <div className="mx-auto mt-6 flex max-w-[1440px] flex-wrap justify-between gap-3 font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
         <div>
           © {data.metadata.tournament_year} HYP3 · Sophia Bae · All rights reserved.
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <span>v3.1.0</span>
           <span>D1 Men&apos;s Basketball</span>
         </div>
@@ -65,8 +71,8 @@ function Column({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2.5">
-      <div className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-2">
+    <div className="flex flex-col gap-2">
+      <div className="mb-1 font-mono text-sm uppercase tracking-[0.18em] text-ink-2">
         {label}
       </div>
       {children}
@@ -88,7 +94,8 @@ function FootLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
-      className="font-sans text-[13px] leading-relaxed text-ink-1 transition-colors hover:text-ink"
+      // Min 44px tap target.
+      className="inline-flex min-h-11 items-center font-sans text-base leading-snug text-ink-1 transition-colors hover:text-ink"
     >
       {children}
     </a>

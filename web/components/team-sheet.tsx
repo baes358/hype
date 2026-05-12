@@ -84,7 +84,10 @@ function TeamSheetBody({
   const gap = team.gap;
 
   return (
-    <div className="relative isolate flex flex-col gap-5 px-6 py-6">
+    <div
+      className="relative isolate flex flex-col gap-5"
+      style={{ padding: "clamp(1.25rem, 4vw, 1.75rem)" }}
+    >
       {/* Aurora glow behind */}
       <div
         aria-hidden
