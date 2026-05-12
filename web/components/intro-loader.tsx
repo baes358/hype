@@ -9,13 +9,16 @@ export function IntroLoader() {
   const [done, setDone] = useState(false);
   const [fading, setFading] = useState(false);
   const [src, setSrc] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const fadingRef = useRef(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const fadeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    setSrc(isMobile ? "/media/loader-mobile.mp4" : "/media/loader.mp4");
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+    setIsMobile(mobile);
+    setSrc(mobile ? "/media/loader-mobile.mp4" : "/media/loader.mp4");
   }, []);
 
   const beginFade = useCallback(() => {
@@ -28,15 +31,24 @@ export function IntroLoader() {
 
   useEffect(() => {
     if (done) return;
+    rootRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape" || e.key === "Enter") {
+      if (
+        e.key === "Escape" ||
+        e.key === "Enter" ||
+        e.key === "Return" ||
+        e.code === "Enter" ||
+        e.code === "NumpadEnter"
+      ) {
         e.preventDefault();
         e.stopPropagation();
         beginFade();
       }
     };
+    document.addEventListener("keydown", onKey, true);
     window.addEventListener("keydown", onKey, true);
     return () => {
+      document.removeEventListener("keydown", onKey, true);
       window.removeEventListener("keydown", onKey, true);
     };
   }, [done, beginFade]);
@@ -52,12 +64,24 @@ export function IntroLoader() {
   return (
     <div
       data-hyp3-loader
+      ref={rootRef}
       onClick={beginFade}
       onTouchStart={beginFade}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === "Escape" || e.key === "Return") {
+          e.preventDefault();
+          beginFade();
+        }
+      }}
+      tabIndex={0}
+      autoFocus
+      role="button"
+      aria-label="Dismiss intro"
       style={{
         opacity: fading ? 0 : 1,
         transition: `opacity ${FADE_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
         willChange: "opacity",
+        outline: "none",
       }}
       className="fixed inset-0 z-[60] flex items-center justify-center bg-black"
     >
@@ -76,12 +100,17 @@ export function IntroLoader() {
           preload="auto"
           tabIndex={-1}
           disablePictureInPicture
+          poster="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
           controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
           onLoadedMetadata={(e) => {
             const v = e.currentTarget;
             v.playbackRate = PLAYBACK_RATE;
             const p = v.play();
-            if (p && typeof p.catch === "function") p.catch(() => {});
+            if (p && typeof p.catch === "function") {
+              p.catch(() => {
+                if (isMobile) beginFade();
+              });
+            }
           }}
           onEnded={beginFade}
           onError={beginFade}
