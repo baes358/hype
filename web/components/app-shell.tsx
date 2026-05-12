@@ -12,7 +12,6 @@ import { ScatterChartView } from "@/components/scatter-chart";
 import { TeamSheet } from "@/components/team-sheet";
 import { TimelineHeatmap } from "@/components/timeline-heatmap";
 import { TopNav } from "@/components/top-nav";
-import { TweaksPanel } from "@/components/tweaks-panel";
 import {
   Dataset,
   GapMode,
@@ -398,8 +397,6 @@ export function AppShell({ data, view }: Props) {
         hypeWindowStart={dataset.metadata.hype_window_start}
         hypeWindowEnd={dataset.metadata.hype_window_end}
       />
-
-      {process.env.NODE_ENV === "development" && <TweaksPanel />}
     </>
   );
 }
