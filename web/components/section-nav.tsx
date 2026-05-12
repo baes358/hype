@@ -15,16 +15,9 @@ export function SectionNav() {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
 
-  // Only scroll past the hero if the user is currently above the nav (i.e.,
-  // still at the hero). If they've already scrolled to the content, leave
-  // them where they are — preserves position when switching tabs mid-read,
-  // which is the common case on mobile.
   const handleTabClick = () => {
     if (!navRef.current) return;
-    const navTop = navRef.current.getBoundingClientRect().top;
-    if (navTop > 0) {
-      navRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    navRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (

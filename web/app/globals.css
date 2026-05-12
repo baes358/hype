@@ -171,3 +171,10 @@
   }
 }
 
+/* Hide the SSR'd intro loader on repeat visits within a session. The class
+   is set synchronously by an inline script in layout.tsx before paint, so
+   the loader never flashes for users who've already seen it this session. */
+html.hyp3-loader-hidden [data-hyp3-loader] {
+  display: none;
+}
+

@@ -359,56 +359,58 @@ export function AppShell({ data, view }: Props) {
 
       <Hero data={dataset} />
 
-      <Filters
-        teams={dataset.teams}
-        selectedTags={selectedTags}
-        selectedRegion={selectedRegion}
-        selectedRound={selectedRound}
-        tagCounts={counts}
-        gapMode={gapMode}
-        onToggleTag={onToggleTag}
-        onSetRegion={setSelectedRegion}
-        onSetRound={setSelectedRound}
-        onSetGapMode={setGapMode}
-        onReset={onReset}
-        onSelectTeam={selectTeamByOriginal}
-      />
-
-      {view === "gap" && (
-        <GapChart
-          teams={filteredTeams}
-          maxAbsGap={scale}
-          selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => selectTeamByOriginal(t)}
+      <div id="hyp3-content" className="scroll-mt-[var(--hyp3-nav-h,0px)]">
+        <Filters
+          teams={dataset.teams}
+          selectedTags={selectedTags}
+          selectedRegion={selectedRegion}
+          selectedRound={selectedRound}
+          tagCounts={counts}
+          gapMode={gapMode}
+          onToggleTag={onToggleTag}
+          onSetRegion={setSelectedRegion}
+          onSetRound={setSelectedRound}
+          onSetGapMode={setGapMode}
+          onReset={onReset}
+          onSelectTeam={selectTeamByOriginal}
         />
-      )}
 
-      {view === "scatter" && (
-        <ScatterChartView
-          teams={filteredTeams}
-          selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => selectTeamByOriginal(t)}
-        />
-      )}
+        {view === "gap" && (
+          <GapChart
+            teams={filteredTeams}
+            maxAbsGap={scale}
+            selectedTeam={selectedTeam?.team ?? null}
+            onSelect={(t) => selectTeamByOriginal(t)}
+          />
+        )}
 
-      {view === "timeline" && (
-        <TimelineHeatmap
-          teams={filteredTeams}
-          mode={gapMode}
-          windowDates={windowDates}
-          maxDailyHype={maxDailyHype}
-          selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => selectTeamByOriginal(t)}
-        />
-      )}
+        {view === "scatter" && (
+          <ScatterChartView
+            teams={filteredTeams}
+            selectedTeam={selectedTeam?.team ?? null}
+            onSelect={(t) => selectTeamByOriginal(t)}
+          />
+        )}
 
-      {view === "bracket" && (
-        <BracketGrid
-          teams={filteredTeams}
-          selectedTeam={selectedTeam?.team ?? null}
-          onSelect={(t) => selectTeamByOriginal(t)}
-        />
-      )}
+        {view === "timeline" && (
+          <TimelineHeatmap
+            teams={filteredTeams}
+            mode={gapMode}
+            windowDates={windowDates}
+            maxDailyHype={maxDailyHype}
+            selectedTeam={selectedTeam?.team ?? null}
+            onSelect={(t) => selectTeamByOriginal(t)}
+          />
+        )}
+
+        {view === "bracket" && (
+          <BracketGrid
+            teams={filteredTeams}
+            selectedTeam={selectedTeam?.team ?? null}
+            onSelect={(t) => selectTeamByOriginal(t)}
+          />
+        )}
+      </div>
 
       <footer className="mt-auto border-t border-border">
         <div className="text-sm uppercase tracking-normal text-muted-foreground">

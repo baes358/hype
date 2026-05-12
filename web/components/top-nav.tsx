@@ -8,6 +8,18 @@ import { useEffect, useRef, useState } from "react";
 
 import { Dataset } from "@/lib/data";
 
+// Module-scope flag set by a nav click and consumed by the freshly-mounted
+// TopNav on the destination route. Each route renders its own <AppShell>,
+// so TopNav remounts on every cross-route navigation — refs and state
+// don't survive. A module variable does.
+let pendingScrollOnNav = false;
+
+function scrollToContent() {
+  document
+    .getElementById("hyp3-content")
+    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 // -----------------------------------------------------------------------------
 // Nav config — primary route links + editorial metadata for hover panels.
 // -----------------------------------------------------------------------------
@@ -110,6 +122,30 @@ export function TopNav({ dataset }: Props) {
 
   const hovered = hoveredHref ? NAV_ITEMS.find((n) => n.href === hoveredHref) : null;
 
+  // Always land on the data viz when a tab is clicked (mobile + desktop).
+  // Same-route clicks scroll immediately. Cross-route clicks defer scroll
+  // until after the new page mounts — a synchronous smooth scroll gets
+  // cancelled when the route tears the DOM down. Each route renders its
+  // own <AppShell>, so the pending flag lives at module scope, not in a
+  // ref/state that would reset on remount.
+  const handleTabClick = (href: string) => {
+    if (href === pathname) {
+      scrollToContent();
+    } else {
+      pendingScrollOnNav = true;
+    }
+  };
+  useEffect(() => {
+    if (!pendingScrollOnNav) return;
+    pendingScrollOnNav = false;
+    // Defer past layout commit so the new content has positioned before we
+    // measure. A 0ms timer is enough — setTimeout's macrotask runs after
+    // the current commit pass. No cleanup: the scroll is a fire-and-forget
+    // intent, and a stray timer firing after unmount is a no-op (the
+    // element lookup just returns null).
+    setTimeout(scrollToContent, 0);
+  }, [pathname]);
+
   return (
     <header
       ref={headerRef}
@@ -150,6 +186,7 @@ export function TopNav({ dataset }: Props) {
                 item={item}
                 active={active}
                 onHover={(open) => setHoveredHref(open ? item.href : null)}
+                onClick={() => handleTabClick(item.href)}
               />
             );
           })}
@@ -169,6 +206,7 @@ export function TopNav({ dataset }: Props) {
                   key={item.href}
                   href={item.href}
                   scroll={false}
+                  onClick={() => handleTabClick(item.href)}
                   className={`relative whitespace-nowrap text-[11px] uppercase tracking-[0.12em] ${
                     active ? "text-ink" : "text-graphite-soft"
                   }`}
@@ -242,15 +280,18 @@ function PrimaryNavLink({
   item,
   active,
   onHover,
+  onClick,
 }: {
   item: NavItem;
   active: boolean;
   onHover: (open: boolean) => void;
+  onClick?: () => void;
 }) {
   return (
     <Link
       href={item.href}
       scroll={false}
+      onClick={onClick}
       onMouseEnter={() => onHover(true)}
       onFocus={() => onHover(true)}
       onBlur={() => onHover(false)}
