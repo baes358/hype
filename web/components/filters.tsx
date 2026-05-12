@@ -26,6 +26,10 @@ type Props = {
   selectedRound: Round;
   tagCounts: Record<StoryTag, number>;
   gapMode: GapMode;
+  // When false, the round dropdown + chip are hidden. The bracket-tree view
+  // encodes round of elimination structurally so the filter is redundant
+  // (and worse, hiding teams would tear holes in the tree).
+  showRoundFilter?: boolean;
   onToggleTag: (tag: StoryTag) => void;
   onSetRegion: (r: Region | "all") => void;
   onSetRound: (r: Round) => void;
@@ -266,6 +270,7 @@ export function Filters({
   selectedRound,
   tagCounts,
   gapMode,
+  showRoundFilter = true,
   onToggleTag,
   onSetRegion,
   onSetRound,
@@ -276,7 +281,7 @@ export function Filters({
   const allTagsActive = selectedTags.size === TAG_ORDER.length;
   const tagsCount = allTagsActive ? null : selectedTags.size;
   const regionActive = selectedRegion !== "all";
-  const roundActive = selectedRound !== "all";
+  const roundActive = showRoundFilter && selectedRound !== "all";
   const hasActive = !allTagsActive || regionActive || roundActive;
 
   // Active chips, in stable order: story tags first (by TAG_ORDER), then
@@ -345,25 +350,27 @@ export function Filters({
             )}
           </FilterDropdown>
 
-          <FilterDropdown
-            label={roundActive ? ROUND_LABEL[selectedRound] : "Round"}
-            active={roundActive}
-          >
-            {(close) =>
-              ROUND_ORDER.map((r) => (
-                <DropdownItem
-                  key={r}
-                  active={selectedRound === r}
-                  onClick={() => {
-                    onSetRound(r);
-                    close();
-                  }}
-                >
-                  {ROUND_LABEL[r]}
-                </DropdownItem>
-              ))
-            }
-          </FilterDropdown>
+          {showRoundFilter && (
+            <FilterDropdown
+              label={roundActive ? ROUND_LABEL[selectedRound] : "Round"}
+              active={roundActive}
+            >
+              {(close) =>
+                ROUND_ORDER.map((r) => (
+                  <DropdownItem
+                    key={r}
+                    active={selectedRound === r}
+                    onClick={() => {
+                      onSetRound(r);
+                      close();
+                    }}
+                  >
+                    {ROUND_LABEL[r]}
+                  </DropdownItem>
+                ))
+              }
+            </FilterDropdown>
+          )}
 
           <div className="w-full sm:w-auto lg:ml-auto">
             <TeamSearch teams={teams} onSelect={onSelectTeam} />

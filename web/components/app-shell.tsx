@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { BracketGrid } from "@/components/bracket-grid";
+import { BracketTree } from "@/components/bracket-tree";
 import { Filters } from "@/components/filters";
 import { GapChart } from "@/components/gap-chart";
 import { Hero } from "@/components/hero";
@@ -367,6 +367,7 @@ export function AppShell({ data, view }: Props) {
           selectedRound={selectedRound}
           tagCounts={counts}
           gapMode={gapMode}
+          showRoundFilter={view !== "bracket"}
           onToggleTag={onToggleTag}
           onSetRegion={setSelectedRegion}
           onSetRound={setSelectedRound}
@@ -404,8 +405,10 @@ export function AppShell({ data, view }: Props) {
         )}
 
         {view === "bracket" && (
-          <BracketGrid
-            teams={filteredTeams}
+          <BracketTree
+            teams={projectedTeams}
+            filteredTeams={filteredTeams}
+            selectedRegion={selectedRegion}
             selectedTeam={selectedTeam?.team ?? null}
             onSelect={(t) => selectTeamByOriginal(t)}
           />
