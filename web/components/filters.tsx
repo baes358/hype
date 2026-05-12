@@ -6,7 +6,6 @@ import { Check, ChevronDown, X } from "lucide-react";
 import { AnimatedToolbar } from "@/components/motion";
 import { TeamSearch } from "@/components/team-search";
 import {
-  GapMode,
   Region,
   REGIONS,
   ROUND_LABEL,
@@ -25,7 +24,6 @@ type Props = {
   selectedRegion: Region | "all";
   selectedRound: Round;
   tagCounts: Record<StoryTag, number>;
-  gapMode: GapMode;
   // When false, the round dropdown + chip are hidden. The bracket-tree view
   // encodes round of elimination structurally so the filter is redundant
   // (and worse, hiding teams would tear holes in the tree).
@@ -33,54 +31,13 @@ type Props = {
   onToggleTag: (tag: StoryTag) => void;
   onSetRegion: (r: Region | "all") => void;
   onSetRound: (r: Round) => void;
-  onSetGapMode: (m: GapMode) => void;
   onReset: () => void;
   onSelectTeam: (team: Team) => void;
 };
 
-// ---------------------------------------------------------------------------
-// ModePill — tournament / season segmented toggle. Lifted from top-nav so the
-// mode switch lives alongside the other filter controls.
-// ---------------------------------------------------------------------------
-
-function ModePill({ mode, setMode }: { mode: GapMode; setMode: (m: GapMode) => void }) {
-  return (
-    <div className="flex items-center rounded-full border border-rule bg-white/60 p-0.5">
-      <ModePillBtn active={mode === "tournament"} onClick={() => setMode("tournament")} accent="crimson">
-        Tournament
-      </ModePillBtn>
-      <ModePillBtn active={mode === "season"} onClick={() => setMode("season")} accent="dusty">
-        Season
-      </ModePillBtn>
-    </div>
-  );
-}
-
-function ModePillBtn({
-  active,
-  onClick,
-  accent,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  accent: "crimson" | "dusty";
-  children: React.ReactNode;
-}) {
-  const accentBg = accent === "crimson" ? "bg-crimson/12" : "bg-dusty/12";
-  const accentText = accent === "crimson" ? "text-crimson" : "text-dusty";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`rounded-full px-3 py-1 text-sm uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/30 ${
-        active ? `${accentBg} ${accentText} font-semibold` : "text-graphite-soft hover:text-ink"
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
+// ModePill has been lifted out of Filters into its own ModeBar component so
+// the mode toggle sits structurally above filters (and persists across
+// navigation, unlike filter state which resets per-route). See ModeBar.tsx.
 
 // ---------------------------------------------------------------------------
 // FilterDropdown — button + popover panel. Closed state is a low-weight pill;
@@ -269,12 +226,10 @@ export function Filters({
   selectedRegion,
   selectedRound,
   tagCounts,
-  gapMode,
   showRoundFilter = true,
   onToggleTag,
   onSetRegion,
   onSetRound,
-  onSetGapMode,
   onReset,
   onSelectTeam,
 }: Props) {
@@ -291,13 +246,11 @@ export function Filters({
     : [];
 
   return (
-    <AnimatedToolbar className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border">
+    <AnimatedToolbar className="sticky top-[calc(var(--hyp3-nav-h,0px)_+_var(--hyp3-mode-h,0px))] z-20 border-b border-border">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6">
         {/* Toolbar row. Vertical padding lives on AnimatedToolbar so it can
             condense on scroll. */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-          <ModePill mode={gapMode} setMode={onSetGapMode} />
-
           <FilterDropdown label="Story" badge={tagsCount} active={!allTagsActive}>
             {() =>
               TAG_ORDER.map((tag) => {

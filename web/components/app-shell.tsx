@@ -7,6 +7,7 @@ import { BracketTree } from "@/components/bracket-tree";
 import { Filters } from "@/components/filters";
 import { GapChart } from "@/components/gap-chart";
 import { Hero } from "@/components/hero";
+import { ModeBar } from "@/components/mode-bar";
 import { ScatterChartView } from "@/components/scatter-chart";
 import { TeamSheet } from "@/components/team-sheet";
 import { TimelineHeatmap } from "@/components/timeline-heatmap";
@@ -31,6 +32,24 @@ const VALID_TAGS = new Set<string>(TAG_ORDER);
 const VALID_REGIONS = new Set<string>(REGIONS);
 const VALID_ROUNDS = new Set<string>(ROUND_ORDER);
 const VALID_MODES = new Set<GapMode>(["tournament", "season"]);
+
+// Module-scope flag flipped to true after the first client-side commit. The
+// initial page load goes through SSR/hydration, where the lazy useState
+// initializer MUST return the SSR-safe default ("tournament") to avoid a
+// hydration mismatch. After that, every client-side route change mounts a
+// fresh AppShell on the client only — at which point the lazy initializer
+// can safely read sessionStorage synchronously, so the first paint already
+// has the correct mode (no flicker from "tournament" → "season").
+let hasClientHydrated = false;
+
+function readStoredMode(): GapMode {
+  try {
+    const s = window.sessionStorage.getItem("hyp3-mode");
+    return s === "season" ? "season" : "tournament";
+  } catch {
+    return "tournament";
+  }
+}
 
 function formatPulled(iso: string): string {
   if (iso.startsWith("PLACEHOLDER")) return "—";
@@ -190,12 +209,17 @@ function UrlSync({
       didSeed = true;
     }
 
+    // Mode is special: when the URL doesn't specify ?mode=, do NOT force back
+    // to "tournament". gapMode is initialized from sessionStorage in AppShell
+    // so it persists across route changes (where the URL drops query params).
+    // Only react to an explicit mode= in the URL.
     const modeRaw = searchParams.get("mode");
-    const expectedMode: GapMode =
-      modeRaw && VALID_MODES.has(modeRaw as GapMode) ? (modeRaw as GapMode) : "tournament";
-    if (expectedMode !== gapMode) {
-      setGapMode(expectedMode);
-      didSeed = true;
+    if (modeRaw && VALID_MODES.has(modeRaw as GapMode)) {
+      const expectedMode = modeRaw as GapMode;
+      if (expectedMode !== gapMode) {
+        setGapMode(expectedMode);
+        didSeed = true;
+      }
     }
 
     if (didSeed) readJustSeeded.current = true;
@@ -261,7 +285,54 @@ export function AppShell({ data, view }: Props) {
   const [selectedRegion, setSelectedRegion] = useState<Region | "all">("all");
   const [selectedRound, setSelectedRound] = useState<Round>("all");
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
-  const [gapMode, setGapMode] = useState<GapMode>("tournament");
+  // gapMode persists across route changes via sessionStorage.
+  // - Server render: typeof window is undefined → "tournament".
+  // - First client hydration: hasClientHydrated is still false → "tournament"
+  //   (must match SSR HTML to avoid hydration mismatch). The mount effect
+  //   below flips the flag and catches up via setGapMode if storage differs.
+  // - Subsequent client-side route mounts: hasClientHydrated is true →
+  //   lazy init reads sessionStorage synchronously, so the very first paint
+  //   already has the correct mode. No flicker.
+  const [gapMode, setGapMode] = useState<GapMode>(() => {
+    if (typeof window === "undefined") return "tournament";
+    if (!hasClientHydrated) return "tournament";
+    return readStoredMode();
+  });
+  // The write effect must skip its first invocation. On the initial page
+  // load, the read effect below catches up to sessionStorage by scheduling a
+  // setState — but the write effect fires before that re-render lands and
+  // would clobber the stored value with the pre-update default. Skipping the
+  // first call is harmless on subsequent mounts (lazy init already matches
+  // sessionStorage) and necessary on the initial load.
+  const skipFirstModeWrite = useRef(true);
+
+  useEffect(() => {
+    hasClientHydrated = true;
+    // Only meaningful on the initial-load mount, where lazy init returned
+    // the SSR-safe default. On every later client-nav mount, lazy init
+    // already read sessionStorage and this is a no-op.
+    try {
+      const stored = window.sessionStorage.getItem("hyp3-mode");
+      if (stored === "season" || stored === "tournament") {
+        setGapMode((curr) => (curr === stored ? curr : stored));
+      }
+    } catch {
+      // sessionStorage may throw in private mode / strict cookie policies;
+      // mode just won't persist, which is fine.
+    }
+  }, []);
+
+  useEffect(() => {
+    if (skipFirstModeWrite.current) {
+      skipFirstModeWrite.current = false;
+      return;
+    }
+    try {
+      window.sessionStorage.setItem("hyp3-mode", gapMode);
+    } catch {
+      // see above.
+    }
+  }, [gapMode]);
 
   // Project every team's gap/story_tag to match the current mode. Downstream
   // components (gap chart, filters) read t.gap / t.story_tag as if mode-blind.
@@ -360,18 +431,18 @@ export function AppShell({ data, view }: Props) {
       <Hero data={dataset} />
 
       <div id="hyp3-content" className="scroll-mt-[var(--hyp3-nav-h,0px)]">
+        <ModeBar mode={gapMode} setMode={setGapMode} />
+
         <Filters
           teams={dataset.teams}
           selectedTags={selectedTags}
           selectedRegion={selectedRegion}
           selectedRound={selectedRound}
           tagCounts={counts}
-          gapMode={gapMode}
           showRoundFilter={view !== "bracket"}
           onToggleTag={onToggleTag}
           onSetRegion={setSelectedRegion}
           onSetRound={setSelectedRound}
-          onSetGapMode={setGapMode}
           onReset={onReset}
           onSelectTeam={selectTeamByOriginal}
         />
