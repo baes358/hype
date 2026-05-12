@@ -170,3 +170,14 @@
     letter-spacing: 0;
   }
 }
+
+/* Hero crossfade — two stacked images on phase-shifted opacity cycles.
+   Same 10s cycle: ~4s visible, ~1s crossfade, ~4s hidden, ~1s crossfade. */
+@keyframes hero-fade-a {
+  0%, 40%, 100% { opacity: 1; }
+  50%, 90%      { opacity: 0; }
+}
+@keyframes hero-fade-b {
+  0%, 40%, 100% { opacity: 0; }
+  50%, 90%      { opacity: 1; }
+}
