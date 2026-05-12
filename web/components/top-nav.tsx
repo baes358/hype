@@ -1,17 +1,16 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { Dataset } from "@/lib/data";
+import { TeamSearch } from "@/components/team-search";
+import { Dataset, Team } from "@/lib/data";
 
-// Module-scope flag set by a nav click and consumed by the freshly-mounted
-// TopNav on the destination route. Each route renders its own <AppShell>,
-// so TopNav remounts on every cross-route navigation — refs and state
-// don't survive. A module variable does.
+// Module-scope flag flipped by a nav click; the freshly-mounted TopNav on
+// the destination route consumes it. Each route renders its own AppShell, so
+// component state would reset — a module variable survives.
 let pendingScrollOnNav = false;
 
 function scrollToContent() {
@@ -20,91 +19,29 @@ function scrollToContent() {
     ?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-// -----------------------------------------------------------------------------
-// Nav config — primary route links + editorial metadata for hover panels.
-// -----------------------------------------------------------------------------
-
 type NavItem = {
   href: string;
-  label: string;
   marker: string;
-  description: string;
-  preview: { stat: string; caption: string }[];
+  label: string;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  {
-    href: "/",
-    label: "The Gap",
-    marker: "01",
-    description:
-      "Every team plotted by the wrongness of the internet's read — overhyped flame-outs on the left, underhyped sleepers on the right.",
-    preview: [
-      { stat: "−35", caption: "biggest overhype" },
-      { stat: "+49", caption: "biggest underhype" },
-      { stat: "68", caption: "teams ranked" },
-    ],
-  },
-  {
-    href: "/scatter",
-    label: "Scatter",
-    marker: "02",
-    description:
-      "Hype on one axis, wins on the other. Outliers are the story: bottom-right is overhyped, top-left is overlooked.",
-    preview: [
-      { stat: "x", caption: "tournament wins" },
-      { stat: "y", caption: "hype index" },
-    ],
-  },
-  {
-    href: "/timeline",
-    label: "Timeline",
-    marker: "03",
-    description:
-      "Daily hype curves over the 15-day window, rows ordered by gap. Reveals when each story actually broke.",
-    preview: [
-      { stat: "15", caption: "days" },
-      { stat: "68", caption: "rows" },
-    ],
-  },
-  {
-    href: "/bracket",
-    label: "Bracket",
-    marker: "04",
-    description:
-      "Four regions, sorted by seed, colored by the story each team ended up telling.",
-    preview: [
-      { stat: "4", caption: "regions" },
-      { stat: "16", caption: "seeds each" },
-    ],
-  },
+  { href: "/",         marker: "01", label: "Divergent" },
+  { href: "/scatter",  marker: "02", label: "Scatter"   },
+  { href: "/timeline", marker: "03", label: "Timeline"  },
+  { href: "/bracket",  marker: "04", label: "Bracket"   },
 ];
-
-// -----------------------------------------------------------------------------
-// TopNav — sticky editorial nav with hover panels, scroll compression, search.
-// -----------------------------------------------------------------------------
 
 type Props = {
   dataset: Dataset;
+  onSelectTeam: (team: Team) => void;
 };
 
-export function TopNav({ dataset }: Props) {
+export function TopNav({ dataset, onSelectTeam }: Props) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [hoveredHref, setHoveredHref] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Publish the rendered nav height as a CSS variable so other sticky
-  // elements (the filter toolbar) can offset themselves below it instead of
-  // sitting under the higher-z-index nav. ResizeObserver picks up both
-  // viewport-driven layout shifts and the motion.div padding animation.
+  // Publish nav height as a CSS var so the filter toolbar can stack below it.
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
@@ -120,85 +57,83 @@ export function TopNav({ dataset }: Props) {
     return () => ro.disconnect();
   }, []);
 
-  const hovered = hoveredHref ? NAV_ITEMS.find((n) => n.href === hoveredHref) : null;
-
-  // Always land on the data viz when a tab is clicked (mobile + desktop).
-  // Same-route clicks scroll immediately. Cross-route clicks defer scroll
-  // until after the new page mounts — a synchronous smooth scroll gets
-  // cancelled when the route tears the DOM down. Each route renders its
-  // own <AppShell>, so the pending flag lives at module scope, not in a
-  // ref/state that would reset on remount.
   const handleTabClick = (href: string) => {
-    if (href === pathname) {
-      scrollToContent();
-    } else {
-      pendingScrollOnNav = true;
-    }
+    if (href === pathname) scrollToContent();
+    else pendingScrollOnNav = true;
   };
   useEffect(() => {
     if (!pendingScrollOnNav) return;
     pendingScrollOnNav = false;
-    // Defer past layout commit so the new content has positioned before we
-    // measure. A 0ms timer is enough — setTimeout's macrotask runs after
-    // the current commit pass. No cleanup: the scroll is a fire-and-forget
-    // intent, and a stray timer firing after unmount is a no-op (the
-    // element lookup just returns null).
     setTimeout(scrollToContent, 0);
   }, [pathname]);
 
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-40 border-b border-rule bg-white/90 shadow-[0_4px_16px_-8px_rgba(0,0,0,0.08)] backdrop-blur supports-[backdrop-filter]:bg-white/75"
-      onMouseLeave={() => setHoveredHref(null)}
+      className="sticky top-0 z-40 border-b border-border bg-[rgba(10,10,12,0.78)] backdrop-blur-md backdrop-saturate-[140%]"
     >
-      <motion.div
-        animate={{ paddingTop: isScrolled ? 8 : 14, paddingBottom: isScrolled ? 8 : 14 }}
-        transition={{ duration: 0.18, ease: "easeOut" }}
-        className="mx-auto flex max-w-7xl items-center gap-4 px-5 sm:px-6"
-      >
-        {/* LEFT — wordmark + tournament metadata */}
-        <Link href="/" className="group flex shrink-0 items-end gap-3" aria-label="HYP3 home">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-[auto_1fr_auto] items-center gap-6 px-5 py-3 sm:px-7 sm:py-3.5">
+        {/* LEFT — wordmark + sub */}
+        <Link
+          href="/"
+          aria-label="HYP3 home"
+          className="flex shrink-0 items-center gap-3"
+        >
           <Image
             src="/media/hype-logo.png"
             alt="HYP3"
             width={430}
             height={112}
             priority
-            className="h-6 w-auto transition-opacity group-hover:opacity-80 sm:h-7"
+            className="h-7 w-auto"
           />
-          <motion.span
-            animate={{ opacity: isScrolled ? 0 : 1, width: isScrolled ? 0 : "auto" }}
-            transition={{ duration: 0.18 }}
-            className="overflow-hidden whitespace-nowrap text-sm uppercase tracking-[0.14em] text-graphite-soft"
-          >
-            D1 mens basketball
-          </motion.span>
         </Link>
 
-        {/* CENTER — primary nav */}
-        <nav className="hidden flex-1 items-center justify-center gap-1 min-[900px]:flex" aria-label="Primary">
-          {NAV_ITEMS.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <PrimaryNavLink
+        {/* CENTER — 4 numbered tab pills */}
+        <nav
+          aria-label="Primary"
+          className="hidden items-center justify-center min-[900px]:flex"
+        >
+          <div className="inline-flex items-center gap-1 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1">
+            {NAV_ITEMS.map((item) => (
+              <NavPill
                 key={item.href}
                 item={item}
-                active={active}
-                onHover={(open) => setHoveredHref(open ? item.href : null)}
+                active={pathname === item.href}
                 onClick={() => handleTabClick(item.href)}
               />
-            );
-          })}
+            ))}
+          </div>
         </nav>
 
-        <div className="ml-auto" />
-      </motion.div>
+        {/* RIGHT — search + docs */}
+        <div className="hidden items-center gap-3 min-[900px]:flex">
+          <div className="hidden lg:block">
+            <TeamSearch teams={dataset.teams} onSelect={onSelectTeam} />
+          </div>
+          <a
+            href="https://github.com/sophbae99/hype"
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink"
+          >
+            Docs ↗
+          </a>
+          <a
+            href="https://github.com/sophbae99/hype"
+            target="_blank"
+            rel="noreferrer"
+            className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink"
+          >
+            API ↗
+          </a>
+        </div>
+      </div>
 
       {/* Mobile horizontal nav */}
       <div className="min-[900px]:hidden">
-        <div className="overflow-x-auto border-t border-rule">
-          <div className="flex min-w-max items-center gap-4 px-5 py-3">
+        <div className="overflow-x-auto border-t border-border">
+          <div className="flex min-w-max items-center gap-2 px-5 py-2">
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href;
               return (
@@ -207,84 +142,33 @@ export function TopNav({ dataset }: Props) {
                   href={item.href}
                   scroll={false}
                   onClick={() => handleTabClick(item.href)}
-                  className={`relative whitespace-nowrap text-[11px] uppercase tracking-[0.12em] ${
-                    active ? "text-ink" : "text-graphite-soft"
+                  className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] ${
+                    active
+                      ? "bg-[rgba(18,119,222,0.16)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4)]"
+                      : "text-ink-1"
                   }`}
                 >
-                  <span className={`text-graphite-soft ${active ? "mr-1.5" : ""}`}>{item.marker}</span>
-                  {active && (
-                    <span className="font-display text-sm tracking-[0.06em]">{item.label}</span>
-                  )}
-                  {active && <span className="absolute inset-x-0 -bottom-1 h-[2px] bg-ink" />}
+                  <span className={active ? "text-core-bright" : "text-ink-3"}>
+                    {item.marker}
+                  </span>
+                  <span className="font-display tracking-[0.08em]">{item.label}</span>
                 </Link>
               );
             })}
           </div>
         </div>
       </div>
-
-      {/* Hover panel — appears below nav when a link is hovered */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            key={hovered.href}
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute inset-x-0 top-full hidden border-b border-rule bg-white/95 shadow-[0_8px_20px_-12px_rgba(0,0,0,0.1)] backdrop-blur min-[900px]:block"
-            onMouseEnter={() => setHoveredHref(hovered.href)}
-          >
-            <div className="mx-auto max-w-7xl px-5 py-6 sm:px-6">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_auto]">
-                <div className="max-w-2xl">
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-sm uppercase tracking-[0.14em] text-graphite-soft">
-                      <span>{hovered.marker}</span> /
-                    </span>
-                    <span className="font-display text-sm uppercase tracking-[0.06em] text-graphite">
-                      {hovered.label}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-graphite">
-                    {hovered.description}
-                  </p>
-                </div>
-                <div className="flex items-end gap-6">
-                  {hovered.preview.map((p) => (
-                    <div key={p.caption} className="text-right">
-                      <div className="font-display text-2xl leading-none tracking-tight text-ink">
-                        {p.stat}
-                      </div>
-                      <div className="mt-1 text-sm uppercase tracking-[0.12em] text-graphite-soft">
-                        {p.caption}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
     </header>
   );
 }
 
-// -----------------------------------------------------------------------------
-// PrimaryNavLink — center nav link with hover lift, animated underline, accent.
-// -----------------------------------------------------------------------------
-
-function PrimaryNavLink({
+function NavPill({
   item,
   active,
-  onHover,
   onClick,
 }: {
   item: NavItem;
   active: boolean;
-  onHover: (open: boolean) => void;
   onClick?: () => void;
 }) {
   return (
@@ -292,38 +176,22 @@ function PrimaryNavLink({
       href={item.href}
       scroll={false}
       onClick={onClick}
-      onMouseEnter={() => onHover(true)}
-      onFocus={() => onHover(true)}
-      onBlur={() => onHover(false)}
-      className={`group relative px-2 py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 focus-visible:ring-offset-2 focus-visible:ring-offset-paper lg:px-3 ${
-        active ? "text-ink" : "text-graphite hover:text-ink"
+      className={`relative inline-flex items-center gap-2.5 rounded-lg px-4 py-2 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-bright/60 ${
+        active
+          ? "bg-[rgba(18,119,222,0.16)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4),0_0_28px_-8px_rgba(114,184,255,0.55)]"
+          : "text-ink-1 hover:bg-[rgba(255,255,255,0.04)] hover:text-ink"
       }`}
     >
-      <motion.span
-        whileHover={{ x: 2 }}
-        transition={{ duration: 0.18, ease: "easeOut" }}
-        className="flex items-baseline gap-2 whitespace-nowrap"
+      <span
+        className={`font-mono text-[10px] font-semibold tracking-[0.14em] ${
+          active ? "text-core-bright" : "text-ink-3"
+        }`}
       >
-        <span className="text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-          {item.marker}
-        </span>
-        <span
-          className={`font-display text-[14px] uppercase tracking-[0.06em] lg:text-[15px] ${
-            active ? "font-semibold" : "font-medium"
-          }`}
-        >
-          {item.label}
-        </span>
-      </motion.span>
-      {/* Active underline */}
-      {active && (
-        <span className="absolute inset-x-2 -bottom-[1px] h-[2px] bg-ink lg:inset-x-3" />
-      )}
-      {/* Hover underline (anim-in) */}
-      {!active && (
-        <span className="absolute inset-x-2 -bottom-[1px] h-[1px] origin-left scale-x-0 bg-ink/60 transition-transform duration-200 group-hover:scale-x-100 lg:inset-x-3" />
-      )}
+        {item.marker}
+      </span>
+      <span className="font-display text-[12px] font-bold uppercase leading-none tracking-[0.08em] lg:text-[13px]">
+        {item.label}
+      </span>
     </Link>
   );
 }
-

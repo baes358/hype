@@ -26,11 +26,31 @@ export function TeamSearch({ teams, onSelect }: Props) {
       .slice(0, MAX_RESULTS);
   }, [query, teams]);
 
+  // Auto-focus when expanded.
   useEffect(() => {
-    if (!open) return;
-    inputRef.current?.focus();
+    if (open) inputRef.current?.focus();
   }, [open]);
 
+  // ⌘K / Ctrl+K opens the input; Escape closes it. Document-level so it works
+  // from anywhere on the page.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const meta = e.metaKey || e.ctrlKey;
+      if (meta && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        setOpen(true);
+        return;
+      }
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+        setQuery("");
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Click-outside dismiss.
   useEffect(() => {
     if (!open) return;
     const onMouseDown = (e: MouseEvent) => {
@@ -40,18 +60,8 @@ export function TeamSearch({ teams, onSelect }: Props) {
         setQuery("");
       }
     };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        setQuery("");
-      }
-    };
     document.addEventListener("mousedown", onMouseDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onMouseDown);
-      document.removeEventListener("keydown", onKey);
-    };
+    return () => document.removeEventListener("mousedown", onMouseDown);
   }, [open]);
 
   const select = (team: Team) => {
@@ -61,55 +71,50 @@ export function TeamSearch({ teams, onSelect }: Props) {
   };
 
   return (
-    <div ref={wrapperRef} className="relative w-full sm:w-auto">
-      <div
-        // Mobile: full width in both states. sm+: animated 152 ↔ 288px pill.
-        className={`overflow-hidden rounded-full border bg-white/60 transition-[width,border-color,background-color] duration-[220ms] ease-[cubic-bezier(0.32,0.72,0,1)] w-full ${
-          open
-            ? "sm:w-[288px] border-foreground/80"
-            : "sm:w-[152px] border-border hover:border-foreground/40"
-        }`}
-      >
-        {open ? (
-          <div className="flex h-full items-center gap-2 px-4 py-1.5 text-sm font-medium sm:py-1">
-            <input
-              ref={inputRef}
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && matches.length > 0) select(matches[0]);
-              }}
-              placeholder="Search team"
-              aria-label="Search teams"
-              // text-base (16px) prevents iOS Safari from auto-zooming on focus;
-              // sm:text-sm restores the original 14px visual on tablet and up.
-              className="w-full bg-transparent text-base text-foreground placeholder:text-foreground/60 focus:outline-none sm:text-sm"
-            />
-            <Search aria-hidden className="size-3.5 shrink-0 text-muted-foreground" />
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-expanded={open}
-            aria-haspopup="listbox"
-            className="flex h-full w-full items-center justify-between gap-2 px-4 py-1.5 text-sm font-medium text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:py-1"
-          >
-            <span className="opacity-60">Search team</span>
-            <Search aria-hidden className="size-3.5 text-muted-foreground" />
-          </button>
-        )}
-      </div>
+    <div ref={wrapperRef} className="relative">
+      {open ? (
+        <div className="inline-flex items-center gap-2 rounded-lg border border-core-bright/40 bg-[rgba(255,255,255,0.04)] px-3 py-2 text-ink shadow-[0_0_0_3px_rgba(114,184,255,0.08)] sm:w-[240px]">
+          <Search aria-hidden className="size-3 shrink-0 text-ink-2" />
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && matches.length > 0) select(matches[0]);
+            }}
+            placeholder="Search team"
+            aria-label="Search teams"
+            // text-base prevents iOS zoom on focus.
+            className="w-full bg-transparent font-mono text-[11px] uppercase tracking-[0.08em] text-ink placeholder:text-ink-3 focus:outline-none"
+          />
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          className="inline-flex items-center gap-2 rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3 py-2 text-ink-2 transition-colors hover:border-border-hi hover:text-ink-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-bright/60"
+        >
+          <Search aria-hidden className="size-3" />
+          <span className="font-mono text-[11px] uppercase tracking-[0.08em]">
+            Search teams
+          </span>
+          <kbd className="rounded border border-border bg-[rgba(255,255,255,0.05)] px-1.5 py-px font-mono text-[10px] text-ink-2">
+            ⌘K
+          </kbd>
+        </button>
+      )}
 
       {open && query && (
         <div
           role="listbox"
           aria-label="Search results"
-          className="absolute inset-x-0 top-full z-40 mt-2 w-full overflow-hidden rounded-2xl border border-border bg-background shadow-lg animate-in fade-in slide-in-from-top-1 duration-150 sm:inset-x-auto sm:right-0 sm:w-72"
+          className="absolute right-0 top-full z-50 mt-2 w-72 overflow-hidden rounded-xl border border-border-hi bg-bg-2 shadow-[0_16px_48px_-12px_rgba(0,0,0,0.7)]"
         >
           {matches.length === 0 ? (
-            <div className="px-3 py-2 text-sm text-muted-foreground">
+            <div className="px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-2">
               No matches
             </div>
           ) : (
@@ -119,11 +124,16 @@ export function TeamSearch({ teams, onSelect }: Props) {
                   <button
                     type="button"
                     onClick={() => select(t)}
-                    className="flex w-full items-baseline justify-between gap-3 rounded-xl px-3 py-2 text-left transition-colors hover:bg-foreground/[0.04] focus-visible:bg-foreground/[0.04] focus-visible:outline-none"
+                    className="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left transition-colors hover:bg-[rgba(255,255,255,0.04)] focus-visible:bg-[rgba(255,255,255,0.04)] focus-visible:outline-none"
                   >
-                    <span className="text-sm text-foreground">{t.team}</span>
-                    <span className="text-sm uppercase tracking-[0.12em] text-muted-foreground">
-                      <span className="font-mono">{String(t.seed).padStart(2, "0")}</span> · {t.region}
+                    <span className="truncate font-sans text-[13px] text-ink">
+                      {t.team}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-2">
+                      <span className="text-core-bright tabular-nums">
+                        {String(t.seed).padStart(2, "0")}
+                      </span>{" "}
+                      · {t.region}
                     </span>
                   </button>
                 </li>

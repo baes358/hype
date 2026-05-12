@@ -95,7 +95,6 @@ export function IntroLoader() {
           autoPlay
           muted
           playsInline
-          // @ts-expect-error - non-standard but recognized by iOS WebKit
           webkit-playsinline="true"
           preload="auto"
           tabIndex={-1}

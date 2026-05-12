@@ -2,21 +2,16 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Display font: Bespoke (used for headings and .font-display / .font-heading).
-   File: /web/public/fonts/Besport.ttf.
-   font-weight: 100 900 means: claim this single face covers ANY requested
-   weight, so the file always wins regardless of what consumers ask for. */
+/* Display font: Neue Black. */
 @font-face {
-  font-family: "Bespoke";
-  src: url("/fonts/Besport.ttf") format("truetype");
+  font-family: "Neue Black";
+  src: url("/fonts/TheNeue-Black.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
-/* Mono / labels font: FA-1 Regular.
-   File: /web/public/fonts/FA-1-Regular.otf.
-   If missing, falls back through the chain in --font-mono below. */
+/* Mono / labels font: FA-1 Regular. */
 @font-face {
   font-family: "FA-1";
   src: url("/fonts/FA-1-Regular.otf") format("opentype");
@@ -31,20 +26,39 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
-  --color-paper: var(--paper);
-  --color-paper-deep: var(--paper-deep);
-  --color-paper-darker: var(--paper-darker);
+
+  /* Dark surface palette (Stripe-inspired). */
+  --color-bg: var(--bg);
+  --color-bg-1: var(--bg-1);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+
+  /* Ink / text */
   --color-ink: var(--ink);
-  --color-graphite: var(--graphite);
-  --color-graphite-soft: var(--graphite-soft);
-  --color-rule: var(--rule);
-  --color-crimson: var(--crimson);
-  --color-dusty: var(--dusty);
-  --color-gold: var(--gold);
+  --color-ink-1: var(--ink-1);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+
+  /* Hairlines */
+  --color-rule: var(--border);
+  --color-border: var(--border);
+  --color-border-hi: var(--border-hi);
+
+  /* Brand accent ramp */
+  --color-core: var(--core);
+  --color-core-bright: var(--core-bright);
+
+  /* Story-tag semantic colors */
+  --color-overhyped: var(--overhyped);
+  --color-underhyped: var(--underhyped);
+  --color-as-expected: var(--as-expected);
+  --color-noise: var(--noise);
+
   --font-sans: var(--font-host), "Helvetica Neue", system-ui, sans-serif;
   --font-mono: "FA-1", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --font-display: "Bespoke", "Helvetica Neue", "Arial Black", system-ui, sans-serif;
+  --font-display: "Neue Black", "Helvetica Neue", "Arial Black", system-ui, sans-serif;
   --font-heading: var(--font-display);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -60,7 +74,6 @@
   --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
-  --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -84,62 +97,81 @@
 }
 
 :root {
-  /* Paper-toned editorial palette (added 2026-05-10 for premium nav). */
-  --paper: #f7f5f2;
-  --paper-deep: #f3f1ed;
-  --paper-darker: #ebe7e1;
-  --ink: #1c1c1b;
-  --graphite: #4a4a48;
-  --graphite-soft: #8a8884;
-  --rule: #c0cdd2;
-  --crimson: #9b2334;
-  --dusty: #3b5b78;
-  --gold: #b48a3a;
+  /* Dark surface palette */
+  --bg: #08090d;
+  --bg-1: #0c0d12;
+  --bg-2: #11131a;
+  --bg-3: #181a20;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-hi: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hi: rgba(255, 255, 255, 0.16);
+  --border-strong: rgba(255, 255, 255, 0.32);
 
-  --background: #ffffff;
+  /* Text */
+  --ink: #fbfdfe;
+  --ink-1: rgba(251, 253, 254, 0.62);
+  --ink-2: rgba(251, 253, 254, 0.42);
+  --ink-3: rgba(251, 253, 254, 0.28);
+
+  /* HYP3 brand accent */
+  --core: #1277de;
+  --core-bright: #72b8ff;
+  --overhyped: #f995b6;
+  --underhyped: #66e7d8;
+  --noise: #b4b4ef;
+  --as-expected: #efecaf;
+
+  /* Live-tunable tokens (TweaksPanel writes these) */
+  --grid-opacity: 0.6;
+  --aurora-intensity: 0.55;
+
+  /* shadcn token mapping (dark) */
+  --background: var(--bg);
   --foreground: var(--ink);
-  --brand: #4899b9;
-  --card: #ffffff;
-  --card-foreground: #3a3b3b;
-  --popover: #ffffff;
-  --popover-foreground: #3a3b3b;
-  --primary: #3a3b3b;
-  --primary-foreground: #ffffff;
-  --secondary: #f4f4f4;
-  --secondary-foreground: #3a3b3b;
-  --muted: #f4f4f4;
-  --muted-foreground: #797a7a;
-  --accent: #f4f4f4;
-  --accent-foreground: #3a3b3b;
-  --destructive: #e11d48;
-  --border: #c0cdd2;
-  --input: #e5e5e5;
-  --ring: #c4c4c4;
-  --chart-1: #3a3b3b;
-  --chart-2: #797a7a;
-  --chart-3: #a1a1a1;
-  --chart-4: #c4c4c4;
-  --chart-5: #e5e5e5;
+  --brand: var(--core-bright);
+  --card: var(--bg-1);
+  --card-foreground: var(--ink);
+  --popover: var(--bg-2);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--bg);
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface);
+  --muted-foreground: var(--ink-1);
+  --accent: var(--surface-hi);
+  --accent-foreground: var(--ink);
+  --destructive: var(--overhyped);
+  --input: var(--surface);
+  --ring: var(--core-bright);
+  --chart-1: var(--overhyped);
+  --chart-2: var(--underhyped);
+  --chart-3: var(--as-expected);
+  --chart-4: var(--noise);
+  --chart-5: var(--core-bright);
   --radius: 0.625rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #3a3b3b;
-  --sidebar-primary: #3a3b3b;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f4f4f4;
-  --sidebar-accent-foreground: #3a3b3b;
-  --sidebar-border: #e5e5e5;
-  --sidebar-ring: #c4c4c4;
+  --sidebar: var(--bg-1);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--bg);
+  --sidebar-accent: var(--surface);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--core-bright);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
-    /* Host Grotesk baseline tracking. Overridden per-element by Tailwind
-       tracking-* utilities; reset on display/mono families below. */
-    letter-spacing: 0.02em;
+    background:
+      radial-gradient(1200px 600px at 50% -200px, rgba(18, 119, 222, 0.18), transparent 70%),
+      var(--bg);
+    letter-spacing: 0.005em;
+    font-feature-settings: "ss01", "cv11", "tnum";
   }
   html {
     @apply font-sans;
@@ -148,31 +180,77 @@
     font-family: var(--font-display);
     letter-spacing: -0.01em;
   }
-  h2 {
-    letter-spacing: 0.02em;
-  }
-  /* Mono labels keep their own tighter tracking; specific call-sites
-     override via tracking-* utilities. */
-  .font-mono {
-    letter-spacing: 0;
+  h2 { letter-spacing: 0.02em; }
+  .font-mono { letter-spacing: 0; }
+
+  ::selection {
+    background: rgba(114, 184, 255, 0.35);
+    color: var(--ink);
   }
 }
 
 @layer utilities {
-  /* Make Tailwind's tracking-normal honor the Host Grotesk baseline.
-     The shadcn preset binds tracking-normal to 0em; we want 0.02em on
-     body text so the global rule stays consistent when a component
-     explicitly opts into "normal" tracking. */
-  .tracking-normal {
-    letter-spacing: 0.02em;
-  }
-  .font-mono.tracking-normal {
-    letter-spacing: 0;
-  }
+  .tracking-normal { letter-spacing: 0.02em; }
+  .font-mono.tracking-normal { letter-spacing: 0; }
+  .tabular { font-variant-numeric: tabular-nums; }
 }
 
-/* Hero crossfade — two stacked images on phase-shifted opacity cycles.
-   Same 10s cycle: ~4s visible, ~1s crossfade, ~4s hidden, ~1s crossfade. */
+/* ── Backdrop dot grid (Stripe-ish) ───────────────────────────── */
+.bg-dotgrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+  background-size: 28px 28px;
+  opacity: var(--grid-opacity);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 35%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 35%, transparent 95%);
+}
+.bg-linegrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 84px 84px;
+  opacity: calc(var(--grid-opacity) * 0.8);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, #000 30%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 35%, #000 30%, transparent 95%);
+}
+
+/* ── Aurora glow under bars ───────────────────────────────────── */
+.aurora {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(56px);
+  opacity: var(--aurora-intensity);
+  z-index: 0;
+}
+
+/* ── Logo desaturate-on-rest, full color on hover ─────────────── */
+.logo-img {
+  filter: grayscale(0.4) brightness(0.95) contrast(1.05);
+  transition: filter 0.2s ease;
+}
+.logo-img:hover, .row-hover:hover .logo-img {
+  filter: none;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.18); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Hero crossfade — two stacked images on phase-shifted opacity cycles. */
 @keyframes hero-fade-a {
   0%, 40%, 100% { opacity: 1; }
   50%, 90%      { opacity: 0; }
@@ -181,10 +259,17 @@
   0%, 40%, 100% { opacity: 0; }
   50%, 90%      { opacity: 1; }
 }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.5s ease-out both; }
+@keyframes glow-pulse {
+  0%, 100% { opacity: calc(var(--aurora-intensity) * 0.7); }
+  50%      { opacity: var(--aurora-intensity); }
+}
 
-/* Kill the iOS / Android "tap to play" overlay and any default media controls
-   inside the intro loader. The video is muted + playsInline + autoplay, so we
-   should never need the native play affordance. */
+/* IntroLoader native control suppression (unchanged). */
 [data-hyp3-loader] video::-webkit-media-controls-start-playback-button {
   display: none !important;
   -webkit-appearance: none;
