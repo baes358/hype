@@ -175,14 +175,15 @@
   * {
     @apply border-border;
   }
-  /* Lock page-level horizontal overflow ONLY on body, not html — putting
-     overflow-x on html creates a separate scroll container and breaks
-     `position: sticky` on the top nav. Children should never produce a
-     horizontal scrollbar; wide grids (heatmap, bracket) handle their own
-     overflow inside dedicated overflow-x-auto containers. */
+  /* Lock page-level horizontal overflow on body. Use `overflow-x: clip`
+     instead of `hidden` — `hidden` creates a scroll container that breaks
+     `position: sticky` on the top nav (sticky element ends up anchored to
+     body's scroll context instead of the viewport). `clip` prevents
+     overflow without forming a scroll container, so sticky continues to
+     stick to the viewport as the user scrolls. */
   body {
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;

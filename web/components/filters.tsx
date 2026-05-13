@@ -68,7 +68,7 @@ export function Filters({
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="hyp3-filter-panel"
-          className="inline-flex min-h-11 w-full items-center justify-between rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3.5 py-2 font-display text-[13px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:hidden"
+          className="inline-flex min-h-11 w-full items-center justify-between rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3.5 py-2 font-display text-[12px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:hidden"
         >
           <span>Filters</span>
           <span aria-hidden className="font-mono text-2xl leading-none text-ink-2">
@@ -78,11 +78,11 @@ export function Filters({
 
         <div
           id="hyp3-filter-panel"
-          className={`${open ? "flex" : "hidden"} flex-col gap-4 md:flex`}
+          className={`${open ? "flex" : "hidden"} flex-col gap-6 md:flex md:gap-10`}
         >
         {/* PRIMARY ROW — Scope + Story.
-            Mobile: stack vertically. md+: lay out inline. */}
-        <div className="flex flex-col gap-4 md:flex-row md:flex-wrap md:items-end md:gap-6">
+            Mobile: stack vertically. md+: lay out inline with generous gap. */}
+        <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:items-end md:gap-10">
           <PrimaryGroup marker="A" label="SCOPE">
             <ModeToggle mode={mode} setMode={setMode} />
           </PrimaryGroup>
@@ -98,7 +98,7 @@ export function Filters({
                 : `${selectedTags.size} of ${TAG_ORDER.length}`
             }
           >
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2.5">
               {TAG_ORDER.map((tag) => {
                 const active = selectedTags.has(tag);
                 const color = TAG_COLOR[tag];
@@ -108,8 +108,8 @@ export function Filters({
                     type="button"
                     onClick={() => onToggleTag(tag)}
                     aria-pressed={active}
-                    // Min 44px tap height kept; font/padding tuned per spec.
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full border px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.08em] transition-all"
+                    // 44px tap target on mobile (a11y); compact on md+.
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.08em] transition-all md:min-h-9 md:px-3 md:py-1"
                     style={{
                       borderColor: active ? color : "var(--border)",
                       background: active ? `${color}22` : "transparent",
@@ -137,8 +137,8 @@ export function Filters({
         </div>
 
         {/* SECONDARY ROW — refinements.
-            Mobile: stack. md+: inline with Reset pushed right. */}
-        <div className="flex flex-col gap-3 border-t border-border pt-3 md:flex-row md:flex-wrap md:items-center md:gap-4">
+            Mobile: stack. md+: inline with generous gap, Reset pushed right. */}
+        <div className="flex flex-col gap-5 border-t border-border pt-5 md:flex-row md:flex-wrap md:items-center md:gap-8">
           <SecondaryGroup label="Region">
             <Segmented
               options={[{ id: "all", label: "All" }, ...REGIONS.map((r) => ({ id: r, label: r }))]}
@@ -161,7 +161,7 @@ export function Filters({
           <button
             type="button"
             onClick={onReset}
-            className="inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:self-auto"
+            className="inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:min-h-9 md:self-auto md:px-3 md:py-1"
           >
             <svg
               width="12"
@@ -251,7 +251,7 @@ function ModeToggle({
             type="button"
             onClick={() => setMode(m.id)}
             aria-pressed={active}
-            className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2.5 py-1.5 transition-all sm:px-3 ${
+            className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2.5 py-1.5 transition-all sm:px-3 md:min-h-9 md:px-3.5 md:py-1 ${
               active
                 ? "bg-[rgba(18,119,222,0.22)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4)]"
                 : "text-ink-2 hover:text-ink"
@@ -262,7 +262,7 @@ function ModeToggle({
               className="size-1.5 shrink-0 rounded-full bg-core-bright shadow-[0_0_8px_var(--core-bright)]"
               style={{ opacity: active ? 1 : 0.3 }}
             />
-            <span className="font-display text-[13px] font-black uppercase leading-none tracking-[0.08em]">
+            <span className="font-display text-[12px] font-black uppercase leading-none tracking-[0.08em]">
               {m.label}
             </span>
             <span className="ml-1 hidden border-l border-border pl-1.5 font-mono text-[12px] tracking-[0.1em] text-ink-3 sm:inline">
@@ -297,7 +297,7 @@ function Segmented({
             type="button"
             onClick={() => onChange(o.id)}
             aria-pressed={active}
-            className={`inline-flex min-h-11 items-center rounded-[7px] px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.06em] transition-all ${
+            className={`inline-flex min-h-11 items-center rounded-[7px] px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] transition-all md:min-h-9 md:px-3 md:py-1 ${
               active
                 ? "bg-[rgba(255,255,255,0.06)] text-ink shadow-[inset_0_0_0_1px_var(--border-hi)]"
                 : "text-ink-1 hover:text-ink"
@@ -344,7 +344,7 @@ function RoundDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto"
+        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto md:min-h-9 md:px-3 md:py-1"
       >
         <span>{ROUND_LABEL[value]}</span>
         <ChevronDown
@@ -369,7 +369,7 @@ function RoundDropdown({
                 }}
                 role="menuitemcheckbox"
                 aria-checked={active}
-                className={`flex min-h-11 w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left font-display text-[13px] font-black uppercase tracking-[0.06em] transition-colors ${
+                className={`flex min-h-11 w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-left font-display text-[12px] font-black uppercase tracking-[0.06em] transition-colors ${
                   active
                     ? "bg-[rgba(255,255,255,0.04)] text-ink"
                     : "text-ink-1 hover:bg-[rgba(255,255,255,0.03)] hover:text-ink"

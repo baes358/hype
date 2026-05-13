@@ -25,7 +25,7 @@ export default function RootLayout({
       lang="en"
       className={`${hostGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground font-sans font-medium">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans font-medium">
         <IntroLoader />
         <div className="relative z-[1] flex min-h-full flex-1 flex-col">
           {children}
