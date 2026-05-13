@@ -217,8 +217,6 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             >
               <Icon name="up-arrow" size={zoneSize * 0.9} className="mr-2 inline-block align-middle" />
               UNDERHYPED
-              <Icon name="bullet" size={zoneSize * 0.7} className="mx-2 inline-block align-middle" />
-              ROBBED
             </div>
           </foreignObject>
           <foreignObject
@@ -239,8 +237,6 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             >
               <Icon name="down-arrow" size={zoneSize * 0.9} className="mr-2 inline-block align-middle" />
               OVERHYPED
-              <Icon name="bullet" size={zoneSize * 0.7} className="mx-2 inline-block align-middle" />
-              FLAMEOUT
             </div>
           </foreignObject>
 

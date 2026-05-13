@@ -2,6 +2,7 @@
 
 import type React from "react";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { Icon } from "@/components/icon";
 
@@ -140,10 +141,11 @@ function FAQItem({
         <span className="font-display text-[16px] font-bold leading-[1.3] tracking-[-0.005em] text-ink sm:text-[18px]">
           {q}
         </span>
-        <Icon
-          name="down-arrow"
-          size={16}
-          className={`shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+        <ChevronDown
+          aria-hidden
+          className={`size-5 shrink-0 text-ink-2 transition-transform ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </button>
       {open && (
@@ -178,7 +180,7 @@ export function ApiSection() {
         >
           Use the dataset.
         </h2>
-        <p className="m-0 mb-8 max-w-[720px] text-base leading-relaxed text-ink-1 lg:text-[17px]">
+        <p className="m-0 mb-8 max-w-[720px] text-left font-sans text-base font-medium leading-relaxed text-ink-1 lg:text-[17px]">
           HYP3 has no backend. Every year&apos;s analysis is a static JSON file
           you can fetch directly. Drop it into a notebook, a sketch, a
           dashboard, anywhere.
