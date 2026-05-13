@@ -40,13 +40,11 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
         <div>
           <div className="mb-4 flex items-center gap-2 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">01</span>
-            <span aria-hidden className="text-lg leading-none text-ink-3">
-              ›
-            </span>
+            <span aria-hidden className="leading-none text-ink-3">/</span>
             <span className="text-ink-1">The Diverging Gap</span>
           </div>
           <h2
-            className="m-0 max-w-[720px] font-display font-bold leading-[1.15] tracking-[-0.01em] text-ink"
+            className="m-0 max-w-[720px] font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
             style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
             Every team, ranked by the wrongness of the internet&apos;s read

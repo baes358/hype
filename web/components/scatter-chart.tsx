@@ -90,17 +90,17 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
           "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
       }}
     >
-      <header className="mb-8 flex flex-col gap-5 md:mb-10 md:gap-7">
+      <header className="mb-8 flex flex-col gap-10 md:mb-10 md:gap-12">
         <div>
           <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">02</span> /{" "}
             <span className="text-ink-1">The Scatter</span>
           </div>
           <h2
-            className="m-0 max-w-[820px] font-display font-bold leading-[1.25] tracking-[-0.005em] text-ink"
-            style={{ fontSize: "clamp(24px, 3vw, 38px)" }}
+            className="m-0 max-w-[820px] font-display font-bold leading-[1.4em] tracking-[-0.005em] text-ink"
+            style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
-            Hype against performance — the{" "}
+            Hype against performance, the{" "}
             <span
               style={{
                 color: "transparent",
@@ -111,10 +111,22 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             </span>{" "}
             is the expected line
           </h2>
-          <div className="mt-4 font-mono text-sm uppercase tracking-[0.1em] text-ink-1">
-            <span className="text-ink">{teams.length}</span> teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> outliers
-            are the story <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> X = hype <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> Y = wins
+        </div>
+        <div className="flex flex-col gap-3">
+          <div className="flex items-baseline gap-2.5">
+            <span
+              className="font-display font-bold leading-none text-ink"
+              style={{ fontSize: "clamp(26px, 4.5vw, 36px)" }}
+            >
+              {teams.length}
+            </span>
+            <span className="font-mono text-sm uppercase tracking-[0.16em] text-ink-2">
+              Teams
+            </span>
           </div>
+          <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+            Outliers are the story <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> X = hype <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> Y = wins
+          </p>
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">

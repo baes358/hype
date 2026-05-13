@@ -210,27 +210,42 @@ export function TimelineHeatmap({
       }}
     >
       <header className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
-        <div>
-          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-            <span className="text-core-bright">03</span> /{" "}
-            <span className="text-ink-1">The Timeline</span>
-          </div>
-          <h2
-            className="m-0 max-w-[720px] font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
-            style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
-          >
-            Daily hype intensity for every team across the{" "}
-            <span
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1.2px var(--core-bright)",
-              }}
+        <div className="flex flex-col gap-10 md:gap-12">
+          <div>
+            <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
+              <span className="text-core-bright">03</span> /{" "}
+              <span className="text-ink-1">The Timeline</span>
+            </div>
+            <h2
+              className="m-0 max-w-[720px] font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
+              style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
             >
-              15-day window
-            </span>
-          </h2>
-          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
-            <span className="text-ink">{sortedTeams.length}</span> teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> vertical line = Selection Sunday
+              Daily hype intensity for every team across the{" "}
+              <span
+                style={{
+                  color: "transparent",
+                  WebkitTextStroke: "1.2px var(--core-bright)",
+                }}
+              >
+                15-day window
+              </span>
+            </h2>
+          </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-baseline gap-2.5">
+              <span
+                className="font-display font-bold leading-none text-ink"
+                style={{ fontSize: "clamp(26px, 4.5vw, 36px)" }}
+              >
+                {sortedTeams.length}
+              </span>
+              <span className="font-mono text-sm uppercase tracking-[0.16em] text-ink-2">
+                Teams
+              </span>
+            </div>
+            <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+              Vertical line = Selection Sunday
+            </p>
           </div>
         </div>
 
@@ -371,7 +386,7 @@ export function TimelineHeatmap({
                         key={`${t.team}-${b.key}`}
                         type="button"
                         onClick={() => onSelect(t)}
-                        title={`${t.team} — ${b.tooltip} — ${value.toFixed(1)}`}
+                        title={`${t.team}, ${b.tooltip}, ${value.toFixed(1)}`}
                         className="transition hover:opacity-80"
                         style={{
                           backgroundColor: bg,
@@ -384,7 +399,7 @@ export function TimelineHeatmap({
                           borderRadius: 3,
                           minHeight: 32,
                         }}
-                        aria-label={`${t.team} — ${b.tooltip}: ${value.toFixed(1)}`}
+                        aria-label={`${t.team}, ${b.tooltip}: ${value.toFixed(1)}`}
                       />
                     );
                   })}

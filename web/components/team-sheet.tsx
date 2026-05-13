@@ -46,18 +46,18 @@ function gapStoryCopy(
 ): string {
   if (mode === "season") {
     if (gap > 0) {
-      return `Hyped at season rank #${active.hypeRank} but performed at #${active.perfRank} (${team.season_wins}–${team.season_losses}) — the internet underrated them by ${Math.abs(gap)} spots.`;
+      return `Hyped at season rank #${active.hypeRank} but performed at #${active.perfRank} (${team.season_wins}–${team.season_losses}), the internet underrated them by ${Math.abs(gap)} spots.`;
     }
     if (gap < 0) {
-      return `Hyped at season rank #${active.hypeRank} but performed at #${active.perfRank} (${team.season_wins}–${team.season_losses}) — the internet overrated them by ${Math.abs(gap)} spots.`;
+      return `Hyped at season rank #${active.hypeRank} but performed at #${active.perfRank} (${team.season_wins}–${team.season_losses}), the internet overrated them by ${Math.abs(gap)} spots.`;
     }
     return `Hyped at season rank #${active.hypeRank}, performed in line. Exactly as expected across the season.`;
   }
   if (gap > 0) {
-    return `Hyped at rank #${active.hypeRank} but went ${team.wins}W — the internet underrated them by ${Math.abs(gap)} spots.`;
+    return `Hyped at rank #${active.hypeRank} but went ${team.wins}W, the internet underrated them by ${Math.abs(gap)} spots.`;
   }
   if (gap < 0) {
-    return `Hyped at rank #${active.hypeRank} but went ${team.wins}W — the internet overrated them by ${Math.abs(gap)} spots.`;
+    return `Hyped at rank #${active.hypeRank} but went ${team.wins}W, the internet overrated them by ${Math.abs(gap)} spots.`;
   }
   return `Hyped at rank #${active.hypeRank}, performed in line. Exactly as expected.`;
 }

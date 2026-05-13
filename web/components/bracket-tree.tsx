@@ -81,28 +81,42 @@ export function BracketTree({
       }}
     >
       <header className="mb-8 flex flex-col gap-6 md:mb-10 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
-        <div>
-          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-            <span className="text-core-bright">04</span> /{" "}
-            <span className="text-ink-1">The Bracket</span>
-          </div>
-          <h2
-            className="m-0 max-w-[720px] font-display font-bold leading-[1.2] tracking-[-0.005em] text-ink"
-            style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
-          >
-            Each region as a{" "}
-            <span
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1.2px var(--core-bright)",
-              }}
+        <div className="flex flex-col gap-10 md:gap-12">
+          <div>
+            <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
+              <span className="text-core-bright">04</span> /{" "}
+              <span className="text-ink-1">The Bracket</span>
+            </div>
+            <h2
+              className="m-0 max-w-[720px] font-display font-bold leading-[1.4em] tracking-[-0.005em] text-ink"
+              style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
             >
-              tree
-            </span>{" "}
-            — colored by the story each team ended up telling
-          </h2>
-          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
-            {teams.length} teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> 4 regions <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> tap any team
+              Each region as a{" "}
+              <span
+                style={{
+                  color: "transparent",
+                  WebkitTextStroke: "1.2px var(--core-bright)",
+                }}
+              >
+                tree
+              </span>, colored by the story each team ended up telling
+            </h2>
+          </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-baseline gap-2.5">
+              <span
+                className="font-display font-bold leading-none text-ink"
+                style={{ fontSize: "clamp(26px, 4.5vw, 36px)" }}
+              >
+                {teams.length}
+              </span>
+              <span className="font-mono text-sm uppercase tracking-[0.16em] text-ink-2">
+                Teams
+              </span>
+            </div>
+            <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+              4 regions <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> tap any team
+            </p>
           </div>
         </div>
 
@@ -296,7 +310,7 @@ function BracketCard({
     <button
       type="button"
       onClick={() => onSelect(team)}
-      title={`${team.team} — ${team.wins}W (seed ${team.seed})`}
+      title={`${team.team}, ${team.wins}W (seed ${team.seed})`}
       className={`relative flex w-full cursor-pointer items-center text-left transition-all ${
         large
           ? "gap-2 rounded-md px-2.5 py-2"

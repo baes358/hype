@@ -11,7 +11,7 @@ const hostGrotesk = Host_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "HYP3 — The 2026 NCAA Tournament Hype Gap",
+  title: "HYP3, The 2026 NCAA Tournament Hype Gap",
   description:
     "Measuring the gap between internet hype and tournament performance for the 2026 NCAA Men's Basketball Tournament.",
 };

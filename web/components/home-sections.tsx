@@ -12,7 +12,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How is hype measured?",
-    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team — usually the eventual champion — so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
+    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team, usually the eventual champion, so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
   },
   {
     q: "What does the gap mean?",
@@ -20,7 +20,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Why does it matter?",
-    a: "March Madness is a referendum on attention. The teams that dominate the discourse aren't always the teams that survive on the court. HYP3 makes that disconnect legible — overhyped flameouts, underhyped sleepers, and the quiet \"as expected\" middle.",
+    a: "March Madness is a referendum on attention. The teams that dominate the discourse aren't always the teams that survive on the court. HYP3 makes that disconnect legible, overhyped flameouts, underhyped sleepers, and the quiet \"as expected\" middle.",
   },
   {
     q: "Tournament view vs. season view?",
@@ -48,7 +48,7 @@ export function AboutSection() {
           <span className="text-ink-1">About HYP3</span>
         </div>
         <h2
-          className="m-0 mb-8 font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
+          className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
           A 72-hour capstone measuring the{" "}
@@ -74,8 +74,8 @@ export function AboutSection() {
             <code className="font-mono text-sm text-core-bright">pytrends</code>
             , normalize across queries with a reference-team anchor, and rank
             the field on both axes. The output is a single dataset that
-            visualizes the hype gap — overhyped, underhyped, as expected, or
-            noise — for every team in the field.
+            visualizes the hype gap, overhyped, underhyped, as expected, or
+            noise, for every team in the field.
           </p>
         </div>
       </div>
@@ -99,7 +99,7 @@ export function FAQSection() {
           <span className="text-ink-1">FAQs</span>
         </div>
         <h2
-          className="m-0 mb-10 font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
+          className="m-0 mb-10 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
           Questions, answered.
@@ -173,7 +173,7 @@ export function ApiSection() {
           <span className="text-ink-1">API & Data</span>
         </div>
         <h2
-          className="m-0 mb-8 font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
+          className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
           Use the dataset.
@@ -181,7 +181,7 @@ export function ApiSection() {
         <p className="m-0 mb-8 max-w-[720px] text-base leading-relaxed text-ink-1 lg:text-[17px]">
           HYP3 has no backend. Every year&apos;s analysis is a static JSON file
           you can fetch directly. Drop it into a notebook, a sketch, a
-          dashboard — anywhere.
+          dashboard, anywhere.
         </p>
 
         <div className="mb-8 grid grid-cols-1 gap-3">
@@ -339,7 +339,7 @@ export function SourcesSection() {
           <span className="text-ink-1">External Sources</span>
         </div>
         <h2
-          className="m-0 mb-8 font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
+          className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
           Where the data lives.
