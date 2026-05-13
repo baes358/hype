@@ -150,10 +150,7 @@ function LegendItem({
 }) {
   return (
     <span className="inline-flex items-center gap-2">
-      <span
-        className="size-2 rounded-[2px]"
-        style={{ background: color }}
-      />
+      <Icon name="bullet" size={12} color={color} />
       <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
         {label}
       </span>

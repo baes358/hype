@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@/components/icon";
 import { Region, REGIONS, StoryTag, Team } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
@@ -211,10 +212,7 @@ function Legend() {
     <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
       {(Object.keys(TAG_COLOR) as StoryTag[]).map((tag) => (
         <span key={tag} className="inline-flex items-center gap-1.5">
-          <span
-            className="size-2 rounded-[2px]"
-            style={{ background: TAG_COLOR[tag] }}
-          />
+          <Icon name="bullet" size={12} color={TAG_COLOR[tag]} />
           <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
             {tag === "as_expected" ? "As expected" : tag.charAt(0).toUpperCase() + tag.slice(1)}
           </span>
