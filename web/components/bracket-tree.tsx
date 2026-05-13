@@ -284,7 +284,7 @@ function RegionTreeCard({
   onSelect: (team: Team) => void;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0.005))]">
+    <div className="overflow-hidden rounded-xl border border-border bg-bg-1">
       <div className="flex items-center justify-between border-b border-border bg-black/30 px-3.5 py-2.5">
         <span className="font-display text-sm font-bold uppercase tracking-[0.08em] text-ink">
           {region}
@@ -415,7 +415,7 @@ function FinalStrip({
   const f4Winners = teams.filter((t) => t.wins >= 5).slice(0, 2);
 
   return (
-    <div className="mt-5 rounded-2xl border border-[rgba(114,184,255,0.2)] bg-[linear-gradient(180deg,rgba(18,119,222,0.06),rgba(18,119,222,0.02))] p-5">
+    <div className="mt-5 rounded-2xl border border-[rgba(114,184,255,0.2)] bg-[rgba(18,119,222,0.04)] p-5">
       <div className="mb-4 flex items-center justify-between">
         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
           <span className="text-core-bright">F4</span> / Championship

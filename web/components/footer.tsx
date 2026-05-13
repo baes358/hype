@@ -5,16 +5,14 @@ type Props = { data: Dataset };
 export function Footer({ data }: Props) {
   return (
     <footer
-      // Feather from transparent (matches body --bg at top) gradually down to
-      // a 0.25-alpha black at the very bottom. Previously terminated at 0.5
-      // which created a visibly darker rectangle right where the footer began.
-      className="relative z-[1] mt-10 border-t border-border bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.12)_40%,rgba(0,0,0,0.25)_100%)]"
+      // Flat footer surface — no gradient, just a hairline at the top.
+      className="relative z-[1] mt-10 border-t border-border"
       style={{
         padding:
           "clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 1.5rem)",
       }}
     >
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-8 border-b border-border pb-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-10 border-b border-border pb-10">
         <div className="flex flex-col gap-3">
           <span
             className="font-display font-bold leading-none tracking-[0.04em] text-ink"
@@ -26,41 +24,28 @@ export function Footer({ data }: Props) {
             Built for the underdogs.
           </span>
         </div>
-        <Column label="PRODUCT">
-          <FootLink href="/">The Gap</FootLink>
-          <FootLink href="/scatter">The Scatter</FootLink>
-          <FootLink href="/timeline">The Timeline</FootLink>
-          <FootLink href="/bracket">The Bracket</FootLink>
-        </Column>
-        <Column label="DATA">
-          <FootLink href="https://github.com/sophbae99/hype" external>
-            Methodology ↗
-          </FootLink>
-          <FootLink href="https://github.com/sophbae99/hype" external>
-            Source on GitHub ↗
-          </FootLink>
-          <FootLink href="mailto:sophbae99@gmail.com?subject=HYP3%20correction">
-            Submit correction ↗
-          </FootLink>
-          <FootLink href="https://github.com/sophbae99/hype/commits/main" external>
-            Changelog ↗
-          </FootLink>
-        </Column>
-        <Column label="COMPANY">
-          <FootLink href="https://github.com/sophbae99/hype" external>
-            About HYP3
-          </FootLink>
-          <FootLink href="mailto:sophbae99@gmail.com">Contact</FootLink>
-        </Column>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <Column label="PRODUCT">
+            <FootLink href="/">The Gap</FootLink>
+            <FootLink href="/scatter">The Scatter</FootLink>
+            <FootLink href="/timeline">The Timeline</FootLink>
+            <FootLink href="/bracket">The Bracket</FootLink>
+          </Column>
+          <Column label="DATA">
+            <FootLink href="https://github.com/sophbae99/hype" external>
+              Methodology ↗
+            </FootLink>
+            <FootLink href="mailto:sophbae99@gmail.com?subject=HYP3%20correction">
+              Submit correction ↗
+            </FootLink>
+            <FootLink href="https://github.com/sophbae99/hype/commits/main" external>
+              Changelog ↗
+            </FootLink>
+          </Column>
+        </div>
       </div>
-      <div className="mx-auto mt-6 flex max-w-[1440px] flex-wrap justify-between gap-3 font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
-        <div>
-          © {data.metadata.tournament_year} HYP3 · Sophia Bae · All rights reserved.
-        </div>
-        <div className="flex flex-wrap gap-4">
-          <span>v3.1.0</span>
-          <span>D1 Men&apos;s Basketball</span>
-        </div>
+      <div className="mx-auto mt-6 max-w-[1440px] font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
+        Sophia Bae © HYP3 {data.metadata.tournament_year} · All rights reserved.
       </div>
     </footer>
   );

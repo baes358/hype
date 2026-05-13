@@ -55,7 +55,7 @@ export function Filters({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-[rgba(10,10,12,0.85)] backdrop-blur-xl backdrop-saturate-[140%]">
+    <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg">
       <div
         className="mx-auto flex max-w-[1440px] flex-col gap-4"
         style={{
@@ -68,10 +68,10 @@ export function Filters({
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="hyp3-filter-panel"
-          className="inline-flex min-h-11 w-full items-center justify-between rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3 py-1.5 font-display text-[13px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:hidden"
+          className="inline-flex min-h-11 w-full items-center justify-between rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3.5 py-2 font-display text-[13px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:hidden"
         >
           <span>Filters</span>
-          <span aria-hidden className="font-mono text-base text-ink-2">
+          <span aria-hidden className="font-mono text-2xl leading-none text-ink-2">
             {open ? "▴" : "▾"}
           </span>
         </button>
@@ -349,7 +349,7 @@ function RoundDropdown({
         <span>{ROUND_LABEL[value]}</span>
         <ChevronDown
           aria-hidden
-          className={`size-2.5 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`size-4 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && (

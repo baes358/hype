@@ -96,29 +96,7 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
         </div>
       </header>
 
-      <div className="relative min-h-[320px] overflow-hidden rounded-[14px] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.012),rgba(255,255,255,0.003))] sm:min-h-0 sm:aspect-[11/6]">
-        <div
-          aria-hidden
-          className="aurora"
-          style={{
-            top: -120,
-            left: -120,
-            width: 500,
-            height: 500,
-            background: "radial-gradient(circle, rgba(102,231,216,0.22), transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="aurora"
-          style={{
-            bottom: -100,
-            right: -100,
-            width: 500,
-            height: 500,
-            background: "radial-gradient(circle, rgba(249,149,182,0.22), transparent 60%)",
-          }}
-        />
+      <div className="relative min-h-[320px] overflow-hidden rounded-[14px] border border-border bg-bg-1 sm:min-h-0 sm:aspect-[11/6]">
 
         <svg
           viewBox={`0 0 ${W} ${H}`}

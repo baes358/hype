@@ -27,7 +27,6 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground font-sans font-medium">
         <IntroLoader />
-        <div aria-hidden data-bg-grid className="bg-dotgrid fixed inset-0 z-0" />
         <div className="relative z-[1] flex min-h-full flex-1 flex-col">
           {children}
         </div>

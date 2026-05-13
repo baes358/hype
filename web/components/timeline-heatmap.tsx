@@ -288,7 +288,7 @@ export function TimelineHeatmap({
         </div>
       )}
 
-      <div className="overflow-hidden rounded-[14px] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.012),rgba(255,255,255,0.003))]">
+      <div className="overflow-hidden rounded-[14px] border border-border bg-bg-1">
         <div className="w-full overflow-x-auto">
           <div
             className="grid min-w-[680px] gap-px"

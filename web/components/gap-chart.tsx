@@ -1,5 +1,6 @@
 "use client";
 
+import { TeamSearch } from "@/components/team-search";
 import { StoryTag, Team } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
@@ -11,13 +12,14 @@ const TAG_COLOR: Record<StoryTag, string> = {
 
 type Props = {
   teams: Team[];
+  allTeams: Team[];
   maxAbsGap: number;
   selectedTeam: string | null;
   onSelect: (team: Team) => void;
   mode: "tournament" | "season";
 };
 
-export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Props) {
+export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, mode: _mode }: Props) {
   const sorted = [...teams].sort((a, b) => a.gap - b.gap);
 
   if (sorted.length === 0) {
@@ -36,68 +38,54 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
           "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
       }}
     >
-      <header className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
+      <header className="mb-6 flex flex-col gap-6 md:mb-8 md:gap-7">
         <div>
-          <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-            <span className="text-core-bright">01</span> /{" "}
+          <div className="mb-3 flex items-center gap-1.5 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
+            <span className="text-core-bright">01</span>
+            <span aria-hidden className="text-lg leading-none text-ink-3">
+              ›
+            </span>
             <span className="text-ink-1">The Diverging Gap</span>
           </div>
           <h2
             className="m-0 max-w-[720px] font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
             style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
-            Every team, ranked by the{" "}
-            <span
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1.2px var(--core-bright)",
-              }}
-            >
-              wrongness
-            </span>{" "}
-            of the internet&apos;s read
+            Every team, ranked by the wrongness of the internet&apos;s read
           </h2>
-          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
-            <span className="text-ink">{sorted.length}</span> teams · sorted
-            overhyped <span className="mx-1 text-core-bright">→</span> underhyped
-            · {mode === "season" ? "season" : "tournament"} window
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex items-baseline gap-2">
+            <span
+              className="font-display font-bold leading-none text-ink"
+              style={{ fontSize: "clamp(24px, 4vw, 32px)" }}
+            >
+              {sorted.length}
+            </span>
+            <span className="font-mono text-sm uppercase tracking-[0.16em] text-ink-2">
+              Teams
+            </span>
           </div>
+          <p className="m-0 max-w-md font-mono text-sm uppercase leading-relaxed tracking-[0.12em] text-ink-2">
+            Click any row to inspect the hype curve and matchup notes for a
+            specific team.
+          </p>
         </div>
 
-        {/* Legend — wraps so it never blows out the row width. */}
-        <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
-          <LegendItem color="var(--overhyped)" label="Overhyped" arrow="←" />
+        {/* Inline search bar (moved from TopNav per Figma). */}
+        <TeamSearch teams={allTeams} onSelect={onSelect} fullWidth />
+
+        {/* Color legend — 2 columns, sits between filters and the chart. */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-4 py-3">
+          <LegendItem color="var(--overhyped)" label="Overhyped" />
           <LegendItem color="var(--noise)" label="Noise" />
           <LegendItem color="var(--as-expected)" label="As expected" />
-          <LegendItem color="var(--underhyped)" label="Underhyped" arrow="→" />
+          <LegendItem color="var(--underhyped)" label="Underhyped" />
         </div>
       </header>
 
-      {/* Chart frame */}
-      <div className="relative overflow-hidden rounded-[14px] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.012),rgba(255,255,255,0.003))]">
-        {/* Aurora glows */}
-        <div
-          aria-hidden
-          className="aurora"
-          style={{
-            top: 40,
-            left: -100,
-            width: 480,
-            height: 380,
-            background: "radial-gradient(circle, rgba(249,149,182,0.32), transparent 60%)",
-          }}
-        />
-        <div
-          aria-hidden
-          className="aurora"
-          style={{
-            bottom: 40,
-            right: -120,
-            width: 540,
-            height: 420,
-            background: "radial-gradient(circle, rgba(102,231,216,0.28), transparent 60%)",
-          }}
-        />
+      {/* Chart frame — flat dark surface, no radial aurora glows. */}
+      <div className="relative overflow-hidden rounded-[14px] border border-border bg-bg-1">
 
         {/* Axis label row.
             Mobile (<480px): compact 3-col with abbreviated arrow labels.
@@ -152,9 +140,6 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
         </div>
       </div>
 
-      <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-2">
-        ↑ Click any row to inspect the 15-day hype curve and matchup notes.
-      </div>
     </section>
   );
 }
@@ -162,24 +147,17 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect, mode }: Pro
 function LegendItem({
   color,
   label,
-  arrow,
 }: {
   color: string;
   label: string;
-  arrow?: string;
 }) {
   return (
-    <span className="inline-flex items-center gap-1.5">
-      {arrow && (
-        <span style={{ color }} className="text-[11px]">
-          {arrow}
-        </span>
-      )}
+    <span className="inline-flex items-center gap-2">
       <span
         className="size-2 rounded-[2px]"
         style={{ background: color }}
       />
-      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-1">
+      <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
         {label}
       </span>
     </span>
@@ -205,11 +183,10 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
         isSel ? "bg-[rgba(114,184,255,0.06)]" : "hover:bg-[rgba(255,255,255,0.025)]"
       }`}
     >
-      {/* LEFT half (overhyped).
-          Mobile (<md): team name on the far-left edge, gap badge nudged to the
-          inner edge (near center) so the team name has the full half-width to
-          breathe and never truncates the way it did with the inner label.
-          md+: original layout (gap badge outer, labels inner). */}
+      {/* LEFT half (overhyped). Layout per Figma:
+          [SEED far-edge] [TEAM mid] [GAP_PILL near-center]
+          Single full-width flex row with justify-between spreads the three
+          items across the half — bar/glow sit underneath. */}
       <div className="relative h-full">
         {isOver && (
           <>
@@ -219,51 +196,34 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
                 width: `${widthPct}%`,
                 background: `linear-gradient(90deg, ${color}14, ${color}55 70%, ${color})`,
                 boxShadow: isSel
-                  ? `0 0 32px ${color}80, inset 0 0 0 1px ${color}cc`
+                  ? `inset 0 0 0 1px ${color}cc`
                   : `inset 0 0 0 1px ${color}66`,
               }}
             />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -right-5 -top-2 -bottom-2 blur-md"
-              style={{
-                width: `${Math.min(widthPct + 20, 100)}%`,
-                background: `radial-gradient(ellipse at right, ${color}33, transparent 70%)`,
-              }}
-            />
-            {/* Gap badge sits ACROSS the center division — anchored to the
-                right edge of the left half (the center line) and nudged into
-                the right-half area. The opposite half is empty on this row
-                (only !isOver renders right-half content), so it never collides. */}
-            <div
-              className="absolute left-full right-auto top-1/2 z-[4] ml-1.5 inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:ml-2 md:px-2.5"
-              style={{ borderColor: `${color}66` }}
-            >
-              <span
-                className="font-mono text-sm font-bold tabular-nums tracking-[0.02em]"
-                style={{ color, textShadow: "0 0 12px currentColor" }}
-              >
-                {gap}
-              </span>
-            </div>
-            {/* Labels — anchored at the center-side edge (right edge of the
-                left half) at all breakpoints, so seed + team name read against
-                the center division the same way they do on desktop. */}
-            <div className="absolute inset-y-0 right-2 z-[3] flex items-center gap-2 md:right-3 md:gap-2.5">
+            <div className="absolute inset-y-0 left-2 right-1.5 z-[3] flex items-center justify-between gap-2 md:left-3 md:right-2 md:gap-2.5">
               <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
                 {String(team.seed).padStart(2, "0")}
               </span>
-              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
+              <span className="min-w-0 flex-1 truncate text-center font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
                 {team.team}
+              </span>
+              <span
+                className="inline-flex min-w-[44px] shrink-0 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 font-mono text-sm font-bold tabular-nums tracking-[0.02em] shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:px-2.5"
+                style={{
+                  borderColor: `${color}66`,
+                  color,
+                  textShadow: "0 0 12px currentColor",
+                }}
+              >
+                {gap}
               </span>
             </div>
           </>
         )}
       </div>
 
-      {/* RIGHT half (underhyped).
-          Mobile (<md): team name on the far-right edge, gap badge near the
-          center. md+: original layout (labels inner, gap badge outer). */}
+      {/* RIGHT half (underhyped). Layout per Figma:
+          [GAP_PILL near-center] [TEAM mid] [SEED far-edge] — mirror of left. */}
       <div className="relative h-full">
         {!isOver && (
           <>
@@ -273,39 +233,26 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
                 width: `${widthPct}%`,
                 background: `linear-gradient(270deg, ${color}14, ${color}55 70%, ${color})`,
                 boxShadow: isSel
-                  ? `0 0 32px ${color}80, inset 0 0 0 1px ${color}cc`
+                  ? `inset 0 0 0 1px ${color}cc`
                   : `inset 0 0 0 1px ${color}66`,
               }}
             />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -left-5 -top-2 -bottom-2 blur-md"
-              style={{
-                width: `${Math.min(widthPct + 20, 100)}%`,
-                background: `radial-gradient(ellipse at left, ${color}33, transparent 70%)`,
-              }}
-            />
-            {/* Labels — anchored at the center-side edge (left edge of the
-                right half) at all breakpoints. */}
-            <div className="absolute inset-y-0 left-2 z-[3] flex items-center gap-2 md:left-3 md:gap-2.5">
-              <span className="truncate font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
+            <div className="absolute inset-y-0 left-1.5 right-2 z-[3] flex items-center justify-between gap-2 md:left-2 md:right-3 md:gap-2.5">
+              <span
+                className="inline-flex min-w-[44px] shrink-0 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 font-mono text-sm font-bold tabular-nums tracking-[0.02em] shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:px-2.5"
+                style={{
+                  borderColor: `${color}66`,
+                  color,
+                  textShadow: "0 0 12px currentColor",
+                }}
+              >
+                +{gap}
+              </span>
+              <span className="min-w-0 flex-1 truncate text-center font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
                 {team.team}
               </span>
               <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
                 {String(team.seed).padStart(2, "0")}
-              </span>
-            </div>
-            {/* Gap badge sits ACROSS the center division — anchored to the
-                left edge of the right half and nudged into the left-half area. */}
-            <div
-              className="absolute right-full left-auto top-1/2 z-[4] mr-1.5 inline-flex min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:mr-2 md:px-2.5"
-              style={{ borderColor: `${color}66` }}
-            >
-              <span
-                className="font-mono text-sm font-bold tabular-nums tracking-[0.02em]"
-                style={{ color, textShadow: "0 0 12px currentColor" }}
-              >
-                +{gap}
               </span>
             </div>
           </>

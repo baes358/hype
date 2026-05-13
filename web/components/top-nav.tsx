@@ -5,8 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-import { TeamSearch } from "@/components/team-search";
-import { Dataset, Team } from "@/lib/data";
+import { Dataset } from "@/lib/data";
 
 // Module-scope flag flipped by a nav click; the freshly-mounted TopNav on
 // the destination route consumes it. Each route renders its own AppShell, so
@@ -34,10 +33,9 @@ const NAV_ITEMS: NavItem[] = [
 
 type Props = {
   dataset: Dataset;
-  onSelectTeam: (team: Team) => void;
 };
 
-export function TopNav({ dataset, onSelectTeam }: Props) {
+export function TopNav({ dataset: _dataset }: Props) {
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
 
@@ -70,7 +68,7 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-40 border-b border-border bg-[rgba(10,10,12,0.78)] backdrop-blur-md backdrop-saturate-[140%]"
+      className="sticky top-0 z-40 border-b border-border bg-bg"
     >
       {/* Top row — logo + (desktop) tab pills + search + docs.
           On mobile/tablet, this row only holds the logo + a docs link. */}
@@ -107,11 +105,9 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
           </div>
         </nav>
 
-        {/* Right cluster — search (lg+ inline), docs links */}
+        {/* Right cluster — docs / api links only; search moved into the
+            gap-chart section header (per Figma). */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <div className="hidden lg:block">
-            <TeamSearch teams={dataset.teams} onSelect={onSelectTeam} />
-          </div>
           <a
             href="https://github.com/sophbae99/hype"
             target="_blank"
@@ -163,14 +159,6 @@ export function TopNav({ dataset, onSelectTeam }: Props) {
           </div>
         </div>
 
-        {/* Search — full-width on mobile, sits below tabs and above page. */}
-        <div className="border-t border-border px-4 py-2 sm:px-6">
-          <TeamSearch
-            teams={dataset.teams}
-            onSelect={onSelectTeam}
-            fullWidth
-          />
-        </div>
       </div>
     </header>
   );

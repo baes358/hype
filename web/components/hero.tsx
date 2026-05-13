@@ -60,16 +60,13 @@ export function Hero({ data }: Props) {
             "clamp(2rem, 6vw, 4.5rem) clamp(1rem, 4vw, 1.75rem) clamp(3rem, 8vw, 6rem)",
         }}
       >
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-6 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
             <span
               aria-hidden
               className="size-1.5 rounded-full bg-overhyped shadow-[0_0_10px_var(--overhyped)]"
             />
             March Madness · {data.metadata.tournament_year}
-          </span>
-          <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
-            EDITION 03 · ISSUE 12
           </span>
         </div>
 
@@ -80,11 +77,8 @@ export function Hero({ data }: Props) {
           <span className="text-ink">HYPE</span>{" "}
           <span className="italic font-normal text-ink-2">vs.</span>{" "}
           <span
-            style={{
-              color: "transparent",
-              WebkitTextStroke: "1.5px var(--core-bright)",
-              textShadow: "0 0 60px rgba(114,184,255,0.35)",
-            }}
+            className="text-core-bright"
+            style={{ textShadow: "0 0 60px rgba(114,184,255,0.35)" }}
           >
             PERFORMANCE
           </span>

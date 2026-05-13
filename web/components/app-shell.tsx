@@ -327,7 +327,7 @@ export function AppShell({ data, view }: Props) {
         />
       </Suspense>
 
-      <TopNav dataset={dataset} onSelectTeam={selectTeamByOriginal} />
+      <TopNav dataset={dataset} />
 
       {view === "gap" && <Hero data={dataset} />}
 
@@ -349,6 +349,7 @@ export function AppShell({ data, view }: Props) {
         {view === "gap" && (
           <GapChart
             teams={filteredTeams}
+            allTeams={dataset.teams}
             maxAbsGap={scale}
             selectedTeam={selectedTeam?.team ?? null}
             onSelect={(t) => selectTeamByOriginal(t)}
