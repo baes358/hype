@@ -1,6 +1,5 @@
 "use client";
 
-import { TeamSearch } from "@/components/team-search";
 import { StoryTag, Team } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
@@ -12,14 +11,12 @@ const TAG_COLOR: Record<StoryTag, string> = {
 
 type Props = {
   teams: Team[];
-  allTeams: Team[];
   maxAbsGap: number;
   selectedTeam: string | null;
   onSelect: (team: Team) => void;
-  mode: "tournament" | "season";
 };
 
-export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, mode: _mode }: Props) {
+export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
   const sorted = [...teams].sort((a, b) => a.gap - b.gap);
 
   if (sorted.length === 0) {
@@ -71,9 +68,6 @@ export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, m
             specific team.
           </p>
         </div>
-
-        {/* Inline search bar (moved from TopNav per Figma). */}
-        <TeamSearch teams={allTeams} onSelect={onSelect} fullWidth />
 
         {/* Color legend — 2 columns, sits between filters and the chart. */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-5 py-4">

@@ -7,7 +7,6 @@ import { BracketTree } from "@/components/bracket-tree";
 import { Filters } from "@/components/filters";
 import { Footer } from "@/components/footer";
 import { GapChart } from "@/components/gap-chart";
-import { Hero } from "@/components/hero";
 import { ScatterChartView } from "@/components/scatter-chart";
 import { TeamSheet } from "@/components/team-sheet";
 import { TimelineHeatmap } from "@/components/timeline-heatmap";
@@ -329,8 +328,6 @@ export function AppShell({ data, view }: Props) {
 
       <TopNav dataset={dataset} />
 
-      {view === "gap" && <Hero data={dataset} />}
-
       <div id="hyp3-content" className="scroll-mt-[var(--hyp3-nav-h,0px)]">
         <Filters
           mode={gapMode}
@@ -349,11 +346,9 @@ export function AppShell({ data, view }: Props) {
         {view === "gap" && (
           <GapChart
             teams={filteredTeams}
-            allTeams={dataset.teams}
             maxAbsGap={scale}
             selectedTeam={selectedTeam?.team ?? null}
             onSelect={(t) => selectTeamByOriginal(t)}
-            mode={gapMode}
           />
         )}
 

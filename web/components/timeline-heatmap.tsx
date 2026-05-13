@@ -12,16 +12,17 @@ const TAG_COLOR: Record<StoryTag, string> = {
   noise: "#b4b4ef",
 };
 
-// Deep navy → glowing core bright. 9-stop ramp.
+// Navy → glowing core bright. 9-stop ramp. Lightened low end for legibility
+// against the dark page background.
 const HEAT_STOPS = [
-  "#0d1622",
-  "#13243a",
-  "#1a3253",
-  "#1f4673",
-  "#26649b",
-  "#3c8acb",
-  "#72b8ff",
-  "#a0d0ff",
+  "#1a2a40",
+  "#1f3554",
+  "#264069",
+  "#2c5085",
+  "#3a6fac",
+  "#5093d4",
+  "#80c0ff",
+  "#a8d4ff",
   "#dceaff",
 ] as const;
 
@@ -238,7 +239,7 @@ export function TimelineHeatmap({
           <span className="font-mono text-sm uppercase tracking-[0.18em] text-ink-3">
             SORT
           </span>
-          <div className="inline-flex w-fit max-w-full flex-wrap rounded-full border border-border bg-[rgba(255,255,255,0.025)] p-[3px]">
+          <div className="inline-flex w-fit max-w-full flex-wrap rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] p-[3px]">
             {SORT_OPTIONS.map((opt) => {
               const active = sortKey === opt.key;
               return (
@@ -247,7 +248,7 @@ export function TimelineHeatmap({
                   type="button"
                   onClick={() => setSortKey(opt.key)}
                   aria-pressed={active}
-                  className={`inline-flex min-h-11 items-center rounded-full px-3 py-1 font-mono text-sm uppercase tracking-[0.06em] transition-all ${
+                  className={`inline-flex min-h-11 items-center rounded-[7px] px-3 py-1 font-mono text-sm uppercase tracking-[0.06em] transition-all ${
                     active
                       ? "bg-[rgba(255,255,255,0.08)] text-ink"
                       : "text-ink-1 hover:text-ink"
@@ -288,8 +289,30 @@ export function TimelineHeatmap({
         </div>
       )}
 
+      {/* Color scale — above the heatmap */}
+      <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
+        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-2">
+          INTENSITY
+        </span>
+        <div className="inline-flex items-center gap-1">
+          <span className="mr-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+            LOW
+          </span>
+          {Array.from({ length: 9 }).map((_, i) => (
+            <span
+              key={i}
+              className="h-3 rounded-[2px]"
+              style={{ background: cellColor(i / 8), width: 22 }}
+            />
+          ))}
+          <span className="ml-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+            PEAK
+          </span>
+        </div>
+      </div>
+
       <div className="overflow-hidden rounded-[14px] border border-border bg-bg-1">
-        <div className="w-full overflow-x-auto">
+        <div className="w-full overflow-x-auto overscroll-x-contain">
           <div
             className="grid min-w-[680px] gap-px"
             style={{
@@ -378,22 +401,6 @@ export function TimelineHeatmap({
         </div>
       </div>
 
-      {/* Color scale */}
-      <div className="mt-4 inline-flex items-center gap-1">
-        <span className="mr-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-2">
-          LOW
-        </span>
-        {Array.from({ length: 9 }).map((_, i) => (
-          <span
-            key={i}
-            className="h-3 w-5.5 rounded-[2px]"
-            style={{ background: cellColor(i / 8), width: 22 }}
-          />
-        ))}
-        <span className="ml-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-2">
-          PEAK
-        </span>
-      </div>
     </section>
   );
 }

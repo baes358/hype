@@ -31,7 +31,7 @@ export function Footer({ data }: Props) {
         {/* Link columns */}
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-16">
           <Column label="Product">
-            <FootLink href="/">The Gap</FootLink>
+            <FootLink href="/divergent">The Divergent</FootLink>
             <FootLink href="/scatter">The Scatter</FootLink>
             <FootLink href="/timeline">The Timeline</FootLink>
             <FootLink href="/bracket">The Bracket</FootLink>

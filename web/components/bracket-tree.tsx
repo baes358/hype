@@ -79,14 +79,14 @@ export function BracketTree({
           "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
       }}
     >
-      <header className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
+      <header className="mb-8 flex flex-col gap-6 md:mb-10 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
         <div>
           <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">04</span> /{" "}
             <span className="text-ink-1">The Bracket</span>
           </div>
           <h2
-            className="m-0 max-w-[720px] font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
+            className="m-0 max-w-[720px] font-display font-bold leading-[1.2] tracking-[-0.005em] text-ink"
             style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
             Each region as a{" "}
@@ -107,6 +107,16 @@ export function BracketTree({
 
         <Legend />
       </header>
+
+      {/* Champion banner — always visible up top so the final result is
+          legible without horizontal scrolling through the tree. */}
+      {champion && selectedRegion === "all" && (
+        <ChampionBanner
+          champion={champion}
+          onSelect={onSelect}
+          selected={selectedTeam === champion.team}
+        />
+      )}
 
       <div
         className={`grid gap-4 ${
@@ -137,6 +147,62 @@ export function BracketTree({
         />
       )}
     </section>
+  );
+}
+
+function ChampionBanner({
+  champion,
+  onSelect,
+  selected,
+}: {
+  champion: Team;
+  onSelect: (team: Team) => void;
+  selected: boolean;
+}) {
+  const color = TAG_COLOR[champion.story_tag];
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(champion)}
+      className="mb-6 flex w-full flex-wrap items-center gap-4 rounded-2xl border border-core-bright/40 bg-[rgba(18,119,222,0.10)] px-5 py-4 text-left transition-all hover:bg-[rgba(18,119,222,0.16)] sm:px-6 sm:py-5"
+      style={{
+        boxShadow: selected
+          ? "0 0 0 1px var(--core-bright), 0 0 32px -4px rgba(114,184,255,0.5)"
+          : undefined,
+      }}
+    >
+      <span
+        className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-core-bright"
+        style={{ textShadow: "0 0 12px rgba(114,184,255,0.6)" }}
+      >
+        ★ National Champion
+      </span>
+      <span className="flex items-baseline gap-3">
+        <span className="font-mono text-sm font-bold tabular-nums text-core-bright">
+          #{String(champion.seed).padStart(2, "0")}
+        </span>
+        <span
+          className="font-display font-bold leading-none text-ink"
+          style={{ fontSize: "clamp(20px, 3.4vw, 28px)" }}
+        >
+          {champion.team}
+        </span>
+      </span>
+      <span className="ml-auto inline-flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
+        <span className="text-ink-1">{champion.region} region</span>
+        <span
+          className="rounded-full border bg-black/40 px-2 py-0.5 font-bold"
+          style={{ color, borderColor: `${color}55` }}
+        >
+          {champion.story_tag === "as_expected"
+            ? "AS EXPECTED"
+            : champion.story_tag.toUpperCase()}
+        </span>
+        <span className="text-core-bright">
+          {champion.wins}W · gap {champion.gap > 0 ? `+${champion.gap}` : champion.gap}
+        </span>
+      </span>
+    </button>
   );
 }
 
@@ -233,10 +299,10 @@ function BracketCard({
       type="button"
       onClick={() => onSelect(team)}
       title={`${team.team} — ${team.wins}W (seed ${team.seed})`}
-      className={`relative grid w-full cursor-pointer text-left transition-all ${
+      className={`relative flex w-full cursor-pointer items-center text-left transition-all ${
         large
-          ? "grid-cols-[auto_1fr_auto] gap-2 rounded-md px-2.5 py-2"
-          : "grid-cols-[auto_1fr] gap-1.5 rounded-[4px] px-2 py-0.5"
+          ? "gap-2 rounded-md px-2.5 py-2"
+          : "gap-1.5 rounded-[4px] px-1.5 py-1"
       }`}
       style={{
         background: champion
@@ -249,20 +315,26 @@ function BracketCard({
         borderStyle: "solid",
         boxShadow,
         opacity: dimmed ? 0.35 : 1,
-        minHeight: large ? 36 : 22,
+        minHeight: large ? 38 : 26,
       }}
     >
       <span
-        className="font-mono text-[9px] font-bold tabular-nums"
-        style={{ color, minWidth: 14 }}
+        className={`shrink-0 font-mono font-bold tabular-nums leading-none ${
+          large ? "text-[11px]" : "text-[10px]"
+        }`}
+        style={{ color, minWidth: large ? 18 : 14 }}
       >
         {String(team.seed).padStart(2, "0")}
       </span>
-      <span className="truncate font-sans text-[10.5px] text-ink">
+      <span
+        className={`min-w-0 flex-1 truncate font-sans leading-tight text-ink ${
+          large ? "text-[13px]" : "text-[11px]"
+        }`}
+      >
         {team.team}
       </span>
       {large && (
-        <span className="font-mono text-[10px] tabular-nums text-core-bright">
+        <span className="shrink-0 font-mono text-[11px] tabular-nums text-core-bright">
           {team.wins}W
         </span>
       )}

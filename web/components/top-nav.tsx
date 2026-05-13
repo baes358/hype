@@ -25,10 +25,10 @@ type NavItem = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { href: "/",         marker: "01", label: "Divergent" },
-  { href: "/scatter",  marker: "02", label: "Scatter"   },
-  { href: "/timeline", marker: "03", label: "Timeline"  },
-  { href: "/bracket",  marker: "04", label: "Bracket"   },
+  { href: "/divergent", marker: "01", label: "Divergent" },
+  { href: "/scatter",   marker: "02", label: "Scatter"   },
+  { href: "/timeline",  marker: "03", label: "Timeline"  },
+  { href: "/bracket",   marker: "04", label: "Bracket"   },
 ];
 
 type Props = {

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import {
   Sheet,
   SheetContent,
@@ -45,7 +47,7 @@ export function TeamSheet({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="right"
-        className="w-full overflow-y-auto bg-bg-1 sm:max-w-xl"
+        className="w-full overflow-y-auto bg-bg-1 sm:max-w-2xl"
       >
         {team && (
           <TeamSheetBody
@@ -186,23 +188,72 @@ function TeamSheetBody({
         />
       </div>
 
-      {/* 15-day curve */}
-      <div className="flex flex-col gap-2">
-        <div className="flex items-baseline justify-between">
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-1">
-            FULL SEASON HYPE CURVE
-          </span>
-          <span className="font-mono text-[10px] tracking-[0.1em] text-ink-3">
-            peaked {peak.value.toFixed(0)} on {shortDate(peak.date)}
-          </span>
+      {/* Full season curve */}
+      <ChartBlock
+        data={seasonDaily}
+        color={color}
+        peak={peak}
+        windowStart={hypeWindowStart}
+        windowEnd={hypeWindowEnd}
+        team={team}
+      />
+    </div>
+  );
+}
+
+function ChartBlock({
+  data,
+  color,
+  peak,
+  windowStart,
+  windowEnd,
+  team,
+}: {
+  data: { date: string; value: number }[];
+  color: string;
+  peak: { date: string; value: number };
+  windowStart: string;
+  windowEnd: string;
+  team: Team;
+}) {
+  const [view, setView] = useState<"area" | "line">("area");
+  return (
+    <div className="flex flex-col gap-2.5">
+      <div className="flex items-center justify-between gap-3">
+        <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-1">
+          FULL SEASON HYPE CURVE
+        </span>
+        <div className="inline-flex shrink-0 rounded-md border border-border bg-[rgba(255,255,255,0.025)] p-0.5">
+          {(["area", "line"] as const).map((v) => {
+            const active = view === v;
+            return (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setView(v)}
+                aria-pressed={active}
+                className={`min-h-7 rounded-[5px] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] transition-all ${
+                  active
+                    ? "bg-[rgba(255,255,255,0.06)] text-ink shadow-[inset_0_0_0_1px_var(--border-hi)]"
+                    : "text-ink-2 hover:text-ink"
+                }`}
+              >
+                {v}
+              </button>
+            );
+          })}
         </div>
-        <Curve
-          data={seasonDaily}
-          color={color}
-          windowStart={hypeWindowStart}
-          windowEnd={hypeWindowEnd}
-          team={team}
-        />
+      </div>
+      <Curve
+        data={data}
+        color={color}
+        windowStart={windowStart}
+        windowEnd={windowEnd}
+        team={team}
+        view={view}
+      />
+      <div className="font-mono text-[10px] tracking-[0.1em] text-ink-3">
+        peaked {peak.value.toFixed(0)} on {shortDate(peak.date)}
       </div>
     </div>
   );
@@ -227,19 +278,21 @@ function Curve({
   windowStart,
   windowEnd,
   team,
+  view,
 }: {
   data: { date: string; value: number }[];
   color: string;
   windowStart: string;
   windowEnd: string;
   team: Team;
+  view: "area" | "line";
 }) {
   if (data.length === 0) return null;
   const W = 600;
-  const H = 140;
+  const H = 240;
   const PAD_L = 0;
   const PAD_R = 0;
-  const PAD_T = 20;
+  const PAD_T = 24;
   const PAD_B = 8;
 
   const max = Math.max(1, ...data.map((d) => d.value));
@@ -309,12 +362,12 @@ function Curve({
           </text>
         </>
       )}
-      <path d={fillPath} fill={`url(#${gradId})`} />
+      {view === "area" && <path d={fillPath} fill={`url(#${gradId})`} />}
       <path
         d={linePath}
         fill="none"
         stroke={color}
-        strokeWidth="1.8"
+        strokeWidth={view === "line" ? "2.2" : "1.8"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

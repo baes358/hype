@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Host_Grotesk } from "next/font/google";
 import "./globals.css";
+import { FloatingSearch } from "@/components/floating-search";
 import { IntroLoader } from "@/components/intro-loader";
 
 const hostGrotesk = Host_Grotesk({
@@ -30,6 +31,7 @@ export default function RootLayout({
         <div className="relative z-[1] flex min-h-full flex-1 flex-col">
           {children}
         </div>
+        <FloatingSearch />
       </body>
     </html>
   );

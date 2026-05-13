@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { StoryTag, Team } from "@/lib/data";
+import { StoryTag, Team, dataset } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
   overhyped: "#f995b6",
@@ -21,13 +21,45 @@ const ROUND_LABELS = [
   "Champion",
 ] as const;
 
+const SHORT_ROUND_LABELS = [
+  "R64",
+  "R32",
+  "S16",
+  "E8",
+  "F4",
+  "F2",
+  "CH",
+] as const;
+
 type Props = {
   teams: Team[];
   selectedTeam: string | null;
   onSelect: (team: Team) => void;
 };
 
+function useIsMobile() {
+  const [m, setM] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const u = () => setM(mq.matches);
+    u();
+    mq.addEventListener("change", u);
+    return () => mq.removeEventListener("change", u);
+  }, []);
+  return m;
+}
+
+function formatRangeLabel(start: string, end: string): string {
+  const fmt = (iso: string) => {
+    const [, m, d] = iso.split("-").map(Number);
+    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][m - 1];
+    return `${month} ${d}`;
+  };
+  return `${fmt(start)} – ${fmt(end)}`;
+}
+
 export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
+  const isMobile = useIsMobile();
   const calls = useMemo(() => {
     const above = [...teams].filter((t) => t.gap > 0).sort((a, b) => b.gap - a.gap).slice(0, 3);
     const below = [...teams].filter((t) => t.gap < 0).sort((a, b) => a.gap - b.gap).slice(0, 3);
@@ -42,18 +74,27 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
     );
   }
 
-  const W = 1100;
-  const H = 600;
-  const PAD_L = 110;
-  const PAD_R = 60;
-  const PAD_T = 40;
-  const PAD_B = 60;
+  const W = isMobile ? 480 : 1200;
+  const H = isMobile ? 520 : 760;
+  const PAD_L = isMobile ? 92 : 150;
+  const PAD_R = isMobile ? 24 : 80;
+  const PAD_T = isMobile ? 32 : 56;
+  const PAD_B = isMobile ? 72 : 88;
   const PW = W - PAD_L - PAD_R;
   const PH = H - PAD_T - PAD_B;
+  const labelSize = isMobile ? 12 : 14;
+  const tickSize = isMobile ? 11 : 13;
+  const zoneSize = isMobile ? 11 : 14;
 
   const xFor = (hype: number) =>
     PAD_L + (Math.min(100, hype) / 100) * PW;
   const yFor = (wins: number) => PAD_T + PH - (wins / 6) * PH;
+
+  const tournamentYear = dataset.metadata.tournament_year;
+  const windowLabel = formatRangeLabel(
+    dataset.metadata.hype_window_start,
+    dataset.metadata.hype_window_end
+  );
 
   return (
     <section
@@ -63,15 +104,15 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
           "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
       }}
     >
-      <header className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
+      <header className="mb-8 flex flex-col gap-5 md:mb-10 md:gap-7">
         <div>
           <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">02</span> /{" "}
             <span className="text-ink-1">The Scatter</span>
           </div>
           <h2
-            className="m-0 max-w-[720px] font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
-            style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
+            className="m-0 max-w-[820px] font-display font-bold leading-[1.25] tracking-[-0.005em] text-ink"
+            style={{ fontSize: "clamp(24px, 3vw, 38px)" }}
           >
             Hype against performance — the{" "}
             <span
@@ -84,10 +125,27 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             </span>{" "}
             is the expected line
           </h2>
-          <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
+          <div className="mt-4 font-mono text-sm uppercase tracking-[0.1em] text-ink-1">
             <span className="text-ink">{teams.length}</span> teams · outliers
-            are the story · X = hype index · Y = wins
+            are the story · X = hype · Y = wins
           </div>
+        </div>
+
+        {/* Prominent tournament-window banner */}
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-core-bright/30 bg-[rgba(18,119,222,0.10)] px-4 py-3 sm:px-5">
+          <span
+            aria-hidden
+            className="size-2 shrink-0 rounded-full bg-core-bright shadow-[0_0_10px_var(--core-bright)]"
+          />
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-core-bright sm:text-xs">
+            Tournament
+          </span>
+          <span className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink sm:text-lg">
+            NCAA · March Madness · {tournamentYear}
+          </span>
+          <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2 sm:text-xs">
+            {windowLabel} · 15-day hype window
+          </span>
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -96,11 +154,14 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
         </div>
       </header>
 
-      <div className="relative min-h-[320px] overflow-hidden rounded-[14px] border border-border bg-bg-1 sm:min-h-0 sm:aspect-[11/6]">
+      <div
+        className="relative overflow-hidden rounded-[14px] border border-border bg-bg-1"
+        style={{ aspectRatio: isMobile ? "12 / 13" : "12 / 7.5" }}
+      >
 
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          preserveAspectRatio="none"
+          preserveAspectRatio="xMidYMid meet"
           className="relative z-[1] block size-full"
         >
           <defs>
@@ -156,21 +217,21 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
 
           {/* Zone labels */}
           <text
-            x={xFor(15)}
+            x={xFor(isMobile ? 5 : 12)}
             y={yFor(5.5)}
-            fill="rgba(102,231,216,0.65)"
+            fill="rgba(102,231,216,0.75)"
             fontFamily="var(--font-mono)"
-            fontSize="11"
+            fontSize={zoneSize}
             letterSpacing="0.14em"
           >
             ↑ UNDERHYPED · ROBBED
           </text>
           <text
-            x={xFor(60)}
+            x={xFor(isMobile ? 50 : 58)}
             y={yFor(0.5)}
-            fill="rgba(249,149,182,0.65)"
+            fill="rgba(249,149,182,0.75)"
             fontFamily="var(--font-mono)"
-            fontSize="11"
+            fontSize={zoneSize}
             letterSpacing="0.14em"
           >
             ↓ OVERHYPED · FLAMEOUT
@@ -182,7 +243,9 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             const y = yFor(t.wins);
             const color = TAG_COLOR[t.story_tag];
             const isSel = selectedTeam === t.team;
-            const r = isSel ? 9 : Math.abs(t.gap) > 25 ? 7 : 5;
+            const baseR = isMobile ? 6 : 7;
+            const bigR = isMobile ? 8 : 10;
+            const r = isSel ? bigR + 2 : Math.abs(t.gap) > 25 ? bigR : baseR;
             return (
               <g
                 key={t.team}
@@ -192,28 +255,28 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
                 <circle
                   cx={x}
                   cy={y}
-                  r={r + 8}
+                  r={r + 10}
                   fill={color}
                   opacity="0.25"
-                  style={{ filter: "blur(4px)" }}
+                  style={{ filter: "blur(5px)" }}
                 />
                 <circle
                   cx={x}
                   cy={y}
                   r={r}
                   fill={color}
-                  fillOpacity={isSel ? 1 : 0.92}
+                  fillOpacity={isSel ? 1 : 0.95}
                   stroke="rgba(10,10,12,0.9)"
-                  strokeWidth="1.5"
+                  strokeWidth="1.6"
                 />
                 {isSel && (
                   <circle
                     cx={x}
                     cy={y}
-                    r={r + 4}
+                    r={r + 5}
                     fill="none"
                     stroke="#72b8ff"
-                    strokeWidth="1.5"
+                    strokeWidth="1.8"
                   />
                 )}
               </g>
@@ -225,10 +288,10 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             <text
               key={`xt-${h}`}
               x={xFor(h)}
-              y={H - PAD_B + 18}
-              fill="rgba(251,253,254,0.5)"
+              y={H - PAD_B + (isMobile ? 20 : 22)}
+              fill="rgba(251,253,254,0.7)"
               fontFamily="var(--font-mono)"
-              fontSize="10"
+              fontSize={tickSize}
               textAnchor="middle"
             >
               {h}
@@ -236,12 +299,13 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
           ))}
           <text
             x={PAD_L + PW / 2}
-            y={H - 14}
-            fill="rgba(251,253,254,0.65)"
+            y={H - (isMobile ? 16 : 20)}
+            fill="rgba(251,253,254,0.85)"
             fontFamily="var(--font-mono)"
-            fontSize="11"
-            letterSpacing="0.14em"
+            fontSize={labelSize}
+            letterSpacing="0.16em"
             textAnchor="middle"
+            fontWeight="600"
           >
             HYPE INDEX (0–100)
           </text>
@@ -250,14 +314,14 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
           {[0, 1, 2, 3, 4, 5, 6].map((w) => (
             <text
               key={`yt-${w}`}
-              x={PAD_L - 12}
+              x={PAD_L - (isMobile ? 8 : 14)}
               y={yFor(w) + 4}
-              fill="rgba(251,253,254,0.65)"
+              fill="rgba(251,253,254,0.8)"
               fontFamily="var(--font-mono)"
-              fontSize="10"
+              fontSize={tickSize}
               textAnchor="end"
             >
-              {ROUND_LABELS[w]}
+              {isMobile ? SHORT_ROUND_LABELS[w] : ROUND_LABELS[w]}
             </text>
           ))}
         </svg>

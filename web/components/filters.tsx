@@ -78,7 +78,7 @@ export function Filters({
 
         <div
           id="hyp3-filter-panel"
-          className={`${open ? "flex" : "hidden"} flex-col gap-6 md:flex md:gap-10`}
+          className={`${open ? "flex" : "hidden"} max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-6 overflow-y-auto overscroll-contain pr-1 md:flex md:max-h-none md:gap-10 md:overflow-visible md:pr-0`}
         >
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline with generous gap. */}
