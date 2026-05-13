@@ -76,10 +76,10 @@ export function BracketTree({
       className="relative mx-auto max-w-[1440px]"
       style={{
         padding:
-          "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
+          "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
       }}
     >
-      <header className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-6">
+      <header className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
         <div>
           <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">04</span> /{" "}

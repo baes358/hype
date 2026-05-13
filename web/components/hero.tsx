@@ -57,11 +57,11 @@ export function Hero({ data }: Props) {
         className="relative z-[2] mx-auto max-w-[1280px]"
         style={{
           padding:
-            "clamp(2rem, 6vw, 4.5rem) clamp(1rem, 4vw, 1.75rem) clamp(3rem, 8vw, 6rem)",
+            "clamp(2.5rem, 7vw, 5rem) clamp(1.25rem, 4vw, 2rem) clamp(4rem, 10vw, 7rem)",
         }}
       >
-        <div className="mb-6 flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
+        <div className="mb-8 flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
             <span
               aria-hidden
               className="size-1.5 rounded-full bg-overhyped shadow-[0_0_10px_var(--overhyped)]"
@@ -71,11 +71,11 @@ export function Hero({ data }: Props) {
         </div>
 
         <h1
-          className="m-0 mb-6 break-words font-display font-bold leading-[0.95] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)" }}
+          className="m-0 mb-8 break-words font-display font-bold leading-[1.0] tracking-[-0.02em]"
+          style={{ fontSize: "clamp(2.75rem, 13vw, 5rem)" }}
         >
           <span className="text-ink">HYPE</span>{" "}
-          <span className="italic font-normal text-ink-2">vs.</span>{" "}
+          <span className="italic font-normal text-ink">vs.</span>{" "}
           <span
             className="text-core-bright"
             style={{ textShadow: "0 0 60px rgba(114,184,255,0.35)" }}
@@ -84,13 +84,10 @@ export function Hero({ data }: Props) {
           </span>
         </h1>
 
-        <p className="m-0 mb-8 max-w-2xl text-base leading-relaxed text-ink-1 lg:mb-12 lg:text-[17px]">
-          HYP3 measures the distance between how loudly the internet talked
-          about each team and how far they actually went.{" "}
-          <span className="text-overhyped">Negative gap</span> means a team got
-          more hype than their wins justified.{" "}
-          <span className="text-underhyped">Positive gap</span> means they were
-          robbed of attention.
+        <p className="m-0 mb-10 max-w-2xl text-base leading-relaxed text-ink lg:mb-14 lg:text-[17px]">
+          HYP3 measures the distance between how loudly the internet talked about each team vs. how far they actually went that season.
+          See how we measured 2026.{" "}
+      
         </p>
 
         {/* Stat row — 2×2 on mobile, 4-across on desktop. */}
@@ -137,20 +134,20 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="flex h-full flex-col bg-black/60 p-4 backdrop-blur sm:p-5 lg:p-6">
-      <div className="mb-2 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
+    <div className="flex h-full flex-col bg-black/60 p-5 backdrop-blur sm:p-6 lg:p-7">
+      <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] leading-[1.3] text-ink-2">
         {label}
       </div>
       <div
-        className="break-words font-display font-bold leading-[1.1] tracking-[-0.01em]"
+        className="mt-1 break-words font-display font-bold leading-[1.1] tracking-[-0.01em]"
         style={{
           color,
-          fontSize: "clamp(1.125rem, 2.4vw, 1.75rem)",
+          fontSize: "clamp(1.25rem, 2.8vw, 1.875rem)",
         }}
       >
         {value}
       </div>
-      <div className="mt-2 font-mono text-sm tracking-[0.06em] text-ink-2">
+      <div className="mt-3 font-mono text-sm tracking-[0.06em] text-ink-2">
         {sub}
       </div>
     </div>

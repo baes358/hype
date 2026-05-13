@@ -35,12 +35,12 @@ export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, m
       className="relative mx-auto max-w-[1440px]"
       style={{
         padding:
-          "clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.75rem) clamp(2rem, 5vw, 4rem)",
+          "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
       }}
     >
-      <header className="mb-6 flex flex-col gap-6 md:mb-8 md:gap-7">
+      <header className="mb-10 flex flex-col gap-10 md:mb-12 md:gap-12">
         <div>
-          <div className="mb-3 flex items-center gap-1.5 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
+          <div className="mb-4 flex items-center gap-2 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
             <span className="text-core-bright">01</span>
             <span aria-hidden className="text-lg leading-none text-ink-3">
               ›
@@ -48,17 +48,17 @@ export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, m
             <span className="text-ink-1">The Diverging Gap</span>
           </div>
           <h2
-            className="m-0 max-w-[720px] font-display font-bold leading-[1.1] tracking-[-0.01em] text-ink"
+            className="m-0 max-w-[720px] font-display font-bold leading-[1.15] tracking-[-0.01em] text-ink"
             style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
             Every team, ranked by the wrongness of the internet&apos;s read
           </h2>
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex items-baseline gap-2">
+        <div className="flex flex-col gap-3">
+          <div className="flex items-baseline gap-2.5">
             <span
               className="font-display font-bold leading-none text-ink"
-              style={{ fontSize: "clamp(24px, 4vw, 32px)" }}
+              style={{ fontSize: "clamp(26px, 4.5vw, 36px)" }}
             >
               {sorted.length}
             </span>
@@ -66,7 +66,7 @@ export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, m
               Teams
             </span>
           </div>
-          <p className="m-0 max-w-md font-mono text-sm uppercase leading-relaxed tracking-[0.12em] text-ink-2">
+          <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
             Click any row to inspect the hype curve and matchup notes for a
             specific team.
           </p>
@@ -76,7 +76,7 @@ export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, m
         <TeamSearch teams={allTeams} onSelect={onSelect} fullWidth />
 
         {/* Color legend — 2 columns, sits between filters and the chart. */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-4 py-3">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-5 py-4">
           <LegendItem color="var(--overhyped)" label="Overhyped" />
           <LegendItem color="var(--noise)" label="Noise" />
           <LegendItem color="var(--as-expected)" label="As expected" />
@@ -122,7 +122,7 @@ export function GapChart({ teams, allTeams, maxAbsGap, selectedTeam, onSelect, m
         />
 
         {/* Rows */}
-        <div className="relative z-[1] flex flex-col gap-px px-2 py-2 sm:px-6">
+        <div className="relative z-[1] flex flex-col gap-1 px-3 py-3 sm:px-6 sm:py-4">
           {sorted.map((t) => {
             const widthPct = (Math.abs(t.gap) / maxAbsGap) * 100;
             return (

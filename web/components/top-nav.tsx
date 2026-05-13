@@ -76,16 +76,19 @@ export function TopNav({ dataset: _dataset }: Props) {
         <Link
           href="/"
           aria-label="HYP3 home"
-          className="flex shrink-0 items-center"
+          className="flex shrink-0 items-center gap-2"
         >
           <Image
-            src="/media/hype-logo.png"
-            alt="HYP3"
-            width={430}
-            height={112}
+            src="/media/hype-logo.svg"
+            alt=""
+            width={39}
+            height={41}
             priority
-            className="h-6 w-auto sm:h-7"
+            className="h-7 w-auto sm:h-8"
           />
+          <span className="font-display text-2xl font-black uppercase leading-none tracking-[0.04em] text-ink sm:text-[28px]">
+            HYP3
+          </span>
         </Link>
 
         {/* Desktop tab pills (lg+) */}

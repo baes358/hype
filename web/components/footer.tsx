@@ -5,26 +5,28 @@ type Props = { data: Dataset };
 export function Footer({ data }: Props) {
   return (
     <footer
-      // Flat footer surface — no gradient, just a hairline at the top.
       className="relative z-[1] mt-10 border-t border-border"
       style={{
         padding:
-          "clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 1.5rem)",
+          "clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 2.5rem) clamp(2rem, 4vw, 2.5rem)",
       }}
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-10 border-b border-border pb-10">
-        <div className="flex flex-col gap-3">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-14">
+        {/* Wordmark + tagline */}
+        <div className="flex flex-col gap-4">
           <span
-            className="font-display font-bold leading-none tracking-[0.04em] text-ink"
-            style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
+            className="font-display font-black leading-none tracking-[0.02em] text-ink"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 3.75rem)" }}
           >
             HYP3
           </span>
-          <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
+          <span className="font-mono text-base uppercase tracking-[0.12em] text-ink-2">
             Built for the underdogs.
           </span>
         </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+
+        {/* Link columns */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
           <Column label="PRODUCT">
             <FootLink href="/">The Gap</FootLink>
             <FootLink href="/scatter">The Scatter</FootLink>
@@ -43,9 +45,14 @@ export function Footer({ data }: Props) {
             </FootLink>
           </Column>
         </div>
-      </div>
-      <div className="mx-auto mt-6 max-w-[1440px] font-mono text-sm uppercase tracking-[0.12em] text-ink-2">
-        Sophia Bae © HYP3 {data.metadata.tournament_year} · All rights reserved.
+
+        {/* Hairline divider above copyright */}
+        <div className="border-t border-border pt-10">
+          <div className="font-mono text-sm uppercase tracking-[0.12em] leading-[1.7] text-ink-2">
+            <div>Sophia Bae © HYP3 {data.metadata.tournament_year}</div>
+            <div>All rights reserved.</div>
+          </div>
+        </div>
       </div>
     </footer>
   );
@@ -59,8 +66,8 @@ function Column({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="mb-1 font-mono text-sm uppercase tracking-[0.18em] text-ink-2">
+    <div className="flex flex-col gap-4">
+      <div className="font-mono text-sm uppercase tracking-[0.18em] text-ink-2">
         {label}
       </div>
       {children}
@@ -82,7 +89,6 @@ function FootLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
-      // Min 44px tap target.
       className="inline-flex min-h-11 items-center font-sans text-base leading-snug text-ink-1 transition-colors hover:text-ink"
     >
       {children}
