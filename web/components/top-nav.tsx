@@ -85,9 +85,9 @@ export function TopNav({ dataset: _dataset }: Props) {
             width={39}
             height={41}
             priority
-            className="h-7 w-auto sm:h-8"
+            className="logo-pulse h-7 w-auto sm:h-8"
           />
-          <span className="font-display text-2xl font-black uppercase leading-none tracking-[0.04em] text-ink sm:text-[28px]">
+          <span className="font-display text-2xl font-black uppercase leading-none tracking-[0.04em] text-brand sm:text-[28px]">
             HYP3
           </span>
         </Link>

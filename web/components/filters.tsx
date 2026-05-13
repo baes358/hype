@@ -32,6 +32,9 @@ type Props = {
   selectedRound: Round;
   tagCounts: Record<StoryTag, number>;
   showRoundFilter?: boolean;
+  /** When true, the sticky bar fades + lifts off-screen (used when the
+      footer enters viewport so chrome doesn't float over it). */
+  hidden?: boolean;
   onToggleTag: (tag: StoryTag) => void;
   onSetRegion: (r: Region | "all") => void;
   onSetRound: (r: Round) => void;
@@ -46,6 +49,7 @@ export function Filters({
   selectedRound,
   tagCounts,
   showRoundFilter = true,
+  hidden = false,
   onToggleTag,
   onSetRegion,
   onSetRound,
@@ -63,7 +67,9 @@ export function Filters({
   }, []);
 
   return (
-    <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)]">
+    <div
+      className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-transform duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
+    >
       <div
         className="mx-auto flex max-w-[1440px] flex-col gap-4"
         style={{

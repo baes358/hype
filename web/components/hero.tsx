@@ -1,4 +1,3 @@
-import { Icon } from "@/components/icon";
 import { Dataset, Team } from "@/lib/data";
 
 type Props = { data: Dataset };
@@ -62,9 +61,9 @@ export function Hero({ data }: Props) {
         }}
       >
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
-            <Icon name="bullet" size={10} />
-            March Madness <Icon name="bullet" size={7} className="mx-1.5 inline-block align-middle" /> {data.metadata.tournament_year}
+          <span className="inline-flex items-center gap-2 rounded-full border border-brand bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur">
+            <span aria-hidden className="size-1.5 rounded-full bg-brand" />
+            March Madness <span aria-hidden className="mx-1.5 inline-block size-1.5 rounded-full bg-brand align-middle" /> {data.metadata.tournament_year} Tournament
           </span>
         </div>
 

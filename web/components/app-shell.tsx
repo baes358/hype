@@ -304,6 +304,23 @@ export function AppShell({ data, view }: Props) {
     setSelectedTeam(original);
   };
 
+  // Hide the sticky Filters bar once the footer scrolls into view so the
+  // footer reads as the end of the page (no chrome floating over it).
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [footerInView, setFooterInView] = useState(false);
+  useEffect(() => {
+    const node = footerRef.current;
+    if (!node) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) setFooterInView(entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+    obs.observe(node);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <>
       <Suspense fallback={null}>
@@ -341,6 +358,7 @@ export function AppShell({ data, view }: Props) {
           onSetRegion={setSelectedRegion}
           onSetRound={setSelectedRound}
           onReset={onReset}
+          hidden={footerInView}
         />
 
         {view === "gap" && (
@@ -382,7 +400,9 @@ export function AppShell({ data, view }: Props) {
         )}
       </div>
 
-      <Footer data={dataset} />
+      <div ref={footerRef}>
+        <Footer data={dataset} />
+      </div>
 
       <TeamSheet
         team={selectedTeam}

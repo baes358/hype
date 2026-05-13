@@ -291,6 +291,14 @@
   0%, 100% { opacity: calc(var(--aurora-intensity) * 0.7); }
   50%      { opacity: var(--aurora-intensity); }
 }
+@keyframes logo-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(114, 184, 255, 0.25)); }
+  50%      { filter: drop-shadow(0 0 12px rgba(114, 184, 255, 0.55)); }
+}
+.logo-pulse { animation: logo-glow 2.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .logo-pulse { animation: none; filter: drop-shadow(0 0 6px rgba(114, 184, 255, 0.35)); }
+}
 
 /* IntroLoader native control suppression (unchanged). */
 [data-hyp3-loader] video::-webkit-media-controls-start-playback-button {
