@@ -243,7 +243,7 @@ export function TimelineHeatmap({
                 Teams
               </span>
             </div>
-            <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+            <p className="m-0 whitespace-nowrap font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
               Vertical line = Selection Sunday
             </p>
           </div>
