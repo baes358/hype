@@ -51,9 +51,16 @@ export function Filters({
   onSetRound,
   onReset,
 }: Props) {
-  // Mobile collapsible. Default collapsed; toggle button visible only below md.
-  // At md+ the filter content is always rendered (no toggle).
+  // Collapsible at every breakpoint. Default closed (matches SSR + mobile UX);
+  // an effect flips it open after mount on md+ so desktop lands with filters
+  // visible. Once the user toggles, we respect their choice.
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      setOpen(true);
+    }
+  }, []);
 
   return (
     <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg">
@@ -63,23 +70,24 @@ export function Filters({
           padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.75rem)",
         }}
       >
-        {/* Mobile-only toggle. Hidden at md+ where filters are always shown. */}
+        {/* Master toggle — visible at every breakpoint. Stretches full-width
+            on mobile (tap target) and shrinks to natural width on md+. */}
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="hyp3-filter-panel"
-          className="inline-flex min-h-11 w-full items-center justify-between rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3.5 py-2 font-display text-[12px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:hidden"
+          className="inline-flex min-h-11 w-full items-center justify-between gap-3 rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3.5 py-2 font-display text-[12px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:min-h-9 md:w-auto md:self-start md:px-3 md:py-1"
         >
           <span>Filters</span>
-          <span aria-hidden className="font-mono text-2xl leading-none text-ink-2">
+          <span aria-hidden className="font-mono text-2xl leading-none text-ink-2 md:text-base">
             {open ? "▴" : "▾"}
           </span>
         </button>
 
         <div
           id="hyp3-filter-panel"
-          className={`${open ? "flex" : "hidden"} max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-6 overflow-y-auto overscroll-contain pr-1 md:flex md:max-h-none md:gap-10 md:overflow-visible md:pr-0`}
+          className={`${open ? "flex" : "hidden"} max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-6 overflow-y-auto overscroll-contain pr-1 md:max-h-none md:gap-10 md:overflow-visible md:pr-0`}
         >
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline with generous gap. */}
@@ -365,7 +373,7 @@ function RoundDropdown({
                     : "text-ink-1 hover:bg-[rgba(255,255,255,0.03)] hover:text-ink"
                 }`}
               >
-                <span className="w-3 font-mono text-core-bright">
+                <span className="inline-flex w-5 shrink-0 justify-center font-mono text-base leading-none text-core-bright">
                   {active ? "✓" : ""}
                 </span>
                 {ROUND_LABEL[r]}

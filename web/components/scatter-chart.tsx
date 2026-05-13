@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { Icon } from "@/components/icon";
-import { StoryTag, Team, dataset } from "@/lib/data";
+import { StoryTag, Team } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
   overhyped: "#f995b6",
@@ -50,15 +50,6 @@ function useIsMobile() {
   return m;
 }
 
-function formatRangeLabel(start: string, end: string): string {
-  const fmt = (iso: string) => {
-    const [, m, d] = iso.split("-").map(Number);
-    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][m - 1];
-    return `${month} ${d}`;
-  };
-  return `${fmt(start)} – ${fmt(end)}`;
-}
-
 export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
   const isMobile = useIsMobile();
   const calls = useMemo(() => {
@@ -90,12 +81,6 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
   const xFor = (hype: number) =>
     PAD_L + (Math.min(100, hype) / 100) * PW;
   const yFor = (wins: number) => PAD_T + PH - (wins / 6) * PH;
-
-  const tournamentYear = dataset.metadata.tournament_year;
-  const windowLabel = formatRangeLabel(
-    dataset.metadata.hype_window_start,
-    dataset.metadata.hype_window_end
-  );
 
   return (
     <section
@@ -130,20 +115,6 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             <span className="text-ink">{teams.length}</span> teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> outliers
             are the story <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> X = hype <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> Y = wins
           </div>
-        </div>
-
-        {/* Prominent tournament-window banner */}
-        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-core-bright/30 bg-[rgba(18,119,222,0.10)] px-4 py-3 sm:px-5">
-          <Icon name="bullet" size={11} />
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-core-bright sm:text-xs">
-            Tournament
-          </span>
-          <span className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink sm:text-lg">
-            NCAA <Icon name="bullet" size={9} className="mx-1.5 inline-block align-middle" /> March Madness <Icon name="bullet" size={9} className="mx-1.5 inline-block align-middle" /> {tournamentYear}
-          </span>
-          <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2 sm:text-xs">
-            {windowLabel} <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> 15-day hype window
-          </span>
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
