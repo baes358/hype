@@ -69,7 +69,7 @@ export function TopNav({ dataset: _dataset }: Props) {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-40 border-b border-border bg-bg"
+      className="sticky top-0 z-40 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(114,184,255,0.25)]"
     >
       {/* Top row — logo + (desktop) tab pills + search + docs.
           On mobile/tablet, this row only holds the logo + a docs link. */}

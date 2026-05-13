@@ -63,7 +63,7 @@ export function Filters({
   }, []);
 
   return (
-    <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg">
+    <div className="sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)]">
       <div
         className="mx-auto flex max-w-[1440px] flex-col gap-4"
         style={{
