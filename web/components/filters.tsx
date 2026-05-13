@@ -337,10 +337,9 @@ function RoundDropdown({
         className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto md:min-h-9 md:px-3 md:py-1"
       >
         <span>{ROUND_LABEL[value]}</span>
-        <Icon
-          name="down-arrow"
-          size={12}
-          className={`transition-transform ${open ? "rotate-180" : ""}`}
+        <ChevronDown
+          aria-hidden
+          className={`size-4 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && (
