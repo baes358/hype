@@ -69,7 +69,7 @@ export function TopNav({ dataset: _dataset }: Props) {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-40 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(114,184,255,0.25)]"
+      className="sticky top-0 z-40 overflow-hidden border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(114,184,255,0.25)]"
     >
       {/* Top row — logo + (desktop) tab pills + search + docs.
           On mobile/tablet, this row only holds the logo + a docs link. */}
@@ -77,7 +77,7 @@ export function TopNav({ dataset: _dataset }: Props) {
         <Link
           href="/"
           aria-label="HYP3 home"
-          className="flex shrink-0 items-center gap-2"
+          className="logo-pulse flex shrink-0 items-center gap-2"
         >
           <Image
             src="/media/hype-logo.svg"
@@ -85,7 +85,7 @@ export function TopNav({ dataset: _dataset }: Props) {
             width={39}
             height={41}
             priority
-            className="logo-pulse h-7 w-auto sm:h-8"
+            className="h-7 w-auto sm:h-8"
           />
           <span className="font-display text-2xl font-black uppercase leading-none tracking-[0.04em] text-brand sm:text-[28px]">
             HYP3

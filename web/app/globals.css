@@ -292,12 +292,26 @@
   50%      { opacity: var(--aurora-intensity); }
 }
 @keyframes logo-glow {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(114, 184, 255, 0.25)); }
-  50%      { filter: drop-shadow(0 0 12px rgba(114, 184, 255, 0.55)); }
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 4px rgba(114, 184, 255, 0.35))
+      drop-shadow(0 0 10px rgba(114, 184, 255, 0.15));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 24px rgba(114, 184, 255, 1))
+      drop-shadow(0 0 48px rgba(114, 184, 255, 0.75))
+      drop-shadow(0 0 80px rgba(114, 184, 255, 0.4));
+  }
 }
-.logo-pulse { animation: logo-glow 2.8s ease-in-out infinite; }
+.logo-pulse { animation: logo-glow 2s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
-  .logo-pulse { animation: none; filter: drop-shadow(0 0 6px rgba(114, 184, 255, 0.35)); }
+  .logo-pulse {
+    animation: none;
+    filter:
+      drop-shadow(0 0 14px rgba(114, 184, 255, 0.7))
+      drop-shadow(0 0 28px rgba(114, 184, 255, 0.4));
+  }
 }
 
 /* IntroLoader native control suppression (unchanged). */
