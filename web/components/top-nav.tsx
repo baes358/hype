@@ -113,7 +113,7 @@ export function TopNav({ dataset: _dataset }: Props) {
             gap-chart section header (per Figma). */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <a
-            href="https://github.com/sophbae99/hype"
+            href="https://github.com/baes358/hype"
             target="_blank"
             rel="noreferrer"
             className="hidden items-center gap-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink sm:inline-flex"
@@ -122,7 +122,7 @@ export function TopNav({ dataset: _dataset }: Props) {
             <Icon name="upright-arrow" size={10} />
           </a>
           <a
-            href="https://github.com/sophbae99/hype"
+            href="https://github.com/baes358/hype"
             target="_blank"
             rel="noreferrer"
             className="hidden items-center gap-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink lg:inline-flex"

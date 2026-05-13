@@ -38,7 +38,7 @@ export function Footer({ data }: Props) {
             <FootLink href="/bracket">The Bracket</FootLink>
           </Column>
           <Column label="Data">
-            <FootLink href="https://github.com/sophbae99/hype" external>
+            <FootLink href="https://github.com/baes358/hype" external>
               Methodology
               <Icon name="upright-arrow" size={12} className="ml-1.5" />
             </FootLink>
@@ -46,7 +46,7 @@ export function Footer({ data }: Props) {
               Submit correction
               <Icon name="upright-arrow" size={12} className="ml-1.5" />
             </FootLink>
-            <FootLink href="https://github.com/sophbae99/hype/commits/main" external>
+            <FootLink href="https://github.com/baes358/hype/commits/main" external>
               Changelog
               <Icon name="upright-arrow" size={12} className="ml-1.5" />
             </FootLink>

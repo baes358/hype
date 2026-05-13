@@ -12,7 +12,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How is hype measured?",
-    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team, usually the eventual champion, so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
+    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team — a high-volume program with sustained search interest across the entire window (Michigan for 2026) — so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
   },
   {
     q: "What does the gap mean?",
@@ -24,11 +24,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Tournament view vs. season view?",
-    a: "Tournament mode uses a 15-day window centered on Selection Sunday. Season mode uses the full ~5-month regular season (Nov 1 through tournament week). Each mode has its own hype, performance, and gap fields. Switch between them in the filter bar at the top of any data page.",
+    a: "Tournament mode uses a 15-day window centered on Selection Sunday. Season mode uses the full season — Nov 1 through Selection Sunday + 9 days — which includes the tournament itself. Each mode has its own hype, performance, and gap fields. Switch between them in the filter bar at the top of any data page.",
   },
   {
     q: "Which years are available?",
-    a: "The bundled dataset is 2026. Other years (2024, 2025) exist on disk and can be loaded via the year query parameter (e.g. /divergent?year=2025). Each year has its own reference team and methodology notes.",
+    a: "The bundled dataset is 2026. The 2025 dataset is also served and can be loaded via the year query parameter (e.g. /divergent?year=2025). Each year has its own reference team and methodology notes.",
   },
 ];
 
@@ -195,11 +195,6 @@ export function ApiSection() {
             path="/data/2025.json"
             note="Florida championship year."
           />
-          <ApiRow
-            method="GET"
-            path="/data/2024.json"
-            note="UConn back-to-back year."
-          />
         </div>
 
         <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-1">
@@ -238,7 +233,7 @@ export function ApiSection() {
                   </>
                 }
               />
-              <SchemaRow field="wins" type="number" desc="Tournament wins 0–6 (champion)" />
+              <SchemaRow field="wins" type="number" desc="Tournament wins 0–7 (incl. First Four)" />
               <SchemaRow field="hype_normalized" type="number" desc="Hype 0–100 across the field" />
               <SchemaRow field="hype_rank" type="number" desc="1 = most hyped" />
               <SchemaRow field="performance_rank" type="number" desc="1 = most wins (min-rank)" />
@@ -267,12 +262,12 @@ export function ApiSection() {
         <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
           Methodology <Icon name="bullet" size={5} className="mx-1.5 inline-block align-middle" /> see{" "}
           <a
-            href="https://github.com/sophbae99/hype"
+            href="https://github.com/baes358/hype"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-core-bright underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
           >
-            github.com/sophbae99/hype
+            github.com/baes358/hype
             <Icon name="upright-arrow" size={10} />
           </a>
         </div>
@@ -344,17 +339,70 @@ export function SourcesSection() {
         >
           Where the data lives.
         </h2>
-        <div className="flex min-h-[200px] items-center justify-center rounded-2xl border border-dashed border-border bg-black/20 px-6 py-12 text-center">
-          <div>
-            <div className="mb-2 font-mono text-sm uppercase tracking-[0.16em] text-ink-2">
-              Content TBD
-            </div>
-            <div className="font-display text-[18px] font-bold text-ink-1">
-              Links to Google Trends, NCAA API, and references to be added.
-            </div>
-          </div>
+        <p className="m-0 mb-8 max-w-[720px] text-base leading-relaxed text-ink-1 lg:text-[17px]">
+          Every number on this site traces back to one of four upstream
+          sources. All pulls are cached locally — the live site never calls
+          these endpoints at request time.
+        </p>
+        <div className="grid grid-cols-1 gap-3">
+          <SourceCard
+            label="Google Trends"
+            href="https://trends.google.com/trends/"
+            display="trends.google.com"
+            note="Daily search-interest curves for every team. Cross-batch normalized against an anchor team to make values comparable across pytrends batches."
+          />
+          <SourceCard
+            label="pytrends"
+            href="https://github.com/GeneralMills/pytrends"
+            display="github.com/GeneralMills/pytrends"
+            note="Unofficial Google Trends API. Fetches the daily series in batches of five teams plus a shared reference."
+          />
+          <SourceCard
+            label="NCAA bracket + standings"
+            href="https://ncaa-api.henrygd.me/"
+            display="ncaa-api.henrygd.me"
+            note="Third-party wrapper over the NCAA's public bracket and standings endpoints. Source of wins, season_wins, season_losses, region, and seed."
+          />
+          <SourceCard
+            label="NCAA team logos"
+            href="https://ncaa-api.henrygd.me/"
+            display="ncaa-api.henrygd.me/logo"
+            note="SVG team logos fetched once via the same wrapper and committed to web/public/logos/ so the live site can serve them as static assets."
+          />
         </div>
       </div>
     </section>
+  );
+}
+
+function SourceCard({
+  label,
+  href,
+  display,
+  note,
+}: {
+  label: string;
+  href: string;
+  display: string;
+  note: string;
+}) {
+  return (
+    <div className="flex flex-col gap-3 rounded-lg border border-border bg-black/30 px-4 py-3 sm:flex-row sm:items-center sm:gap-4">
+      <span className="shrink-0 rounded-md border border-core-bright/40 bg-[rgba(18,119,222,0.16)] px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-core-bright">
+        {label}
+      </span>
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex shrink-0 items-center gap-1.5 font-mono text-sm text-ink underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
+      >
+        {display}
+        <Icon name="upright-arrow" size={10} />
+      </a>
+      <span className="font-mono text-[11px] uppercase tracking-[0.08em] leading-[1.5] text-ink-2 sm:ml-auto sm:text-right">
+        {note}
+      </span>
+    </div>
   );
 }
