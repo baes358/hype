@@ -74,7 +74,7 @@ export function BracketTree({
 
   return (
     <section
-      className="relative mx-auto max-w-[1440px]"
+      className="relative mx-auto max-w-[1180px]"
       style={{
         padding:
           "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",

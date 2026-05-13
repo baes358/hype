@@ -22,7 +22,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
 
   if (sorted.length === 0) {
     return (
-      <div className="mx-auto max-w-[1440px] px-5 py-24 text-center text-base text-ink-2 sm:px-7">
+      <div className="mx-auto max-w-[1180px] px-5 py-24 text-center text-base text-ink-2 sm:px-7">
         No teams match the current filters.
       </div>
     );
@@ -30,7 +30,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
 
   return (
     <section
-      className="relative mx-auto max-w-[1440px]"
+      className="relative mx-auto max-w-[1180px]"
       style={{
         padding:
           "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
