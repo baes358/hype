@@ -6,6 +6,8 @@
 
 import { useEffect, useState } from "react";
 
+import { Icon } from "@/components/icon";
+
 type BgTone = "pure" | "deep" | "charcoal";
 type GridStyle = "dots" | "lines" | "off";
 type Density = "compact" | "regular";
@@ -96,7 +98,7 @@ export function TweaksPanel() {
     >
       <div className="flex items-center justify-between border-b border-border px-3.5 py-2.5">
         <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-1">
-          Tweaks · dev
+          Tweaks <Icon name="bullet" size={5} className="mx-1 inline-block align-middle" /> dev
         </span>
         <button
           type="button"

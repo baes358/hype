@@ -1,7 +1,7 @@
 "use client";
 
+import type React from "react";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 
 import { Icon } from "@/components/icon";
 
@@ -140,11 +140,10 @@ function FAQItem({
         <span className="font-display text-[16px] font-bold leading-[1.3] tracking-[-0.005em] text-ink sm:text-[18px]">
           {q}
         </span>
-        <ChevronDown
-          aria-hidden
-          className={`size-5 shrink-0 text-ink-2 transition-transform ${
-            open ? "rotate-180" : ""
-          }`}
+        <Icon
+          name="down-arrow"
+          size={16}
+          className={`shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && (
@@ -204,7 +203,7 @@ export function ApiSection() {
         </div>
 
         <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-1">
-          Schema · per team
+          Schema <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" /> per team
         </div>
         <div className="overflow-hidden rounded-xl border border-border bg-black/40">
           <table className="w-full border-collapse text-left font-mono text-sm">
@@ -224,13 +223,41 @@ export function ApiSection() {
             <tbody className="text-[13px]">
               <SchemaRow field="team" type="string" desc="Team name (matches NCAA bracket)" />
               <SchemaRow field="seed" type="number" desc="Tournament seed 1–16" />
-              <SchemaRow field="region" type="enum" desc="East · West · South · Midwest" />
+              <SchemaRow
+                field="region"
+                type="enum"
+                desc={
+                  <>
+                    East
+                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
+                    West
+                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
+                    South
+                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
+                    Midwest
+                  </>
+                }
+              />
               <SchemaRow field="wins" type="number" desc="Tournament wins 0–6 (champion)" />
               <SchemaRow field="hype_normalized" type="number" desc="Hype 0–100 across the field" />
               <SchemaRow field="hype_rank" type="number" desc="1 = most hyped" />
               <SchemaRow field="performance_rank" type="number" desc="1 = most wins (min-rank)" />
               <SchemaRow field="gap" type="number" desc="hype_rank − performance_rank" />
-              <SchemaRow field="story_tag" type="enum" desc="overhyped · underhyped · as_expected · noise" />
+              <SchemaRow
+                field="story_tag"
+                type="enum"
+                desc={
+                  <>
+                    overhyped
+                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
+                    underhyped
+                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
+                    as_expected
+                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
+                    noise
+                  </>
+                }
+              />
               <SchemaRow field="hype_daily" type="array" desc="Daily hype series in the tournament window" />
               <SchemaRow field="season_*" type="various" desc="Parallel fields for full-season mode" last />
             </tbody>
@@ -238,7 +265,7 @@ export function ApiSection() {
         </div>
 
         <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
-          Methodology · see{" "}
+          Methodology <Icon name="bullet" size={5} className="mx-1.5 inline-block align-middle" /> see{" "}
           <a
             href="https://github.com/sophbae99/hype"
             target="_blank"
@@ -284,7 +311,7 @@ function SchemaRow({
 }: {
   field: string;
   type: string;
-  desc: string;
+  desc: React.ReactNode;
   last?: boolean;
 }) {
   return (

@@ -102,7 +102,7 @@ export function BracketTree({
             — colored by the story each team ended up telling
           </h2>
           <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
-            {teams.length} teams · 4 regions · tap any team
+            {teams.length} teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> 4 regions <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> tap any team
           </div>
         </div>
 
@@ -200,7 +200,7 @@ function ChampionBanner({
             : champion.story_tag.toUpperCase()}
         </span>
         <span className="text-core-bright">
-          {champion.wins}W · gap {champion.gap > 0 ? `+${champion.gap}` : champion.gap}
+          {champion.wins}W <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> gap {champion.gap > 0 ? `+${champion.gap}` : champion.gap}
         </span>
       </span>
     </button>

@@ -151,7 +151,7 @@ function TeamSheetBody({
 
       <SheetHeader className="gap-0 p-0">
         <div className="mb-3 font-mono text-[13px] uppercase tracking-[0.18em] text-ink-2">
-          TEAM DOSSIER · ID #{String(team.hype_rank).padStart(3, "0")}
+          TEAM DOSSIER <Icon name="bullet" size={7} className="mx-1.5 inline-block align-middle" /> ID #{String(team.hype_rank).padStart(3, "0")}
         </div>
         <div className="mb-4 flex items-center gap-4">
           <div className="flex flex-col gap-2.5">
@@ -587,7 +587,7 @@ function Curve({
             </div>
             {pinnedIdx === activeIdx && (
               <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-core-bright">
-                · pinned · tap to unpin
+                <Icon name="bullet" size={5} className="mr-1.5 inline-block align-middle" /> pinned <Icon name="bullet" size={5} className="mx-1.5 inline-block align-middle" /> tap to unpin
               </div>
             )}
           </div>

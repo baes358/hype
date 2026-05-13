@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Search } from "lucide-react";
 
+import { Icon } from "@/components/icon";
 import { Team } from "@/lib/data";
 
 type Props = {
@@ -144,7 +145,7 @@ export function TeamSearch({ teams, onSelect, fullWidth = false }: Props) {
                       <span className="text-core-bright tabular-nums">
                         {String(t.seed).padStart(2, "0")}
                       </span>{" "}
-                      · {t.region}
+                      <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" /> {t.region}
                     </span>
                   </button>
                 </li>

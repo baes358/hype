@@ -127,8 +127,8 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             is the expected line
           </h2>
           <div className="mt-4 font-mono text-sm uppercase tracking-[0.1em] text-ink-1">
-            <span className="text-ink">{teams.length}</span> teams · outliers
-            are the story · X = hype · Y = wins
+            <span className="text-ink">{teams.length}</span> teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> outliers
+            are the story <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> X = hype <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> Y = wins
           </div>
         </div>
 
@@ -139,16 +139,16 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             Tournament
           </span>
           <span className="font-display text-base font-bold uppercase tracking-[0.06em] text-ink sm:text-lg">
-            NCAA · March Madness · {tournamentYear}
+            NCAA <Icon name="bullet" size={9} className="mx-1.5 inline-block align-middle" /> March Madness <Icon name="bullet" size={9} className="mx-1.5 inline-block align-middle" /> {tournamentYear}
           </span>
           <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2 sm:text-xs">
-            {windowLabel} · 15-day hype window
+            {windowLabel} <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> 15-day hype window
           </span>
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <CalloutGroup label="Most underhyped" tag="underhyped" teams={calls.above} arrow="↑" />
-          <CalloutGroup label="Most overhyped" tag="overhyped" teams={calls.below} arrow="↓" />
+          <CalloutGroup label="Most underhyped" tag="underhyped" teams={calls.above} arrow="up-arrow" />
+          <CalloutGroup label="Most overhyped" tag="overhyped" teams={calls.below} arrow="down-arrow" />
         </div>
       </header>
 
@@ -214,26 +214,50 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
           />
 
           {/* Zone labels */}
-          <text
+          <foreignObject
             x={xFor(isMobile ? 5 : 12)}
-            y={yFor(5.5)}
-            fill="rgba(102,231,216,0.75)"
-            fontFamily="var(--font-mono)"
-            fontSize={zoneSize}
-            letterSpacing="0.14em"
+            y={yFor(5.5) - zoneSize}
+            width={isMobile ? 220 : 320}
+            height={zoneSize * 1.8}
           >
-            ↑ UNDERHYPED · ROBBED
-          </text>
-          <text
+            <div
+              style={{
+                color: "rgba(102,231,216,0.75)",
+                fontFamily: "var(--font-mono)",
+                fontSize: zoneSize,
+                letterSpacing: "0.14em",
+                whiteSpace: "nowrap",
+                lineHeight: 1,
+              }}
+            >
+              <Icon name="up-arrow" size={zoneSize * 0.9} className="mr-2 inline-block align-middle" />
+              UNDERHYPED
+              <Icon name="bullet" size={zoneSize * 0.7} className="mx-2 inline-block align-middle" />
+              ROBBED
+            </div>
+          </foreignObject>
+          <foreignObject
             x={xFor(isMobile ? 50 : 58)}
-            y={yFor(0.5)}
-            fill="rgba(249,149,182,0.75)"
-            fontFamily="var(--font-mono)"
-            fontSize={zoneSize}
-            letterSpacing="0.14em"
+            y={yFor(0.5) - zoneSize}
+            width={isMobile ? 220 : 320}
+            height={zoneSize * 1.8}
           >
-            ↓ OVERHYPED · FLAMEOUT
-          </text>
+            <div
+              style={{
+                color: "rgba(249,149,182,0.75)",
+                fontFamily: "var(--font-mono)",
+                fontSize: zoneSize,
+                letterSpacing: "0.14em",
+                whiteSpace: "nowrap",
+                lineHeight: 1,
+              }}
+            >
+              <Icon name="down-arrow" size={zoneSize * 0.9} className="mr-2 inline-block align-middle" />
+              OVERHYPED
+              <Icon name="bullet" size={zoneSize * 0.7} className="mx-2 inline-block align-middle" />
+              FLAMEOUT
+            </div>
+          </foreignObject>
 
           {/* Dots */}
           {teams.map((t) => {
@@ -337,7 +361,7 @@ function CalloutGroup({
   label: string;
   tag: StoryTag;
   teams: Team[];
-  arrow: string;
+  arrow: "up-arrow" | "down-arrow";
 }) {
   const color = TAG_COLOR[tag];
   return (
@@ -346,7 +370,7 @@ function CalloutGroup({
         className="mb-2 font-mono text-sm uppercase tracking-[0.14em]"
         style={{ color }}
       >
-        {arrow} {label}
+        <Icon name={arrow} size={11} className="mr-1.5 inline-block align-middle" /> {label}
       </div>
       <div className="flex flex-col gap-1">
         {teams.map((t) => (

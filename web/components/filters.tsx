@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+import { Icon } from "@/components/icon";
 import {
   GapMode,
   Region,
@@ -163,18 +164,7 @@ export function Filters({
             onClick={onReset}
             className="inline-flex min-h-11 items-center gap-1.5 self-start rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:min-h-9 md:self-auto md:px-3 md:py-1"
           >
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              aria-hidden
-            >
-              <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-              <path d="M3 3v5h5" />
-            </svg>
+            <Icon name="reset" size={12} />
             Reset filters
           </button>
         </div>
@@ -347,9 +337,10 @@ function RoundDropdown({
         className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto md:min-h-9 md:px-3 md:py-1"
       >
         <span>{ROUND_LABEL[value]}</span>
-        <ChevronDown
-          aria-hidden
-          className={`size-4 transition-transform ${open ? "rotate-180" : ""}`}
+        <Icon
+          name="down-arrow"
+          size={12}
+          className={`transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && (

@@ -64,7 +64,7 @@ export function Hero({ data }: Props) {
         <div className="mb-8 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
             <Icon name="bullet" size={10} />
-            March Madness · {data.metadata.tournament_year}
+            March Madness <Icon name="bullet" size={7} className="mx-1.5 inline-block align-middle" /> {data.metadata.tournament_year}
           </span>
         </div>
 

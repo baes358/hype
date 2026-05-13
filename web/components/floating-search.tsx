@@ -187,7 +187,7 @@ export function FloatingSearch() {
 
             <div className="flex items-center justify-between gap-3 border-t border-border bg-black/30 px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-2">
               <span>
-                <span className="text-ink-1">↵</span> to open
+                <Icon name="return" size={10} className="mr-1 inline-block align-middle" /> to open
               </span>
               <Link
                 href="/divergent"

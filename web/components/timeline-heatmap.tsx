@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import { Icon } from "@/components/icon";
 import { GapMode, StoryTag, Team } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
@@ -229,8 +230,7 @@ export function TimelineHeatmap({
             </span>
           </h2>
           <div className="mt-3 font-mono text-sm uppercase tracking-[0.1em] text-ink-2">
-            <span className="text-ink">{sortedTeams.length}</span> teams ·
-            vertical line = Selection Sunday
+            <span className="text-ink">{sortedTeams.length}</span> teams <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> vertical line = Selection Sunday
           </div>
         </div>
 
@@ -371,7 +371,7 @@ export function TimelineHeatmap({
                         key={`${t.team}-${b.key}`}
                         type="button"
                         onClick={() => onSelect(t)}
-                        title={`${t.team} · ${b.tooltip} · ${value.toFixed(1)}`}
+                        title={`${t.team} — ${b.tooltip} — ${value.toFixed(1)}`}
                         className="transition hover:opacity-80"
                         style={{
                           backgroundColor: bg,
@@ -384,7 +384,7 @@ export function TimelineHeatmap({
                           borderRadius: 3,
                           minHeight: 32,
                         }}
-                        aria-label={`${t.team} · ${b.tooltip}: ${value.toFixed(1)}`}
+                        aria-label={`${t.team} — ${b.tooltip}: ${value.toFixed(1)}`}
                       />
                     );
                   })}

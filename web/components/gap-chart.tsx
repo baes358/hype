@@ -95,7 +95,7 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
             <span className="mr-1 text-ink-2 sm:mr-2">−{maxAbsGap}</span>
           </div>
           <div className="rounded-full border border-border-hi bg-[rgba(18,119,222,0.12)] px-3 py-1 font-mono text-sm tracking-[0.12em] text-core-bright sm:px-3.5 sm:tracking-[0.16em]">
-            <span className="hidden sm:inline">0 · ZERO GAP</span>
+            <span className="hidden sm:inline">0 <Icon name="bullet" size={7} className="mx-1 inline-block align-middle" /> ZERO GAP</span>
             <span className="sm:hidden">0</span>
           </div>
           <div className="flex items-center justify-between gap-2">
