@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+import { Icon } from "@/components/icon";
+
 const FAQS: { q: string; a: string }[] = [
   {
     q: "What is HYP3?",
@@ -241,9 +243,10 @@ export function ApiSection() {
             href="https://github.com/sophbae99/hype"
             target="_blank"
             rel="noreferrer"
-            className="text-core-bright underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
+            className="inline-flex items-center gap-1.5 text-core-bright underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
           >
-            github.com/sophbae99/hype ↗
+            github.com/sophbae99/hype
+            <Icon name="upright-arrow" size={10} />
           </a>
         </div>
       </div>

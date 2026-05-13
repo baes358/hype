@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import { Icon } from "@/components/icon";
 import { StoryTag, Team, dataset } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
@@ -133,10 +134,7 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
 
         {/* Prominent tournament-window banner */}
         <div className="flex flex-wrap items-center gap-3 rounded-xl border border-core-bright/30 bg-[rgba(18,119,222,0.10)] px-4 py-3 sm:px-5">
-          <span
-            aria-hidden
-            className="size-2 shrink-0 rounded-full bg-core-bright shadow-[0_0_10px_var(--core-bright)]"
-          />
+          <Icon name="bullet" size={11} />
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-core-bright sm:text-xs">
             Tournament
           </span>

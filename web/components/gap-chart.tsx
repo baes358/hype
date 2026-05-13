@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@/components/icon";
 import { StoryTag, Team } from "@/lib/data";
 
 const TAG_COLOR: Record<StoryTag, string> = {
@@ -86,9 +87,10 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
             sm+ (≥480px): full labels. */}
         <div className="relative z-[2] grid grid-cols-[1fr_auto_1fr] items-center gap-2 border-b border-border bg-black/30 px-3 py-3 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 backdrop-blur sm:gap-4 sm:px-6 sm:tracking-[0.16em]">
           <div className="flex items-center justify-between gap-2">
-            <span className="text-overhyped">
-              <span className="hidden sm:inline">← MORE OVERHYPED</span>
-              <span className="sm:hidden">← OVER</span>
+            <span className="inline-flex items-center gap-1.5 text-overhyped">
+              <Icon name="left-arrow" size={11} />
+              <span className="hidden sm:inline">MORE OVERHYPED</span>
+              <span className="sm:hidden">OVER</span>
             </span>
             <span className="mr-1 text-ink-2 sm:mr-2">−{maxAbsGap}</span>
           </div>
@@ -98,9 +100,10 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
           </div>
           <div className="flex items-center justify-between gap-2">
             <span className="ml-1 text-ink-2 sm:ml-2">+{maxAbsGap}</span>
-            <span className="text-underhyped">
-              <span className="hidden sm:inline">MORE UNDERHYPED →</span>
-              <span className="sm:hidden">UNDER →</span>
+            <span className="inline-flex items-center gap-1.5 text-underhyped">
+              <span className="hidden sm:inline">MORE UNDERHYPED</span>
+              <span className="sm:hidden">UNDER</span>
+              <Icon name="right-arrow" size={11} />
             </span>
           </div>
         </div>

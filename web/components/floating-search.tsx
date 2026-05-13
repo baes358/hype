@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 
+import { Icon } from "@/components/icon";
 import { Team, dataset } from "@/lib/data";
 
 const MAX_RESULTS = 8;
@@ -191,9 +192,10 @@ export function FloatingSearch() {
               <Link
                 href="/divergent"
                 onClick={() => setOpen(false)}
-                className="text-core-bright transition-colors hover:text-ink"
+                className="inline-flex items-center gap-1.5 text-core-bright transition-colors hover:text-ink"
               >
-                View all 68 →
+                View all 68
+                <Icon name="right-arrow" size={10} />
               </Link>
             </div>
           </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
+import { Icon } from "@/components/icon";
 import { Dataset } from "@/lib/data";
 
 // Module-scope flag flipped by a nav click; the freshly-mounted TopNav on
@@ -115,17 +116,19 @@ export function TopNav({ dataset: _dataset }: Props) {
             href="https://github.com/sophbae99/hype"
             target="_blank"
             rel="noreferrer"
-            className="hidden font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink sm:inline"
+            className="hidden items-center gap-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink sm:inline-flex"
           >
-            Docs ↗
+            Docs
+            <Icon name="upright-arrow" size={10} />
           </a>
           <a
             href="https://github.com/sophbae99/hype"
             target="_blank"
             rel="noreferrer"
-            className="hidden font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink lg:inline"
+            className="hidden items-center gap-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink lg:inline-flex"
           >
-            API ↗
+            API
+            <Icon name="upright-arrow" size={10} />
           </a>
         </div>
       </div>

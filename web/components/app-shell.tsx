@@ -386,6 +386,7 @@ export function AppShell({ data, view }: Props) {
 
       <TeamSheet
         team={selectedTeam}
+        mode={gapMode}
         open={selectedTeam !== null}
         onOpenChange={(open) => {
           if (!open) setSelectedTeam(null);

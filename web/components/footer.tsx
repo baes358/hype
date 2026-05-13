@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icon";
 import { Dataset } from "@/lib/data";
 
 type Props = { data: Dataset };
@@ -38,13 +39,16 @@ export function Footer({ data }: Props) {
           </Column>
           <Column label="Data">
             <FootLink href="https://github.com/sophbae99/hype" external>
-              Methodology ↗
+              Methodology
+              <Icon name="upright-arrow" size={12} className="ml-1.5" />
             </FootLink>
             <FootLink href="mailto:sophbae99@gmail.com?subject=HYP3%20correction">
-              Submit correction ↗
+              Submit correction
+              <Icon name="upright-arrow" size={12} className="ml-1.5" />
             </FootLink>
             <FootLink href="https://github.com/sophbae99/hype/commits/main" external>
-              Changelog ↗
+              Changelog
+              <Icon name="upright-arrow" size={12} className="ml-1.5" />
             </FootLink>
           </Column>
         </div>

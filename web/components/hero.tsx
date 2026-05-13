@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icon";
 import { Dataset, Team } from "@/lib/data";
 
 type Props = { data: Dataset };
@@ -62,10 +63,7 @@ export function Hero({ data }: Props) {
       >
         <div className="mb-8 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-border-hi bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink backdrop-blur">
-            <span
-              aria-hidden
-              className="size-1.5 rounded-full bg-overhyped shadow-[0_0_10px_var(--overhyped)]"
-            />
+            <Icon name="bullet" size={10} />
             March Madness · {data.metadata.tournament_year}
           </span>
         </div>
