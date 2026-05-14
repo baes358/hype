@@ -15,9 +15,9 @@ export default function Home() {
       <TopNav dataset={dataset} />
       <Hero data={dataset} />
       <AboutSection />
-      <FAQSection />
       <ApiSection />
       <SourcesSection />
+      <FAQSection />
       <Footer data={dataset} />
     </>
   );

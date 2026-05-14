@@ -34,7 +34,7 @@ function shortDate(iso: string): string {
 }
 
 function formatAcceleration(v: number): string {
-  if (!Number.isFinite(v) || v < 0) return "—";
+  if (!Number.isFinite(v) || v < 0) return ",";
   return v < 100 ? `${v.toFixed(1)}×` : `${Math.round(v)}×`;
 }
 

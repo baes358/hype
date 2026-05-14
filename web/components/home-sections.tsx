@@ -13,7 +13,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How is hype measured?",
-    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team — a high-volume program with sustained search interest across the entire window (Michigan for 2026) — so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
+    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team, a high-volume program with sustained search interest across the entire window (Michigan for 2026), so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
   },
   {
     q: "What does the gap mean?",
@@ -25,7 +25,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Tournament view vs. season view?",
-    a: "Tournament mode uses a 15-day window centered on Selection Sunday. Season mode uses the full season — Nov 1 through Selection Sunday + 9 days — which includes the tournament itself. Each mode has its own hype, performance, and gap fields. Switch between them in the filter bar at the top of any data page.",
+    a: "Tournament mode uses a 15-day window centered on Selection Sunday. Season mode uses the full season, Nov 1 through Selection Sunday + 9 days, which includes the tournament itself. Each mode has its own hype, performance, and gap fields. Switch between them in the filter bar at the top of any data page.",
   },
   {
     q: "Which years are available?",
@@ -339,7 +339,7 @@ export function SourcesSection() {
         </h2>
         <p className="m-0 mb-8 max-w-[720px] text-base leading-relaxed text-ink-1 lg:text-[17px]">
           Every number on this site traces back to one of four upstream
-          sources. All pulls are cached locally — the live site never calls
+          sources. All pulls are cached locally, the live site never calls
           these endpoints at request time.
         </p>
         <div className="grid grid-cols-1 gap-3">

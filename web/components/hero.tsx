@@ -90,14 +90,14 @@ export function Hero({ data }: Props) {
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4">
           <StatCard
             label="Most overhyped"
-            value={mostOver?.team ?? "—"}
-            sub={mostOver ? `gap ${mostOver.gap}` : "—"}
+            value={mostOver?.team ?? ","}
+            sub={mostOver ? `gap ${mostOver.gap}` : ","}
             color="var(--overhyped)"
           />
           <StatCard
             label="Most underhyped"
-            value={mostUnder?.team ?? "—"}
-            sub={mostUnder ? `gap +${mostUnder.gap}` : "—"}
+            value={mostUnder?.team ?? ","}
+            sub={mostUnder ? `gap +${mostUnder.gap}` : ","}
             color="var(--underhyped)"
           />
           <StatCard
