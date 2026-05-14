@@ -65,6 +65,14 @@ export function Filters({
       setOpen(true);
     }
   }, []);
+  // The grid-rows expand/collapse trick needs overflow-hidden on the immediate
+  // grid child during animation, but that also clips the absolutely-positioned
+  // Round dropdown menu (which extends past the filter panel's bottom border).
+  // Switch the wrapper to overflow-visible only after the open transition ends.
+  const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    if (!open) setExpanded(false);
+  }, [open]);
 
   return (
     <div
@@ -101,11 +109,14 @@ export function Filters({
         <div
           id="hyp3-filter-panel"
           aria-hidden={!open}
+          onTransitionEnd={(e) => {
+            if (e.propertyName === "grid-template-rows" && open) setExpanded(true);
+          }}
           className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
             open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
           }`}
         >
-          <div className="min-h-0 overflow-hidden">
+          <div className={`min-h-0 overflow-hidden ${expanded ? "md:overflow-visible" : ""}`}>
         <div className="flex max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-10 overflow-y-auto overscroll-contain pt-6 md:max-h-none md:overflow-visible md:pt-8">
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline with generous gap. */}
