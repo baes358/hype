@@ -267,7 +267,7 @@ function ModeToggle({
     { id: "season", label: "Season", sub: "5-mo" },
   ];
   return (
-    <div className="grid w-full grid-cols-2 gap-0.5 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1 sm:inline-flex sm:w-fit">
+    <div className="grid w-full grid-cols-2 gap-0.5 rounded-xl border-2 border-border-hi bg-[rgba(255,255,255,0.025)] p-1 shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] sm:inline-flex sm:w-fit">
       {modes.map((m) => {
         const active = mode === m.id;
         return (
@@ -290,7 +290,11 @@ function ModeToggle({
             <span className="font-display text-[12px] font-black uppercase leading-none tracking-[0.08em]">
               {m.label}
             </span>
-            <span className="ml-1 hidden border-l border-border pl-1.5 font-mono text-[12px] tracking-[0.1em] text-ink-3 sm:inline">
+            <span
+              className={`ml-1 hidden border-l border-border pl-1.5 font-mono text-[12px] tracking-[0.1em] sm:inline ${
+                active ? "text-white" : "text-ink-3"
+              }`}
+            >
               {m.sub}
             </span>
           </button>
@@ -316,7 +320,7 @@ function Segmented({
   return (
     <div
       role="group"
-      className="grid w-full gap-[3px] rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] p-[3px] sm:inline-flex sm:w-fit sm:max-w-full sm:flex-wrap sm:gap-0"
+      className="grid w-full gap-[3px] rounded-[10px] border-2 border-border-hi bg-[rgba(255,255,255,0.025)] p-[3px] shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] sm:inline-flex sm:w-fit sm:max-w-full sm:flex-wrap sm:gap-0"
       style={{ gridTemplateColumns: `repeat(${restCount}, minmax(0, 1fr))` }}
     >
       {options.map((o, i) => {
@@ -376,7 +380,7 @@ function RoundDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border border-border bg-transparent px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 transition-colors hover:border-border-hi sm:w-auto md:min-h-9 md:px-3 md:py-1"
+        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border-2 border-border-hi bg-[rgba(255,255,255,0.025)] px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] transition-colors hover:border-border-strong sm:w-auto md:min-h-9 md:px-3 md:py-1"
       >
         <span>{ROUND_LABEL[value]}</span>
         <ChevronDown
