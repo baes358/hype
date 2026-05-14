@@ -151,14 +151,14 @@ function TeamSheetBody({
 
       <SheetHeader className="gap-0 p-0">
         <div className="mb-3 font-mono text-[13px] uppercase tracking-[0.18em] text-ink-2">
-          TEAM DOSSIER <Icon name="bullet" size={7} className="mx-1.5 inline-block align-middle" /> ID #{String(team.hype_rank).padStart(3, "0")}
+          TEAM DOSSIER
         </div>
         <div className="mb-4 flex items-center gap-4">
           <div className="flex flex-col gap-2.5">
+            <span className="font-mono text-sm font-bold tabular-nums tracking-[0.06em] text-core-bright">
+              #{String(team.seed).padStart(2, "0")}
+            </span>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-sm font-bold tabular-nums tracking-[0.06em] text-core-bright">
-                #{String(team.seed).padStart(2, "0")}
-              </span>
               <span className="rounded-full border border-border px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.14em] text-ink-1">
                 {team.region.toUpperCase()} REGION
               </span>
@@ -268,8 +268,8 @@ function ChartBlock({
 }) {
   const [view, setView] = useState<"area" | "line">("area");
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between gap-3">
+    <div className="flex flex-col gap-2 pt-4 sm:pt-6">
+      <div className="flex flex-col items-start gap-2">
         <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-ink-1 sm:text-sm">
           {showTournamentWindow
             ? "FULL SEASON HYPE CURVE"
@@ -314,8 +314,8 @@ function ChartBlock({
 
 function SheetStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="bg-bg-1 px-4 py-3.5 sm:px-4 sm:py-4">
-      <div className="font-mono text-[12px] uppercase tracking-[0.14em] text-ink-2">
+    <div className="bg-bg-1 px-5 py-3.5 sm:px-6 sm:py-4">
+      <div className="break-words font-mono text-[12px] uppercase tracking-[0.12em] text-ink-2">
         {label}
       </div>
       <div className="mt-2 font-display text-[22px] font-bold leading-none text-ink sm:text-[24px]">
@@ -367,7 +367,7 @@ function Curve({
 
   const W = 600;
   const H = isMobile ? 300 : 380;
-  const PAD_L = 40;
+  const PAD_L = 72;
   const PAD_R = 16;
   const PAD_T = 44;
   const PAD_B = 36;
@@ -436,8 +436,38 @@ function Curve({
   const windowLabelLeftPct =
     startX !== null ? (startX / W) * 100 : null;
 
+  // Reserve space for the "Tournament window" badge only when the band is
+  // shown (season-mode hides the badge so the chart can sit closer to the
+  // toggle above it).
+  const topPad = showTournamentWindow ? 28 : 0;
   return (
-    <div className="relative pt-7">
+    <div className="relative" style={{ paddingTop: topPad }}>
+      {/* Y-axis tick labels — HTML overlay so text isn't horizontally squished
+          by the SVG's preserveAspectRatio="none". The SVG's height is fixed at
+          H pixels, so y(v) viewBox-units lines up 1:1 with pixel y-offset
+          inside the chart area; we offset by topPad above. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 z-[1]"
+        style={{ top: topPad, height: H }}
+      >
+        {yTicks.map((v, i) => (
+          <span
+            key={`yl-${i}`}
+            className="absolute font-mono text-[11px] leading-none text-ink-2"
+            style={{
+              top: y(v) - 5,
+              left: "10px",
+              width: `${(PAD_L / W) * 100}%`,
+              textAlign: "right",
+              paddingRight: "12px",
+            }}
+          >
+            {Math.round(v)}
+          </span>
+        ))}
+      </div>
+
       {/* Tournament-window label — HTML overlay above the chart, anchored to
           the band's left edge with clamp() so it never clips. */}
       {windowLabelLeftPct !== null && (
@@ -481,28 +511,17 @@ function Curve({
           </linearGradient>
         </defs>
 
-        {/* Y-axis grid + tick labels */}
+        {/* Y-axis grid (tick labels are rendered as HTML overlay above) */}
         {yTicks.map((v, i) => (
-          <g key={i}>
-            <line
-              x1={PAD_L}
-              y1={y(v)}
-              x2={W - PAD_R}
-              y2={y(v)}
-              stroke="rgba(255,255,255,0.06)"
-              strokeDasharray="2 4"
-            />
-            <text
-              x={PAD_L - 8}
-              y={y(v) + 4}
-              fill="rgba(251,253,254,0.55)"
-              fontFamily="var(--font-mono)"
-              fontSize="11"
-              textAnchor="end"
-            >
-              {Math.round(v)}
-            </text>
-          </g>
+          <line
+            key={i}
+            x1={PAD_L}
+            y1={y(v)}
+            x2={W - PAD_R}
+            y2={y(v)}
+            stroke="rgba(255,255,255,0.06)"
+            strokeDasharray="2 4"
+          />
         ))}
 
         {/* Tournament-window band — stronger fill + saturated border. */}
@@ -585,11 +604,6 @@ function Curve({
             >
               {activePoint.value.toFixed(1)}
             </div>
-            {pinnedIdx === activeIdx && (
-              <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-core-bright">
-                <Icon name="bullet" size={5} className="mr-1.5 inline-block align-middle" /> pinned <Icon name="bullet" size={5} className="mx-1.5 inline-block align-middle" /> tap to unpin
-              </div>
-            )}
           </div>
         )}
     </div>

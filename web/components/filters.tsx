@@ -102,7 +102,7 @@ export function Filters({
           }`}
         >
           <div className="min-h-0 overflow-hidden">
-        <div className="flex max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-10 overflow-y-auto overscroll-contain pt-6 md:max-h-none md:overflow-visible md:pt-4">
+        <div className="flex max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-10 overflow-y-auto overscroll-contain pt-6 md:max-h-none md:overflow-visible md:pt-8">
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline with generous gap. */}
         <div className="flex flex-col gap-10 md:flex-row md:flex-wrap md:items-start md:gap-10">
@@ -121,7 +121,7 @@ export function Filters({
                 : `${selectedTags.size} of ${TAG_ORDER.length}`
             }
           >
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap gap-2.5 md:pt-[5px]">
               {TAG_ORDER.map((tag) => {
                 const active = selectedTags.has(tag);
                 const color = TAG_COLOR[tag];
