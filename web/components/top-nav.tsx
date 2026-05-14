@@ -79,7 +79,7 @@ export function TopNav({ dataset: _dataset }: Props) {
         <Link
           href="/"
           aria-label="HYP3 home"
-          className="logo-pulse flex shrink-0 items-center gap-2"
+          className="flex shrink-0 items-center gap-2"
         >
           <Image
             src="/media/hype-logo.svg"

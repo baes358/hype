@@ -52,24 +52,16 @@ export function AboutSection() {
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
           We rank every team twice, then{" "}
-          <span
-            style={{
-              color: "transparent",
-              WebkitTextStroke: "1.2px var(--core-bright)",
-            }}
-          >
-            subtract
-          </span>
-          .
+          <span className="text-core-bright">subtract</span>.
         </h2>
         <div className="grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-2">
-          <p className="m-0 text-base font-medium leading-relaxed text-[#D7EBFF] lg:text-[17px]">
+          <p className="m-0 text-base font-medium leading-relaxed text-white lg:text-[17px]">
             Twitter, ESPN, and Google all settle on a handful of favorites weeks
             before tipoff. The teams that actually win the bracket are usually a
             partial overlap. HYP3 plots both lists for the same 68 teams and
             shows where they don&apos;t match.
           </p>
-          <p className="m-0 text-base font-medium leading-relaxed text-[#D7EBFF] lg:text-[17px]">
+          <p className="m-0 text-base font-medium leading-relaxed text-white lg:text-[17px]">
             For each team, we pull daily Google Trends search interest across a
             15-day window around Selection Sunday. Rank the field by that, then
             again by tournament wins, and the difference is the gap. Negative

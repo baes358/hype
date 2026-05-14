@@ -57,11 +57,11 @@ export function Hero({ data }: Props) {
         className="relative z-[2] mx-auto max-w-[1280px]"
         style={{
           padding:
-            "clamp(2.5rem, 7vw, 5rem) clamp(1.25rem, 4vw, 2rem) clamp(4rem, 10vw, 7rem)",
+            "clamp(2.5rem, 8vw, 6rem) clamp(1.25rem, 4vw, 2rem) clamp(4rem, 12vw, 10rem)",
         }}
       >
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <span className="inline-flex max-w-full items-center gap-2 truncate whitespace-nowrap rounded-full border border-brand bg-black/45 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur sm:px-3.5 sm:py-1.5 sm:text-sm sm:tracking-[0.12em]">
+          <span className="logo-pulse inline-flex max-w-full items-center gap-2 truncate whitespace-nowrap rounded-full border border-brand bg-black/45 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur sm:px-3.5 sm:py-1.5 sm:text-sm sm:tracking-[0.12em]">
             March Madness <span aria-hidden className="mx-1.5 inline-block size-1.5 rounded-full bg-brand align-middle" /> {data.metadata.tournament_year} Tournament
           </span>
         </div>
@@ -80,10 +80,13 @@ export function Hero({ data }: Props) {
           </span>
         </h1>
 
-        <p className="m-0 mb-10 max-w-2xl text-base leading-snug text-ink lg:mb-14">
+        <p
+          className="m-0 mb-10 max-w-3xl leading-snug text-ink lg:mb-14"
+          style={{ fontSize: "clamp(1rem, 1.6vw, 1.375rem)" }}
+        >
           HYP3 measures the distance between how loudly the internet talked about each team vs. how far they actually went that season.
           See how we measured 2026.{" "}
-      
+
         </p>
 
         {/* Stat row — 2×2 on mobile, 4-across on desktop. */}
@@ -130,7 +133,7 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="flex h-full flex-col bg-black/60 p-4 backdrop-blur sm:p-6 lg:p-7">
+    <div className="flex h-full flex-col items-center text-center bg-black/60 p-4 backdrop-blur sm:p-6 lg:p-7">
       <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] leading-[1.3] text-ink-2 sm:mb-3 sm:text-sm sm:tracking-[0.14em]">
         {label}
       </div>
