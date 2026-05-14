@@ -114,7 +114,7 @@ export function BracketTree({
                 Teams
               </span>
             </div>
-            <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+            <p className="m-0 max-w-md text-base leading-[1.6] text-ink-2">
               4 regions <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> tap any team
             </p>
           </div>
@@ -225,8 +225,8 @@ function Legend() {
   return (
     <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
       {(Object.keys(TAG_COLOR) as StoryTag[]).map((tag) => (
-        <span key={tag} className="inline-flex items-center gap-1.5">
-          <Icon name="bullet" size={12} color={TAG_COLOR[tag]} />
+        <span key={tag} className="flex items-center gap-1.5">
+          <Icon name="bullet" size={14} color={TAG_COLOR[tag]} className="block shrink-0" />
           <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
             {tag === "as_expected" ? "As expected" : tag.charAt(0).toUpperCase() + tag.slice(1)}
           </span>

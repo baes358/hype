@@ -124,7 +124,7 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
               Teams
             </span>
           </div>
-          <div className="flex flex-col items-start gap-1 font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+          <div className="flex flex-col items-start gap-1 text-base leading-[1.6] text-ink-2">
             <span>Outliers are the story</span>
             <span>X = hype</span>
             <span>Y = wins</span>

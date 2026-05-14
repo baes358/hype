@@ -62,14 +62,14 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
               Teams
             </span>
           </div>
-          <p className="m-0 max-w-md font-mono text-sm uppercase leading-[1.6] tracking-[0.12em] text-ink-2">
+          <p className="m-0 max-w-md text-base leading-[1.6] text-ink-2">
             Click any row to inspect the hype curve and matchup notes for a
             specific team.
           </p>
         </div>
 
-        {/* Color legend — 2 columns, sits between filters and the chart. */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-5 py-4">
+        {/* Color legend — stacked on mobile, 2 columns from sm up. */}
+        <div className="grid grid-cols-1 gap-x-6 gap-y-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-5 py-4 sm:grid-cols-2">
           <LegendItem color="var(--overhyped)" label="Overhyped" />
           <LegendItem color="var(--noise)" label="Noise" />
           <LegendItem color="var(--as-expected)" label="As expected" />
@@ -85,24 +85,23 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
             sm+ (≥480px): full labels. */}
         <div className="relative z-[2] grid grid-cols-[1fr_auto_1fr] items-center gap-2 border-b border-border bg-black/30 px-3 py-3 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 backdrop-blur sm:gap-4 sm:px-6 sm:tracking-[0.16em]">
           <div className="flex items-center justify-between gap-2">
-            <span className="inline-flex items-center gap-1.5 text-overhyped">
+            <span className="ml-1 text-ink-2 sm:ml-2">−{maxAbsGap}</span>
+            <span className="inline-flex items-center gap-1.5 text-right font-sans font-bold text-overhyped">
               <Icon name="left-arrow" size={11} />
-              <span className="hidden sm:inline">MORE OVERHYPED</span>
+              <span className="hidden sm:inline">OVERHYPED</span>
               <span className="sm:hidden">OVER</span>
             </span>
-            <span className="mr-1 text-ink-2 sm:mr-2">−{maxAbsGap}</span>
           </div>
-          <div className="rounded-full border border-border-hi bg-[rgba(18,119,222,0.12)] px-3 py-1 font-mono text-sm tracking-[0.12em] text-core-bright sm:px-3.5 sm:tracking-[0.16em]">
-            <span className="hidden sm:inline">0 <Icon name="bullet" size={7} className="mx-1 inline-block align-middle" /> ZERO GAP</span>
-            <span className="sm:hidden">0</span>
+          <div className="whitespace-nowrap rounded-full border border-border-hi bg-[rgba(18,119,222,0.12)] px-3 py-1 font-mono text-sm tracking-[0.12em] text-core-bright sm:px-3.5 sm:tracking-[0.16em]">
+            0<span className="hidden sm:inline"> ZERO GAP</span>
           </div>
           <div className="flex items-center justify-between gap-2">
-            <span className="ml-1 text-ink-2 sm:ml-2">+{maxAbsGap}</span>
-            <span className="inline-flex items-center gap-1.5 text-underhyped">
-              <span className="hidden sm:inline">MORE UNDERHYPED</span>
+            <span className="inline-flex items-center gap-1.5 font-sans font-bold text-underhyped">
+              <span className="hidden sm:inline">UNDERHYPED</span>
               <span className="sm:hidden">UNDER</span>
               <Icon name="right-arrow" size={11} />
             </span>
+            <span className="mr-1 text-ink-2 sm:mr-2">+{maxAbsGap}</span>
           </div>
         </div>
 
@@ -147,9 +146,9 @@ function LegendItem({
   label: string;
 }) {
   return (
-    <span className="inline-flex items-center gap-2">
-      <Icon name="bullet" size={12} color={color} />
-      <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
+    <span className="flex items-center gap-2">
+      <Icon name="bullet" size={14} color={color} className="block shrink-0" />
+      <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink-1">
         {label}
       </span>
     </span>
