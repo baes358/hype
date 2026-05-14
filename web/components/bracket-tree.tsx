@@ -80,7 +80,7 @@ export function BracketTree({
           "clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem) clamp(3rem, 7vw, 5rem)",
       }}
     >
-      <header className="mb-8 flex flex-col gap-6 md:mb-10 md:flex-row md:flex-wrap md:items-end md:justify-between md:gap-8">
+      <header className="mb-8 flex flex-col gap-6 md:mb-10 md:gap-8">
         <div className="flex flex-col gap-10 md:gap-12">
           <div>
             <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
@@ -223,11 +223,15 @@ function ChampionBanner({
 
 function Legend() {
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5">
+    <div className="flex w-full flex-col items-start gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-6">
       {(Object.keys(TAG_COLOR) as StoryTag[]).map((tag) => (
-        <span key={tag} className="flex items-center gap-1.5">
+        <span
+          key={tag}
+          className="flex items-center gap-1.5"
+          style={{ color: TAG_COLOR[tag] }}
+        >
           <Icon name="bullet" size={14} color={TAG_COLOR[tag]} className="block shrink-0" />
-          <span className="font-mono text-sm uppercase tracking-[0.12em] text-ink-1">
+          <span className="font-mono text-xs uppercase tracking-[0.12em]">
             {tag === "as_expected" ? "As expected" : tag.charAt(0).toUpperCase() + tag.slice(1)}
           </span>
         </span>

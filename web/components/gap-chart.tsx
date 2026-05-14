@@ -68,8 +68,8 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
           </p>
         </div>
 
-        {/* Color legend — stacked on mobile, 2 columns from sm up. */}
-        <div className="grid grid-cols-1 gap-x-6 gap-y-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-5 py-4 sm:grid-cols-2">
+        {/* Color legend — vertical stack on mobile, full-width row on sm+. */}
+        <div className="flex w-full flex-col items-start gap-3 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-3.5 py-2.5 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-6">
           <LegendItem color="var(--overhyped)" label="Overhyped" />
           <LegendItem color="var(--noise)" label="Noise" />
           <LegendItem color="var(--as-expected)" label="As expected" />
