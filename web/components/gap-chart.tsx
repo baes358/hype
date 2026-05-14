@@ -47,7 +47,9 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
             className="m-0 max-w-[720px] font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
             style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
-            Every team, ranked by the wrongness of the internet&apos;s read
+            The biggest gaps between{" "}
+            <span className="text-core-bright">attention</span> and{" "}
+            <span className="text-core-bright">outcome</span>.
           </h2>
         </div>
         <div className="flex flex-col gap-3">
@@ -62,9 +64,9 @@ export function GapChart({ teams, maxAbsGap, selectedTeam, onSelect }: Props) {
               Teams
             </span>
           </div>
-          <p className="m-0 max-w-md text-base leading-[1.6] text-ink-2">
-            Click any row to inspect the hype curve and matchup notes for a
-            specific team.
+          <p className="m-0 max-w-md text-base leading-[1.6] text-[#D7EBFF]">
+            Left = overhyped. Right = underhyped. Tap any row to expand team
+            details.
           </p>
         </div>
 

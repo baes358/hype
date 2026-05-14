@@ -220,15 +220,9 @@ export function TimelineHeatmap({
               className="m-0 max-w-[720px] font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
               style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
             >
-              Daily hype intensity for every team across the{" "}
-              <span
-                style={{
-                  color: "transparent",
-                  WebkitTextStroke: "1.2px var(--core-bright)",
-                }}
-              >
-                15-day window
-              </span>
+              Which teams peaked{" "}
+              <span className="text-core-bright">early</span>. Which ones peaked
+              at the <span className="text-core-bright">buzzer</span>.
             </h2>
           </div>
           <div className="flex flex-col gap-3">
@@ -243,8 +237,9 @@ export function TimelineHeatmap({
                 Teams
               </span>
             </div>
-            <p className="m-0 whitespace-nowrap text-base leading-[1.6] text-ink-2">
-              Vertical line = Selection Sunday
+            <p className="m-0 max-w-md text-base leading-[1.6] text-[#D7EBFF]">
+              One row per team, one column per{" "}
+              {mode === "season" ? "month" : "day"}. Watch where the heat lands.
             </p>
           </div>
         </div>

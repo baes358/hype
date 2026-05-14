@@ -103,16 +103,9 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             className="m-0 max-w-[820px] font-display font-bold leading-[1.4em] tracking-[-0.005em] text-ink"
             style={{ fontSize: "clamp(22px, 2.6vw, 34px)" }}
           >
-            Hype against performance, the{" "}
-            <span
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1.2px var(--core-bright)",
-              }}
-            >
-              diagonal
-            </span>{" "}
-            is the expected line
+            The diagonal is the{" "}
+            <span className="text-core-bright">bet</span>. Distance from it is
+            the <span className="text-core-bright">miss</span>.
           </h2>
         </div>
         <div className="flex flex-col gap-3">
@@ -127,11 +120,9 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
               Teams
             </span>
           </div>
-          <div className="flex flex-col items-start gap-1 text-base leading-[1.6] text-ink-2">
-            <span>Outliers are the story</span>
-            <span>X = hype</span>
-            <span>Y = wins</span>
-          </div>
+          <p className="m-0 max-w-md text-base leading-[1.6] text-[#D7EBFF]">
+            X = hype. Y = wins. Distance from the diagonal is the gap.
+          </p>
         </div>
       </header>
 

@@ -59,6 +59,26 @@ export function IntroLoader() {
     };
   }, []);
 
+  // Lock document scroll while the loader is up. Without this, mobile Safari
+  // scrolls the body under the fixed overlay; address-bar collapse then
+  // resizes the visual viewport mid-scroll and the `inset-0` video reframes.
+  useEffect(() => {
+    if (done) return;
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtml = html.style.overflow;
+    const prevBody = body.style.overflow;
+    const prevOverscroll = body.style.overscrollBehavior;
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+    return () => {
+      html.style.overflow = prevHtml;
+      body.style.overflow = prevBody;
+      body.style.overscrollBehavior = prevOverscroll;
+    };
+  }, [done]);
+
   if (done) return null;
 
   return (
@@ -82,6 +102,8 @@ export function IntroLoader() {
         transition: `opacity ${FADE_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
         willChange: "opacity",
         outline: "none",
+        touchAction: "none",
+        overscrollBehavior: "none",
       }}
       className="fixed inset-0 z-[60] flex items-center justify-center bg-black"
     >

@@ -62,11 +62,12 @@ export function AboutSection() {
             shows where they don&apos;t match.
           </p>
           <p className="m-0 text-base font-medium leading-relaxed text-white lg:text-[17px]">
-            For each team, we pull daily Google Trends search interest across a
-            15-day window around Selection Sunday. Rank the field by that, then
-            again by tournament wins, and the difference is the gap. Negative
-            means overhyped. Positive means underhyped. Zero means the internet
-            got it right.
+            For each team, we pull daily Google Trends search interest two ways:
+            across the 15-day window around Selection Sunday (tournament mode),
+            and across the full season from Nov 1 onward (season mode). Rank the
+            field by hype, then again by wins, and the difference is the gap.
+            Negative means overhyped. Positive means underhyped. Zero means the
+            internet got it right.
           </p>
         </div>
       </div>
@@ -341,20 +342,22 @@ function SourceCard({
   note: string;
 }) {
   return (
-    <div className="flex flex-col gap-3 rounded-lg border border-border bg-black/30 px-4 py-3 sm:flex-row sm:items-center sm:gap-4">
-      <span className="shrink-0 rounded-md border border-core-bright/40 bg-[rgba(18,119,222,0.16)] px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-core-bright">
-        {label}
-      </span>
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex shrink-0 items-center gap-1.5 font-mono text-sm text-ink underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
-      >
-        {display}
-        <Icon name="upright-arrow" size={10} />
-      </a>
-      <span className="font-sans text-[13px] font-medium leading-[1.5] text-[#D7EBFF] sm:ml-auto sm:text-right">
+    <div className="flex flex-col rounded-lg border border-border bg-black/30 px-4 py-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+        <span className="shrink-0 self-start rounded-md border border-core-bright/40 bg-[rgba(18,119,222,0.16)] px-2 py-0.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-core-bright sm:self-auto">
+          {label}
+        </span>
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex shrink-0 items-center gap-1.5 font-mono text-sm text-ink underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
+        >
+          {display}
+          <Icon name="upright-arrow" size={10} />
+        </a>
+      </div>
+      <span className="mt-4 font-sans text-[15px] font-medium leading-[1.5] text-[#D7EBFF]">
         {note}
       </span>
     </div>
