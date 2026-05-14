@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-import { Icon } from "@/components/icon";
 import { Dataset } from "@/lib/data";
 
 // Module-scope flag flipped by a nav click; the freshly-mounted TopNav on
@@ -71,9 +70,12 @@ export function TopNav({ dataset: _dataset }: Props) {
       ref={headerRef}
       className="sticky top-0 z-40 overflow-hidden border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(114,184,255,0.25)]"
     >
-      {/* Top row — logo + (desktop) tab pills + search + docs.
-          On mobile/tablet, this row only holds the logo + a docs link. */}
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:gap-6">
+      {/* Top row — logo + (desktop) tab pills.
+          On mobile/tablet, this row only holds the logo. */}
+      <div
+        className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 py-5 sm:py-6 lg:gap-6"
+        style={{ paddingInline: "clamp(1rem, 3vw, 1.75rem)" }}
+      >
         <Link
           href="/"
           aria-label="HYP3 home"
@@ -95,7 +97,7 @@ export function TopNav({ dataset: _dataset }: Props) {
         {/* Desktop tab pills (lg+) */}
         <nav
           aria-label="Primary"
-          className="hidden flex-1 justify-center lg:flex"
+          className="hidden flex-1 justify-end lg:flex"
         >
           <div className="inline-flex items-center gap-1 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1">
             {NAV_ITEMS.map((item) => (
@@ -109,32 +111,16 @@ export function TopNav({ dataset: _dataset }: Props) {
           </div>
         </nav>
 
-        {/* Right cluster — docs / api links only; search moved into the
-            gap-chart section header (per Figma). */}
-        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          <a
-            href="https://github.com/baes358/hype"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden items-center gap-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink sm:inline-flex"
-          >
-            Docs
-            <Icon name="upright-arrow" size={10} />
-          </a>
-          <a
-            href="/#api"
-            className="hidden items-center gap-1.5 font-mono text-sm uppercase tracking-[0.12em] text-ink-1 transition-colors hover:text-ink lg:inline-flex"
-          >
-            API
-          </a>
-        </div>
       </div>
 
       {/* Mobile / tablet nav — horizontally scrolling pills below the top row.
           Visible until lg breakpoint where pills move into the top row. */}
       <div className="lg:hidden">
         <div className="overflow-x-auto border-t border-border">
-          <div className="flex min-w-max items-center gap-2 px-4 py-2 sm:px-6">
+          <div
+            className="flex min-w-max items-center gap-2 py-2"
+            style={{ paddingInline: "clamp(1rem, 3vw, 1.75rem)" }}
+          >
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href;
               return (

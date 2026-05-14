@@ -71,7 +71,7 @@ export function Filters({
       className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-transform duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
     >
       <div
-        className="mx-auto flex max-w-[1440px] flex-col gap-6 md:gap-4"
+        className="mx-auto flex max-w-[1440px] flex-col"
         style={{
           paddingBlock: "1.5rem",
           paddingInline: "clamp(1rem, 3vw, 1.75rem)",
@@ -96,11 +96,16 @@ export function Filters({
 
         <div
           id="hyp3-filter-panel"
-          className={`${open ? "flex" : "hidden"} max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-10 overflow-y-auto overscroll-contain md:max-h-none md:gap-10 md:overflow-visible`}
+          aria-hidden={!open}
+          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+            open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
+          }`}
         >
+          <div className="min-h-0 overflow-hidden">
+        <div className="flex max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-10 overflow-y-auto overscroll-contain pt-6 md:max-h-none md:overflow-visible md:pt-4">
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline with generous gap. */}
-        <div className="flex flex-col gap-10 md:flex-row md:flex-wrap md:items-end md:gap-10">
+        <div className="flex flex-col gap-10 md:flex-row md:flex-wrap md:items-start md:gap-10">
           <PrimaryGroup marker="A" label="SCOPE">
             <ModeToggle mode={mode} setMode={setMode} />
           </PrimaryGroup>
@@ -168,7 +173,7 @@ export function Filters({
           {showRoundFilter && (
             <>
               <div className="hidden h-4 w-px self-center bg-border md:block" />
-              <SecondaryGroup label="Round">
+              <SecondaryGroup marker="D" label="Round">
                 <RoundDropdown value={selectedRound} setValue={onSetRound} />
               </SecondaryGroup>
             </>
@@ -184,6 +189,8 @@ export function Filters({
             <Icon name="reset" size={12} />
             Reset filters
           </button>
+        </div>
+        </div>
         </div>
         </div>
       </div>

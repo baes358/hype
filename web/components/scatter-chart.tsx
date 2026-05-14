@@ -68,10 +68,13 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
 
   const W = isMobile ? 480 : 1200;
   const H = isMobile ? 520 : 760;
-  const PAD_L = isMobile ? 92 : 150;
-  const PAD_R = isMobile ? 24 : 80;
-  const PAD_T = isMobile ? 32 : 56;
-  const PAD_B = isMobile ? 72 : 88;
+  // Mobile labels are short (CH/F2/F4/E8/S16/R32/R64) — ~24px wide max.
+  // Desktop labels are full names ("First Round" etc.) — ~92px wide.
+  // PAD_L = label width + tick offset (8/14) + breathing room from container edge.
+  const PAD_L = isMobile ? 72 : 170;
+  const PAD_R = isMobile ? 40 : 110;
+  const PAD_T = isMobile ? 48 : 80;
+  const PAD_B = isMobile ? 100 : 130;
   const PW = W - PAD_L - PAD_R;
   const PH = H - PAD_T - PAD_B;
   const labelSize = isMobile ? 12 : 14;
@@ -130,17 +133,16 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             <span>Y = wins</span>
           </div>
         </div>
-
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <CalloutGroup label="Most underhyped" tag="underhyped" teams={calls.above} arrow="up-arrow" />
-          <CalloutGroup label="Most overhyped" tag="overhyped" teams={calls.below} arrow="down-arrow" />
-        </div>
       </header>
 
-      <div
-        className="relative overflow-hidden rounded-[14px] border border-border bg-bg-1"
-        style={{ aspectRatio: isMobile ? "12 / 13" : "12 / 7.5" }}
-      >
+      {/* Chart + callouts. Default (xs): callouts stack column below chart.
+          sm-md: callouts in a row below chart.
+          lg+: callouts move to the right of the chart, vertically stacked. */}
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:gap-6">
+        <div
+          className="relative order-1 flex-1 overflow-hidden rounded-[14px] border border-border bg-bg-1"
+          style={{ aspectRatio: isMobile ? "12 / 13" : "12 / 7.5" }}
+        >
 
         <svg
           viewBox={`0 0 ${W} ${H}`}
@@ -291,7 +293,7 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             <text
               key={`xt-${h}`}
               x={xFor(h)}
-              y={H - PAD_B + (isMobile ? 20 : 22)}
+              y={H - PAD_B + (isMobile ? 28 : 32)}
               fill="rgba(251,253,254,0.7)"
               fontFamily="var(--font-mono)"
               fontSize={tickSize}
@@ -302,7 +304,7 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
           ))}
           <text
             x={PAD_L + PW / 2}
-            y={H - (isMobile ? 16 : 20)}
+            y={H - (isMobile ? 36 : 48)}
             fill="rgba(251,253,254,0.85)"
             fontFamily="var(--font-mono)"
             fontSize={labelSize}
@@ -328,6 +330,12 @@ export function ScatterChartView({ teams, selectedTeam, onSelect }: Props) {
             </text>
           ))}
         </svg>
+        </div>
+
+        <div className="order-2 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:w-[280px] lg:shrink-0 lg:flex-col lg:flex-nowrap lg:gap-4">
+          <CalloutGroup label="Most underhyped" tag="underhyped" teams={calls.above} arrow="up-arrow" />
+          <CalloutGroup label="Most overhyped" tag="overhyped" teams={calls.below} arrow="down-arrow" />
+        </div>
       </div>
     </section>
   );
@@ -346,7 +354,7 @@ function CalloutGroup({
 }) {
   const color = TAG_COLOR[tag];
   return (
-    <div className="min-w-[200px] rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-4 py-3">
+    <div className="min-w-[200px] flex-1 rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] px-4 py-3 lg:flex-none">
       <div
         className="mb-2 font-mono text-sm uppercase tracking-[0.14em]"
         style={{ color }}

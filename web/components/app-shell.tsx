@@ -353,7 +353,7 @@ export function AppShell({ data, view }: Props) {
           selectedRegion={selectedRegion}
           selectedRound={selectedRound}
           tagCounts={counts}
-          showRoundFilter={view !== "bracket"}
+          showRoundFilter={view !== "bracket" && view !== "timeline"}
           onToggleTag={onToggleTag}
           onSetRegion={setSelectedRegion}
           onSetRound={setSelectedRound}

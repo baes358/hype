@@ -146,9 +146,9 @@ function LegendItem({
   label: string;
 }) {
   return (
-    <span className="flex items-center gap-2">
+    <span className="flex items-center gap-2" style={{ color }}>
       <Icon name="bullet" size={14} color={color} className="block shrink-0" />
-      <span className="font-mono text-xs uppercase tracking-[0.12em] text-ink-1">
+      <span className="font-mono text-xs uppercase tracking-[0.12em]">
         {label}
       </span>
     </span>
