@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 import { Icon } from "@/components/icon";
 import {
@@ -71,9 +71,10 @@ export function Filters({
       className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-transform duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
     >
       <div
-        className="mx-auto flex max-w-[1440px] flex-col gap-4"
+        className="mx-auto flex max-w-[1440px] flex-col gap-6 md:gap-4"
         style={{
-          padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.75rem)",
+          paddingBlock: "1.5rem",
+          paddingInline: "clamp(1rem, 3vw, 1.75rem)",
         }}
       >
         {/* Master toggle — visible at every breakpoint. Stretches full-width
@@ -83,21 +84,23 @@ export function Filters({
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="hyp3-filter-panel"
-          className="inline-flex min-h-11 w-full items-center justify-between gap-3 rounded-lg border border-border bg-[rgba(255,255,255,0.03)] px-3.5 py-2 font-display text-[12px] font-black uppercase tracking-[0.12em] text-ink-1 transition-colors hover:border-border-hi hover:text-ink md:min-h-9 md:w-auto md:self-start md:px-3 md:py-1"
+          className="inline-flex min-h-11 w-full items-center justify-between gap-3 rounded-lg border border-core-bright/40 bg-bg-2/95 px-3.5 py-2 font-display text-[12px] font-black uppercase tracking-[0.12em] text-core-bright shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_0_3px_rgba(114,184,255,0.08)] backdrop-blur transition-all hover:bg-bg-2 hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.7),0_0_0_4px_rgba(114,184,255,0.14)] md:min-h-9 md:w-auto md:self-start md:px-3 md:py-1"
         >
           <span>Filters</span>
-          <span aria-hidden className="font-mono text-2xl leading-none text-ink-2 md:text-base">
-            {open ? "▴" : "▾"}
-          </span>
+          {open ? (
+            <ChevronUp aria-hidden className="size-4 text-core-bright" />
+          ) : (
+            <ChevronDown aria-hidden className="size-4 text-core-bright" />
+          )}
         </button>
 
         <div
           id="hyp3-filter-panel"
-          className={`${open ? "flex" : "hidden"} max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-6 overflow-y-auto overscroll-contain pr-1 md:max-h-none md:gap-10 md:overflow-visible md:pr-0`}
+          className={`${open ? "flex" : "hidden"} max-h-[calc(100dvh-var(--hyp3-nav-h,64px)-120px)] flex-col gap-10 overflow-y-auto overscroll-contain md:max-h-none md:gap-10 md:overflow-visible`}
         >
         {/* PRIMARY ROW — Scope + Story.
             Mobile: stack vertically. md+: lay out inline with generous gap. */}
-        <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:items-end md:gap-10">
+        <div className="flex flex-col gap-10 md:flex-row md:flex-wrap md:items-end md:gap-10">
           <PrimaryGroup marker="A" label="SCOPE">
             <ModeToggle mode={mode} setMode={setMode} />
           </PrimaryGroup>
@@ -124,7 +127,7 @@ export function Filters({
                     onClick={() => onToggleTag(tag)}
                     aria-pressed={active}
                     // 44px tap target on mobile (a11y); compact on md+.
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full border px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.08em] transition-all md:min-h-9 md:px-3 md:py-1"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-lg border px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.08em] transition-all md:min-h-9 md:px-3 md:py-1"
                     style={{
                       borderColor: active ? color : "var(--border)",
                       background: active ? `${color}22` : "transparent",
@@ -153,8 +156,8 @@ export function Filters({
 
         {/* SECONDARY ROW — refinements.
             Mobile: stack. md+: inline with generous gap, Reset pushed right. */}
-        <div className="flex flex-col gap-5 border-t border-border pt-5 md:flex-row md:flex-wrap md:items-center md:gap-8">
-          <SecondaryGroup label="Region">
+        <div className="flex flex-col gap-8 md:flex-row md:flex-wrap md:items-center md:gap-8 md:border-t md:border-border md:pt-5">
+          <SecondaryGroup marker="C" label="Region">
             <Segmented
               options={[{ id: "all", label: "All" }, ...REGIONS.map((r) => ({ id: r, label: r }))]}
               value={selectedRegion}
@@ -201,13 +204,13 @@ function PrimaryGroup({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <div className="inline-flex items-center gap-2 font-mono text-sm font-semibold uppercase tracking-[0.16em] text-ink-1">
+      <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink-1 sm:text-sm">
         <span className="inline-flex size-5 items-center justify-center rounded border border-border-hi bg-[rgba(18,119,222,0.15)] text-xs text-core-bright">
           {marker}
         </span>
         <span>{label}</span>
         {sublabel && (
-          <span className="ml-1 font-mono text-sm tracking-[0.1em] text-ink-3">
+          <span className="ml-1 font-mono text-xs tracking-[0.1em] text-ink-3 sm:text-sm">
             {sublabel}
           </span>
         )}
@@ -218,16 +221,23 @@ function PrimaryGroup({
 }
 
 function SecondaryGroup({
+  marker,
   label,
   children,
 }: {
+  marker?: string;
   label: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-2.5">
-      <span className="font-mono text-sm uppercase tracking-[0.18em] text-ink-3">
-        {label}
+      <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-ink-1 sm:text-sm">
+        {marker && (
+          <span className="inline-flex size-5 items-center justify-center rounded border border-border-hi bg-[rgba(18,119,222,0.15)] text-xs text-core-bright">
+            {marker}
+          </span>
+        )}
+        <span>{label}</span>
       </span>
       {children}
     </div>
@@ -246,7 +256,7 @@ function ModeToggle({
     { id: "season", label: "Season", sub: "5-mo" },
   ];
   return (
-    <div className="inline-flex w-fit gap-0.5 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1">
+    <div className="grid w-full grid-cols-2 gap-0.5 rounded-xl border border-border bg-[rgba(255,255,255,0.025)] p-1 sm:inline-flex sm:w-fit">
       {modes.map((m) => {
         const active = mode === m.id;
         return (
@@ -255,7 +265,7 @@ function ModeToggle({
             type="button"
             onClick={() => setMode(m.id)}
             aria-pressed={active}
-            className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2.5 py-1.5 transition-all sm:px-3 md:min-h-9 md:px-3.5 md:py-1 ${
+            className={`inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-2.5 py-1.5 transition-all sm:w-auto sm:px-3 md:min-h-9 md:px-3.5 md:py-1 ${
               active
                 ? "bg-[rgba(18,119,222,0.22)] text-core-bright shadow-[inset_0_0_0_1px_rgba(114,184,255,0.4)]"
                 : "text-ink-2 hover:text-ink"
@@ -288,12 +298,17 @@ function Segmented({
   value: string;
   onChange: (v: string) => void;
 }) {
+  // Mobile (<sm): grid with first option full-width on its own row, the
+  // remaining options share an evenly split row below. sm+: original
+  // inline-flex with wrap behavior.
+  const restCount = Math.max(options.length - 1, 1);
   return (
     <div
       role="group"
-      className="inline-flex w-fit max-w-full flex-wrap rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] p-[3px]"
+      className="grid w-full gap-[3px] rounded-[10px] border border-border bg-[rgba(255,255,255,0.025)] p-[3px] sm:inline-flex sm:w-fit sm:max-w-full sm:flex-wrap sm:gap-0"
+      style={{ gridTemplateColumns: `repeat(${restCount}, minmax(0, 1fr))` }}
     >
-      {options.map((o) => {
+      {options.map((o, i) => {
         const active = value === o.id;
         return (
           <button
@@ -301,7 +316,9 @@ function Segmented({
             type="button"
             onClick={() => onChange(o.id)}
             aria-pressed={active}
-            className={`inline-flex min-h-11 items-center rounded-[7px] px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] transition-all md:min-h-9 md:px-3 md:py-1 ${
+            className={`inline-flex min-h-11 w-full items-center justify-center rounded-[7px] px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] transition-all sm:w-auto md:min-h-9 md:px-3 md:py-1 ${
+              i === 0 ? "col-span-full sm:col-span-1" : ""
+            } ${
               active
                 ? "bg-[rgba(255,255,255,0.06)] text-ink shadow-[inset_0_0_0_1px_var(--border-hi)]"
                 : "text-ink-1 hover:text-ink"

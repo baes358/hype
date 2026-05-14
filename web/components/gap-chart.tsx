@@ -174,10 +174,8 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
         isSel ? "bg-[rgba(114,184,255,0.06)]" : "hover:bg-[rgba(255,255,255,0.025)]"
       }`}
     >
-      {/* LEFT half (overhyped). Layout per Figma:
-          [SEED far-edge] [TEAM mid] [GAP_PILL near-center]
-          Single full-width flex row with justify-between spreads the three
-          items across the half — bar/glow sit underneath. */}
+      {/* LEFT half (overhyped):
+          [SEED] [TEAM left-aligned next to seed] ........ [GAP_PILL near-center] */}
       <div className="relative h-full">
         {isOver && (
           <>
@@ -191,11 +189,11 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
                   : `inset 0 0 0 1px ${color}66`,
               }}
             />
-            <div className="absolute inset-y-0 left-2 right-1.5 z-[3] flex items-center justify-between gap-2 md:left-3 md:right-2 md:gap-2.5">
-              <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
+            <div className="absolute inset-y-0 left-2 right-1.5 z-[3] flex items-center gap-2 md:left-3 md:right-2 md:gap-2.5">
+              <span className="hidden shrink-0 font-mono text-sm font-semibold tabular-nums text-core-bright sm:inline">
                 {String(team.seed).padStart(2, "0")}
               </span>
-              <span className="min-w-0 flex-1 truncate text-center font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
+              <span className="min-w-0 flex-1 truncate text-left font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
                 {team.team}
               </span>
               <span
@@ -213,8 +211,8 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
         )}
       </div>
 
-      {/* RIGHT half (underhyped). Layout per Figma:
-          [GAP_PILL near-center] [TEAM mid] [SEED far-edge] — mirror of left. */}
+      {/* RIGHT half (underhyped) — mirror:
+          [GAP_PILL near-center] ........ [TEAM right-aligned next to seed] [SEED] */}
       <div className="relative h-full">
         {!isOver && (
           <>
@@ -228,7 +226,7 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
                   : `inset 0 0 0 1px ${color}66`,
               }}
             />
-            <div className="absolute inset-y-0 left-1.5 right-2 z-[3] flex items-center justify-between gap-2 md:left-2 md:right-3 md:gap-2.5">
+            <div className="absolute inset-y-0 left-1.5 right-2 z-[3] flex items-center gap-2 md:left-2 md:right-3 md:gap-2.5">
               <span
                 className="inline-flex min-w-[44px] shrink-0 items-center justify-center rounded-full border bg-[rgba(10,10,12,0.85)] px-2 py-1 font-mono text-sm font-bold tabular-nums tracking-[0.02em] shadow-[0_2px_12px_rgba(0,0,0,0.6)] md:px-2.5"
                 style={{
@@ -239,10 +237,10 @@ function DivRow({ team, widthPct, isOver, color, isSel, onSelect }: RowProps) {
               >
                 +{gap}
               </span>
-              <span className="min-w-0 flex-1 truncate text-center font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
+              <span className="min-w-0 flex-1 truncate text-right font-sans text-sm font-medium tracking-[0.01em] text-ink md:text-[15px]">
                 {team.team}
               </span>
-              <span className="font-mono text-sm font-semibold tabular-nums text-core-bright">
+              <span className="hidden shrink-0 font-mono text-sm font-semibold tabular-nums text-core-bright sm:inline">
                 {String(team.seed).padStart(2, "0")}
               </span>
             </div>
