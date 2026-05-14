@@ -17,7 +17,7 @@ export function Footer({ data }: Props) {
         <div className="flex flex-col gap-3">
           <span
             className="font-display font-black leading-[0.95] tracking-[0.02em] text-ink"
-            style={{ fontSize: "clamp(3rem, 8vw, 5rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 6.5vw, 4rem)" }}
           >
             HYP3
           </span>

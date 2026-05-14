@@ -68,7 +68,11 @@ export function Filters({
 
   return (
     <div
-      className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-b border-border bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-transform duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
+      className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-y-2 bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-[transform,border-color] duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
+      style={{
+        borderTopColor: open ? "var(--brand)" : "transparent",
+        borderBottomColor: open ? "var(--brand)" : "var(--border)",
+      }}
     >
       <div
         className="mx-auto flex max-w-[1440px] flex-col"

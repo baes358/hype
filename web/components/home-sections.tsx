@@ -9,7 +9,7 @@ import { Icon } from "@/components/icon";
 const FAQS: { q: string; a: string }[] = [
   {
     q: "How is hype measured?",
-    a: "We pull daily Google Trends search interest for each team across a 15-day window around Selection Sunday. Trends scores are 0 to 100 within a single query, so values from different queries are not directly comparable. To fix that, each batch of teams is anchored to a reference team (a year-round national program with reliable signal), and every other curve in the batch is rescaled against the anchor's standalone curve. Each team's hype is the mean of its rescaled daily series.",
+    a: "We pull daily Google Trends search interest for each team two ways. Tournament mode looks at the 15-day window around Selection Sunday. Trends scores are 0 to 100 within a single query, so values from different queries aren't directly comparable. We fix that by anchoring each batch of teams to a reference team (a year-round national program with reliable signal) and rescaling every other curve against the anchor's standalone curve, so the field is comparable. Season mode looks at the full season (roughly Nov 1 through Selection Sunday + 9 days) and pulls each team standalone, normalized within the team's own history. That makes season values comparable to a team's own past but not to other teams in absolute magnitude. Either way, a team's hype is the mean of its daily series.",
   },
   {
     q: "What does the gap mean?",
@@ -102,6 +102,7 @@ export function FAQSection() {
               q={item.q}
               a={item.a}
               isLast={i === FAQS.length - 1}
+              defaultOpen={i === 0}
             />
           ))}
         </div>
@@ -114,12 +115,14 @@ function FAQItem({
   q,
   a,
   isLast,
+  defaultOpen = false,
 }: {
   q: string;
   a: string;
   isLast: boolean;
+  defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={isLast ? "" : "border-b border-border"}>
       <button
@@ -248,7 +251,7 @@ function ApiRow({
         {method}
       </span>
       <code className="font-mono text-sm text-ink">{path}</code>
-      <span className="font-sans text-[13px] font-medium leading-[1.5] text-[#D7EBFF]">
+      <span className="font-sans text-[15px] font-medium italic leading-[1.5] text-[#D7EBFF]">
         {note}
       </span>
     </div>
