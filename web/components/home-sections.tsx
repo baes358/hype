@@ -8,28 +8,28 @@ import { Icon } from "@/components/icon";
 
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "What is HYP3?",
-    a: "HYP3 measures the distance between how loudly the internet talked about each NCAA tournament team and how far they actually went. We collect Google Trends search-interest data over the 15 days around Selection Sunday, normalize it across teams, and compare the resulting hype rank to each team's tournament-win rank. The gap is the story.",
-  },
-  {
     q: "How is hype measured?",
-    a: "We pull daily Google Trends interest for every team using disambiguated query strings (e.g. \"Texas Longhorns basketball\" not \"Texas basketball\"). Each batch is normalized against a reference team, a high-volume program with sustained search interest across the entire window (Michigan for 2026), so values across batches are comparable. We then take the unrounded daily mean across the 15-day window and normalize it 0–100 across the field.",
+    a: "We pull daily Google Trends search interest for each team across a 15-day window around Selection Sunday. Trends scores are 0 to 100 within a single query, so values from different queries are not directly comparable. To fix that, each batch of teams is anchored to a reference team (a year-round national program with reliable signal), and every other curve in the batch is rescaled against the anchor's standalone curve. Each team's hype is the mean of its rescaled daily series.",
   },
   {
     q: "What does the gap mean?",
-    a: "Each team gets a hype rank (1–68, most-hyped to least) and a performance rank (1–68, most wins to fewest). Gap = hype_rank − performance_rank. Negative means overhyped (more hype than wins). Positive means underhyped (more wins than hype). Zero means the internet got it right.",
+    a: "Every team has a hype rank (1 is most searched) and a performance rank (1 is most tournament wins). Gap = hype_rank minus performance_rank. Negative means more attention than wins (overhyped). Positive means more wins than attention (underhyped). Around zero means the internet got it right.",
   },
   {
-    q: "Why does it matter?",
-    a: "March Madness is a referendum on attention. The teams that dominate the discourse aren't always the teams that survive on the court. HYP3 makes that disconnect legible, overhyped flameouts, underhyped sleepers, and the quiet \"as expected\" middle.",
+    q: "What counts as overhyped or underhyped?",
+    a: "In tournament mode, overhyped is gap ≤ -15 and underhyped is gap ≥ +25. Anything inside ±10 is as_expected. The rest is noise. The cutoffs are asymmetric because 33 teams in the field share the same performance rank (everyone with zero tournament wins), which compresses the underhyped side. Season mode uses symmetric ±20 thresholds because every team has a distinct win rate.",
   },
   {
-    q: "Tournament view vs. season view?",
-    a: "Tournament mode uses a 15-day window centered on Selection Sunday. Season mode uses the full season, Nov 1 through Selection Sunday + 9 days, which includes the tournament itself. Each mode has its own hype, performance, and gap fields. Switch between them in the filter bar at the top of any data page.",
+    q: "Why these team query strings?",
+    a: "Naive queries break in opposite ways. \"Texas basketball\" picks up football noise. \"Saint Mary's Gaels basketball\" returns all zeros because the long mascot phrase has no Trends index. The rule that worked: keep the mascot for common-word names (Texas, Florida, Michigan), drop it for unique school names (St. John's, McNeese). Apostrophes get stripped. The full team-to-query map is committed in pull_trends.py.",
+  },
+  {
+    q: "Tournament mode vs. season mode?",
+    a: "Tournament mode uses the 15-day window around Selection Sunday. Season mode uses the full season, roughly Nov 1 through Selection Sunday + 9 days, which includes the tournament itself. Each mode has its own hype rank, performance rank, gap, and story tag. Toggle between them on any chart page.",
   },
   {
     q: "Which years are available?",
-    a: "The bundled dataset is 2026. The 2025 dataset is also served and can be loaded via the year query parameter (e.g. /divergent?year=2025). Each year has its own reference team and methodology notes.",
+    a: "2026 ships bundled with the site. 2025 (Florida's championship year) is also served and loadable via the year query parameter on the data pages. Each year has its own reference team and methodology notes in the repo.",
   },
 ];
 
@@ -51,31 +51,30 @@ export function AboutSection() {
           className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
-          A 72-hour capstone measuring the{" "}
+          We rank every team twice, then{" "}
           <span
             style={{
               color: "transparent",
               WebkitTextStroke: "1.2px var(--core-bright)",
             }}
           >
-            distance
-          </span>{" "}
-          between attention and outcome.
+            subtract
+          </span>
+          .
         </h2>
         <div className="grid grid-cols-1 gap-x-12 gap-y-6 lg:grid-cols-2">
-          <p className="m-0 text-base leading-relaxed text-ink-1 lg:text-[17px]">
-            Every March, basketball Twitter, ESPN, and Google deliver a verdict
-            on who&apos;s about to dominate the bracket. Then the actual games
-            happen, and the verdict turns out to be wrong about half the time.
-            HYP3 puts a number on that.
+          <p className="m-0 text-base font-medium leading-relaxed text-[#D7EBFF] lg:text-[17px]">
+            Twitter, ESPN, and Google all settle on a handful of favorites weeks
+            before tipoff. The teams that actually win the bracket are usually a
+            partial overlap. HYP3 plots both lists for the same 68 teams and
+            shows where they don&apos;t match.
           </p>
-          <p className="m-0 text-base leading-relaxed text-ink-1 lg:text-[17px]">
-            The pipeline is small: pull Google Trends data with{" "}
-            <code className="font-mono text-sm text-core-bright">pytrends</code>
-            , normalize across queries with a reference-team anchor, and rank
-            the field on both axes. The output is a single dataset that
-            visualizes the hype gap, overhyped, underhyped, as expected, or
-            noise, for every team in the field.
+          <p className="m-0 text-base font-medium leading-relaxed text-[#D7EBFF] lg:text-[17px]">
+            For each team, we pull daily Google Trends search interest across a
+            15-day window around Selection Sunday. Rank the field by that, then
+            again by tournament wins, and the difference is the gap. Negative
+            means overhyped. Positive means underhyped. Zero means the internet
+            got it right.
           </p>
         </div>
       </div>
@@ -148,7 +147,7 @@ function FAQItem({
       </button>
       {open && (
         <div className="px-5 pb-6 sm:px-7">
-          <p className="m-0 max-w-[820px] text-base leading-[1.65] text-ink-1">
+          <p className="m-0 max-w-[820px] text-base font-medium leading-[1.65] text-[#D7EBFF]">
             {a}
           </p>
         </div>
@@ -175,19 +174,19 @@ export function ApiSection() {
           className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
-          Use the dataset.
+          The whole dataset is one JSON file.
         </h2>
-        <p className="m-0 mb-8 max-w-[720px] text-left font-sans text-base font-medium leading-relaxed text-ink-1 lg:text-[17px]">
-          HYP3 has no backend. Every year&apos;s analysis is a static JSON file
-          you can fetch directly. Drop it into a notebook, a sketch, a
-          dashboard, anywhere.
+        <p className="m-0 mb-8 max-w-[720px] text-left font-sans text-base font-medium leading-relaxed text-[#D7EBFF] lg:text-[17px]">
+          No backend, no auth, no rate limits. The site bundles the year&apos;s
+          file at build time. Fetch it yourself and do whatever you want with
+          it, notebook, sketch, dashboard.
         </p>
 
         <div className="mb-8 grid grid-cols-1 gap-3">
           <ApiRow
             method="GET"
             path="/data/2026.json"
-            note="Bundled with this app. Full 2026 dataset."
+            note="Bundled with this app."
           />
           <ApiRow
             method="GET"
@@ -197,76 +196,42 @@ export function ApiSection() {
         </div>
 
         <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-1">
-          Schema <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" /> per team
+          Schema <Icon name="bullet" size={12} className="mx-2 inline-block align-middle" /> per team
         </div>
         <div className="overflow-hidden rounded-xl border border-border bg-black/40">
-          <table className="w-full border-collapse text-left font-mono text-sm">
-            <thead>
-              <tr className="border-b border-border bg-black/30">
-                <th className="px-4 py-2.5 text-[11px] uppercase tracking-[0.12em] text-ink-2">
-                  Field
-                </th>
-                <th className="px-4 py-2.5 text-[11px] uppercase tracking-[0.12em] text-ink-2">
-                  Type
-                </th>
-                <th className="px-4 py-2.5 text-[11px] uppercase tracking-[0.12em] text-ink-2">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody className="text-[13px]">
-              <SchemaRow field="team" type="string" desc="Team name (matches NCAA bracket)" />
-              <SchemaRow field="seed" type="number" desc="Tournament seed 1–16" />
-              <SchemaRow
-                field="region"
-                type="enum"
-                desc={
-                  <>
-                    East
-                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
-                    West
-                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
-                    South
-                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
-                    Midwest
-                  </>
-                }
-              />
-              <SchemaRow field="wins" type="number" desc="Tournament wins 0–7 (incl. First Four)" />
-              <SchemaRow field="hype_normalized" type="number" desc="Hype 0–100 across the field" />
-              <SchemaRow field="hype_rank" type="number" desc="1 = most hyped" />
-              <SchemaRow field="performance_rank" type="number" desc="1 = most wins (min-rank)" />
-              <SchemaRow field="gap" type="number" desc="hype_rank − performance_rank" />
-              <SchemaRow
-                field="story_tag"
-                type="enum"
-                desc={
-                  <>
-                    overhyped
-                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
-                    underhyped
-                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
-                    as_expected
-                    <Icon name="bullet" size={6} className="mx-1.5 inline-block align-middle" />
-                    noise
-                  </>
-                }
-              />
-              <SchemaRow field="hype_daily" type="array" desc="Daily hype series in the tournament window" />
-              <SchemaRow field="season_*" type="various" desc="Parallel fields for full-season mode" last />
-            </tbody>
-          </table>
+          <div className="hidden grid-cols-[minmax(160px,200px)_minmax(80px,100px)_1fr] items-baseline gap-4 border-b border-border bg-black/30 px-4 py-2.5 sm:grid">
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
+              Field
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
+              Type
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
+              Description
+            </span>
+          </div>
+          <SchemaRow field="team" type="string" desc="School name. Matches the NCAA bracket." />
+          <SchemaRow field="seed" type="number" desc="Tournament seed, 1 to 16." />
+          <SchemaRow field="region" type="enum" desc="East / West / South / Midwest." />
+          <SchemaRow field="wins" type="number" desc="Tournament wins, 0 to 7. First Four wins count." />
+          <SchemaRow field="hype_normalized" type="number" desc="Hype index, 0 to 100 across the field." />
+          <SchemaRow field="hype_rank" type="number" desc="Rank by hype. 1 is most hyped." />
+          <SchemaRow field="performance_rank" type="number" desc="Rank by wins. Tied teams share the lower number." />
+          <SchemaRow field="gap" type="number" desc="hype_rank minus performance_rank. Negative is overhyped." />
+          <SchemaRow field="story_tag" type="enum" desc="overhyped / underhyped / as_expected / noise." />
+          <SchemaRow field="hype_daily" type="array" desc="Daily hype value across the 15-day window." />
+          <SchemaRow field="hype_acceleration" type="number" desc="In-window mean over pre-window mean. Above 1 means surging into the tournament." />
+          <SchemaRow field="season_*" type="various" desc="Same shape, computed over the full season (Nov 1 through Selection Sunday + 9)." last />
         </div>
 
-        <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
-          Methodology <Icon name="bullet" size={5} className="mx-1.5 inline-block align-middle" /> see{" "}
+        <div className="mt-12 pl-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-2">
           <a
             href="https://github.com/baes358/hype"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-core-bright underline decoration-core-bright/40 underline-offset-4 transition-colors hover:decoration-core-bright"
           >
-            github.com/baes358/hype
+            Full Pipeline
             <Icon name="upright-arrow" size={10} />
           </a>
         </div>
@@ -290,7 +255,7 @@ function ApiRow({
         {method}
       </span>
       <code className="font-mono text-sm text-ink">{path}</code>
-      <span className="ml-auto font-mono text-[11px] uppercase tracking-[0.1em] text-ink-2">
+      <span className="font-sans text-[13px] font-medium leading-[1.5] text-[#D7EBFF]">
         {note}
       </span>
     </div>
@@ -305,15 +270,21 @@ function SchemaRow({
 }: {
   field: string;
   type: string;
-  desc: React.ReactNode;
+  desc: string;
   last?: boolean;
 }) {
   return (
-    <tr className={last ? "" : "border-b border-border"}>
-      <td className="px-4 py-2 text-core-bright">{field}</td>
-      <td className="px-4 py-2 text-ink-2">{type}</td>
-      <td className="px-4 py-2 text-ink-1">{desc}</td>
-    </tr>
+    <div
+      className={`flex flex-col gap-1 px-4 py-3 sm:grid sm:grid-cols-[minmax(160px,200px)_minmax(80px,100px)_1fr] sm:items-baseline sm:gap-4 sm:py-2.5 ${
+        last ? "" : "border-b border-border"
+      }`}
+    >
+      <div className="flex items-baseline gap-3 sm:contents">
+        <code className="font-mono text-[13px] text-core-bright">{field}</code>
+        <span className="font-mono text-[13px] text-ink-2">{type}</span>
+      </div>
+      <span className="font-sans text-sm font-medium leading-[1.5] text-[#D7EBFF]">{desc}</span>
+    </div>
   );
 }
 
@@ -335,37 +306,30 @@ export function SourcesSection() {
           className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
           style={{ fontSize: "clamp(28px, 4.5vw, 48px)" }}
         >
-          Where the data lives.
+          Where the data comes from.
         </h2>
-        <p className="m-0 mb-8 max-w-[720px] text-base leading-relaxed text-ink-1 lg:text-[17px]">
-          Every number on this site traces back to one of four upstream
-          sources. All pulls are cached locally, the live site never calls
-          these endpoints at request time.
+        <p className="m-0 mb-8 max-w-[720px] text-base font-medium leading-relaxed text-[#D7EBFF] lg:text-[17px]">
+          Three upstream sources, all cached locally. The live site
+          doesn&apos;t hit any of them at request time.
         </p>
         <div className="grid grid-cols-1 gap-3">
           <SourceCard
             label="Google Trends"
             href="https://trends.google.com/trends/"
             display="trends.google.com"
-            note="Daily search-interest curves for every team. Cross-batch normalized against an anchor team to make values comparable across pytrends batches."
+            note="Daily search interest per team. Five teams per batch, each batch anchored to a reference team so values stay comparable across batches."
           />
           <SourceCard
             label="pytrends"
             href="https://github.com/GeneralMills/pytrends"
             display="github.com/GeneralMills/pytrends"
-            note="Unofficial Google Trends API. Fetches the daily series in batches of five teams plus a shared reference."
+            note="Unofficial Google Trends API wrapper. Drives every Trends pull in the pipeline."
           />
           <SourceCard
             label="NCAA bracket + standings"
             href="https://ncaa-api.henrygd.me/"
             display="ncaa-api.henrygd.me"
-            note="Third-party wrapper over the NCAA's public bracket and standings endpoints. Source of wins, season_wins, season_losses, region, and seed."
-          />
-          <SourceCard
-            label="NCAA team logos"
-            href="https://ncaa-api.henrygd.me/"
-            display="ncaa-api.henrygd.me/logo"
-            note="SVG team logos fetched once via the same wrapper and committed to web/public/logos/ so the live site can serve them as static assets."
+            note="Third-party wrapper over the public NCAA endpoints. Source for seed, region, tournament wins, and full-season win-loss."
           />
         </div>
       </div>
@@ -398,7 +362,7 @@ function SourceCard({
         {display}
         <Icon name="upright-arrow" size={10} />
       </a>
-      <span className="font-mono text-[11px] uppercase tracking-[0.08em] leading-[1.5] text-ink-2 sm:ml-auto sm:text-right">
+      <span className="font-sans text-[13px] font-medium leading-[1.5] text-[#D7EBFF] sm:ml-auto sm:text-right">
         {note}
       </span>
     </div>
