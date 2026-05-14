@@ -61,7 +61,7 @@ export function Hero({ data }: Props) {
         }}
       >
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand bg-black/45 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur sm:px-3.5 sm:py-1.5 sm:text-sm sm:tracking-[0.12em]">
+          <span className="inline-flex max-w-full items-center gap-2 truncate whitespace-nowrap rounded-full border border-brand bg-black/45 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur sm:px-3.5 sm:py-1.5 sm:text-sm sm:tracking-[0.12em]">
             March Madness <span aria-hidden className="mx-1.5 inline-block size-1.5 rounded-full bg-brand align-middle" /> {data.metadata.tournament_year} Tournament
           </span>
         </div>

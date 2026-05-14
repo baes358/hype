@@ -74,18 +74,29 @@ export function FloatingSearch() {
 
   return (
     <>
+      {/* Full-viewport wrapper, pointer-events: none so it doesn't block the
+          page. The button inside is absolutely positioned relative to this
+          fixed wrapper. This indirection sidesteps iOS Safari quirks where
+          `position: fixed` directly on the button can drift with scroll. */}
+      <div
+        aria-hidden
+        style={{
+          position: "fixed",
+          inset: 0,
+          pointerEvents: "none",
+          zIndex: 40,
+        }}
+      >
       <button
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search teams (⌘K)"
-        className="z-40 inline-flex h-12 items-center gap-2 rounded-full border border-core-bright/40 bg-bg-2/95 px-4 font-mono text-sm uppercase tracking-[0.12em] text-ink shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_0_3px_rgba(114,184,255,0.08)] backdrop-blur transition-all hover:bg-bg-2 hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.7),0_0_0_4px_rgba(114,184,255,0.14)] sm:h-12 sm:px-5"
+        className="flex h-12 items-center gap-2 rounded-full border border-core-bright/40 bg-bg-2/95 px-4 font-mono text-sm uppercase tracking-[0.12em] text-ink shadow-[0_8px_32px_-4px_rgba(0,0,0,0.6),0_0_0_3px_rgba(114,184,255,0.08)] backdrop-blur transition-all hover:bg-bg-2 hover:shadow-[0_8px_32px_-4px_rgba(0,0,0,0.7),0_0_0_4px_rgba(114,184,255,0.14)] sm:h-12 sm:px-5"
         style={{
-          // Inline `position: fixed` with safe-area-inset-bottom so iOS Safari
-          // pins this above the home indicator and the URL chrome instead of
-          // letting the button scroll with the page.
-          position: "fixed",
+          position: "absolute",
           bottom: "max(env(safe-area-inset-bottom, 0px) + 0.75rem, 1.25rem)",
           right: "1.25rem",
+          pointerEvents: "auto",
         }}
       >
         <Search aria-hidden className="size-4 text-core-bright" />
@@ -94,6 +105,7 @@ export function FloatingSearch() {
           ⌘K
         </kbd>
       </button>
+      </div>
 
       {open && (
         <div
