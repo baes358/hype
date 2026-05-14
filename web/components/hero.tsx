@@ -62,7 +62,6 @@ export function Hero({ data }: Props) {
       >
         <div className="mb-8 flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-brand bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur">
-            <span aria-hidden className="size-1.5 rounded-full bg-brand" />
             March Madness <span aria-hidden className="mx-1.5 inline-block size-1.5 rounded-full bg-brand align-middle" /> {data.metadata.tournament_year} Tournament
           </span>
         </div>
@@ -81,7 +80,7 @@ export function Hero({ data }: Props) {
           </span>
         </h1>
 
-        <p className="m-0 mb-10 max-w-2xl text-base leading-relaxed text-ink lg:mb-14 lg:text-[17px]">
+        <p className="m-0 mb-10 max-w-2xl text-[20px] leading-relaxed text-ink lg:mb-14">
           HYP3 measures the distance between how loudly the internet talked about each team vs. how far they actually went that season.
           See how we measured 2026.{" "}
       

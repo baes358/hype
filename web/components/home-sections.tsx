@@ -44,9 +44,8 @@ export function AboutSection() {
       }}
     >
       <div className="mx-auto max-w-[1100px]">
-        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-          <span className="text-core-bright">01</span> /{" "}
-          <span className="text-ink-1">About HYP3</span>
+        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-core-bright">
+          About HYP3
         </div>
         <h2
           className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
@@ -95,9 +94,8 @@ export function FAQSection() {
       }}
     >
       <div className="mx-auto max-w-[1100px]">
-        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-          <span className="text-core-bright">02</span> /{" "}
-          <span className="text-ink-1">FAQs</span>
+        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-core-bright">
+          FAQs
         </div>
         <h2
           className="m-0 mb-10 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
@@ -170,9 +168,8 @@ export function ApiSection() {
       }}
     >
       <div className="mx-auto max-w-[1100px]">
-        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-          <span className="text-core-bright">03</span> /{" "}
-          <span className="text-ink-1">API & Data</span>
+        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-core-bright">
+          API & Data
         </div>
         <h2
           className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
@@ -331,9 +328,8 @@ export function SourcesSection() {
       }}
     >
       <div className="mx-auto max-w-[1100px]">
-        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-ink-2">
-          <span className="text-core-bright">04</span> /{" "}
-          <span className="text-ink-1">External Sources</span>
+        <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] text-core-bright">
+          External Sources
         </div>
         <h2
           className="m-0 mb-8 font-display font-bold leading-[1.4em] tracking-[-0.01em] text-ink"
