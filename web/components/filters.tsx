@@ -68,7 +68,7 @@ export function Filters({
 
   return (
     <div
-      className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-y-2 bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-[transform,border-color] duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
+      className={`sticky top-[var(--hyp3-nav-h,0px)] z-30 border-y-[1.5px] bg-bg shadow-[0_12px_32px_-12px_rgba(255,255,255,0.12)] transition-[transform,border-color] duration-300 ease-in-out ${hidden ? "pointer-events-none -translate-y-full" : ""}`}
       style={{
         borderTopColor: open ? "var(--brand)" : "transparent",
         borderBottomColor: open ? "var(--brand)" : "var(--border)",
@@ -267,7 +267,7 @@ function ModeToggle({
     { id: "season", label: "Season", sub: "5-mo" },
   ];
   return (
-    <div className="grid w-full grid-cols-2 gap-0.5 rounded-xl border-2 border-border-hi bg-[rgba(255,255,255,0.025)] p-1 shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] sm:inline-flex sm:w-fit">
+    <div className="grid w-full grid-cols-2 gap-0.5 rounded-xl border-[1.5px] border-border-hi bg-[rgba(255,255,255,0.025)] p-1 shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] sm:inline-flex sm:w-fit">
       {modes.map((m) => {
         const active = mode === m.id;
         return (
@@ -320,7 +320,7 @@ function Segmented({
   return (
     <div
       role="group"
-      className="grid w-full gap-[3px] rounded-[10px] border-2 border-border-hi bg-[rgba(255,255,255,0.025)] p-[3px] shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] sm:inline-flex sm:w-fit sm:max-w-full sm:flex-wrap sm:gap-0"
+      className="grid w-full gap-[3px] rounded-[10px] border-[1.5px] border-border-hi bg-[rgba(255,255,255,0.025)] p-[3px] shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] sm:inline-flex sm:w-fit sm:max-w-full sm:flex-wrap sm:gap-0"
       style={{ gridTemplateColumns: `repeat(${restCount}, minmax(0, 1fr))` }}
     >
       {options.map((o, i) => {
@@ -380,7 +380,7 @@ function RoundDropdown({
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border-2 border-border-hi bg-[rgba(255,255,255,0.025)] px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] transition-colors hover:border-border-strong sm:w-auto md:min-h-9 md:px-3 md:py-1"
+        className="inline-flex min-h-11 w-full min-w-[160px] items-center justify-between gap-2 rounded-lg border-[1.5px] border-border-hi bg-[rgba(255,255,255,0.025)] px-2.5 py-1.5 font-display text-[12px] font-black uppercase tracking-[0.06em] text-ink-1 shadow-[inset_0_0_16px_rgba(114,184,255,0.1)] transition-colors hover:border-border-strong sm:w-auto md:min-h-9 md:px-3 md:py-1"
       >
         <span>{ROUND_LABEL[value]}</span>
         <ChevronDown
