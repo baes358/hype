@@ -179,7 +179,7 @@ function ChampionBanner({
     <button
       type="button"
       onClick={() => onSelect(champion)}
-      className="mb-6 flex w-full flex-wrap items-center gap-4 rounded-2xl border border-core-bright/40 bg-[rgba(18,119,222,0.10)] px-5 py-4 text-left transition-all hover:bg-[rgba(18,119,222,0.16)] sm:px-6 sm:py-5"
+      className="mx-auto mb-6 flex w-fit max-w-full flex-col items-center gap-3 rounded-2xl border border-core-bright/40 bg-[rgba(18,119,222,0.10)] px-6 py-4 text-center transition-all hover:bg-[rgba(18,119,222,0.16)] sm:px-10 sm:py-5"
       style={{
         boxShadow: selected
           ? "0 0 0 1px var(--core-bright), 0 0 32px -4px rgba(114,184,255,0.5)"
@@ -187,23 +187,30 @@ function ChampionBanner({
       }}
     >
       <span
-        className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-core-bright"
+        className="inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-[0.18em] text-core-bright"
         style={{ textShadow: "0 0 12px rgba(114,184,255,0.6)" }}
       >
-        ★ National Champion
+        <span aria-hidden className="text-2xl leading-none sm:text-3xl">★</span>
+        National Champion
+        <span aria-hidden className="text-2xl leading-none sm:text-3xl">★</span>
       </span>
-      <span className="flex items-baseline gap-3">
-        <span className="font-mono text-sm font-bold tabular-nums text-core-bright">
+
+      <span className="flex flex-wrap items-baseline justify-center gap-3">
+        <span className="font-mono text-base font-bold tabular-nums text-core-bright sm:text-lg">
           #{String(champion.seed).padStart(2, "0")}
         </span>
         <span
           className="font-display font-bold leading-none text-ink"
-          style={{ fontSize: "clamp(20px, 3.4vw, 28px)" }}
+          style={{ fontSize: "clamp(22px, 3.6vw, 30px)" }}
         >
           {champion.team}
         </span>
+        <span className="font-mono text-sm font-bold tabular-nums text-core-bright">
+          GAP {champion.gap > 0 ? `+${champion.gap}` : champion.gap}
+        </span>
       </span>
-      <span className="ml-auto inline-flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
+
+      <span className="inline-flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-2">
         <span className="text-ink-1">{champion.region} region</span>
         <span
           className="rounded-full border bg-black/40 px-2 py-0.5 font-bold"
@@ -212,9 +219,6 @@ function ChampionBanner({
           {champion.story_tag === "as_expected"
             ? "AS EXPECTED"
             : champion.story_tag.toUpperCase()}
-        </span>
-        <span className="text-core-bright">
-          {champion.wins}W <Icon name="bullet" size={6} className="mx-1 inline-block align-middle" /> gap {champion.gap > 0 ? `+${champion.gap}` : champion.gap}
         </span>
       </span>
     </button>
