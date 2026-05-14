@@ -61,14 +61,14 @@ export function Hero({ data }: Props) {
         }}
       >
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand bg-black/45 px-3.5 py-1.5 font-mono text-sm uppercase tracking-[0.12em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur">
+          <span className="inline-flex items-center gap-2 rounded-full border border-brand bg-black/45 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-brand shadow-[0_0_24px_rgba(114,184,255,0.35)] backdrop-blur sm:px-3.5 sm:py-1.5 sm:text-sm sm:tracking-[0.12em]">
             March Madness <span aria-hidden className="mx-1.5 inline-block size-1.5 rounded-full bg-brand align-middle" /> {data.metadata.tournament_year} Tournament
           </span>
         </div>
 
         <h1
-          className="m-0 mb-8 break-words font-display font-bold leading-[1.0] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(2.75rem, 13vw, 5rem)" }}
+          className="m-0 mb-8 font-display font-bold leading-[1.0] tracking-[-0.02em]"
+          style={{ fontSize: "clamp(2rem, 10vw, 5rem)", overflowWrap: "normal", wordBreak: "keep-all" }}
         >
           <span className="text-ink">HYPE</span>{" "}
           <span className="italic font-normal text-ink">vs.</span>{" "}
@@ -80,7 +80,7 @@ export function Hero({ data }: Props) {
           </span>
         </h1>
 
-        <p className="m-0 mb-10 max-w-2xl text-[20px] leading-relaxed text-ink lg:mb-14">
+        <p className="m-0 mb-10 max-w-2xl text-base leading-snug text-ink lg:mb-14">
           HYP3 measures the distance between how loudly the internet talked about each team vs. how far they actually went that season.
           See how we measured 2026.{" "}
       
@@ -130,20 +130,20 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="flex h-full flex-col bg-black/60 p-5 backdrop-blur sm:p-6 lg:p-7">
-      <div className="mb-3 font-mono text-sm uppercase tracking-[0.14em] leading-[1.3] text-ink-2">
+    <div className="flex h-full flex-col bg-black/60 p-4 backdrop-blur sm:p-6 lg:p-7">
+      <div className="mb-2 font-mono text-[11px] uppercase tracking-[0.12em] leading-[1.3] text-ink-2 sm:mb-3 sm:text-sm sm:tracking-[0.14em]">
         {label}
       </div>
       <div
         className="mt-1 break-words font-display font-bold leading-[1.1] tracking-[-0.01em]"
         style={{
           color,
-          fontSize: "clamp(1.25rem, 2.8vw, 1.875rem)",
+          fontSize: "clamp(1.125rem, 2.8vw, 1.875rem)",
         }}
       >
         {value}
       </div>
-      <div className="mt-3 font-mono text-sm tracking-[0.06em] text-ink-2">
+      <div className="mt-2 font-mono text-[11px] tracking-[0.06em] text-ink-2 sm:mt-3 sm:text-sm">
         {sub}
       </div>
     </div>
